@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@tailwind utilities;
 
 @font-face {
     font-family: 'NoirPro';
@@ -17,8 +18,17 @@ body {
     scroll-behavior: smooth;
 }
 
+.h2-style {
+    @apply text-4xl font-extrabold mb-14 text-center bg-gradient-to-r from-purple-400 to-pink-600 bg-clip-text text-transparent opacity-100 translate-y-0 transition-all duration-700;
+}
+
+.h3-style {
+    @apply text-2xl font-semibold mb-4
+}
+
+
 h3 {
-    background: linear-gradient(to right, #ec4899, #8b5cf6, #6366f1);
+    background: white;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

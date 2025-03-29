@@ -38,7 +38,7 @@ export const Contact = () => {
             className="space-y-6 w-full max-w-2xl px-4"
             data-reveal-child
           >
-            <h2 className="text-3xl font-bold text-center bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">
+            <h2 className="h2-style" data-reveal-child>
               Contact
             </h2>
 

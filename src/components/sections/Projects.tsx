@@ -71,10 +71,7 @@ export const Projects = () => {
     >
       <RevealOnScroll>
         <div className="max-w-7xl mx-auto px-4 w-full">
-          <h2
-            className="text-4xl font-extrabold mb-14 text-center bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent opacity-0 translate-y-6 transition-all duration-700"
-            data-reveal-child
-          >
+          <h2 className="h2-style" data-reveal-child>
             Projects
           </h2>
 

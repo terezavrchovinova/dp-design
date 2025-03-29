@@ -39,16 +39,6 @@ export const About = () => {
     focus: 'Film and Animation Production',
   }
 
-  const skills = [
-    'Online Graphics',
-    'Video Production',
-    'Video Editing',
-    'Motion Graphics',
-    'Branding',
-    'Photography',
-    'DTP',
-  ]
-
   const tools = [
     { name: 'Adobe Photoshop', src: 'src/assets/icons/photoshop.svg' },
     { name: 'Adobe Illustrator', src: 'src/assets/icons/illustrator.svg' },
@@ -85,11 +75,8 @@ export const About = () => {
     >
       <RevealOnScroll>
         <div className="max-w-5xl mx-auto text-center space-y-16">
-          <h2
-            className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent"
-            data-reveal-child
-          >
-            About Me
+          <h2 className="h2-style" data-reveal-child>
+            About me
           </h2>
 
           <p className="text-white text-lg max-w-3xl mx-auto" data-reveal-child>
@@ -100,9 +87,7 @@ export const About = () => {
 
           {/* Experience */}
           <div className="space-y-4 text-left" data-reveal-child>
-            <h3 className="text-2xl font-semibold text-center mb-4">
-              Experience
-            </h3>
+            <h3 className="h3-style">Experience</h3>
             {experience.map((job, index) => (
               <div
                 key={index}
@@ -119,9 +104,7 @@ export const About = () => {
 
           {/* Education */}
           <div data-reveal-child>
-            <h3 className="text-2xl font-semibold text-center mb-4">
-              Education
-            </h3>
+            <h3 className="h3-style">Education</h3>
             <div className="backdrop-blur-md rounded-xl p-4 max-w-xl mx-auto shadow-sm">
               <h4 className="text-lg font-medium">{education.school}</h4>
               <p className="text-sm text-white">{education.years}</p>
@@ -129,28 +112,9 @@ export const About = () => {
             </div>
           </div>
 
-          {/* Skills */}
-          <div data-reveal-child>
-            <h3 className="text-2xl font-semibold text-center mb-4">Skills</h3>
-            <ul className="flex flex-wrap justify-center gap-3">
-              {skills.map((skill, index) => (
-                <li
-                  key={index}
-                  className="p-[2px] rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500"
-                >
-                  <div className="px-4 py-2 rounded-full bg-black text-white text-sm font-medium">
-                    {skill}
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-
           {/* Tools */}
           <div data-reveal-child>
-            <h3 className="text-2xl font-semibold text-center mb-6">
-              Tools I Use
-            </h3>
+            <h3 className="h3-style">Tools I Use</h3>
 
             {/* Adobe Tools Row */}
             <div className="flex flex-wrap justify-center gap-6 mb-4">
