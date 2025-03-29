@@ -1,0 +1,99 @@
+{
+    "nav": {
+        "home": "Home",
+        "projects": "Projects",
+        "whatIDo": "What I Do",
+        "about": "About",
+        "contact": "Contact"
+    },
+    "home": {
+        "greeting": "Hi, I'm",
+        "subtitle": "I'm a graphic designer and video editor with experience in a wide range of areas within graphic design.",
+        "viewProjects": "View Projects",
+        "contactMe": "Contact Me"
+    },
+    "about": {
+        "title": "About me",
+        "intro": "I’m a graphic designer and video editor with experience in many areas of design including branding, motion graphics, print and digital content, and packaging.",
+        "experience": "Experience",
+        "education": "Education",
+        "tools": "Tools I Use",
+        "jobs": [
+            {
+                "title": "Graphic Designer – Imper (Saleskit)",
+                "date": "Oct 2024 – Present",
+                "description": "Creative graphic work for business materials and presentations."
+            },
+            {
+                "title": "Graphic Designer & Video Editor – JVS GROUP",
+                "date": "Aug 2021 – Present",
+                "description": "Design for exhibitions and concerts, TV commercials, promo videos, motion graphics, editing, social media visuals, HTML5/PPC banners, brochures, and more."
+            },
+            {
+                "title": "DTP Operator – GZ Media",
+                "date": "Nov 2019 – Jun 2021",
+                "description": "Preparation of print materials, color correction, print-ready files."
+            },
+            {
+                "title": "Graphic Designer – BEEFBROTHERS, S.R.O.",
+                "date": "May 2018 – Jun 2018",
+                "description": "Short-term design support for branding and campaigns."
+            },
+            {
+                "title": "Print & Packaging – ART D",
+                "date": "May 2017 – Jul 2017",
+                "description": "Studio internship focused on packaging and print materials."
+            }
+        ],
+        "school": {
+            "name": "Secondary School of Multimedia and Promotional Arts (EDUSO)",
+            "years": "2015 – 2019",
+            "focus": "Film and Animation Production"
+        }
+    },
+    "projects": {
+        "title": "Projects",
+        "items": {
+            "kynez": "Brand Identity – Kynez",
+            "saleskit": "Design – Saleskit",
+            "dita": "Visual – Dita Von Teese",
+            "maastricht": "Visual – Maastricht Festival",
+            "letitroll": "Poster – Let It Roll",
+            "newtonia": "Game Design – Newtonia",
+            "brejcha": "Video Spot – Boris Brejcha",
+            "renaissance": "Video Spot – The Great Masters of the Renaissance",
+            "deathvalley": "Digital Art – Death Valley",
+            "jurassic": "Brochure – Jurassic Adventure"
+        }
+    },
+    "whatIDo": {
+        "title": "What I Do",
+        "services": {
+            "design": {
+                "title": "Visual & Brand Design",
+                "description": "Logos, brand identities, brochures, packaging, and merchandising — cohesive visuals delivered with clarity, consistency, and elegance."
+            },
+            "video": {
+                "title": "Video & Motion",
+                "description": "Production and editing of promotional videos, commercial spots, and motion graphics that bring energy and depth to your brand’s message."
+            },
+            "digital": {
+                "title": "Digital Content Creation",
+                "description": "Online graphics and assets for web and social media — designed with purpose, precision, and visual impact in mind."
+            },
+            "photo": {
+                "title": "Photography",
+                "description": "Branded photography that captures products, lifestyle moments, and atmospheres — always aligned with your visual identity."
+            }
+        }
+    },
+    "contact": {
+        "title": "Contact",
+        "name": "Your name",
+        "email": "Your email",
+        "message": "Your message",
+        "send": "Send",
+        "success": "✅ Message sent successfully!",
+        "error": "❌ Something went wrong. Please try again later."
+    }
+}

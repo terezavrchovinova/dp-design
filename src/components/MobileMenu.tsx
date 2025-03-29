@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface MobileMenuProps {
   menuOpen: boolean
@@ -6,18 +7,23 @@ interface MobileMenuProps {
 }
 
 const menuItems = [
-  { label: 'Home', href: '#home' },
-  { label: 'What I Do', href: '#what-i-do' },
-  { label: 'About', href: '#about' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Contact', href: '#contact' },
+  { key: 'home', href: '#home' },
+  { key: 'whatIDo', href: '#what-i-do' },
+  { key: 'about', href: '#about' },
+  { key: 'projects', href: '#projects' },
+  { key: 'contact', href: '#contact' },
 ]
 
 export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
-  // Disable body scroll when menu is open
+  const { t, i18n } = useTranslation()
+
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
   }, [menuOpen])
+
+  const changeLanguage = (lng: 'en' | 'cs') => {
+    i18n.changeLanguage(lng)
+  }
 
   return (
     <div
@@ -56,10 +62,31 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
               transitionDelay: `${menuOpen ? index * 100 : 0}ms`,
             }}
           >
-            {item.label}
+            {t(`nav.${item.key}`)}
           </a>
         ))}
       </nav>
+
+      {/* Language Switcher */}
+      <div className="flex space-x-4 mt-10">
+        <button
+          onClick={() => changeLanguage('en')}
+          className={`text-white text-sm font-medium hover:underline ${
+            i18n.language === 'en' ? 'underline' : 'opacity-60'
+          }`}
+        >
+          EN
+        </button>
+        <span className="text-white opacity-50">|</span>
+        <button
+          onClick={() => changeLanguage('cs')}
+          className={`text-white text-sm font-medium hover:underline ${
+            i18n.language === 'cs' ? 'underline' : 'opacity-60'
+          }`}
+        >
+          CZ
+        </button>
+      </div>
     </div>
   )
 }

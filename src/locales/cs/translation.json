@@ -1,0 +1,99 @@
+{
+    "nav": {
+        "home": "Domů",
+        "projects": "Projekty",
+        "whatIDo": "Co dělám",
+        "about": "O mně",
+        "contact": "Kontakt"
+    },
+    "home": {
+        "greeting": "Ahoj, jsem",
+        "subtitle": "Jsem grafická designérka a video editorka s bohatými zkušenostmi v různých oblastech grafického designu.",
+        "viewProjects": "Zobrazit projekty",
+        "contactMe": "Kontaktovat mě"
+    },
+    "about": {
+        "title": "O mně",
+        "intro": "Jsem grafická designérka a video editorka se zkušenostmi v mnoha oblastech designu – od brandingu, motion designu a animací až po tisk, digitální obsah a obalový design.",
+        "experience": "Zkušenosti",
+        "education": "Vzdělání",
+        "tools": "Nástroje, které používám",
+        "jobs": [
+            {
+                "title": "Grafická designérka – Imper (Saleskit)",
+                "date": "říjen 2024 – dosud",
+                "description": "Kreativní grafická práce na obchodních materiálech a prezentacích."
+            },
+            {
+                "title": "Grafická designérka & video editorka – JVS GROUP",
+                "date": "srpen 2021 – dosud",
+                "description": "Design pro výstavy a koncerty, TV spoty, promo videa, animace, střih, vizuály pro sociální sítě, HTML5/PPC bannery, brožury a další."
+            },
+            {
+                "title": "DTP operátorka – GZ Media",
+                "date": "listopad 2019 – červen 2021",
+                "description": "Příprava tiskovin, barevné korekce, výstupy připravené pro tisk."
+            },
+            {
+                "title": "Grafická designérka – BEEFBROTHERS, S.R.O.",
+                "date": "květen 2018 – červen 2018",
+                "description": "Krátkodobá výpomoc na brandingu a kampaních."
+            },
+            {
+                "title": "Tisk & obaly – ART D",
+                "date": "květen 2017 – červenec 2017",
+                "description": "Stáž ve studiu zaměřená na obalový design a tiskoviny."
+            }
+        ],
+        "school": {
+            "name": "Střední škola multimediální a propagační tvorby (EDUSO)",
+            "years": "2015 – 2019",
+            "focus": "Tvorba filmu a animace"
+        }
+    },
+    "projects": {
+        "title": "Projekty",
+        "items": {
+            "kynez": "Vizuální identita – Kynez",
+            "saleskit": "Design – Saleskit",
+            "dita": "Vizuál – Dita Von Teese",
+            "maastricht": "Vizuál – Maastricht Festival",
+            "letitroll": "Plakát – Let It Roll",
+            "newtonia": "Herní design – Newtonia",
+            "brejcha": "Video spot – Boris Brejcha",
+            "renaissance": "Video spot – Renesanční mistři",
+            "deathvalley": "Digitální umění – Death Valley",
+            "jurassic": "Brožura – Jurassic Adventure"
+        }
+    },
+    "whatIDo": {
+        "title": "Co dělám",
+        "services": {
+            "design": {
+                "title": "Vizuální a značkový design",
+                "description": "Loga, vizuální identity, brožury, obaly a merchandising — jednotné vizuály vytvořené s důrazem na jasnost, konzistenci a eleganci."
+            },
+            "video": {
+                "title": "Video a animace",
+                "description": "Produkce a střih promo videí, reklam a motion grafiky, které vdechnou značce energii a hloubku."
+            },
+            "digital": {
+                "title": "Digitální obsah",
+                "description": "Grafika a vizuály pro web a sociální sítě — navržené s důrazem na účel, preciznost a vizuální dopad."
+            },
+            "photo": {
+                "title": "Fotografie",
+                "description": "Brandová fotografie zachycující produkty, životní momenty a atmosféru — vždy v souladu s vizuální identitou značky."
+            }
+        }
+    },
+    "contact": {
+        "title": "Kontakt",
+        "name": "Vaše jméno",
+        "email": "Váš e-mail",
+        "message": "Vaše zpráva",
+        "send": "Odeslat",
+        "success": "✅ Zpráva byla úspěšně odeslána!",
+        "error": "❌ Něco se pokazilo. Zkuste to prosím znovu."
+    }
+}

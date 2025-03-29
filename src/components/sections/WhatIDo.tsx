@@ -1,34 +1,28 @@
-// WhatIDo.tsx
 import { RevealOnScroll } from '../RevealOnScroll'
+import { useTranslation } from 'react-i18next'
 
 const services = [
   {
-    title: 'Visual & Brand Design',
-    description:
-      'Logos, brand identities, brochures, packaging, and merchandising — cohesive visuals delivered with clarity, consistency, and elegance.',
+    key: 'design',
     img: '/src/assets/icons/visual-brand-design.png',
   },
   {
-    title: 'Video & Motion',
-    description:
-      'Production and editing of promotional videos, commercial spots, and motion graphics that bring energy and depth to your brand’s message.',
+    key: 'video',
     img: '/src/assets/icons/video.png',
   },
   {
-    title: 'Digital Content Creation',
-    description:
-      'Online graphics and assets for web and social media — designed with purpose, precision, and visual impact in mind.',
+    key: 'digital',
     img: '/src/assets/icons/social-media.png',
   },
   {
-    title: 'Photography',
-    description:
-      'Branded photography that captures products, lifestyle moments, and atmospheres — always aligned with your visual identity.',
+    key: 'photo',
     img: '/src/assets/icons/camera.png',
   },
 ]
 
 export const WhatIDo = () => {
+  const { t } = useTranslation()
+
   return (
     <RevealOnScroll>
       <section
@@ -37,10 +31,9 @@ export const WhatIDo = () => {
       >
         <div className="max-w-6xl w-full space-y-6" data-reveal-child>
           <h2 className="h2-style" data-reveal-child>
-            What I Do
+            {t('whatIDo.title')}
           </h2>
 
-          {/* Zúžený grid wrapper */}
           <div className="max-w-4xl w-full mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
             {services.map((service, index) => (
               <div
@@ -50,13 +43,17 @@ export const WhatIDo = () => {
                 <div className="shrink-0 w-16">
                   <img
                     src={service.img}
-                    alt={`${service.title} icon`}
+                    alt={`${t(`whatIDo.services.${service.key}.title`)} icon`}
                     className="w-12 h-12 object-contain"
                   />
                 </div>
                 <div className="w-full max-w-[500px] self-center">
-                  <h3 className="h3-style text-left">{service.title}</h3>
-                  <p className="text-sm text-gray-700">{service.description}</p>
+                  <h3 className="h3-style text-left">
+                    {t(`whatIDo.services.${service.key}.title`)}
+                  </h3>
+                  <p className="text-sm text-gray-700">
+                    {t(`whatIDo.services.${service.key}.description`)}
+                  </p>
                 </div>
               </div>
             ))}

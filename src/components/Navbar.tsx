@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface NavbarProps {
   menuOpen: boolean
@@ -6,9 +7,15 @@ interface NavbarProps {
 }
 
 export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
+  const { t, i18n } = useTranslation()
+
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
   }, [menuOpen])
+
+  const changeLanguage = (lng: 'en' | 'cs') => {
+    i18n.changeLanguage(lng)
+  }
 
   return (
     <nav className="fixed top-0 w-full z-40 bg-black backdrop-blur-lg shadow-lg">
@@ -35,12 +42,33 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
           </button>
 
           {/* Desktop menu */}
-          <div className="hidden md:flex items-center space-x-8">
-            <NavLink href="#home" label="Home" />
-            <NavLink href="#projects" label="Projects" />
-            <NavLink href="#what-i-do" label="What I Do" />
-            <NavLink href="#about" label="About" />
-            <NavLink href="#contact" label="Contact" />
+          <div className="hidden md:flex items-center space-x-6">
+            <NavLink href="#home" label={t('nav.home')} />
+            <NavLink href="#projects" label={t('nav.projects')} />
+            <NavLink href="#what-i-do" label={t('nav.whatIDo')} />
+            <NavLink href="#about" label={t('nav.about')} />
+            <NavLink href="#contact" label={t('nav.contact')} />
+
+            {/* Language Switcher */}
+            <div className="flex space-x-2 ml-4">
+              <button
+                onClick={() => changeLanguage('en')}
+                className={`text-sm font-medium hover:underline ${
+                  i18n.language === 'en' ? 'text-white' : 'text-gray-400'
+                }`}
+              >
+                EN
+              </button>
+              <span className="text-gray-500">|</span>
+              <button
+                onClick={() => changeLanguage('cs')}
+                className={`text-sm font-medium hover:underline ${
+                  i18n.language === 'cs' ? 'text-white' : 'text-gray-400'
+                }`}
+              >
+                CZ
+              </button>
+            </div>
           </div>
         </div>
       </div>

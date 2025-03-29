@@ -6,6 +6,7 @@ import { About } from './components/sections/About'
 import { Projects } from './components/sections/Projects'
 import { Contact } from './components/sections/Contact'
 import { WhatIDo } from './components/sections/WhatIDo'
+import './i18n'
 import './App.css'
 import './index.css'
 

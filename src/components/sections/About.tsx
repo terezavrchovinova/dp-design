@@ -1,42 +1,19 @@
 import { RevealOnScroll } from '../RevealOnScroll'
+import { useTranslation } from 'react-i18next'
 
 export const About = () => {
-  const experience = [
-    {
-      title: 'Graphic Designer – Imper (Saleskit)',
-      date: 'Oct 2024 – Present',
-      description:
-        'Creative graphic work for business materials and presentations.',
-    },
-    {
-      title: 'Graphic Designer & Video Editor – JVS GROUP',
-      date: 'Aug 2021 – Present',
-      description:
-        'Design for exhibitions and concerts, TV commercials, promo videos, motion graphics, editing, social media visuals, HTML5/PPC banners, brochures, and more.',
-    },
-    {
-      title: 'DTP Operator – GZ Media',
-      date: 'Nov 2019 – Jun 2021',
-      description:
-        'Preparation of print materials, color correction, print-ready files.',
-    },
-    {
-      title: 'Graphic Designer – BEEFBROTHERS, S.R.O.',
-      date: 'May 2018 – Jun 2018',
-      description: 'Short-term design support for branding and campaigns.',
-    },
-    {
-      title: 'Print & Packaging – ART D',
-      date: 'May 2017 – Jul 2017',
-      description:
-        'Studio internship focused on packaging and print materials.',
-    },
-  ]
+  const { t } = useTranslation()
 
-  const education = {
-    school: 'Secondary School of Multimedia and Promotional Arts (EDUSO)',
-    years: '2015 – 2019',
-    focus: 'Film and Animation Production',
+  const jobs = t('about.jobs', { returnObjects: true }) as {
+    title: string
+    date: string
+    description: string
+  }[]
+
+  const education = t('about.school', { returnObjects: true }) as {
+    name: string
+    years: string
+    focus: string
   }
 
   const tools = [
@@ -54,18 +31,7 @@ export const About = () => {
     { name: 'Midjourney', src: '/src/assets/icons/midjourney.webp' },
   ]
 
-  const adobeTools = tools.filter((tool) =>
-    [
-      'Adobe Photoshop',
-      'Adobe Illustrator',
-      'Adobe InDesign',
-      'Adobe After Effects',
-      'Adobe Premiere Pro',
-      'Adobe Lightroom',
-      'Adobe Dimension',
-    ].includes(tool.name),
-  )
-
+  const adobeTools = tools.filter((tool) => tool.name.startsWith('Adobe'))
   const otherTools = tools.filter((tool) => !adobeTools.includes(tool))
 
   return (
@@ -75,65 +41,59 @@ export const About = () => {
     >
       <RevealOnScroll>
         <div className="max-w-5xl mx-auto text-center space-y-16">
+          {/* Section title */}
           <h2 className="h2-style" data-reveal-child>
-            About me
+            {t('about.title')}
           </h2>
 
+          {/* Intro */}
           <p className="text-white text-lg max-w-3xl mx-auto" data-reveal-child>
-            I’m a graphic designer and video editor with experience in many
-            areas of design including branding, motion graphics, print and
-            digital content, and packaging.
+            {t('about.intro')}
           </p>
 
           {/* Experience */}
-          <div className="space-y-4 text-left" data-reveal-child>
-            <h3 className="h3-style">Experience</h3>
-            {experience.map((job, index) => (
-              <div
-                key={index}
-                className="backdrop-blur-md border rounded-xl p-4 shadow-sm"
-              >
-                <div className="flex justify-between items-center flex-wrap gap-2">
-                  <h4 className="text-lg font-medium">{job.title}</h4>
-                  <span className="text-sm text-white">{job.date}</span>
-                </div>
-                <p className="text-white mt-1">{job.description}</p>
+          <h3 className="h3-style">{t('about.experience')}</h3>
+          {jobs.map((job, index) => (
+            <div
+              key={index}
+              className="backdrop-blur-md border rounded-xl p-4 shadow-sm"
+            >
+              <div className="flex justify-between items-center flex-wrap gap-2">
+                <h4 className="h4-style">{job.title}</h4>
+                <span className="text-sm text-white">{job.date}</span>
               </div>
-            ))}
-          </div>
+              <p className="text-white text-left mt-1">{job.description}</p>
+            </div>
+          ))}
 
           {/* Education */}
-          <div data-reveal-child>
-            <h3 className="h3-style">Education</h3>
-            <div className="backdrop-blur-md rounded-xl p-4 max-w-xl mx-auto shadow-sm">
-              <h4 className="text-lg font-medium">{education.school}</h4>
-              <p className="text-sm text-white">{education.years}</p>
-              <p className="text-white mt-1">{education.focus}</p>
-            </div>
+          <h3 className="h3-style">{t('about.education')}</h3>
+          <div className="backdrop-blur-md rounded-xl p-4 max-w-xl mx-auto shadow-sm">
+            <h4 className="h4-style">{education.name}</h4>
+            <p className="text-sm text-white">{education.years}</p>
+            <p className="text-white mt-1">{education.focus}</p>
           </div>
 
           {/* Tools */}
-          <div data-reveal-child>
-            <h3 className="h3-style">Tools I Use</h3>
+          <h3 className="h3-style">{t('about.tools')}</h3>
 
-            {/* Adobe Tools Row */}
-            <div className="flex flex-wrap justify-center gap-6 mb-4">
-              {adobeTools.map((tool, index) => (
-                <div
-                  key={index}
-                  className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center"
-                >
-                  <img
-                    src={tool.src}
-                    alt={tool.name}
-                    title={tool.name}
-                    className="w-10 h-10 object-contain hover:scale-110 transition-transform duration-200"
-                  />
-                </div>
-              ))}
-            </div>
+          {/* Adobe Tools */}
+          <div className="flex flex-wrap justify-center gap-6 mb-4">
+            {adobeTools.map((tool, index) => (
+              <div
+                key={index}
+                className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center"
+              >
+                <img
+                  src={tool.src}
+                  alt={tool.name}
+                  title={tool.name}
+                  className="w-10 h-10 object-contain hover:scale-110 transition-transform duration-200"
+                />
+              </div>
+            ))}
 
-            {/* Other Tools Row */}
+            {/* Other Tools */}
             <div className="flex flex-wrap justify-center gap-6">
               {otherTools.map((tool, index) => (
                 <div
