@@ -1,28 +1,6 @@
 import { RevealOnScroll } from '../RevealOnScroll'
 
 export const About = () => {
-  const services = [
-    {
-      title: 'Graphic Design',
-      description:
-        'Logos, branding, brochures, merchandising, and outdoor campaigns',
-      img: '/src/assets/icons/graphic-design.svg',
-    },
-    {
-      title: 'Video Editing & Motion Graphics',
-      description: 'Promo videos, TV commercials, post-production, animation',
-    },
-    {
-      title: 'Digital & Social Media Assets',
-      description:
-        'HTML5 banners, PPC ads, infographics, social content visuals',
-    },
-    {
-      title: 'DTP',
-      description: 'Print and packaging',
-    },
-  ]
-
   const experience = [
     {
       title: 'Graphic Designer – Imper (Saleskit)',
@@ -72,13 +50,33 @@ export const About = () => {
   ]
 
   const tools = [
-    { name: 'Photoshop', src: 'src/assets/icons/photoshop.svg' },
-    { name: 'Illustrator', src: 'src/assets/icons/illustrator.svg' },
-    { name: 'InDesign', src: '/src/assets/icons/indesign.svg' },
-    { name: 'After Effects', src: '/src/assets/icons/after-effects.svg' },
-    { name: 'Premiere Pro', src: '/src/assets/icons/premiere-pro.svg' },
-    { name: 'Lightroom', src: 'src/assets/icons/photoshop-lightroom.svg' },
+    { name: 'Adobe Photoshop', src: 'src/assets/icons/photoshop.svg' },
+    { name: 'Adobe Illustrator', src: 'src/assets/icons/illustrator.svg' },
+    { name: 'Adobe InDesign', src: '/src/assets/icons/indesign.svg' },
+    { name: 'Adobe After Effects', src: '/src/assets/icons/after-effects.svg' },
+    { name: 'Adobe Premiere Pro', src: '/src/assets/icons/premiere-pro.svg' },
+    {
+      name: 'Adobe Lightroom',
+      src: 'src/assets/icons/photoshop-lightroom.svg',
+    },
+    { name: 'Adobe Dimension', src: '/src/assets/icons/dimension.svg' },
+    { name: 'Cinema 4D', src: '/src/assets/icons/cinema-4d.svg' },
+    { name: 'Midjourney', src: '/src/assets/icons/midjourney.webp' },
   ]
+
+  const adobeTools = tools.filter((tool) =>
+    [
+      'Adobe Photoshop',
+      'Adobe Illustrator',
+      'Adobe InDesign',
+      'Adobe After Effects',
+      'Adobe Premiere Pro',
+      'Adobe Lightroom',
+      'Adobe Dimension',
+    ].includes(tool.name),
+  )
+
+  const otherTools = tools.filter((tool) => !adobeTools.includes(tool))
 
   return (
     <section
@@ -87,31 +85,21 @@ export const About = () => {
     >
       <RevealOnScroll>
         <div className="max-w-5xl mx-auto text-center space-y-16">
-          <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent text-center">
+          <h2
+            className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent"
+            data-reveal-child
+          >
             About Me
           </h2>
 
-          <p className="text-white text-lg max-w-3xl mx-auto mb-8">
+          <p className="text-white text-lg max-w-3xl mx-auto" data-reveal-child>
             I’m a graphic designer and video editor with experience in many
             areas of design including branding, motion graphics, print and
             digital content, and packaging.
           </p>
 
-          {/* What I Do */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {services.map((service, index) => (
-              <div
-                key={index}
-                className="border rounded-2xl shadow-md p-6 text-left hover:shadow-lg transition"
-              >
-                <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                <p className="text-gray-400">{service.description}</p>
-              </div>
-            ))}
-          </div>
-
           {/* Experience */}
-          <div className="space-y-4 text-left">
+          <div className="space-y-4 text-left" data-reveal-child>
             <h3 className="text-2xl font-semibold text-center mb-4">
               Experience
             </h3>
@@ -122,47 +110,68 @@ export const About = () => {
               >
                 <div className="flex justify-between items-center flex-wrap gap-2">
                   <h4 className="text-lg font-medium">{job.title}</h4>
-                  <span className="text-sm text-white-400">{job.date}</span>
+                  <span className="text-sm text-white">{job.date}</span>
                 </div>
-                <p className="text-gray-400 mt-1">{job.description}</p>
+                <p className="text-white mt-1">{job.description}</p>
               </div>
             ))}
           </div>
 
           {/* Education */}
-          <div>
+          <div data-reveal-child>
             <h3 className="text-2xl font-semibold text-center mb-4">
               Education
             </h3>
-            <div className="backdrop-blur-md border rounded-xl p-4 max-w-xl mx-auto shadow-sm">
+            <div className="backdrop-blur-md rounded-xl p-4 max-w-xl mx-auto shadow-sm">
               <h4 className="text-lg font-medium">{education.school}</h4>
               <p className="text-sm text-white">{education.years}</p>
-              <p className="text-gray-400 mt-1">{education.focus}</p>
+              <p className="text-white mt-1">{education.focus}</p>
             </div>
           </div>
 
           {/* Skills */}
-          <div>
+          <div data-reveal-child>
             <h3 className="text-2xl font-semibold text-center mb-4">Skills</h3>
             <ul className="flex flex-wrap justify-center gap-3">
               {skills.map((skill, index) => (
                 <li
                   key={index}
-                  className="bg-blue-5 border border-white px-4 py-2 rounded-full text-sm font-medium"
+                  className="p-[2px] rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500"
                 >
-                  {skill}
+                  <div className="px-4 py-2 rounded-full bg-black text-white text-sm font-medium">
+                    {skill}
+                  </div>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Tools I Use (with icons) */}
-          <div>
+          {/* Tools */}
+          <div data-reveal-child>
             <h3 className="text-2xl font-semibold text-center mb-6">
               Tools I Use
             </h3>
+
+            {/* Adobe Tools Row */}
+            <div className="flex flex-wrap justify-center gap-6 mb-4">
+              {adobeTools.map((tool, index) => (
+                <div
+                  key={index}
+                  className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center"
+                >
+                  <img
+                    src={tool.src}
+                    alt={tool.name}
+                    title={tool.name}
+                    className="w-10 h-10 object-contain hover:scale-110 transition-transform duration-200"
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* Other Tools Row */}
             <div className="flex flex-wrap justify-center gap-6">
-              {tools.map((tool, index) => (
+              {otherTools.map((tool, index) => (
                 <div
                   key={index}
                   className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center"

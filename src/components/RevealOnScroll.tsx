@@ -1,26 +1,36 @@
 import { useEffect, useRef } from 'react'
 
-export const RevealOnScroll = ({ children }) => {
-  const ref = useRef(null)
+interface RevealOnScrollProps {
+  children: React.ReactNode
+}
+
+export const RevealOnScroll = ({ children }: RevealOnScrollProps) => {
+  const ref = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
+    if (!ref.current) return
+
+    const revealElements = ref.current.querySelectorAll('[data-reveal-child]')
+
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          ref.current.classList.add('visible')
-        }
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('opacity-100', 'translate-y-0')
+            entry.target.classList.remove('opacity-0', 'translate-y-6')
+            observer.unobserve(entry.target)
+          }
+        })
       },
-      { threshold: 0.2, rootMargin: '0px 0px -50px 0px' },
+      { threshold: 0.1 },
     )
 
-    if (ref.current) observer.observe(ref.current)
+    revealElements.forEach((el) => observer.observe(el))
 
-    return () => observer.disconnect()
-  })
+    return () => {
+      revealElements.forEach((el) => observer.unobserve(el))
+    }
+  }, [])
 
-  return (
-    <div ref={ref} className="reveal">
-      {children}
-    </div>
-  )
+  return <div ref={ref}>{children}</div>
 }

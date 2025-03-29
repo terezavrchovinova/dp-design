@@ -1,57 +1,58 @@
 import { useEffect } from 'react'
 
-export const Navbar = ({ menuOpen, setMenuOpen }) => {
+interface NavbarProps {
+  menuOpen: boolean
+  setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
   }, [menuOpen])
+
   return (
-    <nav className="fixed top-0 w-full z-40 bg-[rgba(10, 10, 10, 0.8)] backdrop-blur-lg border-b border-white/10 shadow-lg">
+    <nav className="fixed top-0 w-full z-40 bg-black backdrop-blur-lg shadow-lg">
       <div className="max-w-5xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          <a href="#home" className="font-mono text-xl font-bold text-white">
-            {' '}
-            dp<span className="text-blue-500">.design</span>{' '}
+          {/* Logo */}
+          <a href="#home" className="flex items-center">
+            <img
+              src="/dp_icon_white.svg"
+              alt="Daniela Plamínková Logo"
+              className="w-8 h-8"
+            />
           </a>
 
-          <div
-            className="w-7 h-5 relative cursor-pointer z-40 md:hidden"
+          {/* Hamburger menu for mobile */}
+          <button
+            aria-label="Toggle Menu"
             onClick={() => setMenuOpen((prev) => !prev)}
+            className="md:hidden flex flex-col justify-between w-7 h-5 focus:outline-none z-50"
           >
-            &#9776;
-          </div>
+            <span className="block h-0.5 w-full bg-white rounded-sm"></span>
+            <span className="block h-0.5 w-full bg-white rounded-sm"></span>
+            <span className="block h-0.5 w-full bg-white rounded-sm"></span>
+          </button>
 
+          {/* Desktop menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <a
-              href="#home"
-              className="text-gray-300 hove:text-white transition-colors"
-            >
-              {' '}
-              Home
-            </a>
-            <a
-              href="#about"
-              className="text-gray-300 hove:text-white transition-colors"
-            >
-              {' '}
-              About{' '}
-            </a>
-            <a
-              href="#projects"
-              className="text-gray-300 hove:text-white transition-colors"
-            >
-              {' '}
-              Projects{' '}
-            </a>
-            <a
-              href="#contact"
-              className="text-gray-300 hove:text-white transition-colors"
-            >
-              {' '}
-              Contact{' '}
-            </a>
+            <NavLink href="#home" label="Home" />
+            <NavLink href="#projects" label="Projects" />
+            <NavLink href="#what-i-do" label="What I Do" />
+            <NavLink href="#about" label="About" />
+            <NavLink href="#contact" label="Contact" />
           </div>
         </div>
       </div>
     </nav>
   )
 }
+
+const NavLink = ({ href, label }: { href: string; label: string }) => (
+  <a
+    href={href}
+    className="text-white hover:text-white transition-colors duration-200 text-sm font-medium tracking-wide"
+  >
+    {label}
+  </a>
+)

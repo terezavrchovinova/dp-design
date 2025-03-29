@@ -71,26 +71,33 @@ export const Projects = () => {
     >
       <RevealOnScroll>
         <div className="max-w-7xl mx-auto px-4 w-full">
-          <h2 className="text-3xl font-bold mb-10 bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent text-center">
+          <h2
+            className="text-4xl font-extrabold mb-14 text-center bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent opacity-0 translate-y-6 transition-all duration-700"
+            data-reveal-child
+          >
             Projects
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {projects.map((project) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project, index) => (
               <a
                 key={project.id}
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative group aspect-[2/1] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
+                className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-500 aspect-[16/9] opacity-0 translate-y-6 transition-all duration-700"
+                style={{ transitionDelay: `${index * 100}ms` }}
+                data-reveal-child
+                aria-label={`Open project: ${project.title}`}
               >
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transform transition duration-300 group-hover:scale-105 group-hover:brightness-50"
+                  loading="lazy"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 group-hover:brightness-75"
                 />
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                  <span className="text-white text-xl font-semibold bg-black bg-opacity-60 px-6 py-3 rounded">
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="text-white text-lg font-medium bg-black/60 px-6 py-3 rounded-lg text-center">
                     {project.title}
                   </span>
                 </div>
