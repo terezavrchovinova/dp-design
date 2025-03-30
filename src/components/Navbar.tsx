@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
 interface NavbarProps {
@@ -9,20 +8,12 @@ interface NavbarProps {
 export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
   const { t, i18n } = useTranslation()
 
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : ''
-  }, [menuOpen])
-
-  const changeLanguage = (lng: 'en' | 'cs') => {
-    i18n.changeLanguage(lng)
-  }
-
   return (
     <nav className="fixed top-0 w-full z-40 bg-black backdrop-blur-lg shadow-lg">
       <div className="max-w-5xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <a href="#home" className="flex items-center">
+          <a href="#home" className="flex items-center" aria-label="Home">
             <img
               src="/dp_icon_white.svg"
               alt="Daniela Plamínková Logo"
@@ -30,45 +21,31 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
             />
           </a>
 
-          {/* Hamburger menu for mobile */}
+          {/* Mobile Hamburger */}
           <button
             aria-label="Toggle Menu"
             onClick={() => setMenuOpen((prev) => !prev)}
-            className="md:hidden flex flex-col justify-between w-7 h-5 focus:outline-none z-50"
+            className="md:hidden flex flex-col justify-between w-7 h-5 z-50"
           >
-            <span className="block h-0.5 w-full bg-white rounded-sm"></span>
-            <span className="block h-0.5 w-full bg-white rounded-sm"></span>
-            <span className="block h-0.5 w-full bg-white rounded-sm"></span>
+            {[...Array(3)].map((_, i) => (
+              <span
+                key={i}
+                className="block h-0.5 w-full bg-white rounded-sm"
+              />
+            ))}
           </button>
 
-          {/* Desktop menu */}
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
             <NavLink href="#home" label={t('nav.home')} />
             <NavLink href="#projects" label={t('nav.projects')} />
             <NavLink href="#what-i-do" label={t('nav.whatIDo')} />
             <NavLink href="#about" label={t('nav.about')} />
             <NavLink href="#contact" label={t('nav.contact')} />
-
-            {/* Language Switcher */}
-            <div className="flex space-x-2 ml-4">
-              <button
-                onClick={() => changeLanguage('en')}
-                className={`text-sm font-medium hover:underline ${
-                  i18n.language === 'en' ? 'text-white' : 'text-gray-400'
-                }`}
-              >
-                EN
-              </button>
-              <span className="text-gray-500">|</span>
-              <button
-                onClick={() => changeLanguage('cs')}
-                className={`text-sm font-medium hover:underline ${
-                  i18n.language === 'cs' ? 'text-white' : 'text-gray-400'
-                }`}
-              >
-                CZ
-              </button>
-            </div>
+            <LanguageSwitcher
+              currentLang={i18n.language}
+              onChange={i18n.changeLanguage}
+            />
           </div>
         </div>
       </div>
@@ -83,4 +60,26 @@ const NavLink = ({ href, label }: { href: string; label: string }) => (
   >
     {label}
   </a>
+)
+
+const LanguageSwitcher = ({
+  currentLang,
+  onChange,
+}: {
+  currentLang: string
+  onChange: (lng: 'en' | 'cs') => void
+}) => (
+  <div className="flex space-x-2 ml-4">
+    {['en', 'cs'].map((lng) => (
+      <button
+        key={lng}
+        onClick={() => onChange(lng as 'en' | 'cs')}
+        className={`text-sm font-medium hover:underline ${
+          currentLang === lng ? 'text-white' : 'text-gray-400'
+        }`}
+      >
+        {lng.toUpperCase()}
+      </button>
+    ))}
+  </div>
 )

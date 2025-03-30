@@ -1,27 +1,36 @@
 import { useState } from 'react'
+
+// Global styles & config
+import './i18n'
+import './App.css'
+import './index.css'
+
+// Components
 import { Navbar } from './components/Navbar'
 import { MobileMenu } from './components/MobileMenu'
+
+// Sections
 import { Home } from './components/sections/Home'
 import { About } from './components/sections/About'
 import { Projects } from './components/sections/Projects'
 import { Contact } from './components/sections/Contact'
 import { WhatIDo } from './components/sections/WhatIDo'
-import './i18n'
-import './App.css'
-import './index.css'
 
 function App() {
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
     <>
-      <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-      <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-      <Home />
-      <Projects />
-      <WhatIDo />
-      <About />
-      <Contact />
+      <Navbar menuOpen={isMenuOpen} setMenuOpen={setIsMenuOpen} />
+      <MobileMenu menuOpen={isMenuOpen} setMenuOpen={setIsMenuOpen} />
+
+      <main>
+        <Home />
+        <Projects />
+        <WhatIDo />
+        <About />
+        <Contact />
+      </main>
     </>
   )
 }
