@@ -15,7 +15,7 @@ export const Home = () => {
         <RevealOnScroll>
           <div className="flex flex-col items-center text-center max-w-3xl mx-auto relative z-10">
             <h1
-              className="text-5xl sm:text-7xl md:text-6xl font-extrabold leading-tight text-white opacity-0"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white opacity-0"
               data-reveal-child
             >
               DANIELA PLAMÍNKOVÁ
@@ -40,8 +40,6 @@ export const Home = () => {
           </div>
         </RevealOnScroll>
       </section>
-
-      {/* 🔥 This will render BELOW the hero section */}
       <AnimatedWaves />
     </>
   )

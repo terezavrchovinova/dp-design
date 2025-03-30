@@ -21,7 +21,7 @@ function App() {
 
   return (
     <>
-      <Navbar menuOpen={isMenuOpen} setMenuOpen={setIsMenuOpen} />
+      <Navbar setMenuOpen={setIsMenuOpen} />
       <MobileMenu menuOpen={isMenuOpen} setMenuOpen={setIsMenuOpen} />
 
       <main>
