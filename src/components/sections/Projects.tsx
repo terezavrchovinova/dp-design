@@ -73,7 +73,7 @@ export const Projects = () => {
       className="min-h-screen flex items-center justify-center py-20"
     >
       <RevealOnScroll>
-        <div className="max-w-7xl mx-auto px-4 w-full">
+        <div className="max-w-8xl mx-auto px-4 w-full">
           <h2 className="h2-style" data-reveal-child>
             {t('projects.title')}
           </h2>
@@ -85,7 +85,7 @@ export const Projects = () => {
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-500 aspect-[16/9] opacity-0 translate-y-6 transition-all duration-700"
+                className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl duration-500 aspect-[16/9] opacity-0 translate-y-6 transition-all"
                 style={{ transitionDelay: `${index * 100}ms` }}
                 data-reveal-child
                 aria-label={`Open project: ${t(`projects.items.${project.key}`)}`}

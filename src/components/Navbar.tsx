@@ -1,11 +1,10 @@
 import { useTranslation } from 'react-i18next'
 
 interface NavbarProps {
-  menuOpen: boolean
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
+export const Navbar = ({ setMenuOpen }: NavbarProps) => {
   const { t, i18n } = useTranslation()
 
   return (

@@ -16,7 +16,6 @@ export const Home = () => {
             className="text-5xl sm:text-7xl md:text-8xl font-extrabold leading-tight text-gradient opacity-0"
             data-reveal-child
           >
-            {t('home.greeting')} <br />
             Daniela Plamínková
           </h1>
 
@@ -40,8 +39,8 @@ export const Home = () => {
       </RevealOnScroll>
 
       {/* Blobs */}
-      <div className="absolute -top-20 -left-20 w-[300px] h-[300px] bg-pink-400 opacity-20 blur-3xl rounded-full animate-blob z-0" />
-      <div className="absolute bottom-0 right-0 w-[200px] h-[200px] bg-blue-500 opacity-20 blur-3xl rounded-full animate-blob animation-delay-2000 z-0" />
+      <div className="absolute -top-20 -left-20 w-[300px] h-[300px] bg-pink-400 opacity-30 blur-3xl rounded-full animate-blob z-0" />
+      <div className="absolute bottom-0 right-0 w-[200px] h-[200px] bg-blue-500 opacity-30 blur-3xl rounded-full animate-blob animation-delay-2000 z-0" />
     </section>
   )
 }
