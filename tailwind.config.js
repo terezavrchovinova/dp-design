@@ -11,7 +11,7 @@ module.exports = {
           neutral: '#F3F4F6',
         },
       },
-    }
+    },
     
     plugins: [],
   };
