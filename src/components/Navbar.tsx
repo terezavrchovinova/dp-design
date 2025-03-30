@@ -16,7 +16,7 @@ export const Navbar = ({ setMenuOpen }: NavbarProps) => {
             <img
               src="/dp_icon_white.svg"
               alt="Daniela Plamínková Logo"
-              className="w-8 h-8"
+              className="w-20 h-15"
             />
           </a>
 

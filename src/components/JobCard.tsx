@@ -5,11 +5,11 @@ type Job = {
 }
 
 export const JobCard = ({ title, date, description }: Job) => (
-  <div className="backdrop-blur-md border rounded-xl p-4 shadow-sm text-left">
+  <div className="mb-10 text-left">
     <div className="flex justify-between items-center flex-wrap gap-2">
       <h4 className="h4-style">{title}</h4>
       <span className="text-sm text-white">{date}</span>
     </div>
-    <p className="text-white mt-1">{description}</p>
+    <p className="text-gray-400 mt-1 max-w-4xl mx-auto">{description}</p>
   </div>
 )

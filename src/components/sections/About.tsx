@@ -37,18 +37,15 @@ export const About = () => {
   return (
     <section
       id="about"
-      className="min-h-screen flex items-center justify-center py-20 px-4"
+      className="min-h-screen flex items-center justify-center py-20"
     >
       <RevealOnScroll>
-        <div
-          className="max-w-5xl mx-auto text-center space-y-16"
-          data-reveal-child
-        >
+        <div className="w-full max-w-6xl space-y-12" data-reveal-child>
           <h2 className="h2-style">{t('about.title')}</h2>
 
           {/* Experience */}
           <div>
-            <h3 className="h3-style mb-6">{t('about.experience')}</h3>
+            <h3 className="h3-style">{t('about.experience')}</h3>
             <div className="space-y-4">
               {jobs.map((job, index) => (
                 <JobCard key={`${job.title}-${index}`} {...job} />

@@ -18,63 +18,23 @@ body {
     scroll-behavior: smooth;
 }
 
-/* Headings */
 .h2-style {
     @apply text-4xl font-extrabold mb-14 text-center bg-white bg-clip-text text-transparent opacity-100 translate-y-0 transition-all duration-700;
 }
 
 .h3-style {
-    @apply text-2xl font-semibold mb-4;
+    @apply text-2xl font-semibold mb-7
 }
 
 .h4-style {
-    @apply text-lg font-medium;
-}
-
-h3 {
-    background: #f3f4f6;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
-}
-
-/* Input & Form */
-.form-input {
-    @apply w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5;
-}
-
-.btn-primary {
-    @apply w-full bg-blue-500 text-white py-3 px-6 rounded font-medium transition relative overflow-hidden hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59, 130, 246, 0.4)];
-}
-
-.btn-outline {
-    @apply relative inline-block py-3 px-6 rounded-xl font-semibold text-blue-400 border border-blue-500/50 transition-all duration-300 ease-out hover:text-white hover:bg-blue-500/10 hover:shadow-[0_0_20px_rgba(59, 130, 246, 0.3)] hover:-translate-y-0.5 overflow-hidden;
-}
-
-.tool-icon {
-    @apply w-10 h-10 object-contain hover:scale-110 transition-transform duration-200;
-}
-
-.nav-link {
-    @apply text-white hover:text-white transition-colors duration-200 text-sm font-medium tracking-wide;
-}
-
-.service-card {
-    @apply flex items-center gap-6 p-6 rounded-2xl shadow hover:shadow-lg transition;
-}
-
-.gradient-heading {
-    @apply text-5xl sm:text-7xl md:text-8xl font-extrabold leading-tight text-gradient opacity-0;
+    @apply text-lg font-medium
 }
 
 @layer utilities {
-    .visible {
-        opacity: 1 !important;
-    }
 
+    /* Gradient text */
     .text-gradient {
-        background: linear-gradient(90deg, #e879f9, #60a5fa, #34d399);
+        background: linear-gradient(90deg, #f99b79, #60a5fa, #34d399);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-size: 200% 200%;
@@ -91,46 +51,5 @@ h3 {
         50% {
             background-position: 100% 50%;
         }
-    }
-
-    @keyframes fadeUpSmooth {
-        0% {
-            opacity: 0;
-            transform: translateY(8px);
-        }
-
-        100% {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .animate-fade-up-smooth {
-        animation: fadeUpSmooth 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        will-change: transform, opacity;
-    }
-
-    @keyframes blob {
-
-        0%,
-        100% {
-            transform: translate(0px, 0px) scale(1);
-        }
-
-        33% {
-            transform: translate(30px, -20px) scale(1.1);
-        }
-
-        66% {
-            transform: translate(-20px, 30px) scale(0.9);
-        }
-    }
-
-    .animate-blob {
-        animation: blob 8s infinite;
-    }
-
-    .animation-delay-2000 {
-        animation-delay: 2s;
     }
 }

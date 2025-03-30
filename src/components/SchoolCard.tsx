@@ -5,9 +5,9 @@ type School = {
 }
 
 export const SchoolCard = ({ name, years, focus }: School) => (
-  <div className="backdrop-blur-md rounded-xl p-4 max-w-xl mx-auto shadow-sm text-left">
+  <div className="mb-10 text-left">
     <h4 className="h4-style">{name}</h4>
     <p className="text-sm text-white">{years}</p>
-    <p className="text-white mt-1">{focus}</p>
+    <p className="text-gray-400 mt-1 max-w-4xl mx-auto">{focus}</p>
   </div>
 )

@@ -32,7 +32,7 @@ export const Contact = () => {
   return (
     <section
       id="contact"
-      className="min-h-screen px-4 flex items-center justify-center flex-col"
+      className="min-h-screen flex items-center justify-center py-20"
     >
       <RevealOnScroll>
         <div className="w-full flex justify-center">

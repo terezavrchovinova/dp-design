@@ -24,11 +24,11 @@ export const WhatIDo = () => {
   const { t } = useTranslation()
 
   return (
-    <RevealOnScroll>
-      <section
-        id="what-i-do"
-        className="min-h-screen flex items-center justify-center py-20 px-4 bg-black"
-      >
+    <section
+      id="what-i-do"
+      className="min-h-screen flex items-center justify-center py-20"
+    >
+      <RevealOnScroll>
         <div className="w-full max-w-6xl space-y-12" data-reveal-child>
           <h2 className="h2-style text-center">{t('whatIDo.title')}</h2>
 
@@ -51,7 +51,7 @@ export const WhatIDo = () => {
                   <h3 className="h3-style text-left text-white">
                     {t(`whatIDo.services.${service.key}.title`)}
                   </h3>
-                  <p className="text-sm text-gray-300">
+                  <p className="text-lg text-gray-400">
                     {t(`whatIDo.services.${service.key}.description`)}
                   </p>
                 </div>
@@ -59,7 +59,7 @@ export const WhatIDo = () => {
             ))}
           </div>
         </div>
-      </section>
-    </RevealOnScroll>
+      </RevealOnScroll>
+    </section>
   )
 }
