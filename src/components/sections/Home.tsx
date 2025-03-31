@@ -13,7 +13,7 @@ export const Home = () => {
         className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 md:px-12 bg-black"
       >
         <RevealOnScroll>
-          <div className="flex flex-col items-center text-center max-w-3xl mx-auto relative z-10">
+          <div className="flex flex-col items-center text-center mx-auto relative z-10">
             <h1
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white opacity-0"
               data-reveal-child
