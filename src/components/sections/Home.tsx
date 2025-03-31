@@ -1,7 +1,6 @@
-import { RevealOnScroll } from '../RevealOnScroll'
 import { useTranslation } from 'react-i18next'
 import { Button } from '../Button'
-import AnimatedWaves from '../AnimatedWaves'
+import AnimatedHeading from '../AnimatedHeading'
 
 export const Home = () => {
   const { t } = useTranslation()
@@ -10,37 +9,22 @@ export const Home = () => {
     <>
       <section
         id="home"
-        className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 md:px-12 bg-black"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 md:px-12"
       >
-        <RevealOnScroll>
-          <div className="flex flex-col items-center text-center mx-auto relative z-10">
-            <h1
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white opacity-0"
-              data-reveal-child
-            >
-              DANIELA PLAMÍNKOVÁ
-            </h1>
+        <div className="flex flex-col items-center text-center mx-auto relative z-10">
+          <AnimatedHeading />
+          <p className="text-white w-140 mt-8 mb-12 text-xl">
+            {t('home.subtitle')}
+          </p>
 
-            <p
-              className="text-white w-140 mt-8 mb-12 text-xl opacity-0"
-              data-reveal-child
-            >
-              {t('home.subtitle')}
-            </p>
-
-            <div
-              className="flex justify-center gap-4 opacity-0"
-              data-reveal-child
-            >
-              <Button href="#projects">{t('home.viewProjects')}</Button>
-              <Button href="#contact" variant="outline">
-                {t('home.contactMe')}
-              </Button>
-            </div>
+          <div className="flex justify-center gap-4">
+            <Button href="#projects">{t('home.viewProjects')}</Button>
+            <Button href="#contact" variant="outline">
+              {t('home.contactMe')}
+            </Button>
           </div>
-        </RevealOnScroll>
+        </div>
       </section>
-      <AnimatedWaves />
     </>
   )
 }

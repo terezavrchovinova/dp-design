@@ -15,6 +15,7 @@ import { About } from './components/sections/About'
 import { Projects } from './components/sections/Projects'
 import { Contact } from './components/sections/Contact'
 import { WhatIDo } from './components/sections/WhatIDo'
+import AnimatedWaves from './components/AnimatedWaves'
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -26,6 +27,7 @@ function App() {
 
       <main>
         <Home />
+        <AnimatedWaves />
         <Projects />
         <WhatIDo />
         <About />

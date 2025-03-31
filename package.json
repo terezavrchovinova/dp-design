@@ -13,10 +13,10 @@
     "@tailwindcss/vite": "^4.0.17",
     "emailjs-com": "^3.2.0",
     "i18next": "^24.2.3",
+    "motion": "^12.6.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-i18next": "^15.4.1",
-    "react-wavify": "^1.11.1"
+    "react-i18next": "^15.4.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
