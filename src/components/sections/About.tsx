@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next'
 import { JobCard } from '../JobCard'
-import { SchoolCard } from '../SchoolCard'
 import { ToolIcon } from '../ToolIcon'
 
 const tools = [
@@ -27,7 +26,7 @@ export const About = () => {
     description: string
   }[]
 
-  const education = t('about.school', { returnObjects: true }) as {
+  const school = t('about.school', { returnObjects: true }) as {
     name: string
     years: string
     focus: string
@@ -39,11 +38,11 @@ export const About = () => {
       className="min-h-screen flex items-center justify-center py-20"
     >
       <div className="w-full max-w-6xl space-y-12">
-        <h2 className="h2-style">{t('about.title')}</h2>
+        <h2>{t('about.title')}</h2>
 
         {/* Experience */}
         <div>
-          <h3 className="h3-style">{t('about.experience')}</h3>
+          <h3>{t('about.experience')}</h3>
           <div className="space-y-4">
             {jobs.map((job, index) => (
               <JobCard key={`${job.title}-${index}`} {...job} />
@@ -53,13 +52,19 @@ export const About = () => {
 
         {/* Education */}
         <div>
-          <h3 className="h3-style mb-6">{t('about.education')}</h3>
-          <SchoolCard {...education} />
+          <h3>{t('about.education')}</h3>
+          <div className="space-y-4">
+            <JobCard
+              title={school.name}
+              date={school.years}
+              description={school.focus}
+            />
+          </div>
         </div>
 
         {/* Tools */}
         <div>
-          <h3 className="h3-style mb-6">{t('about.tools')}</h3>
+          <h3>{t('about.tools')}</h3>
 
           <div className="flex flex-wrap justify-center gap-6 mb-8">
             {adobeTools.map((tool) => (

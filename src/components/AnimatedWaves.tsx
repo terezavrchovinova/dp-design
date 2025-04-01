@@ -13,8 +13,8 @@ export default function AnimatedWaves() {
         'M0,100 C360,240 1080,-40 1440,100 L1440,200 L0,200 Z', // zpět na začátek pro plynulost
       ],
       transition: {
-        duration: 5, // Pomalejší animace
-        repeat: Infinity, // Nekonečně
+        duration: 5,
+        repeat: Infinity,
         repeatType: 'loop',
         ease: 'easeInOut',
       },

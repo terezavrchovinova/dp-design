@@ -72,7 +72,7 @@ export const Projects = () => {
       className="min-h-screen flex items-center justify-center py-20"
     >
       <div className="max-w-8xl mx-auto px-4 w-full">
-        <h2 className="h2-style">{t('projects.title')}</h2>
+        <h2>{t('projects.title')}</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (

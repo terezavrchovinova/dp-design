@@ -25,31 +25,33 @@ export const WhatIDo = () => {
   return (
     <section
       id="what-i-do"
-      className="min-h-screen flex items-center justify-center py-20"
+      className="min-h-screen flex items-center justify-center py-24 px-6 bg-black"
     >
-      <div className="w-full max-w-6xl space-y-12">
-        <h2 className="h2-style text-center">{t('whatIDo.title')}</h2>
+      <div className="w-full max-w-6xl">
+        <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-16">
+          {t('whatIDo.title')}
+        </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {services.map((service) => (
             <div
               key={service.key}
-              className="service-card flex items-center gap-6"
+              className="flex items-center bg-dark rounded-xl shadow-lg px-8 py-6 gap-8 transition hover:shadow-xl"
             >
-              <div className="w-16 shrink-0">
+              <div className="w-20 h-20 flex items-center justify-center shrink-0">
                 <img
                   src={service.img}
                   alt={t(`whatIDo.services.${service.key}.title`)}
-                  className="w-12 h-12 object-contain"
+                  className="w-14 h-14 object-contain"
                   loading="lazy"
                 />
               </div>
 
-              <div className="w-full max-w-md">
-                <h3 className="h3-style text-left text-white">
+              <div className="flex flex-col justify-center">
+                <h3 className="text-white text-2xl font-semibold mb-2">
                   {t(`whatIDo.services.${service.key}.title`)}
                 </h3>
-                <p className="text-lg text-gray-400">
+                <p className="text-gray text-lg leading-relaxed">
                   {t(`whatIDo.services.${service.key}.description`)}
                 </p>
               </div>

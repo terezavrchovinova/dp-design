@@ -31,14 +31,14 @@ export const Contact = () => {
   return (
     <section
       id="contact"
-      className="min-h-screen flex items-center justify-center py-20"
+      className="min-h-screen flex items-center justify-center"
     >
       <div className="w-full flex justify-center">
         <form
           onSubmit={handleSubmit}
           className="space-y-6 w-full max-w-2xl px-4"
         >
-          <h2 className="h2-style">{t('contact.title')}</h2>
+          <h2>{t('contact.title')}</h2>
 
           {/* Name */}
           <input

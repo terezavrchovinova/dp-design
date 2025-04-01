@@ -6,7 +6,9 @@
     --color-orange: #ff6700;
     --color-red: #e70f00;
     --color-dark-red: #b51600;
-    --color-white: #f5f5f5
+    --color-white: #ffffff;
+    --color-gray: #ffffff80;
+
 }
 
 @font-face {
@@ -44,15 +46,15 @@ h1 {
     color: #f5f5f5;
 }
 
-.h2-style {
-    @apply text-4xl font-extrabold mb-14 text-center bg-white bg-clip-text text-transparent translate-y-0 transition-all duration-700;
+h2 {
+    @apply text-4xl md:text-5xl font-bold text-white text-center mb-16;
 }
 
-.h3-style {
-    @apply text-2xl font-semibold mb-7
+h3 {
+    @apply text-2xl font-semibold mb-7 text-left
 }
 
-.h4-style {
+h4 {
     @apply text-lg font-medium
 }
 

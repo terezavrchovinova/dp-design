@@ -35,7 +35,7 @@ export default function AnimatedHeading() {
   }
 
   return (
-    <h1 className="text-8xl font-bold text-center w-screen py-64">
+    <h1 className="text-8xl font-bold text-center w-screen">
       {/* Split the heading into individual characters */}
       {heading.split('').map((char, index) => {
         const isScattered = scattered[index]
