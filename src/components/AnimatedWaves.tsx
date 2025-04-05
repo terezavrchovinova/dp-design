@@ -7,10 +7,10 @@ export default function AnimatedWaves() {
   useEffect(() => {
     controls.start({
       d: [
-        'M0,100 C360,240 1080,-40 1440,100 L1440,200 L0,200 Z', // hodně výrazné
-        'M0,100 C360,260 1080,-60 1440,100 L1440,200 L0,200 Z', // ještě víc
+        'M0,100 C360,240 1080,-40 1440,100 L1440,200 L0,200 Z',
+        'M0,100 C360,260 1080,-60 1440,100 L1440,200 L0,200 Z',
         'M0,100 C360,220 1080,-20 1440,100 L1440,200 L0,200 Z',
-        'M0,100 C360,240 1080,-40 1440,100 L1440,200 L0,200 Z', // zpět na začátek pro plynulost
+        'M0,100 C360,240 1080,-40 1440,100 L1440,200 L0,200 Z',
       ],
       transition: {
         duration: 5,
@@ -27,9 +27,12 @@ export default function AnimatedWaves() {
         <motion.path fill="url(#fireGradient)" animate={controls} />
         <defs>
           <linearGradient id="fireGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#ff6a00" />
-            <stop offset="50%" stopColor="#ff0000" />
-            <stop offset="100%" stopColor="#ff6a00" />
+            <stop offset="0%" style={{ stopColor: 'var(--color-orange)' }} />
+            <stop offset="50%" style={{ stopColor: 'var(--color-red)' }} />
+            <stop
+              offset="100%"
+              style={{ stopColor: 'var(--color-dark-red)' }}
+            />
           </linearGradient>
         </defs>
       </motion.svg>
