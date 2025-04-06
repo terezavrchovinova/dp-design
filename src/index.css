@@ -2,70 +2,90 @@
 @tailwind utilities;
 
 @theme {
-    --color-dark: #121212;
-    --color-orange: #ff6700;
-    --color-red: #e70f00;
-    --color-dark-red: #b51600;
-    --color-white: #ffffff;
-    --color-gray: #ffffff80;
+    --color-dark: #0a0a0a;
+    --color-surface: #1a1a1e;
+    --color-white: #f9f9f9;
 
+    --color-gray: #a1a1aa;
+    --color-light-gray: #d4d4d8;
+    --color-border: #2e2e32;
+
+    --color-orange: #ff4d00;
+    --color-orange-light: #ff6a00;
+    --color-red: #e11d48;
+    --color-dark-red: #7f1d1d;
+
+    --color-accent: var(--color-orange);
+    --radius-xl: 1.25rem;
+    --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.25);
+    --transition-fast: 0.2s ease;
+    --transition-smooth: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 @font-face {
     font-family: 'ClashDisplay-Medium';
     src: url('./assets/fonts/ClashDisplay-Medium.otf') format('opentype');
-    font-weight: normal;
+    font-weight: 500;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'ClashDisplay-SemiBold';
     src: url('./assets/fonts/ClashDisplay-Semibold.otf') format('opentype');
-    font-weight: semibold;
+    font-weight: 600;
     font-style: normal;
 }
-
 
 @font-face {
     font-family: 'Archivo-Regular';
     src: url('./assets/fonts/Archivo-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
 }
 
 html,
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Archivo-Regular', sans-serif;
-    background: #000000;
-    color: #f5f5f5;
+    font-family: 'Archivo-Regular', system-ui, sans-serif;
+    background-color: var(--color-dark);
+    color: var(--color-white);
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-size: 16px;
+    line-height: 1.65;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    color: var(--color-white);
+    font-family: 'ClashDisplay-SemiBold', sans-serif;
 }
 
 h1 {
-    font-family: 'ClashDisplay-Semibold';
-    color: #f5f5f5;
+    @apply text-5xl md:text-6xl font-bold mb-6 tracking-tight leading-tight text-center;
 }
 
 h2 {
-    @apply text-4xl md:text-5xl font-bold text-white text-center mb-16;
+    @apply text-4xl md:text-5xl font-bold text-center mb-12 text-center;
 }
 
 h3 {
-    @apply text-2xl font-semibold mb-7 text-left
+    @apply text-2xl font-semibold mb-7;
 }
 
 h4 {
-    @apply text-lg font-medium
+    @apply text-lg font-medium text-center;
 }
 
 @layer utilities {
     .text-gradient {
-        background: linear-gradient(270deg,
-                #f97316,
-                #fb923c,
-                #facc15,
-                #f97316,
-                #f97316);
+        background: linear-gradient(270deg, #f97316, #fb923c, #facc15, #f97316);
         background-size: 300% 300%;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -84,5 +104,32 @@ h4 {
         100% {
             background-position: 0% 50%;
         }
+    }
+
+    .glass {
+        background-color: var(--color-surface);
+        backdrop-filter: blur(16px);
+        border: 1px solid var(--color-border);
+        box-shadow: var(--shadow-soft);
+        border-radius: var(--radius-xl);
+    }
+
+    .btn-modern {
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        border-radius: var(--radius-xl);
+        background-color: var(--color-accent);
+        color: var(--color-white);
+        transition: background-color var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .btn-modern:hover {
+        background-color: var(--color-orange-light);
+        transform: translateY(-2px);
+        box-shadow: 0 0 15px var(--color-orange-light);
+    }
+
+    .transition-smooth {
+        transition: all var(--transition-smooth);
     }
 }

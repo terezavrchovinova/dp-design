@@ -28,7 +28,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
 
   return (
     <div
-      className={`fixed top-0 left-0 w-full h-screen z-40 bg-black backdrop-blur-lg flex flex-col items-center justify-center transition-all duration-500 ease-in-out ${
+      className={`fixed inset-0 z-40 flex flex-col items-center justify-center bg-[var(--color-dark)] backdrop-blur-xl transition-all duration-500 ease-in-out ${
         menuOpen
           ? 'opacity-100 pointer-events-auto'
           : 'opacity-0 pointer-events-none'
@@ -37,7 +37,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
       {/* Close Button */}
       <button
         onClick={() => setMenuOpen(false)}
-        className="absolute top-6 right-6 text-white text-3xl focus:outline-none"
+        className="absolute top-6 right-6 text-[var(--color-white)] text-3xl focus:outline-none hover:scale-110 transition-transform duration-200"
         aria-label="Close menu"
       >
         &times;
@@ -45,7 +45,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
 
       {/* Menu Items */}
       <nav
-        className="flex flex-col items-center space-y-6"
+        className="flex flex-col items-center space-y-6 mt-8"
         role="navigation"
         aria-label="Mobile menu"
       >
@@ -54,24 +54,29 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
             key={item.key}
             href={item.href}
             onClick={() => setMenuOpen(false)}
-            className={`text-2xl font-semibold text-white transform transition-all duration-500 ${
+            className={`text-3xl font-semibold text-[var(--color-white)] tracking-tight transition-all duration-500 ease-out ${
               menuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
-            style={{ transitionDelay: `${menuOpen ? index * 100 : 0}ms` }}
+            style={{ transitionDelay: `${menuOpen ? index * 90 : 0}ms` }}
           >
             {t(`nav.${item.key}`)}
           </a>
         ))}
       </nav>
 
+      {/* Divider */}
+      <div className="w-16 h-px bg-[var(--color-border)] my-8" />
+
       {/* Language Switcher */}
-      <div className="flex space-x-4 mt-10">
+      <div className="flex space-x-6">
         {['en', 'cs'].map((lang) => (
           <button
             key={lang}
             onClick={() => changeLanguage(lang as 'en' | 'cs')}
-            className={`text-white text-sm font-medium hover:underline ${
-              i18n.language === lang ? 'underline' : 'opacity-60'
+            className={`text-sm font-medium transition-opacity duration-200 ${
+              i18n.language === lang
+                ? 'text-[var(--color-orange)] underline'
+                : 'text-[var(--color-gray)] hover:opacity-80'
             }`}
           >
             {lang.toUpperCase()}

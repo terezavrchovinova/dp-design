@@ -31,14 +31,20 @@ export const Contact = () => {
   return (
     <section
       id="contact"
-      className="min-h-screen flex items-center justify-center"
+      className="min-h-screen flex items-center justify-center py-24 px-6"
+      style={{ backgroundColor: 'var(--color-dark)' }}
     >
       <div className="w-full flex justify-center">
         <form
           onSubmit={handleSubmit}
-          className="space-y-6 w-full max-w-2xl px-4"
+          className="space-y-6 w-full max-w-2xl backdrop-blur-md border border-[var(--color-border)] bg-[var(--color-surface)]/80 rounded-2xl p-8 shadow-xl"
         >
-          <h2>{t('contact.title')}</h2>
+          <h2
+            className="text-3xl md:text-4xl font-bold text-center mb-4"
+            style={{ color: 'var(--color-white)' }}
+          >
+            {t('contact.title')}
+          </h2>
 
           {/* Name */}
           <input
@@ -46,7 +52,7 @@ export const Contact = () => {
             name="name"
             required
             placeholder={t('contact.name')}
-            className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
+            className="w-full bg-transparent border border-[var(--color-border)] rounded-xl px-4 py-3 text-[var(--color-white)] placeholder-[var(--color-gray)] transition focus:outline-none focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)]"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           />
@@ -57,7 +63,7 @@ export const Contact = () => {
             name="email"
             required
             placeholder={t('contact.email')}
-            className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
+            className="w-full bg-transparent border border-[var(--color-border)] rounded-xl px-4 py-3 text-[var(--color-white)] placeholder-[var(--color-gray)] transition focus:outline-none focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)]"
             value={formData.email}
             onChange={(e) =>
               setFormData({ ...formData, email: e.target.value })
@@ -70,7 +76,7 @@ export const Contact = () => {
             rows={5}
             required
             placeholder={t('contact.message')}
-            className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
+            className="w-full bg-transparent border border-[var(--color-border)] rounded-xl px-4 py-3 text-[var(--color-white)] placeholder-[var(--color-gray)] transition focus:outline-none focus:border-[var(--color-accent)] focus:ring-1 focus:ring-[var(--color-accent)]"
             value={formData.message}
             onChange={(e) =>
               setFormData({ ...formData, message: e.target.value })
@@ -80,7 +86,7 @@ export const Contact = () => {
           {/* Submit */}
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white py-3 px-6 rounded font-medium transition relative overflow-hidden hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]"
+            className="w-full bg-[var(--color-accent)] text-white py-3 px-6 rounded-xl font-medium transition hover:brightness-110 hover:shadow-[0_0_15px_var(--color-accent)]"
           >
             {t('contact.send')}
           </button>

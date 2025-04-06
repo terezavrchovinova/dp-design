@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Button } from '../Button'
 import AnimatedHeading from '../AnimatedHeading'
-import AnimatedWaves from '../AnimatedWaves'
 
 export const Home = () => {
   const { t } = useTranslation()
@@ -26,7 +25,6 @@ export const Home = () => {
           </div>
         </div>
       </section>
-      <AnimatedWaves />
     </>
   )
 }

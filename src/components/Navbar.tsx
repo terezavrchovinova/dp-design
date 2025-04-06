@@ -8,15 +8,21 @@ export const Navbar = ({ setMenuOpen }: NavbarProps) => {
   const { t, i18n } = useTranslation()
 
   return (
-    <nav className="fixed top-0 w-full z-40 bg-black backdrop-blur-lg shadow-lg">
-      <div className="max-w-5xl mx-auto px-4">
+    <nav
+      className="fixed top-0 w-full z-40 backdrop-blur-lg border-b"
+      style={{
+        backgroundColor: 'rgba(10,10,10,0.75)',
+        borderColor: 'var(--color-border)',
+      }}
+    >
+      <div className="max-w-6xl mx-auto px-6">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <a href="#home" className="flex items-center" aria-label="Home">
             <img
               src="/dp_icon_white.svg"
               alt="Daniela Plamínková Logo"
-              className="w-20 h-15"
+              className="w-16 h-auto"
             />
           </a>
 
@@ -29,7 +35,7 @@ export const Navbar = ({ setMenuOpen }: NavbarProps) => {
             {[...Array(3)].map((_, i) => (
               <span
                 key={i}
-                className="block h-0.5 w-full bg-white rounded-sm"
+                className="block h-0.5 w-full rounded-sm bg-[var(--color-white)]"
               />
             ))}
           </button>
@@ -55,7 +61,12 @@ export const Navbar = ({ setMenuOpen }: NavbarProps) => {
 const NavLink = ({ href, label }: { href: string; label: string }) => (
   <a
     href={href}
-    className="text-white hover:text-white transition-colors duration-200 text-sm font-medium tracking-wide"
+    className="text-sm font-medium tracking-wide transition-colors duration-200"
+    style={{
+      color: 'var(--color-gray)',
+    }}
+    onMouseOver={(e) => (e.currentTarget.style.color = 'var(--color-white)')}
+    onMouseOut={(e) => (e.currentTarget.style.color = 'var(--color-gray)')}
   >
     {label}
   </a>
@@ -73,9 +84,11 @@ const LanguageSwitcher = ({
       <button
         key={lng}
         onClick={() => onChange(lng as 'en' | 'cs')}
-        className={`text-sm font-medium hover:underline ${
-          currentLang === lng ? 'text-white' : 'text-gray-400'
-        }`}
+        className="text-sm font-medium transition hover:underline"
+        style={{
+          color:
+            currentLang === lng ? 'var(--color-white)' : 'var(--color-gray)',
+        }}
       >
         {lng.toUpperCase()}
       </button>

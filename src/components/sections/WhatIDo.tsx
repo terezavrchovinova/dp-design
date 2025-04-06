@@ -25,10 +25,14 @@ export const WhatIDo = () => {
   return (
     <section
       id="what-i-do"
-      className="min-h-screen flex items-center justify-center py-24 px-6 bg-black"
+      className="min-h-screen flex items-center justify-center py-24 px-6"
+      style={{ backgroundColor: 'var(--color-dark)' }}
     >
       <div className="w-full max-w-6xl">
-        <h2 className="text-4xl md:text-5xl font-bold text-white text-center mb-16">
+        <h2
+          className="text-4xl md:text-5xl font-bold text-center mb-16"
+          style={{ color: 'var(--color-white)' }}
+        >
           {t('whatIDo.title')}
         </h2>
 
@@ -36,7 +40,8 @@ export const WhatIDo = () => {
           {services.map((service) => (
             <div
               key={service.key}
-              className="flex items-center bg-dark rounded-xl shadow-lg px-8 py-6 gap-8 transition hover:shadow-xl"
+              className="flex items-center rounded-2xl px-8 py-6 gap-8 shadow-xl transition hover:shadow-2xl"
+              style={{ backgroundColor: 'var(--color-surface)' }}
             >
               <div className="w-20 h-20 flex items-center justify-center shrink-0">
                 <img
@@ -48,10 +53,16 @@ export const WhatIDo = () => {
               </div>
 
               <div className="flex flex-col justify-center">
-                <h3 className="text-white text-2xl font-semibold mb-2">
+                <h3
+                  className="text-2xl font-semibold mb-2"
+                  style={{ color: 'var(--color-white)' }}
+                >
                   {t(`whatIDo.services.${service.key}.title`)}
                 </h3>
-                <p className="text-gray text-lg leading-relaxed">
+                <p
+                  className="text-lg leading-relaxed"
+                  style={{ color: 'var(--color-gray)' }}
+                >
                   {t(`whatIDo.services.${service.key}.description`)}
                 </p>
               </div>
