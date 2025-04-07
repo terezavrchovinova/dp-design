@@ -1,50 +1,48 @@
-import { VercelRequest, VercelResponse } from '@vercel/node'
+import React, { useEffect, useState } from 'react'
 
-export default async function handler(_: VercelRequest, res: VercelResponse) {
-  const client_id = process.env.DRIBBBLE_CLIENT_ID
-  const client_secret = process.env.DRIBBBLE_CLIENT_SECRET
-
-  if (!client_id || !client_secret) {
-    console.error('Missing client ID or secret')
-    return res.status(500).json({ error: 'Missing Dribbble credentials.' })
-  }
-
-  try {
-    const tokenRes = await fetch('https://dribbble.com/oauth/token', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        client_id,
-        client_secret,
-        grant_type: 'client_credentials',
-      }),
-    })
-
-    const tokenData = await tokenRes.json()
-    console.log('Access Token Response:', tokenData)
-
-    if (!tokenData.access_token) {
-      throw new Error('Unable to get access token')
-    }
-
-    const shotsRes = await fetch('https://api.dribbble.com/v2/user/shots', {
-      headers: {
-        Authorization: `Bearer ${tokenData.access_token}`,
-      },
-    })
-
-    const shots = await shotsRes.json()
-    console.log('Shots:', shots)
-
-    return res.status(200).json(shots)
-  } catch (err: unknown) {
-    if (err instanceof Error) {
-      console.error('Dribbble fetch error:', err.message)
-      return res
-        .status(500)
-        .json({ error: err.message || 'Something went wrong' })
-    }
-    console.error('Dribbble fetch error:', err)
-    return res.status(500).json({ error: 'An unknown error occurred' })
+interface DribbbleShot {
+  id: number
+  title: string
+  html_url: string
+  images: {
+    normal: string
+    hidpi?: string
+    teaser?: string
   }
 }
+
+const Dribbble: React.FC = () => {
+  const [shots, setShots] = useState<DribbbleShot[]>([])
+
+  useEffect(() => {
+    fetch('/api/dribbble')
+      .then((res) => res.json())
+      .then((data) => setShots(data))
+      .catch((err) => console.error('Error fetching Dribbble shots:', err))
+  }, [])
+
+  return (
+    <section id="dribbble" className="p-6">
+      <h2 className="text-2xl font-bold mb-4">Latest Dribbble Shots</h2>
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        {shots.map((shot) => (
+          <a
+            key={shot.id}
+            href={shot.html_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block"
+          >
+            <img
+              src={shot.images.normal}
+              alt={shot.title}
+              className="rounded-lg shadow-md hover:scale-105 transition-transform"
+            />
+          </a>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+export default Dribbble

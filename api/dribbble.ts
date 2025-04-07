@@ -8,7 +8,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const client_secret = process.env.DRIBBBLE_CLIENT_SECRET
 
   if (!client_id || !client_secret) {
-    return res.status(500).json({ error: 'Missing Dribbble credentials.' })
+    console.error('❌ Missing Dribbble credentials.')
+    res.status(500).json({ error: 'Missing Dribbble credentials.' })
+    return
   }
 
   try {
@@ -26,10 +28,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const tokenData = await tokenRes.json()
 
     if (!tokenData.access_token) {
-      throw new Error('Unable to get access token from Dribbble.')
+      console.error('❌ Failed to get access token:', tokenData)
+      res.status(500).json({ error: 'Dribbble token error.' })
+      return
     }
 
-    // Step 2: Fetch shots
+    // Step 2: Fetch user shots
     const shotsRes = await fetch(DRIBBBLE_SHOTS_URL, {
       headers: {
         Authorization: `Bearer ${tokenData.access_token}`,
@@ -38,8 +42,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const shots = await shotsRes.json()
 
+    if (!Array.isArray(shots)) {
+      console.error('❌ Unexpected response from Dribbble shots:', shots)
+      res.status(500).json({ error: 'Unexpected shots format.' })
+      return
+    }
+
     res.status(200).json(shots)
-  } catch (err: any) {
-    res.status(500).json({ error: err.message || 'An error occurred.' })
+  } catch (err) {
+    const error = err instanceof Error ? err.message : 'Unknown error'
+    console.error('🔥 API error:', error)
+    res.status(500).json({ error })
   }
 }
