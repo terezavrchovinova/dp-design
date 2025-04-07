@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-
+import logo from '../../public/dp_icon_white.svg'
 interface NavbarProps {
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
@@ -20,7 +20,7 @@ export const Navbar = ({ setMenuOpen }: NavbarProps) => {
           {/* Logo */}
           <a href="#home" className="flex items-center" aria-label="Home">
             <img
-              src="public/dp_icon_white.svg"
+              src={logo}
               alt="Daniela Plamínková Logo"
               className="w-16 h-auto"
             />

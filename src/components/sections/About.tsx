@@ -6,16 +6,26 @@ import { ToolIcon } from '../ToolIcon'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { useRef } from 'react'
 
+import photoshopIcon from '../../assets/icons/photoshop.svg'
+import illustratorIcon from '../../assets/icons/illustrator.svg'
+import indesignIcon from '../../assets/icons/indesign.svg'
+import afterEffectsIcon from '../../assets/icons/after-effects.svg'
+import premiereProIcon from '../../assets/icons/premiere-pro.svg'
+import lightroomIcon from '../../assets/icons/photoshop-lightroom.svg'
+import dimensionIcon from '../../assets/icons/dimension.svg'
+import cinema4dIcon from '../../assets/icons/cinema-4d.svg'
+import midjourneyIcon from '../../assets/icons/midjourney.webp'
+
 const tools = [
-  { name: 'Adobe Photoshop', src: 'src/assets/icons/photoshop.svg' },
-  { name: 'Adobe Illustrator', src: 'src/assets/icons/illustrator.svg' },
-  { name: 'Adobe InDesign', src: 'src/assets/icons/indesign.svg' },
-  { name: 'Adobe After Effects', src: 'src/assets/icons/after-effects.svg' },
-  { name: 'Adobe Premiere Pro', src: 'src/assets/icons/premiere-pro.svg' },
-  { name: 'Adobe Lightroom', src: 'src/assets/icons/photoshop-lightroom.svg' },
-  { name: 'Adobe Dimension', src: 'src/assets/icons/dimension.svg' },
-  { name: 'Cinema 4D', src: 'src/assets/icons/cinema-4d.svg' },
-  { name: 'Midjourney', src: 'src/assets/icons/midjourney.webp' },
+  { name: 'Adobe Photoshop', src: photoshopIcon },
+  { name: 'Adobe Illustrator', src: illustratorIcon },
+  { name: 'Adobe InDesign', src: indesignIcon },
+  { name: 'Adobe After Effects', src: afterEffectsIcon },
+  { name: 'Adobe Premiere Pro', src: premiereProIcon },
+  { name: 'Adobe Lightroom', src: lightroomIcon },
+  { name: 'Adobe Dimension', src: dimensionIcon },
+  { name: 'Cinema 4D', src: cinema4dIcon },
+  { name: 'Midjourney', src: midjourneyIcon },
 ]
 
 const adobeTools = tools.filter((tool) => tool.name.startsWith('Adobe'))
