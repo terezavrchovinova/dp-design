@@ -3,19 +3,19 @@ import { useTranslation } from 'react-i18next'
 const services = [
   {
     key: 'design',
-    img: '/src/assets/icons/visual-brand-design.png',
+    img: 'src/assets/icons/visual-brand-design.png',
   },
   {
     key: 'video',
-    img: '/src/assets/icons/video.png',
+    img: 'src/assets/icons/video.png',
   },
   {
     key: 'digital',
-    img: '/src/assets/icons/social-media.png',
+    img: 'src/assets/icons/social-media.png',
   },
   {
     key: 'photo',
-    img: '/src/assets/icons/camera.png',
+    img: 'src/assets/icons/camera.png',
   },
 ]
 

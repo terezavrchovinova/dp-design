@@ -9,13 +9,13 @@ import { useRef } from 'react'
 const tools = [
   { name: 'Adobe Photoshop', src: 'src/assets/icons/photoshop.svg' },
   { name: 'Adobe Illustrator', src: 'src/assets/icons/illustrator.svg' },
-  { name: 'Adobe InDesign', src: '/src/assets/icons/indesign.svg' },
-  { name: 'Adobe After Effects', src: '/src/assets/icons/after-effects.svg' },
-  { name: 'Adobe Premiere Pro', src: '/src/assets/icons/premiere-pro.svg' },
+  { name: 'Adobe InDesign', src: 'src/assets/icons/indesign.svg' },
+  { name: 'Adobe After Effects', src: 'src/assets/icons/after-effects.svg' },
+  { name: 'Adobe Premiere Pro', src: 'src/assets/icons/premiere-pro.svg' },
   { name: 'Adobe Lightroom', src: 'src/assets/icons/photoshop-lightroom.svg' },
-  { name: 'Adobe Dimension', src: '/src/assets/icons/dimension.svg' },
-  { name: 'Cinema 4D', src: '/src/assets/icons/cinema-4d.svg' },
-  { name: 'Midjourney', src: '/src/assets/icons/midjourney.webp' },
+  { name: 'Adobe Dimension', src: 'src/assets/icons/dimension.svg' },
+  { name: 'Cinema 4D', src: 'src/assets/icons/cinema-4d.svg' },
+  { name: 'Midjourney', src: 'src/assets/icons/midjourney.webp' },
 ]
 
 const adobeTools = tools.filter((tool) => tool.name.startsWith('Adobe'))

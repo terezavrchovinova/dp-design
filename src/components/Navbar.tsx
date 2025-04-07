@@ -20,7 +20,7 @@ export const Navbar = ({ setMenuOpen }: NavbarProps) => {
           {/* Logo */}
           <a href="#home" className="flex items-center" aria-label="Home">
             <img
-              src="/dp_icon_white.svg"
+              src="public/dp_icon_white.svg"
               alt="Daniela Plamínková Logo"
               className="w-16 h-auto"
             />
