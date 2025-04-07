@@ -3,7 +3,10 @@ name: Deploy App to GitHub Pages
 on:
   push:
     branches:
-      - main  
+      - main
+
+permissions:
+  contents: write
 
 jobs:
   deploy:
@@ -16,7 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 'node'
+          node-version: '18'
 
       - name: Install dependencies
         run: npm install
@@ -24,8 +27,12 @@ jobs:
       - name: Build Vite app
         run: npm run build
 
+      - name: Check dist contents
+        run: ls -la dist
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.GH_PAGES }}
           publish_dir: dist
+          publish_branch: gh-pages
