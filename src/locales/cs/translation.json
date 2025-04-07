@@ -7,13 +7,13 @@
         "contact": "Kontakt"
     },
     "home": {
-        "subtitle": "Jsem grafická designérka a video editorka se zkušenostmi v široké škále oblastí grafického designu.",
+        "heading": "Daniela Plamínková",
+        "subtitle": "Grafická designérka a video editorka se zkušenostmi v široké škále oblastí grafického designu.",
         "viewProjects": "Zobrazit projekty",
         "contactMe": "Kontaktovat mě"
     },
     "about": {
         "title": "O mně",
-        "intro": "Jsem grafická designérka a video editorka se zkušenostmi v mnoha oblastech designu – od brandingu, motion designu a animací až po tisk, digitální obsah a obalový design.",
         "experience": "Zkušenosti",
         "education": "Vzdělání",
         "tools": "Nástroje, které používám",
@@ -34,12 +34,12 @@
                 "description": "Příprava tiskovin, barevné korekce, výstupy připravené pro tisk."
             },
             {
-                "title": "Grafická designérka – BEEFBROTHERS, S.R.O.",
+                "title": "Grafická designérka – BeefBrothers, s.r.o.",
                 "date": "květen 2018 – červen 2018",
                 "description": "Krátkodobá výpomoc na brandingu a kampaních."
             },
             {
-                "title": "Tisk & obaly – ART D",
+                "title": "Print & Packaging – ART D",
                 "date": "květen 2017 – červenec 2017",
                 "description": "Stáž ve studiu zaměřená na obalový design a tiskoviny."
             }
@@ -47,7 +47,7 @@
         "school": {
             "name": "Střední škola multimediální a propagační tvorby (EDUSO)",
             "years": "2015 – 2019",
-            "focus": "Tvorba filmu a animace"
+            "focus": "Filmová a animační tvorba"
         }
     },
     "projects": {
@@ -61,7 +61,7 @@
             "newtonia": "Herní design – Newtonia",
             "brejcha": "Video spot – Boris Brejcha",
             "renaissance": "Video spot – Renesanční mistři",
-            "deathvalley": "Digitální umění – Death Valley",
+            "deathvalley": "Digital Art – Death Valley",
             "jurassic": "Brožura – Jurassic Adventure"
         }
     },

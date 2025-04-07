@@ -6,25 +6,24 @@ export const Home = () => {
   const { t } = useTranslation()
 
   return (
-    <>
-      <section
-        id="home"
-        className="min-h-[75vh] flex items-center justify-center"
-      >
-        <div className="flex flex-col items-center text-center mx-auto relative z-10 mt-50">
-          <AnimatedHeading />
-          <p className="text-white w-140 mt-8 mb-12 text-xl">
-            {t('home.subtitle')}
-          </p>
+    <section
+      id="home"
+      className="min-h-screen flex items-center justify-center "
+    >
+      <div className="flex flex-col items-center text-center relative z-10 max-w-[90%]">
+        <AnimatedHeading />
 
-          <div className="flex justify-center gap-4">
-            <Button href="#projects">{t('home.viewProjects')}</Button>
-            <Button href="#contact" variant="outline">
-              {t('home.contactMe')}
-            </Button>
-          </div>
+        <p className="mt-8 mb-12 text-xl max-w-[560px] text-[var(--color-light-gray)]">
+          {t('home.subtitle')}
+        </p>
+
+        <div className="flex justify-center gap-4 flex-wrap">
+          <Button href="#projects">{t('home.viewProjects')}</Button>
+          <Button href="#contact" variant="outline">
+            {t('home.contactMe')}
+          </Button>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   )
 }

@@ -4,18 +4,20 @@
 @theme {
     --color-dark: #0a0a0a;
     --color-surface: #1a1a1e;
-    --color-white: #f9f9f9;
+    --color-white: #fafafa;
 
     --color-gray: #a1a1aa;
     --color-light-gray: #d4d4d8;
     --color-border: #2e2e32;
 
     --color-orange: #ff4d00;
-    --color-orange-light: #ff6a00;
-    --color-red: #e11d48;
-    --color-dark-red: #7f1d1d;
+    --color-orange-light: #ff8800;
+    --color-red: #e63946;
 
     --color-accent: var(--color-orange);
+
+    --gradient-accent: linear-gradient(135deg, var(--color-orange), var(--color-orange-light));
+
     --radius-xl: 1.25rem;
     --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.25);
     --transition-fast: 0.2s ease;
@@ -23,16 +25,16 @@
 }
 
 @font-face {
-    font-family: 'ClashDisplay-Medium';
-    src: url('./assets/fonts/ClashDisplay-Medium.otf') format('opentype');
-    font-weight: 500;
+    font-family: 'ClashDisplay-SemiBold';
+    src: url('./assets/fonts/ClashDisplay-Semibold.otf') format('opentype');
+    font-weight: 600;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'ClashDisplay-SemiBold';
-    src: url('./assets/fonts/ClashDisplay-Semibold.otf') format('opentype');
-    font-weight: 600;
+    font-family: 'ClashDisplay-Medium';
+    src: url('./assets/fonts/ClashDisplay-Medium.otf') format('opentype');
+    font-weight: 500;
     font-style: normal;
 }
 
@@ -54,58 +56,30 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-body {
-    font-size: 16px;
-    line-height: 1.65;
-}
-
 h1,
 h2,
 h3,
 h4 {
-    color: var(--color-white);
     font-family: 'ClashDisplay-SemiBold', sans-serif;
 }
 
 h1 {
-    @apply text-5xl md:text-6xl font-bold mb-6 tracking-tight leading-tight text-center;
+    @apply text-8xl tracking-tight leading-tight text-center;
 }
 
 h2 {
-    @apply text-4xl md:text-5xl font-bold text-center mb-12 text-center;
+    @apply text-4xl font-bold text-center;
 }
 
 h3 {
-    @apply text-2xl font-semibold mb-7;
+    @apply text-3xl;
 }
 
 h4 {
-    @apply text-lg font-medium text-center;
+    @apply text-2xl text-center;
 }
 
 @layer utilities {
-    .text-gradient {
-        background: linear-gradient(270deg, #f97316, #fb923c, #facc15, #f97316);
-        background-size: 300% 300%;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        animation: gradientShift 5s ease-in-out infinite;
-    }
-
-    @keyframes gradientShift {
-        0% {
-            background-position: 0% 50%;
-        }
-
-        50% {
-            background-position: 100% 50%;
-        }
-
-        100% {
-            background-position: 0% 50%;
-        }
-    }
-
     .glass {
         background-color: var(--color-surface);
         backdrop-filter: blur(16px);
@@ -116,7 +90,6 @@ h4 {
 
     .btn-modern {
         padding: 0.75rem 1.5rem;
-        font-weight: 600;
         border-radius: var(--radius-xl);
         background-color: var(--color-accent);
         color: var(--color-white);

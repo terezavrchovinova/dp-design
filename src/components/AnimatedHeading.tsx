@@ -1,50 +1,47 @@
+'use client'
+
 import { motion } from 'framer-motion'
 import { useState, useEffect, useRef } from 'react'
-
-const heading = 'Daniela Plamínková'
+import { useTranslation } from 'react-i18next'
 
 const getCurlingSlide = () => {
   const xDirection = Math.random() > 0.5 ? 1 : -1
   const yDirection = Math.random() > 0.5 ? 1 : -1
   return {
-    x: xDirection * (150 + Math.random() * 100),
-    y: yDirection * (150 + Math.random() * 100),
-    rotate: xDirection * (40 + Math.random() * 30),
-    opacity: 0.9,
+    x: xDirection * (100 + Math.random() * 80),
+    y: yDirection * (100 + Math.random() * 80),
+    rotate: xDirection * (30 + Math.random() * 30),
     scale: 1,
+    opacity: 0.9,
   }
 }
 
 export default function AnimatedHeading() {
+  const { t } = useTranslation()
+  const headingRef = useRef<HTMLHeadingElement>(null)
+
   const [scattered, setScattered] = useState<
     Record<
       number,
-      { x: number; y: number; rotate: number; opacity: number; scale: number }
+      { x: number; y: number; rotate: number; scale: number; opacity: number }
     >
   >({})
-  const headingRef = useRef<HTMLHeadingElement>(null)
 
-  // Reset when out of view
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) {
-          setScattered({})
+          setTimeout(() => setScattered({}), 300)
         }
       },
-      {
-        threshold: 0.1, // Trigger when at least 10% visible
-      },
+      { threshold: 0.1 },
     )
 
-    if (headingRef.current) {
-      observer.observe(headingRef.current)
-    }
+    const current = headingRef.current
+    if (current) observer.observe(current)
 
     return () => {
-      if (headingRef.current) {
-        observer.unobserve(headingRef.current)
-      }
+      if (current) observer.unobserve(current)
     }
   }, [])
 
@@ -55,27 +52,31 @@ export default function AnimatedHeading() {
     }))
   }
 
-  return (
-    <h1 ref={headingRef} className="text-8xl font-bold text-center w-screen">
-      {heading.split('').map((char, index) => {
-        const isScattered = scattered[index]
+  const heading = t('home.heading')
 
-        return (
-          <motion.span
-            key={index}
-            className="inline-block"
-            initial={{ x: 0, y: 0, rotate: 0, opacity: 1, scale: 1 }}
-            animate={isScattered ? scattered[index] : {}}
-            onHoverStart={() => handleHover(index)}
-            transition={{
-              duration: 1.8,
-              ease: [0.25, 1, 0.5, 1],
-            }}
-          >
-            {char === ' ' ? '\u00A0' : char}
-          </motion.span>
-        )
-      })}
+  return (
+    <h1
+      ref={headingRef}
+      className="text-5xl sm:text-7xl md:text-8xl font-bold text-center leading-tight text-white"
+    >
+      {heading.split('').map((char, index) => (
+        <motion.span
+          key={index}
+          className="inline-block"
+          animate={
+            scattered[index]
+              ? scattered[index]
+              : { opacity: 1, y: 0, rotate: 0, scale: 1 }
+          }
+          onHoverStart={() => handleHover(index)}
+          transition={{
+            duration: 1,
+            ease: [0.25, 1, 0.5, 1],
+          }}
+        >
+          {char === ' ' ? '\u00A0' : char}
+        </motion.span>
+      ))}
     </h1>
   )
 }

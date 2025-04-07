@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next'
 
-// ✅ Relative imports for Vite/React without alias config
 import kynezImg from '../../assets/project_thumbnails/1024x576/kynez.jpg'
 import saleskitImg from '../../assets/project_thumbnails/1024x576/saleskit.jpg'
 import ditaImg from '../../assets/project_thumbnails/1024x576/dita.jpg'

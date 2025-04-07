@@ -7,13 +7,13 @@
         "contact": "Contact"
     },
     "home": {
-        "subtitle": "I'm a graphic designer and video editor with experience in a wide range of areas within graphic design.",
+        "heading": "Daniela Plamínková",
+        "subtitle": "Graphic designer and video editor with experience in a wide range of areas within graphic design.",
         "viewProjects": "View Projects",
         "contactMe": "Contact Me"
     },
     "about": {
         "title": "About me",
-        "intro": "I’m a graphic designer and video editor with experience in many areas of design including branding, motion graphics, print and digital content, and packaging.",
         "experience": "Experience",
         "education": "Education",
         "tools": "Tools I Use",
@@ -21,27 +21,27 @@
             {
                 "title": "Graphic Designer – Imper (Saleskit)",
                 "date": "Oct 2024 – Present",
-                "description": "Creative graphic work for business materials and presentations."
+                "description": "Design of business materials such as presentations, lanyards, leaflets, LinkedIn banners."
             },
             {
                 "title": "Graphic Designer & Video Editor – JVS GROUP",
                 "date": "Aug 2021 – Present",
-                "description": "Design for exhibitions and concerts, TV commercials, promo videos, motion graphics, editing, social media visuals, HTML5/PPC banners, brochures, and more."
+                "description": "Creative design work for exhibitions and concerts, including both graphic and video presentations. Responsibilities included creating social media banners, editing and producing promotional videos and TV commercials, and managing large-scale outdoor campaigns — such as billboards, venue graphics, and public transport wraps. Additional experience includes website editing (Wix), branding and logo creation. Also involved in photography, influencer interview production, 2D animations in After Effects, merchandise design, and occasional 3D visualizations using Unreal Engine and Cinema 4D."
             },
             {
                 "title": "DTP Operator – GZ Media",
                 "date": "Nov 2019 – Jun 2021",
-                "description": "Preparation of print materials, color correction, print-ready files."
+                "description": "Preparing data for printing, performing color correction on prints, collaborating on the production of promotional materials, and operating printing machines."
             },
             {
-                "title": "Graphic Designer – BEEFBROTHERS, S.R.O.",
+                "title": "Graphic Designer – BeefBrothers, s.r.o.",
                 "date": "May 2018 – Jun 2018",
-                "description": "Short-term design support for branding and campaigns."
+                "description": "Internship focused on branding and campaigns."
             },
             {
                 "title": "Print & Packaging – ART D",
                 "date": "May 2017 – Jul 2017",
-                "description": "Studio internship focused on packaging and print materials."
+                "description": "Internship focused on packaging and print materials."
             }
         ],
         "school": {
