@@ -1,21 +1,26 @@
 import { useTranslation } from 'react-i18next'
 
+import visualBrandDesign from '../../assets/icons/visual-brand-design.png'
+import videoIcon from '../../assets/icons/video.png'
+import digitalIcon from '../../assets/icons/social-media.png'
+import photoIcon from '../../assets/icons/camera.png'
+
 const services = [
   {
     key: 'design',
-    img: 'src/assets/icons/visual-brand-design.png',
+    img: visualBrandDesign,
   },
   {
     key: 'video',
-    img: 'src/assets/icons/video.png',
+    img: videoIcon,
   },
   {
     key: 'digital',
-    img: 'src/assets/icons/social-media.png',
+    img: digitalIcon,
   },
   {
     key: 'photo',
-    img: 'src/assets/icons/camera.png',
+    img: photoIcon,
   },
 ]
 
