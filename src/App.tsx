@@ -15,6 +15,7 @@ import { About } from './components/sections/About'
 import { Projects } from './components/sections/Projects'
 import { Contact } from './components/sections/Contact'
 import { WhatIDo } from './components/sections/WhatIDo'
+import Dribbble from './components/sections/Dribbble'
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -27,6 +28,7 @@ function App() {
       <main>
         <Home />
         <Projects />
+        <Dribbble />
         <WhatIDo />
         <About />
         <Contact />

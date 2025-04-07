@@ -11,7 +11,7 @@ type DribbbleShot = {
   }
 }
 
-export default function DribbbleShots() {
+export default function Dribbble() {
   const [shots, setShots] = useState<DribbbleShot[]>([])
 
   useEffect(() => {
@@ -22,18 +22,19 @@ export default function DribbbleShots() {
   }, [])
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       {shots.map((shot) => (
         <a
           key={shot.id}
           href={shot.html_url}
           target="_blank"
           rel="noopener noreferrer"
+          className="transition-transform transform hover:scale-105"
         >
           <img
             src={shot.images.normal}
             alt={shot.title}
-            className="rounded-xl shadow-md"
+            className="rounded-xl shadow-lg w-full h-auto object-cover"
           />
         </a>
       ))}
