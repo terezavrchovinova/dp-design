@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 // Global styles & config
 import './i18n'
@@ -22,6 +23,7 @@ function App() {
   return (
     <>
       <SpeedInsights />
+      <Analytics />
       <Navbar setMenuOpen={setIsMenuOpen} />
       <MobileMenu menuOpen={isMenuOpen} setMenuOpen={setIsMenuOpen} />
 
