@@ -50,12 +50,8 @@ export const About = () => {
   const toolsInView = useInView(toolsRef, { once: true })
 
   return (
-    <section
-      id="about"
-      className="min-h-screen flex items-center justify-center py-24 px-6"
-      style={{ backgroundColor: 'var(--color-dark)' }}
-    >
-      <div className="w-full max-w-6xl space-y-16">
+    <section id="about" className="section bg-[var(--color-dark)]">
+      <div className="container-content">
         {/* Title */}
         <h2>{t('about.title')}</h2>
 

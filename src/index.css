@@ -1,11 +1,11 @@
 @import "tailwindcss";
 @tailwind utilities;
 
+/* === VARIABLES === */
 @theme {
     --color-dark: #0a0a0a;
     --color-surface: #1a1a1e;
     --color-white: #fafafa;
-
     --color-gray: #a1a1aa;
     --color-light-gray: #d4d4d8;
     --color-border: #2e2e32;
@@ -15,15 +15,16 @@
     --color-red: #e63946;
 
     --color-accent: var(--color-orange);
-
     --gradient-accent: linear-gradient(135deg, var(--color-orange), var(--color-orange-light));
 
     --radius-xl: 1.25rem;
     --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.25);
+
     --transition-fast: 0.2s ease;
     --transition-smooth: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
+/* === FONTS === */
 @font-face {
     font-family: 'ClashDisplay-SemiBold';
     src: url('./assets/fonts/ClashDisplay-Semibold.otf') format('opentype');
@@ -58,8 +59,7 @@ body {
 
 h1,
 h2,
-h3,
-h4 {
+h3 {
     font-family: 'ClashDisplay-SemiBold', sans-serif;
 }
 
@@ -71,18 +71,15 @@ h2 {
     @apply text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-3;
 }
 
-
 h3 {
     @apply text-2xl md:text-3xl lg:text-4xl font-semibold text-center mb-6;
 }
 
-
-h4 {
-    @apply text-xl md:text-2xl lg:text-3xl font-medium text-center;
-}
-
-
 @layer utilities {
+    .shadow-soft {
+        box-shadow: var(--shadow-soft);
+    }
+
     .glass {
         background-color: var(--color-surface);
         backdrop-filter: blur(16px);
@@ -91,21 +88,27 @@ h4 {
         border-radius: var(--radius-xl);
     }
 
-    .btn-modern {
-        padding: 0.75rem 1.5rem;
-        border-radius: var(--radius-xl);
-        background-color: var(--color-accent);
-        color: var(--color-white);
-        transition: background-color var(--transition-fast), transform var(--transition-fast);
-    }
-
-    .btn-modern:hover {
-        background-color: var(--color-orange-light);
-        transform: translateY(-2px);
-        box-shadow: 0 0 15px var(--color-orange-light);
-    }
-
     .transition-smooth {
         transition: all var(--transition-smooth);
+    }
+
+    .section {
+        @apply min-h-screen flex items-center justify-center px-6 py-24;
+    }
+
+    .container-content {
+        @apply w-full max-w-6xl space-y-16;
+    }
+
+    .text-muted {
+        @apply text-center text-[var(--color-light-gray)];
+    }
+
+    .hover-zoom {
+        @apply transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:brightness-75;
+    }
+
+    .btn-base {
+        @apply relative inline-block px-6 py-3 rounded-xl font-semibold transition-all duration-300 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--color-orange-light)] cursor-pointer;
     }
 }

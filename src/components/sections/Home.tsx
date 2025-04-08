@@ -6,14 +6,11 @@ export const Home = () => {
   const { t } = useTranslation()
 
   return (
-    <section
-      id="home"
-      className="min-h-screen flex items-center justify-center"
-    >
+    <section id="home" className="section">
       <div className="flex flex-col items-center text-center relative z-10 max-w-[90%]">
         <AnimatedHeading />
 
-        <p className="mt-8 mb-12 text-xl max-w-[560px] text-[var(--color-light-gray)]">
+        <p className="mt-8 mb-12 text-xl max-w-[560px] text-muted">
           {t('home.subtitle')}
         </p>
 

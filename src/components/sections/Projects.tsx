@@ -78,11 +78,8 @@ export const Projects = () => {
   const { t } = useTranslation()
 
   return (
-    <section
-      id="projects"
-      className="flex items-center justify-center min-h-screen px-6 bg-[var(--color-dark)]"
-    >
-      <div className="w-full max-w-7xl space-y-16 py-24">
+    <section id="projects" className="section bg-[var(--color-dark)]">
+      <div className="container-content max-w-7xl">
         <h2>{t('projects.title')}</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -103,7 +100,7 @@ export const Projects = () => {
                   src={project.image}
                   alt={title}
                   loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105 group-hover:brightness-75"
+                  className="w-full h-full object-cover hover-zoom"
                 />
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm">
                   <span className="px-6 py-3 text-lg font-medium text-[var(--color-white)] bg-[var(--color-surface)]/70 rounded-xl shadow-md text-center">

@@ -1,3 +1,5 @@
+'use client'
+
 import { useTranslation } from 'react-i18next'
 
 import visualBrandDesign from '../../assets/icons/visual-brand-design.png'
@@ -16,18 +18,15 @@ export const WhatIDo = () => {
   const { t } = useTranslation()
 
   return (
-    <section
-      id="what-i-do"
-      className="min-h-screen px-6 py-24 bg-dark flex items-center"
-    >
-      <div className="w-full max-w-6xl mx-auto">
+    <section id="what-i-do" className="section bg-[var(--color-dark)]">
+      <div className="container-content">
         <h2>{t('whatIDo.title')}</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12">
           {services.map(({ key, img }) => (
             <div
               key={key}
-              className="flex flex-col sm:flex-row gap-6 sm:gap-8 p-6 sm:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition bg-surface"
+              className="glass transition-smooth flex flex-col sm:flex-row gap-6 sm:gap-8 p-6 sm:p-8 hover:shadow-2xl"
             >
               <div className="w-20 h-20 flex items-center justify-center">
                 <img
@@ -42,7 +41,7 @@ export const WhatIDo = () => {
                 <p className="text-2xl font-semibold text-white mb-2">
                   {t(`whatIDo.services.${key}.title`)}
                 </p>
-                <p className="text-lg leading-relaxed text-gray">
+                <p className="text-lg leading-relaxed text-[var(--color-gray)]">
                   {t(`whatIDo.services.${key}.description`)}
                 </p>
               </div>
