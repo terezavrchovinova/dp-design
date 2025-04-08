@@ -39,9 +39,7 @@ export const Contact = () => {
           onSubmit={handleSubmit}
           className="flex flex-col gap-8 backdrop-blur-md border border-[var(--color-border)] bg-[var(--color-surface)]/80 rounded-[var(--radius-xl)] p-10 shadow-[var(--shadow-soft)] transition-all"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-[var(--color-white)] mb-2">
-            {t('contact.title')}
-          </h2>
+          <h2>{t('contact.title')}</h2>
 
           {/* Input Field */}
           {[

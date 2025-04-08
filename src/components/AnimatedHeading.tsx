@@ -1,5 +1,3 @@
-'use client'
-
 import { motion } from 'framer-motion'
 import { useState, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -55,10 +53,7 @@ export default function AnimatedHeading() {
   const heading = t('home.heading')
 
   return (
-    <h1
-      ref={headingRef}
-      className="text-5xl sm:text-7xl md:text-8xl font-bold text-center leading-tight text-white"
-    >
+    <h1 ref={headingRef}>
       {heading.split('').map((char, index) => (
         <motion.span
           key={index}

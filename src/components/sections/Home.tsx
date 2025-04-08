@@ -8,7 +8,7 @@ export const Home = () => {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center "
+      className="min-h-screen flex items-center justify-center"
     >
       <div className="flex flex-col items-center text-center relative z-10 max-w-[90%]">
         <AnimatedHeading />

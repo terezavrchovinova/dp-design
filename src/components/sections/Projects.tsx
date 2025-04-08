@@ -80,16 +80,10 @@ export const Projects = () => {
   return (
     <section
       id="projects"
-      className="min-h-screen flex items-center justify-center py-24 px-6"
-      style={{ backgroundColor: 'var(--color-dark)' }}
+      className="flex items-center justify-center min-h-screen px-6 bg-[var(--color-dark)]"
     >
-      <div className="max-w-7xl w-full space-y-16">
-        <h2
-          className="text-center text-4xl md:text-5xl font-bold tracking-tight"
-          style={{ color: 'var(--color-white)' }}
-        >
-          {t('projects.title')}
-        </h2>
+      <div className="w-full max-w-7xl space-y-16 py-24">
+        <h2>{t('projects.title')}</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => {
@@ -101,9 +95,9 @@ export const Projects = () => {
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl aspect-[16/9] transition-all duration-500 ease-out translate-y-6"
-                style={{ transitionDelay: `${index * 80}ms` }}
                 aria-label={`Open project: ${title}`}
+                className="group relative aspect-[16/9] overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 ease-out translate-y-6"
+                style={{ transitionDelay: `${index * 80}ms` }}
               >
                 <img
                   src={project.image}
@@ -112,7 +106,7 @@ export const Projects = () => {
                   className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105 group-hover:brightness-75"
                 />
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm">
-                  <span className="text-lg font-medium text-[var(--color-white)] bg-[var(--color-surface)]/70 px-6 py-3 rounded-xl text-center shadow-md">
+                  <span className="px-6 py-3 text-lg font-medium text-[var(--color-white)] bg-[var(--color-surface)]/70 rounded-xl shadow-md text-center">
                     {title}
                   </span>
                 </div>

@@ -57,21 +57,11 @@ export const About = () => {
     >
       <div className="w-full max-w-6xl space-y-16">
         {/* Title */}
-        <h2
-          className="text-center text-4xl md:text-5xl font-bold tracking-tight"
-          style={{ color: 'var(--color-white)' }}
-        >
-          {t('about.title')}
-        </h2>
+        <h2>{t('about.title')}</h2>
 
         {/* Experience */}
         <div>
-          <h3
-            className="text-2xl font-semibold mb-6 text-center"
-            style={{ color: 'var(--color-white)' }}
-          >
-            {t('about.experience')}
-          </h3>
+          <h3>{t('about.experience')}</h3>
           <div className="space-y-6">
             {jobs.map((job, index) => (
               <JobCard key={`${job.title}-${index}`} {...job} />
@@ -81,12 +71,7 @@ export const About = () => {
 
         {/* Education */}
         <div>
-          <h3
-            className="text-2xl font-semibold mb-6 text-center"
-            style={{ color: 'var(--color-white)' }}
-          >
-            {t('about.education')}
-          </h3>
+          <h3>{t('about.education')}</h3>
           <div className="space-y-6">
             <JobCard
               title={school.name}
@@ -99,8 +84,6 @@ export const About = () => {
         {/* Tools */}
         <div ref={toolsRef}>
           <motion.h3
-            className="text-2xl font-semibold mb-12 text-center"
-            style={{ color: 'var(--color-white)' }}
             initial={{ opacity: 0, y: -20 }}
             animate={toolsInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
