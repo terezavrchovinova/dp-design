@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 // Global styles & config
 import './i18n'
@@ -25,6 +26,7 @@ function App() {
       <MobileMenu menuOpen={isMenuOpen} setMenuOpen={setIsMenuOpen} />
 
       <main>
+        <SpeedInsights />
         <Home />
         <Projects />
         <WhatIDo />
