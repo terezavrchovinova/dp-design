@@ -53,38 +53,36 @@ export default function AnimatedHeading() {
   const heading = t('home.heading')
 
   return (
-    <div className="w-full flex justify-center text-center">
-      <h1
-        ref={headingRef}
-        className="flex flex-wrap justify-center text-7xl md:text-7xl lg:text-8xl text-center mb-3"
-      >
-        {heading.split(' ').map((word, wordIndex) => (
-          <span key={wordIndex} className="flex">
-            {word.split('').map((char, charIndex) => {
-              const index = wordIndex * 100 + charIndex
-              return (
-                <motion.span
-                  key={index}
-                  className="inline-block"
-                  animate={
-                    scattered[index] ?? {
-                      opacity: 1,
-                      y: 0,
-                      rotate: 0,
-                      scale: 1,
-                    }
-                  }
-                  onHoverStart={() => handleHover(index)}
-                  transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] }}
-                >
-                  {char}
-                </motion.span>
-              )
-            })}
-            <span className="inline-block w-[0.5ch]"></span>
-          </span>
-        ))}
-      </h1>
+    <div className="w-full py-8 flex justify-center items-center px-4">
+      <div className="w-full max-w-5xl text-center">
+        {/* Mobile View - Static Heading */}
+        <h1 className="block md:hidden text-2xl font-semibold">{heading}</h1>
+
+        {/* Desktop View - Animated Letters */}
+        <h1
+          ref={headingRef}
+          className="hidden md:flex flex-wrap justify-center text-4xl leading-snug text-center"
+        >
+          {heading.split('').map((char, index) => (
+            <motion.span
+              key={index}
+              className="inline-block"
+              animate={
+                scattered[index] ?? {
+                  opacity: 1,
+                  y: 0,
+                  rotate: 0,
+                  scale: 1,
+                }
+              }
+              onHoverStart={() => handleHover(index)}
+              transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] }}
+            >
+              {char === ' ' ? '\u00A0' : char}
+            </motion.span>
+          ))}
+        </h1>
+      </div>
     </div>
   )
 }

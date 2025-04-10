@@ -30,7 +30,7 @@ export const Navbar = ({ setMenuOpen }: NavbarProps) => {
           <button
             aria-label="Toggle Menu"
             onClick={() => setMenuOpen((prev) => !prev)}
-            className="md:hidden flex flex-col justify-between w-7 h-5 z-50"
+            className="md:hidden flex flex-col justify-between w-7 h-5 z-50 cursor-pointer"
           >
             {[...Array(3)].map((_, i) => (
               <span
@@ -84,7 +84,7 @@ const LanguageSwitcher = ({
       <button
         key={lng}
         onClick={() => onChange(lng as 'en' | 'cs')}
-        className="text-sm font-medium transition hover:underline"
+        className="text-sm font-medium transition hover:underline cursor-pointer"
         style={{
           color:
             currentLang === lng ? 'var(--color-white)' : 'var(--color-gray)',
