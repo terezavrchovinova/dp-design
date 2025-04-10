@@ -1,17 +1,16 @@
-'use client'
-
+import Lottie from 'lottie-react'
 import { useTranslation } from 'react-i18next'
 
-import visualBrandDesign from '../../assets/icons/visual-brand-design.png'
+import visualBrandDesign from '../../assets/icons/visual-brand-design.json'
 import videoIcon from '../../assets/icons/video.png'
 import digitalIcon from '../../assets/icons/social-media.png'
 import photoIcon from '../../assets/icons/camera.png'
 
 const services = [
-  { key: 'design', img: visualBrandDesign },
-  { key: 'video', img: videoIcon },
-  { key: 'digital', img: digitalIcon },
-  { key: 'photo', img: photoIcon },
+  { key: 'design', asset: visualBrandDesign, type: 'lottie' },
+  { key: 'video', asset: videoIcon, type: 'image' },
+  { key: 'digital', asset: digitalIcon, type: 'image' },
+  { key: 'photo', asset: photoIcon, type: 'image' },
 ]
 
 export const WhatIDo = () => {
@@ -23,21 +22,30 @@ export const WhatIDo = () => {
         <h2>{t('whatIDo.title')}</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12">
-          {services.map(({ key, img }) => (
+          {services.map(({ key, asset, type }) => (
             <div
               key={key}
-              className="glass transition-smooth flex flex-col sm:flex-row gap-6 sm:gap-8 p-6 sm:p-8 hover:shadow-2xl"
+              className="glass transition-smooth flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-8 p-6 sm:p-8 hover:shadow-2xl text-center sm:text-left"
             >
-              <div className="w-20 h-20 flex items-center justify-center">
-                <img
-                  src={img}
-                  alt={t(`whatIDo.services.${key}.title`)}
-                  className="w-14 h-14 object-contain"
-                  loading="lazy"
-                />
+              <div className="w-24 h-24 flex items-center justify-center flex-shrink-0">
+                {type === 'lottie' ? (
+                  <Lottie
+                    animationData={asset}
+                    className="w-24 h-24"
+                    loop
+                    autoplay
+                  />
+                ) : (
+                  <img
+                    src={type === 'image' ? (asset as string) : undefined}
+                    alt={t(`whatIDo.services.${key}.title`)}
+                    className="w-20 h-20 object-contain"
+                    loading="lazy"
+                  />
+                )}
               </div>
 
-              <div className="flex flex-col">
+              <div className="flex flex-col justify-center h-full">
                 <p className="text-2xl font-semibold text-white mb-2">
                   {t(`whatIDo.services.${key}.title`)}
                 </p>
