@@ -55,24 +55,27 @@ body {
     color: var(--color-white);
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+
 }
 
 h1,
 h2,
 h3 {
     font-family: 'ClashDisplay-SemiBold', sans-serif;
+    text-align: center;
 }
 
 h1 {
-    @apply text-7xl md:text-7xl lg:text-8xl text-center mb-3;
+    @apply text-6xl md:text-7xl lg:text-8xl;
 }
 
 h2 {
-    @apply text-3xl md:text-4xl lg:text-5xl text-center mb-6;
+    @apply text-4xl md:text-4xl lg:text-5xl mb-6;
 }
 
 h3 {
-    @apply text-xl md:text-2xl lg:text-3xl text-center mb-6;
+    @apply text-3xl md:text-3xl lg:text-4xl mb-6;
 }
 
 @layer utilities {

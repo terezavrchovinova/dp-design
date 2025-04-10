@@ -53,10 +53,14 @@ export default function AnimatedHeading() {
   const heading = t('home.heading')
 
   return (
-    <div className="w-full flex justify-center text-center">
+    <div className="w-full py-8 flex flex-col items-center text-center px-4">
+      {/* Mobile View - Static Heading */}
+      <h1 className="block md:hidden text-2xl font-semibold">{heading}</h1>
+
+      {/* Desktop View - Animated Letters */}
       <h1
         ref={headingRef}
-        className="flex flex-wrap justify-center text-7xl md:text-7xl lg:text-8xl text-center mb-3"
+        className="hidden md:flex flex-wrap justify-center max-w-screen-xl"
       >
         {heading.split(' ').map((word, wordIndex) => (
           <span key={wordIndex} className="flex">
