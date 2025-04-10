@@ -8,7 +8,7 @@
     },
     "home": {
         "heading": "Daniela Plamínková",
-        "subtitle": "Grafická designérka a video editorka se zkušenostmi v široké škále oblastí grafického designu.",
+        "subtitle": "Grafická designérka a video editorka se zkušenostmi v široké škále oblastí grafického designu",
         "viewProjects": "Zobrazit projekty",
         "contactMe": "Kontaktovat mě"
     },
@@ -16,32 +16,32 @@
         "title": "O mně",
         "experience": "Zkušenosti",
         "education": "Vzdělání",
-        "tools": "Nástroje, které používám",
+        "tools": "Nástroje",
         "jobs": [
             {
                 "title": "Grafická designérka – Imper (Saleskit)",
                 "date": "říjen 2024 – dosud",
-                "description": "Kreativní grafická práce na obchodních materiálech a prezentacích."
+                "description": "Design firemních materiálů, jako jsou prezentace, šňůrky, letáky, bannery."
             },
             {
                 "title": "Grafická designérka & video editorka – JVS GROUP",
                 "date": "srpen 2021 – dosud",
-                "description": "Design pro výstavy a koncerty, TV spoty, promo videa, animace, střih, vizuály pro sociální sítě, HTML5/PPC bannery, brožury a další."
+                "description": "Tvorba grafických a video návrhů pro výstavy a koncerty, včetně TV reklam a propagačních videí. 2D animace v After Effects. Navrhování vizuálů pro sociální sítě, HTML5/PPC bannery, brožury a merchandising. Návrh rozsáhlých outdoorových kampaní, jako jsou billboardy, grafiky na místech konání akcí a polepy MHD. Fotografování, natáčení rozhovorů s influencery a střih videí. Příležitostná tvorba 3D vizualizací v Unreal Engine a Cinema 4D. Úpravy webových stránek ve Wixu a vývoj komplexních brandingových materiálů, včetně loga."
             },
             {
                 "title": "DTP operátorka – GZ Media",
                 "date": "listopad 2019 – červen 2021",
-                "description": "Příprava tiskovin, barevné korekce, výstupy připravené pro tisk."
+                "description": "Příprava dat pro tisk, barevné korekce tiskovin, spolupráce na výrobě propagačních materiálů, obsluha tiskových strojů."
             },
             {
                 "title": "Grafická designérka – BeefBrothers, s.r.o.",
                 "date": "květen 2018 – červen 2018",
-                "description": "Krátkodobá výpomoc na brandingu a kampaních."
+                "description": "Stáž zaměřená na branding a kampaně"
             },
             {
                 "title": "Print & Packaging – ART D",
                 "date": "květen 2017 – červenec 2017",
-                "description": "Stáž ve studiu zaměřená na obalový design a tiskoviny."
+                "description": "Stáž zaměřená na obalový design a tiskoviny"
             }
         ],
         "school": {
@@ -70,19 +70,19 @@
         "services": {
             "design": {
                 "title": "Vizuální a značkový design",
-                "description": "Loga, vizuální identity, brožury, obaly a merchandising — jednotné vizuály vytvořené s důrazem na jasnost, konzistenci a eleganci."
+                "description": "Loga, vizuální identity značek, brožury, obaly a merchandising"
             },
             "video": {
-                "title": "Video a animace",
-                "description": "Produkce a střih promo videí, reklam a motion grafiky, které vdechnou značce energii a hloubku."
+                "title": "Video a motion grafika",
+                "description": "Produkce a střih různých typů videí včetně motion grafiky"
             },
             "digital": {
-                "title": "Digitální obsah",
-                "description": "Grafika a vizuály pro web a sociální sítě — navržené s důrazem na účel, preciznost a vizuální dopad."
+                "title": "Tvorba digitálního obsahu",
+                "description": "Návrh a tvorba digitální grafiky a podkladů pro web a sociální sítě"
             },
             "photo": {
                 "title": "Fotografie",
-                "description": "Brandová fotografie zachycující produkty, životní momenty a atmosféru — vždy v souladu s vizuální identitou značky."
+                "description": "Fotografie produktů, lidí a každodenních scén, retušování a úprava snímků"
             }
         }
     },

@@ -8,7 +8,7 @@
     },
     "home": {
         "heading": "Daniela Plamínková",
-        "subtitle": "Graphic designer and video editor with experience in a wide range of areas within graphic design.",
+        "subtitle": "Graphic designer and video editor with experience in a wide range of areas within graphic design",
         "viewProjects": "View Projects",
         "contactMe": "Contact Me"
     },
@@ -26,12 +26,12 @@
             {
                 "title": "Graphic Designer & Video Editor – JVS GROUP",
                 "date": "Aug 2021 – Present",
-                "description": "Creative design work for exhibitions and concerts, including both graphic and video presentations. Responsibilities included creating social media banners, editing and producing promotional videos and TV commercials, and managing large-scale outdoor campaigns — such as billboards, venue graphics, and public transport wraps. Additional experience includes website editing (Wix), branding and logo creation. Also involved in photography, influencer interview production, 2D animations in After Effects, merchandise design, and occasional 3D visualizations using Unreal Engine and Cinema 4D."
+                "description": "Creating graphic and video designs for exhibitions and concerts, including TV commercials, promo videos. 2D animations in After Effects. Designing visuals for social media, HTML5/PPC banners, brochures, and merchandise. Managing large-scale outdoor campaigns such as billboards, venue graphics, and public transport wraps. Producing photography, influencer interviews, and editing videos. Occasionally producing 3D visualizations using Unreal Engine and Cinema 4D. Editing websites using Wix and developing comprehensive branding materials, including logos."
             },
             {
                 "title": "DTP Operator – GZ Media",
                 "date": "Nov 2019 – Jun 2021",
-                "description": "Preparing data for printing, performing color correction on prints, collaborating on the production of promotional materials, and operating printing machines."
+                "description": "Prepared data for printing. Performed color correction on prints. Collaborated on the production of promotional materials. Operated printing machines."
             },
             {
                 "title": "Graphic Designer – BeefBrothers, s.r.o.",
@@ -70,19 +70,19 @@
         "services": {
             "design": {
                 "title": "Visual & Brand Design",
-                "description": "Logos, brand identities, brochures, packaging, and merchandising — cohesive visuals delivered with clarity, consistency, and elegance."
+                "description": "Logos, brand identities, brochures, packaging, and merchandising"
             },
             "video": {
                 "title": "Video & Motion",
-                "description": "Production and editing of promotional videos, commercial spots, and motion graphics that bring energy and depth to your brand’s message."
+                "description": "Production and editing of all kinds of videos along with motion graphics"
             },
             "digital": {
                 "title": "Digital Content Creation",
-                "description": "Online graphics and assets for web and social media — designed with purpose, precision, and visual impact in mind."
+                "description": "Design and creation of digital graphics and assets for web and social media platforms"
             },
             "photo": {
                 "title": "Photography",
-                "description": "Branded photography that captures products, lifestyle moments, and atmospheres — always aligned with your visual identity."
+                "description": "Photography of products, people, and everyday scenes, retouching and editing services"
             }
         }
     },
