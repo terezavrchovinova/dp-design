@@ -27,7 +27,7 @@ export const WhatIDo = () => {
               key={key}
               className="glass transition-smooth flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-8 p-6 sm:p-8 hover:shadow-2xl text-center sm:text-left"
             >
-              <div className="w-24 h-24 flex items-center justify-center flex-shrink-0">
+              <div className="w-24 h-24 flex items-center justify-center flex-shrink-0 mx-auto sm:mx-0">
                 {type === 'lottie' ? (
                   <Lottie
                     animationData={asset}
@@ -46,10 +46,10 @@ export const WhatIDo = () => {
               </div>
 
               <div className="flex flex-col justify-center h-full">
-                <p className="text-2xl font-semibold text-white mb-2">
+                <p className="section-title">
                   {t(`whatIDo.services.${key}.title`)}
                 </p>
-                <p className="text-lg leading-relaxed text-[var(--color-gray)]">
+                <p className="section-description">
                   {t(`whatIDo.services.${key}.description`)}
                 </p>
               </div>
