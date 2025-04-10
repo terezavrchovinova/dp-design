@@ -53,25 +53,38 @@ export default function AnimatedHeading() {
   const heading = t('home.heading')
 
   return (
-    <h1 ref={headingRef}>
-      {heading.split('').map((char, index) => (
-        <motion.span
-          key={index}
-          className="inline-block"
-          animate={
-            scattered[index]
-              ? scattered[index]
-              : { opacity: 1, y: 0, rotate: 0, scale: 1 }
-          }
-          onHoverStart={() => handleHover(index)}
-          transition={{
-            duration: 1,
-            ease: [0.25, 1, 0.5, 1],
-          }}
-        >
-          {char === ' ' ? '\u00A0' : char}
-        </motion.span>
-      ))}
-    </h1>
+    <div className="w-full flex justify-center text-center">
+      <h1
+        ref={headingRef}
+        className="flex flex-wrap justify-center text-7xl md:text-7xl lg:text-8xl text-center mb-3"
+      >
+        {heading.split(' ').map((word, wordIndex) => (
+          <span key={wordIndex} className="flex">
+            {word.split('').map((char, charIndex) => {
+              const index = wordIndex * 100 + charIndex
+              return (
+                <motion.span
+                  key={index}
+                  className="inline-block"
+                  animate={
+                    scattered[index] ?? {
+                      opacity: 1,
+                      y: 0,
+                      rotate: 0,
+                      scale: 1,
+                    }
+                  }
+                  onHoverStart={() => handleHover(index)}
+                  transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] }}
+                >
+                  {char}
+                </motion.span>
+              )
+            })}
+            <span className="inline-block w-[0.5ch]"></span>
+          </span>
+        ))}
+      </h1>
+    </div>
   )
 }

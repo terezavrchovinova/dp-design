@@ -13,7 +13,7 @@ export const JobCard = ({ title, date, description }: Job) => {
   return (
     <div className="mb-10 p-6 max-w-4xl mx-auto backdrop-blur-md transition-smooth glass">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
-        <p className="text-2xl font-bold tracking-tight">{title}</p>
+        <p className="text-2xl font-bold tracking-tight text-center">{title}</p>
         <span
           className="text-sm text-muted"
           style={{ color: 'var(--color-gray)' }}
@@ -25,7 +25,7 @@ export const JobCard = ({ title, date, description }: Job) => {
       <ul className="space-y-4 text-base leading-relaxed">
         {points.map((point, i) => (
           <li key={i} className="flex items-start gap-3">
-            <span className="relative top-[1px] text-accent inline-flex items-center justify-center">
+            <span className="relative top-[6px] text-accent inline-flex items-center justify-center">
               <svg
                 viewBox="0 0 24 24"
                 fill="currentColor"
