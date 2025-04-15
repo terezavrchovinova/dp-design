@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import logo from '../../public/dp_icon_white.svg'
+import logo from '../assets/icons/dp_icon_white.svg'
 interface NavbarProps {
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
@@ -80,7 +80,7 @@ const LanguageSwitcher = ({
   onChange: (lng: 'en' | 'cs') => void
 }) => (
   <div className="flex space-x-2 ml-4">
-    {['en', 'cs'].map((lng) => (
+    {['cs', 'en'].map((lng) => (
       <button
         key={lng}
         onClick={() => onChange(lng as 'en' | 'cs')}

@@ -82,7 +82,7 @@ export const Projects = () => {
       <div className="container-content max-w-7xl">
         <h2>{t('projects.title')}</h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
           {projects.map((project, index) => {
             const title = t(`projects.items.${project.key}`, project.key)
 

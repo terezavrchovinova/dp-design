@@ -2,13 +2,13 @@ import Lottie from 'lottie-react'
 import { useTranslation } from 'react-i18next'
 
 import visualBrandDesign from '../../assets/icons/visual-brand-design.json'
-import videoIcon from '../../assets/icons/video.png'
+import videoIcon from '../../assets/icons/video.json'
 import digitalIcon from '../../assets/icons/social-media.png'
 import photoIcon from '../../assets/icons/camera.png'
 
 const services = [
   { key: 'design', asset: visualBrandDesign, type: 'lottie' },
-  { key: 'video', asset: videoIcon, type: 'image' },
+  { key: 'video', asset: videoIcon, type: 'lottie' },
   { key: 'digital', asset: digitalIcon, type: 'image' },
   { key: 'photo', asset: photoIcon, type: 'image' },
 ]

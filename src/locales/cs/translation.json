@@ -2,7 +2,7 @@
     "nav": {
         "home": "Domů",
         "projects": "Projekty",
-        "whatIDo": "Co dělám",
+        "whatIDo": "Služby",
         "about": "O mně",
         "contact": "Kontakt"
     },
@@ -82,7 +82,7 @@
             },
             "photo": {
                 "title": "Fotografie",
-                "description": "Fotografie produktů, lidí a každodenních scén, retušování a úprava snímků"
+                "description": "Fotografie produktů, lidí, retušování a úprava snímků"
             }
         }
     },

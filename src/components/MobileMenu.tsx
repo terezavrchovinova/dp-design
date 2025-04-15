@@ -69,7 +69,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
 
       {/* Language Switcher */}
       <div className="flex space-x-6">
-        {['en', 'cs'].map((lang) => (
+        {['cs', 'en'].map((lang) => (
           <button
             key={lang}
             onClick={() => changeLanguage(lang as 'en' | 'cs')}
