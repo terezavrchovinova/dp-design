@@ -8,6 +8,7 @@ import './index.css'
 
 // Components
 import { Navbar } from './components/Navbar'
+import { Footer } from './components/Footer'
 import { MobileMenu } from './components/MobileMenu'
 
 // Sections
@@ -33,6 +34,7 @@ function App() {
         <WhatIDo />
         <About />
         <Contact />
+        <Footer />
       </main>
     </>
   )

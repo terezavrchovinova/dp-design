@@ -93,5 +93,13 @@
         "send": "Odeslat",
         "success": "✅ Zpráva byla úspěšně odeslána!",
         "error": "❌ Něco se pokazilo. Zkuste to prosím znovu."
+    },
+    "footer": {
+        "name": "Daniela Plamínková",
+        "ico": "IČO: 22223622",
+        "address": "Sídlo: Voskovcova 1075/57, 152 00 Praha 5",
+        "registered": "Zapsaná v živnostenském rejstříku",
+        "supervisoryAuthority": "Dozorový orgán: Živnostenský úřad Praha 5",
+        "copyright": "© {year} Daniela Plamínková"
     }
 }

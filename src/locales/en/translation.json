@@ -93,5 +93,13 @@
         "send": "Send",
         "success": "✅ Message sent successfully!",
         "error": "❌ Something went wrong. Please try again later."
+    },
+    "footer": {
+        "name": "Daniela Plamínková",
+        "ico": "VAT number: 22223622",
+        "address": "Headquarters: Voskovcova 1075/57, 152 00 Prague 5",
+        "registered": "Registered in the Trade Register",
+        "supervisoryAuthority": "Supervisory authority: Trade Office Prague 5",
+        "copyright": "© {year} Daniela Plamínková"
     }
 }
