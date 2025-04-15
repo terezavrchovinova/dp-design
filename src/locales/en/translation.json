@@ -2,8 +2,8 @@
     "nav": {
         "home": "Home",
         "projects": "Projects",
-        "whatIDo": "What I Do",
-        "about": "About",
+        "whatIDo": "Services",
+        "about": "Experience",
         "contact": "Contact"
     },
     "home": {
@@ -13,7 +13,6 @@
         "contactMe": "Contact Me"
     },
     "about": {
-        "title": "About me",
         "experience": "Experience",
         "education": "Education",
         "tools": "Tools I Use",
@@ -21,12 +20,12 @@
             {
                 "title": "Graphic Designer – Imper (Saleskit)",
                 "date": "Oct 2024 – Present",
-                "description": "Design of business materials such as presentations, lanyards, leaflets, LinkedIn banners."
+                "description": "Advertising print materials, merchandise and online banners, animated charts for the web, and presentation design."
             },
             {
                 "title": "Graphic Designer & Video Editor – JVS GROUP",
                 "date": "Aug 2021 – Present",
-                "description": "Creating graphic and video designs for exhibitions and concerts. Producing TV commercials, promo videos. 2D animations in After Effects. Designing visuals for social media, HTML5/PPC banners. Brochures and merchandise. Outdoor campaigns such as billboards, venue graphics, and public transport wraps. Producing photography, influencer interviews, and editing videos. Occasionally producing 3D visualizations. Editing websites using Wix. Developing comprehensive branding materials, including logos."
+                "description": "Design of visual content for events and cultural events. Creation of advertising spots for TV and online platforms. Development of branding materials, from logo to visual identity. Complete prepress preparation for large-format and standard print materials. Visual content for social media and online advertising (HTML5 / PPC banners). Motion graphics. Photography, interview filming, and video editing for digital content. Website edits in Wix."
             },
             {
                 "title": "DTP Operator – GZ Media",
@@ -36,12 +35,12 @@
             {
                 "title": "Graphic Designer – BeefBrothers, s.r.o.",
                 "date": "May 2018 – Jun 2018",
-                "description": "Internship focused on branding and campaigns."
+                "description": "Internship – creating a logo for a construction company, retouching photos, designing banners for the company SYNLAB."
             },
             {
                 "title": "Print & Packaging – ART D",
                 "date": "May 2017 – Jul 2017",
-                "description": "Internship focused on packaging and print materials."
+                "description": "Internship – full handling of client orders, from design to printing and final touches."
             }
         ],
         "school": {
@@ -66,7 +65,7 @@
         }
     },
     "whatIDo": {
-        "title": "What I Do",
+        "title": "Services",
         "services": {
             "design": {
                 "title": "Visual & Brand Design",

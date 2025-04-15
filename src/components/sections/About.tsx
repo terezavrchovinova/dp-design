@@ -52,9 +52,6 @@ export const About = () => {
   return (
     <section id="about" className="section bg-[var(--color-dark)]">
       <div className="container-content">
-        {/* Title */}
-        <h2>{t('about.title')}</h2>
-
         {/* Experience */}
         <div>
           <h3>{t('about.experience')}</h3>

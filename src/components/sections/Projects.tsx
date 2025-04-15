@@ -79,7 +79,7 @@ export const Projects = () => {
 
   return (
     <section id="projects" className="section bg-[var(--color-dark)]">
-      <div className="container-content max-w-7xl">
+      <div className="w-full max-w-[1600px] px-10 mx-auto">
         <h2>{t('projects.title')}</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">

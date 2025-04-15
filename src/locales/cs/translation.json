@@ -3,7 +3,7 @@
         "home": "Domů",
         "projects": "Projekty",
         "whatIDo": "Služby",
-        "about": "O mně",
+        "about": "Zkušenosti",
         "contact": "Kontakt"
     },
     "home": {
@@ -13,7 +13,6 @@
         "contactMe": "Kontaktovat mě"
     },
     "about": {
-        "title": "O mně",
         "experience": "Zkušenosti",
         "education": "Vzdělání",
         "tools": "Nástroje",
@@ -21,27 +20,27 @@
             {
                 "title": "Grafická designérka – Imper (Saleskit)",
                 "date": "říjen 2024 – dosud",
-                "description": "Design firemních materiálů, jako jsou prezentace, šňůrky, letáky, bannery."
+                "description": "Reklamní tiskoviny, merch, online bannery, animované grafy pro web a design prezentací."
             },
             {
                 "title": "Grafická designérka & video editorka – JVS GROUP",
                 "date": "srpen 2021 – dosud",
-                "description": "Tvorba grafických a video návrhů pro výstavy a koncerty. Produkování TV reklam a propagačních videí. 2D animace v After Effects. Návrh vizuálů pro sociální sítě, HTML5/PPC bannery. Brožury a merchandising. Outdoorové kampaně, jako jsou billboardy, polepy MHD. Fotografování, natáčení rozhovorů s influencery a střih videí. Příležitostná tvorba 3D vizualizací. Úpravy webových stránek ve Wixu. Vývoj brandingových materiálů, včetně loga."
+                "description": "Design vizuálního obsahu pro eventy a kulturní akce. Tvorba reklamních spotů pro TV i online prostředí. Tvorba brandingových materiálů, od loga po vizuální identitu. Kompletní předtisková příprava pro velkoformátové i běžné tiskoviny. Vizuální obsah pro sociální sítě a online reklamu (HTML5/PPC bannery). Motion grafika. Fotografování, natáčení rozhovorů a střih videí pro digitální obsah. Úpravy webových stránek ve Wixu."
             },
             {
                 "title": "DTP operátorka – GZ Media",
                 "date": "listopad 2019 – červen 2021",
-                "description": "Příprava dat pro tisk, barevné korekce tiskovin, spolupráce na výrobě propagačních materiálů, obsluha tiskových strojů."
+                "description": "Příprava dat pro tisk, barevné korekce tiskovin, spolupráce na výrobě propagačních materiálů a obsluha tiskových strojů."
             },
             {
                 "title": "Grafická designérka – BeefBrothers, s.r.o.",
                 "date": "květen 2018 – červen 2018",
-                "description": "Stáž zaměřená na branding a kampaně"
+                "description": "Stáž – vytváření loga pro stavební firmu, retušování fotografií a tvorba bannerů pro firmu SYNLAB."
             },
             {
                 "title": "Print & Packaging – ART D",
                 "date": "květen 2017 – červenec 2017",
-                "description": "Stáž zaměřená na obalový design a tiskoviny"
+                "description": "Stáž – kompletní zpracování zakázek pro klienty, od návrhu přes tisk až po finální úpravy."
             }
         ],
         "school": {
@@ -69,12 +68,12 @@
         "title": "Služby",
         "services": {
             "design": {
-                "title": "Vizuální a značkový design",
+                "title": "Vizuální identita a branding",
                 "description": "Loga, vizuální identity značek, brožury, obaly a merchandising"
             },
             "video": {
                 "title": "Video a motion grafika",
-                "description": "Produkce a střih různých typů videí včetně motion grafiky"
+                "description": "Produkce a střih různých typů videí, včetně motion grafiky"
             },
             "digital": {
                 "title": "Tvorba digitálního obsahu",
