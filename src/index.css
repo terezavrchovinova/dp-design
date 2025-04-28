@@ -67,7 +67,7 @@ h3 {
 }
 
 h1 {
-    @apply text-6xl md:text-7xl lg:text-8xl;
+    @apply text-5xl md:text-7xl lg:text-8xl;
 }
 
 h2 {
@@ -126,4 +126,24 @@ h3 {
     .btn-base {
         @apply relative inline-block px-6 py-3 rounded-xl font-semibold transition-all duration-300 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--color-orange-light)] cursor-pointer;
     }
+}
+
+@keyframes blob {
+
+    0%,
+    100% {
+        transform: translate(0px, 0px) scale(1);
+    }
+
+    33% {
+        transform: translate(30px, -20px) scale(1.05);
+    }
+
+    66% {
+        transform: translate(-20px, 20px) scale(0.95);
+    }
+}
+
+.animate-blob {
+    animation: blob 20s infinite;
 }

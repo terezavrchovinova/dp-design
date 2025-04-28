@@ -7,8 +7,9 @@
         "contact": "Contact"
     },
     "home": {
-        "heading": "Daniela Plamínková",
-        "subtitle": "Graphic designer and video editor with experience in a wide range of areas within graphic design",
+        "titleLine1": "Creative graphic designer",
+        "titleLine2": "and video editor",
+        "subtitle": "Daniela Plamínková",
         "viewProjects": "View Projects",
         "contactMe": "Contact Me"
     },
@@ -95,6 +96,7 @@
         "error": "❌ Something went wrong. Please try again later."
     },
     "footer": {
+        "cta_collaborate": "Let’s work together",
         "name": "Daniela Plamínková",
         "ico": "VAT number: 22223622",
         "address": "Headquarters: Voskovcova 1075/57, 152 00 Prague 5",

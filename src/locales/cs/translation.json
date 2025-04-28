@@ -7,8 +7,9 @@
         "contact": "Kontakt"
     },
     "home": {
-        "heading": "Daniela Plamínková",
-        "subtitle": "Grafická designérka a video editorka se zkušenostmi v široké škále oblastí grafického designu",
+        "titleLine1": "Kreativní grafička",
+        "titleLine2": "a video editorka",
+        "subtitle": "Daniela Plamínková",
         "viewProjects": "Zobrazit projekty",
         "contactMe": "Kontaktovat mě"
     },
@@ -95,6 +96,7 @@
         "error": "❌ Něco se pokazilo. Zkuste to prosím znovu."
     },
     "footer": {
+        "cta_collaborate": "Těším se na spolupráci",
         "name": "Daniela Plamínková",
         "ico": "IČO: 22223622",
         "address": "Sídlo: Voskovcova 1075/57, 152 00 Praha 5",

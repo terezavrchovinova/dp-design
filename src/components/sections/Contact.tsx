@@ -2,6 +2,7 @@ import { useState } from 'react'
 import emailjs from 'emailjs-com'
 import { useTranslation } from 'react-i18next'
 import { Button } from '../Button'
+import AnimatedHeading from '../AnimatedHeading'
 
 export const Contact = () => {
   const { t } = useTranslation()
@@ -35,6 +36,9 @@ export const Contact = () => {
       className="min-h-screen flex items-center justify-center bg-[var(--color-dark)] px-6 py-24"
     >
       <div className="w-full max-w-2xl">
+        {/* AnimatedHeading now above the form */}
+        <AnimatedHeading />
+
         <form
           onSubmit={handleSubmit}
           className="flex flex-col gap-8 backdrop-blur-md border border-[var(--color-border)] bg-[var(--color-surface)]/80 rounded-[var(--radius-xl)] p-10 shadow-[var(--shadow-soft)] transition-all"

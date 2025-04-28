@@ -50,16 +50,16 @@ export default function AnimatedHeading() {
     }))
   }
 
-  const heading = t('home.heading')
+  const heading = t('footer.cta_collaborate')
 
   return (
     <div className="w-full py-8 flex justify-center items-center px-4">
       <div className="w-full max-w-5xl text-center">
         {/* Mobile View - Static Heading */}
-        <h1 className="block md:hidden text-2xl font-semibold">{heading}</h1>
+        <h3 className="block md:hidden text-2xl font-semibold">{heading}</h3>
 
         {/* Desktop View - Animated Letters */}
-        <h1
+        <h3
           ref={headingRef}
           className="hidden md:flex flex-wrap justify-center text-4xl leading-snug text-center"
         >
@@ -81,7 +81,7 @@ export default function AnimatedHeading() {
               {char === ' ' ? '\u00A0' : char}
             </motion.span>
           ))}
-        </h1>
+        </h3>
       </div>
     </div>
   )
