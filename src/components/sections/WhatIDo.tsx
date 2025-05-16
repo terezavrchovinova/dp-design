@@ -3,13 +3,13 @@ import { useTranslation } from 'react-i18next'
 
 import visualBrandDesign from '../../assets/icons/visual-brand-design.json'
 import videoIcon from '../../assets/icons/video.json'
-import digitalIcon from '../../assets/icons/social-media.png'
+import digitalIcon from '../../assets/icons/social.json'
 import photoIcon from '../../assets/icons/photography.json'
 
 const services = [
   { key: 'design', asset: visualBrandDesign, type: 'lottie' },
   { key: 'video', asset: videoIcon, type: 'lottie' },
-  { key: 'digital', asset: digitalIcon, type: 'image' },
+  { key: 'digital', asset: digitalIcon, type: 'lottie' },
   { key: 'photo', asset: photoIcon, type: 'lottie' },
 ]
 
@@ -22,27 +22,18 @@ export const WhatIDo = () => {
         <h2>{t('whatIDo.title')}</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12">
-          {services.map(({ key, asset, type }) => (
+          {services.map(({ key, asset }) => (
             <div
               key={key}
               className="glass transition-smooth flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-8 p-6 sm:p-8 hover:shadow-2xl text-center sm:text-left"
             >
               <div className="w-24 h-24 flex items-center justify-center flex-shrink-0 mx-auto sm:mx-0">
-                {type === 'lottie' ? (
-                  <Lottie
-                    animationData={asset}
-                    className="w-24 h-24"
-                    loop
-                    autoplay
-                  />
-                ) : (
-                  <img
-                    src={type === 'image' ? (asset as string) : undefined}
-                    alt={t(`whatIDo.services.${key}.title`)}
-                    className="w-20 h-20 object-contain"
-                    loading="lazy"
-                  />
-                )}
+                <Lottie
+                  animationData={asset}
+                  className="w-24 h-24"
+                  loop
+                  autoplay
+                />
               </div>
 
               <div className="flex flex-col justify-center h-full">
