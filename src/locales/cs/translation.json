@@ -87,16 +87,10 @@
         }
     },
     "contact": {
-        "title": "Kontakt",
-        "name": "Vaše jméno",
-        "email": "Váš e-mail",
-        "message": "Vaše zpráva",
-        "send": "Odeslat",
-        "success": "✅ Zpráva byla úspěšně odeslána!",
-        "error": "❌ Něco se pokazilo. Zkuste to prosím znovu."
+        "email": "daniela@plaminkova.com"
     },
     "footer": {
-        "cta_collaborate": "Těším se na spolupráci",
+        "cta_collaborate": "Napište mi",
         "name": "Daniela Plamínková",
         "ico": "IČO: 22223622",
         "address": "Sídlo: Voskovcova 1075/57, 152 00 Praha 5",
