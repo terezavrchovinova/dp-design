@@ -15,7 +15,9 @@ export const Home = () => {
           <br />
           {t('home.titleLine2')}
         </h1>
-        <p className="mt-8 mb-12 text-4xl">{t('home.subtitle')}</p>
+        <p className="mt-8 mb-12 text-2xl sm:text-3xl md:text-4xl">
+          {t('home.subtitle')}
+        </p>
         <div className="flex justify-center items-center gap-4 flex-wrap text-center">
           <Button href="#projects">{t('home.viewProjects')}</Button>
           <Button href="#contact" variant="outline">

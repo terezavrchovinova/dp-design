@@ -1,32 +1,25 @@
 import { useTranslation } from 'react-i18next'
 import AnimatedHeading from '../AnimatedHeading'
-import greenDot from '../../assets/icons/green_dot.json'
-import Lottie from 'lottie-react'
 
 export const Contact = () => {
   const { t } = useTranslation()
+  const email = t('contact.email') || 'email@example.com'
 
   return (
     <section
       id="contact"
       className="min-h-screen flex items-center justify-center bg-[var(--color-dark)] px-6 py-24"
     >
-      <div className="w-full max-w-xl text-center">
+      <div className="w-full flex flex-col items-center text-center">
         <AnimatedHeading />
 
-        <div className="mt-10 inline-flex items-center justify-center gap-3">
+        <div className="mt-10 flex items-center gap-2">
           <a
-            href={`mailto:${t('contact.email')}`}
-            className="inline-block px-8 py-4 rounded-2xl font-medium text-lg text-[var(--color-dark)] bg-[var(--color-accent)] hover:bg-[var(--color-orange-light)] transition-colors duration-300 shadow-md"
+            href={`mailto:${email}`}
+            className="px-6 py-3 rounded-xl font-medium text-[var(--color-dark)] bg-[var(--color-accent)] hover:bg-[var(--color-orange-light)]"
           >
-            {t('contact.email')}
+            {email}
           </a>
-
-          <Lottie
-            animationData={greenDot}
-            loop={true}
-            style={{ width: 30, height: 30 }}
-          />
         </div>
       </div>
     </section>

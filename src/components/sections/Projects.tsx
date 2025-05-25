@@ -93,17 +93,18 @@ export const Projects = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Open project: ${title}`}
-                className="group relative aspect-[16/9] overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 ease-out translate-y-6"
+                className="group relative aspect-[16/9] overflow-hidden rounded-2xl shadow-md transition-shadow duration-300 ease-in-out hover:shadow-lg"
                 style={{ transitionDelay: `${index * 80}ms` }}
               >
                 <img
                   src={project.image}
                   alt={title}
                   loading="lazy"
-                  className="w-full h-full object-cover hover-zoom"
+                  className="w-full h-full object-cover transform will-change-transform transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:-translate-y-1"
                 />
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm">
-                  <span className="px-6 py-3 text-lg font-medium text-[var(--color-white)] bg-[var(--color-surface)]/70 rounded-xl shadow-md text-center">
+                <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-80 transition-opacity duration-300 ease-in-out will-change-opacity"></div>
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out will-change-opacity">
+                  <span className="px-5 py-2 text-lg font-semibold text-white bg-black bg-opacity-60 rounded-lg shadow-sm text-center transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300 ease-in-out will-change-transform">
                     {title}
                   </span>
                 </div>
