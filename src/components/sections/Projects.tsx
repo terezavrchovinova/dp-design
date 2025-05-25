@@ -1,15 +1,15 @@
 import { useTranslation } from 'react-i18next'
 
-import kynezImg from '../../assets/project_thumbnails/1024x576/kynez.jpg'
-import saleskitImg from '../../assets/project_thumbnails/1024x576/saleskit.jpg'
-import ditaImg from '../../assets/project_thumbnails/1024x576/dita.jpg'
-import maastrichtImg from '../../assets/project_thumbnails/1024x576/maastricht.jpg'
-import letItRollImg from '../../assets/project_thumbnails/1024x576/let_it_roll.jpg'
-import newtoniaImg from '../../assets/project_thumbnails/1024x576/newtonia.jpg'
-import brejchaImg from '../../assets/project_thumbnails/1024x576/brejcha.jpg'
-import renaissanceImg from '../../assets/project_thumbnails/1024x576/mona_lisa.jpg'
-import deathvalleyImg from '../../assets/project_thumbnails/1024x576/death_valley.jpg'
-import jurassicImg from '../../assets/project_thumbnails/1024x576/jurassic_adventure.jpg'
+import kynezImg from '../../assets/project_thumbnails/kynez.webp'
+import saleskitImg from '../../assets/project_thumbnails/saleskit.webp'
+import ditaImg from '../../assets/project_thumbnails/dita.webp'
+import maastrichtImg from '../../assets/project_thumbnails/maastricht.webp'
+import letItRollImg from '../../assets/project_thumbnails/let_it_roll.webp'
+import newtoniaImg from '../../assets/project_thumbnails/newtonia.webp'
+import brejchaImg from '../../assets/project_thumbnails/brejcha.webp'
+import renaissanceImg from '../../assets/project_thumbnails/mona_lisa.webp'
+import deathvalleyImg from '../../assets/project_thumbnails/death_valley.webp'
+import jurassicImg from '../../assets/project_thumbnails/jurassic_adventure.webp'
 
 const projects = [
   {
