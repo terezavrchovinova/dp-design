@@ -97,7 +97,7 @@ const NavLink = ({ href, label }: { href: string; label: string }) => {
   return (
     <a
       href={href}
-      className="text-sm sm:text-base font-medium tracking-wide transition-colors duration-200"
+      className="text-sm transition-colors duration-200"
       style={{ color: isHovered ? 'var(--color-white)' : 'var(--color-gray)' }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -110,7 +110,7 @@ const NavLink = ({ href, label }: { href: string; label: string }) => {
 const EmailButton = ({ email }: { email: string }) => (
   <button
     onClick={() => (window.location.href = `mailto:${email}`)}
-    className="flex items-center space-x-2 px-3 py-1.5 rounded-2xl bg-[var(--color-accent)] text-[var(--color-dark)] font-medium text-xs sm:text-sm hover:bg-[var(--color-orange-light)] shadow-md cursor-pointer"
+    className="flex items-center space-x-2 px-3 py-1.5 rounded-2xl bg-[var(--color-accent)] text-[var(--color-dark)] text-sm hover:bg-[var(--color-orange-light)] shadow-md cursor-pointer"
     aria-label="Send Email"
   >
     <span>{email}</span>
