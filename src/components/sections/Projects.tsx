@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 
 import kynezImg from '../../assets/project_thumbnails/kynez.webp'
+import variousBannersImg from '../../assets/project_thumbnails/various_banners.webp'
 import saleskitImg from '../../assets/project_thumbnails/saleskit.webp'
 import ditaImg from '../../assets/project_thumbnails/dita.webp'
 import maastrichtImg from '../../assets/project_thumbnails/maastricht.webp'
@@ -20,54 +21,60 @@ const projects = [
   },
   {
     id: 2,
-    key: 'saleskit',
-    image: saleskitImg,
-    link: 'https://www.behance.net/gallery/219839403/Design-for-Saleskit',
+    key: 'various_banners',
+    image: variousBannersImg,
+    link: 'https://www.behance.net/gallery/223131257/Banner-Designs-Event-Exhibition-Series',
   },
   {
     id: 3,
-    key: 'dita',
-    image: ditaImg,
-    link: 'https://www.behance.net/gallery/205350295/Dita-Von-Teese-visual',
-  },
-  {
-    id: 4,
     key: 'maastricht',
     image: maastrichtImg,
     link: 'https://www.behance.net/gallery/199767453/Maastricht-Festival-Visual',
   },
   {
+    id: 4,
+    key: 'saleskit',
+    image: saleskitImg,
+    link: 'https://www.behance.net/gallery/219839403/Design-for-Saleskit',
+  },
+  {
     id: 5,
+    key: 'dita',
+    image: ditaImg,
+    link: 'https://www.behance.net/gallery/205350295/Dita-Von-Teese-visual',
+  },
+  {
+    id: 6,
     key: 'letitroll',
     image: letItRollImg,
     link: 'https://www.behance.net/gallery/196798719/Let-It-Roll-Festival-poster',
   },
   {
-    id: 6,
+    id: 7,
     key: 'newtonia',
     image: newtoniaImg,
     link: 'https://www.behance.net/gallery/201179759/Game-designNewtonia',
   },
   {
-    id: 7,
+    id: 8,
     key: 'brejcha',
     image: brejchaImg,
     link: 'https://www.behance.net/gallery/189009581/Boris-Brejcha-video-spot',
   },
   {
-    id: 8,
+    id: 9,
     key: 'renaissance',
     image: renaissanceImg,
     link: 'https://www.behance.net/gallery/207746525/The-Great-Masters-of-the-Renaissance-video-spot',
   },
   {
-    id: 9,
+    id: 10,
     key: 'deathvalley',
     image: deathvalleyImg,
     link: 'https://www.behance.net/gallery/200322649/Death-Valley-design',
   },
   {
-    id: 10,
+    id: 11,
     key: 'jurassic',
     image: jurassicImg,
     link: 'https://www.behance.net/gallery/188776307/brochure-Jurassic-Adventure',
