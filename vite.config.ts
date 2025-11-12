@@ -18,13 +18,32 @@ export default defineConfig({
     rollupOptions: {
       output: {
         // Manual code splitting for better caching
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          'i18n-vendor': ['i18next', 'react-i18next'],
-          // Split animation libraries: lottie is used in Navbar (critical), motion is used in lazy-loaded sections
-          'lottie-vendor': ['lottie-react'],
-          'motion-vendor': ['motion'],
-          'analytics-vendor': ['@vercel/analytics', '@vercel/speed-insights'],
+        manualChunks: (id) => {
+          // Separate lottie-react into its own chunk for lazy loading
+          // This prevents it from being included in the main bundle
+          if (id.includes('lottie-react') || id.includes('lottie-web')) {
+            return 'lottie-vendor'
+          }
+          // Keep motion separate from lottie
+          if (id.includes('motion')) {
+            return 'motion-vendor'
+          }
+          // React core
+          if (id.includes('react') || id.includes('react-dom')) {
+            return 'react-vendor'
+          }
+          // i18n
+          if (id.includes('i18next') || id.includes('react-i18next')) {
+            return 'i18n-vendor'
+          }
+          // Analytics
+          if (
+            id.includes('@vercel/analytics') ||
+            id.includes('@vercel/speed-insights')
+          ) {
+            return 'analytics-vendor'
+          }
+          // Default: let Vite handle other chunks
         },
         // Consistent asset naming with content hashing
         assetFileNames: 'assets/[name]-[hash][extname]',

@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 
 // Constants
@@ -33,11 +33,16 @@ export interface MobileMenuProps {
  */
 export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
   const { t, i18n } = useTranslation()
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
 
-  // Prevent body scrolling when menu is open
+  // Prevent body scrolling when menu is open and manage focus
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = 'hidden'
+      // Move focus to close button when menu opens
+      setTimeout(() => {
+        closeButtonRef.current?.focus()
+      }, 100)
     } else {
       document.body.style.overflow = ''
     }
@@ -74,6 +79,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
 
   return (
     <div
+      id="mobile-menu"
       className={`fixed inset-0 z-40 flex flex-col items-center justify-center bg-[var(--color-dark)] backdrop-blur-xl transition-all duration-500 ease-in-out ${
         menuOpen
           ? 'opacity-100 pointer-events-auto'
@@ -86,10 +92,12 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
     >
       {/* Close Button */}
       <button
+        ref={closeButtonRef}
         onClick={handleClose}
         className="absolute top-6 right-6 text-[var(--color-white)] text-3xl focus:outline-none hover:scale-110 transition-transform duration-200 cursor-pointer"
         aria-label="Close menu"
         type="button"
+        tabIndex={menuOpen ? 0 : -1}
       >
         &times;
       </button>
@@ -111,6 +119,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
             style={{
               transitionDelay: `${menuOpen ? index * 90 : 0}ms`,
             }}
+            tabIndex={menuOpen ? 0 : -1}
           >
             {t(`nav.${item.key}`)}
           </a>
@@ -144,6 +153,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
               }`}
               aria-label={`Switch to ${lang.toUpperCase()}`}
               aria-pressed={isActive}
+              tabIndex={menuOpen ? 0 : -1}
             >
               {lang.toUpperCase()}
             </button>

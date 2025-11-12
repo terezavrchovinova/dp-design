@@ -44,7 +44,7 @@ function App() {
       <Analytics />
 
       {/* Navigation */}
-      <Navbar setMenuOpen={setIsMenuOpen} />
+      <Navbar menuOpen={isMenuOpen} setMenuOpen={setIsMenuOpen} />
       <MobileMenu menuOpen={isMenuOpen} setMenuOpen={setIsMenuOpen} />
 
       {/* Main content */}

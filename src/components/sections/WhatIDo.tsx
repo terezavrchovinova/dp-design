@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react'
-import Lottie from 'lottie-react'
 import { useTranslation } from 'react-i18next'
+import { LazyLottie } from '../LazyLottie'
 
 // Lottie animation assets
 import visualBrandDesign from '../../assets/icons/visual-brand-design.json'
@@ -68,7 +68,7 @@ const LottieAnimation = ({ asset }: LottieAnimationProps) => {
   return (
     <div ref={containerRef} className="w-24 h-24">
       {isVisible && (
-        <Lottie animationData={asset} className="w-24 h-24" loop autoplay />
+        <LazyLottie animationData={asset} className="w-24 h-24" loop autoplay />
       )}
     </div>
   )

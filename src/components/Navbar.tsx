@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import Lottie from 'lottie-react'
+import { LazyLottie } from './LazyLottie'
 
 // Assets
 import logo from '../assets/icons/dp_icon_white.svg'
@@ -10,6 +10,8 @@ import globeDark from '../assets/icons/globe_dark.svg'
 
 // Constants
 export interface NavbarProps {
+  /** Whether the mobile menu is open */
+  menuOpen: boolean
   /** Function to toggle mobile menu state */
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
@@ -38,7 +40,7 @@ const LANGUAGES = [
  * @param props - Navbar component props
  * @returns Navigation bar element
  */
-export const Navbar = ({ setMenuOpen }: NavbarProps) => {
+export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
   const { t, i18n } = useTranslation()
   const email = t('contact.email')
 
@@ -103,7 +105,8 @@ export const Navbar = ({ setMenuOpen }: NavbarProps) => {
           {/* Menu Toggle Button */}
           <button
             aria-label="Toggle Menu"
-            aria-expanded="false"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
             onClick={() => setMenuOpen((prev) => !prev)}
             className="flex flex-col justify-between w-7 h-5 z-50 cursor-pointer"
           >
@@ -170,7 +173,11 @@ const EmailButton = ({ email }: EmailButtonProps) => (
     aria-label={`Send email to ${email}`}
   >
     <span>{email}</span>
-    <Lottie animationData={greenDot} loop style={{ width: 20, height: 20 }} />
+    <LazyLottie
+      animationData={greenDot}
+      loop
+      style={{ width: 20, height: 20 }}
+    />
   </button>
 )
 

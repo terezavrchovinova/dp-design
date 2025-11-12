@@ -56,11 +56,44 @@ export function optimizeHead(): Plugin {
           }
         }
         
-        // Note: modulepreload links are already added by Vite automatically
-        // We just ensure preconnects are there for external services
+        // Remove modulepreload for lottie-vendor (not on critical path, loads lazily)
+        // This reduces critical path chain length
+        html = html.replace(
+          /<link rel="modulepreload"[^>]*lottie-vendor[^>]*>\s*/gi,
+          ''
+        )
+
+        // Reorder modulepreload links: react-vendor should be first (most critical)
+        // This ensures React loads before other dependencies
+        const modulepreloadRegex = /<link rel="modulepreload"[^>]*>/gi
+        const modulepreloads = html.match(modulepreloadRegex) || []
+        
+        if (modulepreloads.length > 0) {
+          // Separate react-vendor from others
+          const reactVendor = modulepreloads.find(link => link.includes('react-vendor'))
+          const otherPreloads = modulepreloads.filter(link => !link.includes('react-vendor'))
+          
+          // Remove all modulepreloads
+          html = html.replace(modulepreloadRegex, '')
+          
+          // Re-insert in optimal order: react-vendor first, then others
+          // Insert before the script tag
+          const scriptMatch = html.match(/<script[^>]*type="module"[^>]*>/i)
+          if (scriptMatch) {
+            const insertPoint = scriptMatch.index!
+            const before = html.substring(0, insertPoint)
+            const after = html.substring(insertPoint)
+            
+            const orderedPreloads = []
+            if (reactVendor) orderedPreloads.push(reactVendor)
+            orderedPreloads.push(...otherPreloads)
+            
+            html = before + orderedPreloads.map(link => '    ' + link).join('\n') + '\n    ' + after
+          }
+        }
 
         writeFileSync(htmlPath, html, 'utf-8')
-        console.log(`✓ Added preconnect and preload directives for critical resources`)
+        console.log(`✓ Optimized critical path: removed lottie-vendor preload, reordered modulepreloads`)
       } catch (error) {
         console.warn('Failed to optimize HTML head:', error)
       }
