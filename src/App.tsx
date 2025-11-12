@@ -3,7 +3,6 @@ import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 // Global styles & config
 import './i18n'
-import './App.css'
 import './index.css'
 
 // Components
