@@ -1,36 +1,19 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { asyncCss } from './vite-plugin-async-css'
+// import { asyncCss } from './vite-plugin-async-css' // Temporarily disabled
 
 export default defineConfig({
   base: '/',
-  plugins: [react(), asyncCss()],
+  plugins: [react()], // asyncCss() temporarily disabled - using default React plugin config
   build: {
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-        pure_funcs: ['console.log', 'console.info', 'console.debug'],
-        passes: 2, // Multiple passes for better optimization
-        // Removed unsafe options to prevent breaking code
-        // unsafe: true,
-        // unsafe_comps: true,
-        // unsafe_math: true,
-        // unsafe_methods: true,
-      },
-      format: {
-        comments: false, // Remove all comments
-      },
-      keep_classnames: true, // Keep class names for better debugging
-      keep_fnames: true, // Keep function names for better debugging
-    },
+    // Use esbuild minifier instead of terser for better React 19 compatibility
+    minify: 'esbuild',
     rollupOptions: {
       output: {
+        // Manual chunks for better code splitting (re-enabled with safer configuration)
         manualChunks: (id) => {
-          // Separate node_modules into optimized chunks
           if (id.includes('node_modules')) {
-            // React core
+            // React core - must be together for React 19 compatibility
             if (id.includes('react') || id.includes('react-dom')) {
               return 'react-vendor'
             }
@@ -38,9 +21,12 @@ export default defineConfig({
             if (id.includes('i18next') || id.includes('react-i18next')) {
               return 'i18n-vendor'
             }
-            // Animation libraries
-            if (id.includes('motion') || id.includes('lottie')) {
-              return 'animation-vendor'
+            // Animation libraries - motion and lottie can be separate
+            if (id.includes('motion')) {
+              return 'motion-vendor'
+            }
+            if (id.includes('lottie')) {
+              return 'lottie-vendor'
             }
             // Analytics - separate chunk for lazy loading
             if (id.includes('@vercel/analytics') || id.includes('@vercel/speed-insights')) {
@@ -55,7 +41,7 @@ export default defineConfig({
         entryFileNames: 'assets/[name]-[hash].js',
       },
     },
-    chunkSizeWarningLimit: 500, // Lower limit to catch large chunks
+    chunkSizeWarningLimit: 600, // Increased to accommodate React 19 larger bundles
     cssCodeSplit: true,
     sourcemap: false,
     reportCompressedSize: false,
@@ -65,7 +51,7 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'i18next', 'react-i18next'],
+    include: ['react', 'react-dom', 'i18next', 'react-i18next', 'motion/react'],
     exclude: ['@vercel/analytics', '@vercel/speed-insights'], // Exclude analytics from pre-bundling
   },
 })

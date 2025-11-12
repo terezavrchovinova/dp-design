@@ -31,12 +31,12 @@ export function asyncCss(): Plugin {
           // Browsers don't block rendering on print media stylesheets
           const asyncMatch = match.replace(
             /rel=["']stylesheet["']/,
-            'rel="stylesheet" media="print" onload="this.media=\'all\'"'
+            'rel="stylesheet" media="print" onload="this.media=\'all\'"',
           )
 
           // Add noscript fallback for browsers without JavaScript
           return asyncMatch + '\n<noscript>' + match + '</noscript>'
-        }
+        },
       )
     },
   }

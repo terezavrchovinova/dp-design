@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import AnimatedHeading from '../AnimatedHeading'
 
-export const Contact = () => {
+const Contact = () => {
   const { t } = useTranslation()
   const email = t('contact.email') || 'email@example.com'
 
@@ -25,3 +25,6 @@ export const Contact = () => {
     </section>
   )
 }
+
+export default Contact
+export { Contact }

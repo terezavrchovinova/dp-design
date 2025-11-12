@@ -29,7 +29,7 @@ const tools = [
 const adobeTools = tools.filter((tool) => tool.name.startsWith('Adobe'))
 const otherTools = tools.filter((tool) => !adobeTools.includes(tool))
 
-export const About = () => {
+const About = () => {
   const { t } = useTranslation()
 
   const jobs = t('about.jobs', { returnObjects: true }) as {
@@ -147,3 +147,6 @@ export const About = () => {
     </section>
   )
 }
+
+export default About
+export { About }

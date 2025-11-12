@@ -81,7 +81,7 @@ const projects = [
   },
 ]
 
-export const Projects = () => {
+const Projects = () => {
   const { t } = useTranslation()
 
   return (
@@ -126,3 +126,6 @@ export const Projects = () => {
     </section>
   )
 }
+
+export default Projects
+export { Projects }

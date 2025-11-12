@@ -19,41 +19,35 @@ const LottieAnimation = ({ asset }: { asset: unknown }) => {
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    const container = containerRef.current
+    if (!container) return
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true)
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     )
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current)
-    }
+    observer.observe(container)
 
     return () => {
-      if (containerRef.current) {
-        observer.unobserve(containerRef.current)
-      }
+      observer.unobserve(container)
     }
   }, [])
 
   return (
     <div ref={containerRef} className="w-24 h-24">
       {isVisible && (
-        <Lottie
-          animationData={asset}
-          className="w-24 h-24"
-          loop
-          autoplay
-        />
+        <Lottie animationData={asset} className="w-24 h-24" loop autoplay />
       )}
     </div>
   )
 }
 
-export const WhatIDo = () => {
+const WhatIDo = () => {
   const { t } = useTranslation()
 
   return (
@@ -86,3 +80,6 @@ export const WhatIDo = () => {
     </section>
   )
 }
+
+export default WhatIDo
+export { WhatIDo }

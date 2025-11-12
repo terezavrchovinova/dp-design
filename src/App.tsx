@@ -11,15 +11,16 @@ import { MobileMenu } from './components/MobileMenu'
 // Critical section - load immediately
 import { Home } from './components/sections/Home'
 
-// Lazy load non-critical sections
-const Projects = lazy(() => import('./components/sections/Projects').then(m => ({ default: m.Projects })))
-const WhatIDo = lazy(() => import('./components/sections/WhatIDo').then(m => ({ default: m.WhatIDo })))
-const About = lazy(() => import('./components/sections/About').then(m => ({ default: m.About })))
-const Contact = lazy(() => import('./components/sections/Contact').then(m => ({ default: m.Contact })))
+// Lazy load non-critical sections - simplified syntax for React 19 compatibility
+const Projects = lazy(() => import('./components/sections/Projects'))
+const WhatIDo = lazy(() => import('./components/sections/WhatIDo'))
+const About = lazy(() => import('./components/sections/About'))
+const Contact = lazy(() => import('./components/sections/Contact'))
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [analyticsComponents, setAnalyticsComponents] = useState<ReactNode>(null)
+  const [analyticsComponents, setAnalyticsComponents] =
+    useState<ReactNode>(null)
 
   // Load analytics after page is interactive - using dynamic import
   useEffect(() => {
@@ -56,7 +57,7 @@ function App() {
             <>
               <SpeedInsights />
               <Analytics />
-            </>
+            </>,
           )
         } catch {
           // Silently fail if analytics can't be loaded - non-critical
