@@ -12,12 +12,81 @@
 
     <!-- Preload critical resources -->
     <link rel="preload" href="./src/assets/fonts/ClashDisplay-Semibold.otf" as="font" type="font/otf" crossorigin="anonymous" />
-    <link rel="preconnect" href="https://web.cmp.usercentrics.eu" />
     <link rel="dns-prefetch" href="https://web.cmp.usercentrics.eu" />
 
     <link rel="icon" type="image/svg+xml" href="src/assets/icons/dp_icon_white.svg" />
-    <script src="https://web.cmp.usercentrics.eu/modules/autoblocker.js" defer></script>
-    <script id="usercentrics-cmp" src="https://web.cmp.usercentrics.eu/ui/loader.js" data-settings-id="fnme3RTJ-aFQXu" defer></script>
+    
+    <!-- Load Usercentrics CMP after user interaction or scroll -->
+    <script>
+      // Defer Usercentrics CMP loading until user interacts with the page
+      (function() {
+        let usercentricsLoaded = false;
+        let loadTimeout = null;
+        
+        function loadUsercentrics() {
+          // Prevent multiple loads
+          if (usercentricsLoaded) return;
+          usercentricsLoaded = true;
+          
+          // Clear any pending timeout
+          if (loadTimeout) {
+            clearTimeout(loadTimeout);
+            loadTimeout = null;
+          }
+          
+          // Remove event listeners
+          ['scroll', 'mousedown', 'keydown', 'touchstart'].forEach(event => {
+            document.removeEventListener(event, loadUsercentrics, { passive: true });
+          });
+          
+          // Preconnect to Usercentrics domain
+          const link = document.createElement('link');
+          link.rel = 'preconnect';
+          link.href = 'https://web.cmp.usercentrics.eu';
+          document.head.appendChild(link);
+          
+          // Load autoblocker asynchronously
+          const autoblocker = document.createElement('script');
+          autoblocker.src = 'https://web.cmp.usercentrics.eu/modules/autoblocker.js';
+          autoblocker.async = true;
+          autoblocker.defer = true;
+          document.head.appendChild(autoblocker);
+          
+          // Load CMP loader asynchronously
+          const loader = document.createElement('script');
+          loader.id = 'usercentrics-cmp';
+          loader.src = 'https://web.cmp.usercentrics.eu/ui/loader.js';
+          loader.setAttribute('data-settings-id', 'fnme3RTJ-aFQXu');
+          loader.async = true;
+          loader.defer = true;
+          document.head.appendChild(loader);
+        }
+        
+        // Load on user interaction (scroll, click, keypress, touch)
+        const events = ['scroll', 'mousedown', 'keydown', 'touchstart'];
+        events.forEach(event => {
+          document.addEventListener(event, loadUsercentrics, { passive: true, once: true });
+        });
+        
+        // Fallback: Load after page is fully loaded and idle
+        function scheduleLoad() {
+          if (document.readyState === 'complete') {
+            // Use requestIdleCallback if available, otherwise setTimeout
+            if ('requestIdleCallback' in window) {
+              loadTimeout = window.setTimeout(() => {
+                requestIdleCallback(loadUsercentrics, { timeout: 8000 });
+              }, 2000);
+            } else {
+              loadTimeout = window.setTimeout(loadUsercentrics, 5000);
+            }
+          } else {
+            window.addEventListener('load', scheduleLoad, { once: true });
+          }
+        }
+        
+        scheduleLoad();
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

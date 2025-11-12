@@ -24,6 +24,7 @@ export const ToolIcon = ({ name, src }: ToolIconProps) => (
       alt={name}
       width={40}
       height={40}
+      style={{ aspectRatio: '1 / 1' }}
       className="w-10 h-10 object-contain"
       draggable={false}
       loading="lazy"

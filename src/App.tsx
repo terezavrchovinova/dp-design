@@ -1,6 +1,4 @@
-import { useState, lazy, Suspense } from 'react'
-import { Analytics } from '@vercel/analytics/react'
-import { SpeedInsights } from '@vercel/speed-insights/react'
+import { useState, lazy, Suspense, useEffect, type ReactNode } from 'react'
 // Global styles & config
 import './i18n'
 import './index.css'
@@ -21,11 +19,57 @@ const Contact = lazy(() => import('./components/sections/Contact').then(m => ({ 
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [analyticsComponents, setAnalyticsComponents] = useState<ReactNode>(null)
+
+  // Load analytics after page is interactive - using dynamic import
+  useEffect(() => {
+    const loadAnalytics = async () => {
+      // Wait for page to be fully loaded and interactive
+      if (document.readyState !== 'complete') {
+        await new Promise((resolve) => {
+          if (document.readyState === 'complete') {
+            resolve(void 0)
+          } else {
+            window.addEventListener('load', resolve, { once: true })
+          }
+        })
+      }
+
+      // Use requestIdleCallback if available, otherwise setTimeout
+      const scheduleLoad = (callback: () => void) => {
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(callback, { timeout: 4000 })
+        } else {
+          setTimeout(callback, 2500)
+        }
+      }
+
+      scheduleLoad(async () => {
+        try {
+          // Dynamically import analytics only when needed
+          const [{ Analytics }, { SpeedInsights }] = await Promise.all([
+            import('@vercel/analytics/react'),
+            import('@vercel/speed-insights/react'),
+          ])
+
+          setAnalyticsComponents(
+            <>
+              <SpeedInsights />
+              <Analytics />
+            </>
+          )
+        } catch {
+          // Silently fail if analytics can't be loaded - non-critical
+        }
+      })
+    }
+
+    loadAnalytics()
+  }, [])
 
   return (
     <>
-      <SpeedInsights />
-      <Analytics />
+      {analyticsComponents}
       <Navbar setMenuOpen={setIsMenuOpen} />
       <MobileMenu menuOpen={isMenuOpen} setMenuOpen={setIsMenuOpen} />
 

@@ -31,5 +31,29 @@ export default [
       'prettier/prettier': 'error',
     },
   },
+  {
+    files: ['**/*.js'],
+    ignores: ['public/sw.js'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+    },
+  },
+  {
+    files: ['public/sw.js'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: {
+        self: 'readonly',
+        caches: 'readonly',
+        fetch: 'readonly',
+        URL: 'readonly',
+        clients: 'readonly',
+      },
+    },
+    rules: {
+      'no-undef': 'off',
+    },
+  },
 ]
 

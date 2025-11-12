@@ -45,7 +45,8 @@ export const Navbar = ({ setMenuOpen }: NavbarProps) => {
                 alt="Daniela Plamínková Logo"
                 width={64}
                 height={64}
-                className="w-16 h-auto"
+                className="w-16 h-16"
+                style={{ aspectRatio: '1 / 1' }}
                 fetchPriority="high"
               />
             </a>
@@ -74,7 +75,8 @@ export const Navbar = ({ setMenuOpen }: NavbarProps) => {
               alt="Daniela Plamínková Logo"
               width={48}
               height={48}
-              className="w-12 h-auto"
+              className="w-12 h-12"
+              style={{ aspectRatio: '1 / 1' }}
               fetchPriority="high"
             />
           </a>
@@ -162,7 +164,8 @@ const LanguageSwitcher = ({
         alt="Language selector"
         width={24}
         height={24}
-        className="w-5 sm:w-6 h-auto cursor-pointer transition duration-200"
+        className="w-5 sm:w-6 h-5 sm:h-6 cursor-pointer transition duration-200"
+        style={{ aspectRatio: '1 / 1' }}
         onClick={() => setIsOpen((prev) => !prev)}
         loading="lazy"
       />
