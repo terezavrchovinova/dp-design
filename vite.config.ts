@@ -1,9 +1,11 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { criticalCSS } from './vite-plugin-critical-css'
+import { optimizeHead } from './vite-plugin-optimize-head'
 
 export default defineConfig({
   base: '/',
-  plugins: [react()],
+  plugins: [react(), criticalCSS(), optimizeHead()],
   build: {
     minify: 'terser',
     terserOptions: {
@@ -19,7 +21,9 @@ export default defineConfig({
         manualChunks: {
           'react-vendor': ['react', 'react-dom'],
           'i18n-vendor': ['i18next', 'react-i18next'],
-          'animation-vendor': ['motion', 'lottie-react'],
+          // Split animation libraries: lottie is used in Navbar (critical), motion is used in lazy-loaded sections
+          'lottie-vendor': ['lottie-react'],
+          'motion-vendor': ['motion'],
           'analytics-vendor': ['@vercel/analytics', '@vercel/speed-insights'],
         },
         // Consistent asset naming with content hashing
