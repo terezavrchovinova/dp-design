@@ -1,15 +1,20 @@
 import { useState, useRef, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import Lottie from 'lottie-react'
+
+// Assets
 import logo from '../assets/icons/dp_icon_white.svg'
 import greenDot from '../assets/icons/green_dot.json'
 import globeLight from '../assets/icons/globe_light.svg'
 import globeDark from '../assets/icons/globe_dark.svg'
-import Lottie from 'lottie-react'
 
-interface NavbarProps {
+// Constants
+export interface NavbarProps {
+  /** Function to toggle mobile menu state */
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
+/** Navigation links configuration */
 const NAV_LINKS = [
   { href: '#home', key: 'nav.home' },
   { href: '#projects', key: 'nav.projects' },
@@ -18,11 +23,21 @@ const NAV_LINKS = [
   { href: '#contact', key: 'nav.contact' },
 ] as const
 
+/** Supported languages */
 const LANGUAGES = [
   { code: 'cs' as const, label: 'Čeština' },
   { code: 'en' as const, label: 'English' },
-]
+] as const
 
+/**
+ * Navbar component
+ *
+ * Main navigation bar with responsive design. Shows full navigation
+ * on desktop and a menu toggle button on mobile.
+ *
+ * @param props - Navbar component props
+ * @returns Navigation bar element
+ */
 export const Navbar = ({ setMenuOpen }: NavbarProps) => {
   const { t, i18n } = useTranslation()
   const email = t('contact.email')
@@ -34,10 +49,13 @@ export const Navbar = ({ setMenuOpen }: NavbarProps) => {
         backgroundColor: 'rgba(10,10,10,0.75)',
         borderColor: 'var(--color-border)',
       }}
+      role="navigation"
+      aria-label="Main navigation"
     >
       <div className="max-w-6xl mx-auto">
-        {/* Desktop nav - unchanged */}
+        {/* Desktop Navigation */}
         <div className="hidden md:grid md:grid-cols-3 items-center h-16 w-full px-6">
+          {/* Logo */}
           <div className="flex items-center justify-start">
             <a href="#home" className="flex items-center" aria-label="Home">
               <img
@@ -51,12 +69,14 @@ export const Navbar = ({ setMenuOpen }: NavbarProps) => {
             </a>
           </div>
 
+          {/* Navigation Links */}
           <div className="flex items-center justify-center space-x-6">
             {NAV_LINKS.map(({ href, key }) => (
               <NavLink key={href} href={href} label={t(key)} />
             ))}
           </div>
 
+          {/* Language Switcher and Email */}
           <div className="flex items-center justify-end space-x-4">
             <LanguageSwitcher
               currentLang={i18n.language}
@@ -66,8 +86,9 @@ export const Navbar = ({ setMenuOpen }: NavbarProps) => {
           </div>
         </div>
 
-        {/* Mobile nav - only visible below md */}
+        {/* Mobile Navigation */}
         <div className="flex md:hidden items-center justify-between h-16 w-full px-4">
+          {/* Logo */}
           <a href="#home" className="flex items-center z-10" aria-label="Home">
             <img
               src={logo}
@@ -79,8 +100,10 @@ export const Navbar = ({ setMenuOpen }: NavbarProps) => {
             />
           </a>
 
+          {/* Menu Toggle Button */}
           <button
             aria-label="Toggle Menu"
+            aria-expanded="false"
             onClick={() => setMenuOpen((prev) => !prev)}
             className="flex flex-col justify-between w-7 h-5 z-50 cursor-pointer"
           >
@@ -97,7 +120,20 @@ export const Navbar = ({ setMenuOpen }: NavbarProps) => {
   )
 }
 
-const NavLink = ({ href, label }: { href: string; label: string }) => {
+/**
+ * NavLink component
+ *
+ * Individual navigation link with hover effects.
+ *
+ * @param props - NavLink component props
+ * @returns Navigation link element
+ */
+interface NavLinkProps {
+  href: string
+  label: string
+}
+
+const NavLink = ({ href, label }: NavLinkProps) => {
   const [isHovered, setIsHovered] = useState(false)
 
   return (
@@ -113,28 +149,50 @@ const NavLink = ({ href, label }: { href: string; label: string }) => {
   )
 }
 
-const EmailButton = ({ email }: { email: string }) => (
+/**
+ * EmailButton component
+ *
+ * Button that opens the default email client with the contact email.
+ *
+ * @param props - EmailButton component props
+ * @returns Email button element
+ */
+interface EmailButtonProps {
+  email: string
+}
+
+const EmailButton = ({ email }: EmailButtonProps) => (
   <button
-    onClick={() => (window.location.href = `mailto:${email}`)}
+    onClick={() => {
+      window.location.href = `mailto:${email}`
+    }}
     className="flex items-center space-x-2 px-3 py-1.5 rounded-2xl bg-[var(--color-accent)] text-[var(--color-dark)] text-sm hover:bg-[var(--color-orange-light)] shadow-md cursor-pointer"
-    aria-label="Send Email"
+    aria-label={`Send email to ${email}`}
   >
     <span>{email}</span>
     <Lottie animationData={greenDot} loop style={{ width: 20, height: 20 }} />
   </button>
 )
 
-const LanguageSwitcher = ({
-  currentLang,
-  onChange,
-}: {
+/**
+ * LanguageSwitcher component
+ *
+ * Dropdown menu for switching between supported languages.
+ *
+ * @param props - LanguageSwitcher component props
+ * @returns Language switcher element
+ */
+interface LanguageSwitcherProps {
   currentLang: string
   onChange: (lng: 'en' | 'cs') => void
-}) => {
+}
+
+const LanguageSwitcher = ({ currentLang, onChange }: LanguageSwitcherProps) => {
   const [isHovered, setIsHovered] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
+  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -145,8 +203,11 @@ const LanguageSwitcher = ({
         setIsHovered(false)
       }
     }
+
     document.addEventListener('mousedown', handleClickOutside)
-    return () => document.removeEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
   }, [])
 
   return (
@@ -157,33 +218,47 @@ const LanguageSwitcher = ({
       ref={dropdownRef}
     >
       {/* Globe Icon */}
-      <img
-        src={isHovered ? globeLight : globeDark}
-        alt="Language selector"
-        width={24}
-        height={24}
-        className="w-5 sm:w-6 h-auto cursor-pointer transition duration-200"
+      <button
+        type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        loading="lazy"
-      />
+        aria-label="Change language"
+        aria-expanded={isOpen}
+        className="cursor-pointer"
+      >
+        <img
+          src={isHovered ? globeLight : globeDark}
+          alt="Language selector"
+          width={24}
+          height={24}
+          className="w-5 sm:w-6 h-auto transition duration-200"
+          loading="lazy"
+        />
+      </button>
 
       {/* Language Dropdown */}
       {isOpen && (
-        <div className="absolute mt-2 left-0 bg-[var(--color-surface)] border border-[var(--color-border)] shadow-md rounded-md text-sm z-50 min-w-[100px] overflow-hidden">
+        <div
+          className="absolute mt-2 left-0 bg-[var(--color-surface)] border border-[var(--color-border)] shadow-md rounded-md text-sm z-50 min-w-[100px] overflow-hidden"
+          role="menu"
+          aria-label="Language options"
+        >
           {LANGUAGES.map(({ code, label }) => (
-            <div
+            <button
               key={code}
+              type="button"
+              role="menuitem"
               onClick={() => {
                 onChange(code)
                 setIsOpen(false)
                 setIsHovered(false)
               }}
-              className={`px-4 py-2 hover:bg-[var(--color-border)] cursor-pointer text-[var(--color-white)] transition-colors duration-150 ${
+              className={`w-full text-left px-4 py-2 hover:bg-[var(--color-border)] cursor-pointer text-[var(--color-white)] transition-colors duration-150 ${
                 currentLang === code ? 'font-semibold' : ''
               }`}
+              aria-label={`Switch to ${label}`}
             >
               {label}
-            </div>
+            </button>
           ))}
         </div>
       )}

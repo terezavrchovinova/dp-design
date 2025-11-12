@@ -4,6 +4,7 @@ import { ToolIcon } from '../ToolIcon'
 import { motion, AnimatePresence, useInView } from 'motion/react'
 import { useRef } from 'react'
 
+// Tool icon assets
 import photoshopIcon from '../../assets/icons/photoshop.svg'
 import illustratorIcon from '../../assets/icons/illustrator.svg'
 import indesignIcon from '../../assets/icons/indesign.svg'
@@ -14,7 +15,27 @@ import dimensionIcon from '../../assets/icons/dimension.svg'
 import cinema4dIcon from '../../assets/icons/cinema-4d.svg'
 import midjourneyIcon from '../../assets/icons/midjourney.webp'
 
-const tools = [
+// Types
+interface Tool {
+  name: string
+  src: string
+}
+
+interface Job {
+  title: string
+  date: string
+  description: string
+}
+
+interface School {
+  name: string
+  years: string
+  focus: string
+}
+
+// Constants
+/** Tools configuration */
+const TOOLS: Tool[] = [
   { name: 'Adobe Photoshop', src: photoshopIcon },
   { name: 'Adobe Illustrator', src: illustratorIcon },
   { name: 'Adobe InDesign', src: indesignIcon },
@@ -26,31 +47,41 @@ const tools = [
   { name: 'Midjourney', src: midjourneyIcon },
 ]
 
-const adobeTools = tools.filter((tool) => tool.name.startsWith('Adobe'))
-const otherTools = tools.filter((tool) => !adobeTools.includes(tool))
+/** Adobe tools (filtered from all tools) */
+const ADOBE_TOOLS = TOOLS.filter((tool) => tool.name.startsWith('Adobe'))
 
+/** Other tools (non-Adobe) */
+const OTHER_TOOLS = TOOLS.filter((tool) => !ADOBE_TOOLS.includes(tool))
+
+/**
+ * About component
+ *
+ * Renders experience, education, and tools sections.
+ * Includes animated tool icons with staggered entrance animations.
+ *
+ * @returns About section element
+ */
 export const About = () => {
   const { t } = useTranslation()
 
-  const jobs = t('about.jobs', { returnObjects: true }) as {
-    title: string
-    date: string
-    description: string
-  }[]
+  // Get jobs from translations
+  const jobs = t('about.jobs', { returnObjects: true }) as Job[]
 
-  const school = t('about.school', { returnObjects: true }) as {
-    name: string
-    years: string
-    focus: string
-  }
+  // Get school information from translations
+  const school = t('about.school', { returnObjects: true }) as School
 
+  // Ref for tools section intersection observer
   const toolsRef = useRef(null)
   const toolsInView = useInView(toolsRef, { once: true })
 
   return (
-    <section id="about" className="section bg-[var(--color-dark)]">
+    <section
+      id="about"
+      className="section bg-[var(--color-dark)]"
+      aria-label="About section"
+    >
       <div className="container-content">
-        {/* Experience */}
+        {/* Experience Section */}
         <div>
           <h3>{t('about.experience')}</h3>
           <div className="space-y-6">
@@ -60,7 +91,7 @@ export const About = () => {
           </div>
         </div>
 
-        {/* Education */}
+        {/* Education Section */}
         <div>
           <h3>{t('about.education')}</h3>
           <div className="space-y-6">
@@ -72,7 +103,7 @@ export const About = () => {
           </div>
         </div>
 
-        {/* Tools */}
+        {/* Tools Section */}
         <div ref={toolsRef}>
           <motion.h3
             initial={{ opacity: 0, y: -20 }}
@@ -95,7 +126,7 @@ export const About = () => {
               },
             }}
           >
-            {adobeTools.map((tool) => (
+            {ADOBE_TOOLS.map((tool) => (
               <motion.div
                 key={tool.name}
                 layout
@@ -113,7 +144,7 @@ export const About = () => {
 
           {/* Other Tools */}
           <AnimatePresence>
-            {otherTools.length > 0 && (
+            {OTHER_TOOLS.length > 0 && (
               <motion.div
                 key="other-tools"
                 className="flex flex-wrap justify-center gap-6"
@@ -122,7 +153,7 @@ export const About = () => {
                 exit={{ opacity: 0, y: -30 }}
                 transition={{ duration: 0.5 }}
               >
-                {otherTools.map((tool) => (
+                {OTHER_TOOLS.map((tool) => (
                   <motion.div
                     key={tool.name}
                     layout

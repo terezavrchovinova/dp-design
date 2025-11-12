@@ -1,8 +1,18 @@
-type ToolIconProps = {
+export interface ToolIconProps {
+  /** Tool name for accessibility and tooltip */
   name: string
+  /** Icon image source URL */
   src: string
 }
 
+/**
+ * ToolIcon component
+ *
+ * Renders a tool icon with hover animations and accessibility attributes.
+ *
+ * @param props - ToolIcon component props
+ * @returns Tool icon element
+ */
 export const ToolIcon = ({ name, src }: ToolIconProps) => (
   <div
     className="
@@ -18,6 +28,7 @@ export const ToolIcon = ({ name, src }: ToolIconProps) => (
       cursor-pointer
     "
     title={name}
+    aria-label={name}
   >
     <img
       src={src}

@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
+// Project assets
 import kynezImg from '../../assets/project_thumbnails/kynez.webp'
 import variousBannersImg from '../../assets/project_thumbnails/various_banners.webp'
 import saleskitImg from '../../assets/project_thumbnails/saleskit.webp'
@@ -12,7 +13,20 @@ import renaissanceImg from '../../assets/project_thumbnails/mona_lisa.webp'
 import deathvalleyImg from '../../assets/project_thumbnails/death_valley.webp'
 import jurassicImg from '../../assets/project_thumbnails/jurassic_adventure.webp'
 
-const projects = [
+// Types
+interface Project {
+  id: number
+  key: string
+  image: string
+  link: string
+}
+
+// Constants
+/** Animation delay multiplier for staggered project animations */
+const ANIMATION_DELAY_MULTIPLIER = 80
+
+/** Project configuration */
+const PROJECTS: Project[] = [
   {
     id: 1,
     key: 'kynez',
@@ -81,17 +95,32 @@ const projects = [
   },
 ]
 
+/**
+ * Projects component
+ *
+ * Renders a grid of project thumbnails with hover effects.
+ * Each project links to its Behance portfolio page.
+ *
+ * @returns Projects section element
+ */
 export const Projects = () => {
   const { t } = useTranslation()
 
   return (
-    <section id="projects" className="section bg-[var(--color-dark)]">
+    <section
+      id="projects"
+      className="section bg-[var(--color-dark)]"
+      aria-label="Projects section"
+    >
       <div className="w-full max-w-[1600px] px-10 mx-auto">
+        {/* Section Title */}
         <h2>{t('projects.title')}</h2>
 
+        {/* Projects Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
-          {projects.map((project, index) => {
+          {PROJECTS.map((project, index) => {
             const title = t(`projects.items.${project.key}`, project.key)
+            const animationDelay = index * ANIMATION_DELAY_MULTIPLIER
 
             return (
               <a
@@ -99,10 +128,11 @@ export const Projects = () => {
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`Open project: ${title}`}
+                aria-label={`View project: ${title}`}
                 className="group relative aspect-[16/9] overflow-hidden rounded-2xl shadow-md transition-shadow duration-300 ease-in-out hover:shadow-lg"
-                style={{ transitionDelay: `${index * 80}ms` }}
+                style={{ transitionDelay: `${animationDelay}ms` }}
               >
+                {/* Project Image */}
                 <img
                   src={project.image}
                   alt={title}
@@ -112,8 +142,18 @@ export const Projects = () => {
                   decoding="async"
                   className="w-full h-full object-cover transform will-change-transform transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:-translate-y-1"
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-80 transition-opacity duration-300 ease-in-out will-change-opacity"></div>
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out will-change-opacity">
+
+                {/* Overlay on Hover */}
+                <div
+                  className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-80 transition-opacity duration-300 ease-in-out will-change-opacity"
+                  aria-hidden="true"
+                />
+
+                {/* Project Title on Hover */}
+                <div
+                  className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out will-change-opacity"
+                  aria-hidden="true"
+                >
                   <span className="px-5 py-2 text-lg font-semibold text-white bg-black bg-opacity-60 rounded-lg shadow-sm text-center transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300 ease-in-out will-change-transform">
                     {title}
                   </span>

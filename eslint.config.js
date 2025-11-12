@@ -1,3 +1,4 @@
+
 import js from '@eslint/js'
 import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
@@ -7,10 +8,19 @@ import prettierPlugin from 'eslint-plugin-prettier'
 import prettierConfig from 'eslint-config-prettier'
 
 export default [
+  // Ignore build output directory
   { ignores: ['dist'] },
+
+  // JavaScript recommended rules
   js.configs.recommended,
+
+  // TypeScript recommended rules
   ...tseslint.configs.recommended,
+
+  // Prettier config (disables conflicting ESLint rules)
   prettierConfig,
+
+  // TypeScript and React specific configuration
   {
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
@@ -23,11 +33,16 @@ export default [
       prettier: prettierPlugin,
     },
     rules: {
+      // React Hooks recommended rules
       ...reactHooks.configs.recommended.rules,
+
+      // React Refresh: only export components (allows constant exports)
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
       ],
+
+      // Prettier: enforce code formatting
       'prettier/prettier': 'error',
     },
   },
