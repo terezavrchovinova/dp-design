@@ -107,6 +107,9 @@ export const Projects = () => {
                   src={project.image}
                   alt={title}
                   loading="lazy"
+                  width={800}
+                  height={450}
+                  decoding="async"
                   className="w-full h-full object-cover transform will-change-transform transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:-translate-y-1"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-80 transition-opacity duration-300 ease-in-out will-change-opacity"></div>

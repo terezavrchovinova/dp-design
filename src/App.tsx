@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, lazy, Suspense } from 'react'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 // Global styles & config
@@ -10,12 +10,14 @@ import { Navbar } from './components/Navbar'
 import { Footer } from './components/Footer'
 import { MobileMenu } from './components/MobileMenu'
 
-// Sections
+// Critical section - load immediately
 import { Home } from './components/sections/Home'
-import { About } from './components/sections/About'
-import { Projects } from './components/sections/Projects'
-import { Contact } from './components/sections/Contact'
-import { WhatIDo } from './components/sections/WhatIDo'
+
+// Lazy load non-critical sections
+const Projects = lazy(() => import('./components/sections/Projects').then(m => ({ default: m.Projects })))
+const WhatIDo = lazy(() => import('./components/sections/WhatIDo').then(m => ({ default: m.WhatIDo })))
+const About = lazy(() => import('./components/sections/About').then(m => ({ default: m.About })))
+const Contact = lazy(() => import('./components/sections/Contact').then(m => ({ default: m.Contact })))
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -29,10 +31,18 @@ function App() {
 
       <main>
         <Home />
-        <Projects />
-        <WhatIDo />
-        <About />
-        <Contact />
+        <Suspense fallback={null}>
+          <Projects />
+        </Suspense>
+        <Suspense fallback={null}>
+          <WhatIDo />
+        </Suspense>
+        <Suspense fallback={null}>
+          <About />
+        </Suspense>
+        <Suspense fallback={null}>
+          <Contact />
+        </Suspense>
         <Footer />
       </main>
     </>

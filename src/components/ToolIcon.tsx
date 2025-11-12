@@ -22,8 +22,11 @@ export const ToolIcon = ({ name, src }: ToolIconProps) => (
     <img
       src={src}
       alt={name}
+      width={40}
+      height={40}
       className="w-10 h-10 object-contain"
       draggable={false}
+      loading="lazy"
     />
   </div>
 )

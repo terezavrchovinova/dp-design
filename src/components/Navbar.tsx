@@ -43,7 +43,10 @@ export const Navbar = ({ setMenuOpen }: NavbarProps) => {
               <img
                 src={logo}
                 alt="Daniela Plamínková Logo"
+                width={64}
+                height={64}
                 className="w-16 h-auto"
+                fetchPriority="high"
               />
             </a>
           </div>
@@ -69,7 +72,10 @@ export const Navbar = ({ setMenuOpen }: NavbarProps) => {
             <img
               src={logo}
               alt="Daniela Plamínková Logo"
-              className="w-12 h-auto" // slightly smaller logo for mobile
+              width={48}
+              height={48}
+              className="w-12 h-auto"
+              fetchPriority="high"
             />
           </a>
 
@@ -154,8 +160,11 @@ const LanguageSwitcher = ({
       <img
         src={isHovered ? globeLight : globeDark}
         alt="Language selector"
+        width={24}
+        height={24}
         className="w-5 sm:w-6 h-auto cursor-pointer transition duration-200"
         onClick={() => setIsOpen((prev) => !prev)}
+        loading="lazy"
       />
 
       {/* Language Dropdown */}

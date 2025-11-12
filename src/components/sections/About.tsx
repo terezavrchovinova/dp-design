@@ -1,9 +1,7 @@
-'use client'
-
 import { useTranslation } from 'react-i18next'
 import { JobCard } from '../JobCard'
 import { ToolIcon } from '../ToolIcon'
-import { motion, AnimatePresence, useInView } from 'framer-motion'
+import { motion, AnimatePresence, useInView } from 'motion/react'
 import { useRef } from 'react'
 
 import photoshopIcon from '../../assets/icons/photoshop.svg'

@@ -1,3 +1,4 @@
+import { useRef, useEffect, useState } from 'react'
 import Lottie from 'lottie-react'
 import { useTranslation } from 'react-i18next'
 
@@ -12,6 +13,45 @@ const services = [
   { key: 'digital', asset: digitalIcon, type: 'lottie' },
   { key: 'photo', asset: photoIcon, type: 'lottie' },
 ]
+
+const LottieAnimation = ({ asset }: { asset: unknown }) => {
+  const [isVisible, setIsVisible] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.1 }
+    )
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current)
+    }
+
+    return () => {
+      if (containerRef.current) {
+        observer.unobserve(containerRef.current)
+      }
+    }
+  }, [])
+
+  return (
+    <div ref={containerRef} className="w-24 h-24">
+      {isVisible && (
+        <Lottie
+          animationData={asset}
+          className="w-24 h-24"
+          loop
+          autoplay
+        />
+      )}
+    </div>
+  )
+}
 
 export const WhatIDo = () => {
   const { t } = useTranslation()
@@ -28,12 +68,7 @@ export const WhatIDo = () => {
               className="glass transition-smooth flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-8 p-6 sm:p-8 hover:shadow-2xl text-center sm:text-left"
             >
               <div className="w-24 h-24 flex items-center justify-center flex-shrink-0 mx-auto sm:mx-0">
-                <Lottie
-                  animationData={asset}
-                  className="w-24 h-24"
-                  loop
-                  autoplay
-                />
+                <LottieAnimation asset={asset} />
               </div>
 
               <div className="flex flex-col justify-center h-full">

@@ -33,6 +33,7 @@
     src: url('./assets/fonts/ClashDisplay-Semibold.otf') format('opentype');
     font-weight: 600;
     font-style: normal;
+    font-display: swap;
 }
 
 html,
