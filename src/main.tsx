@@ -1,4 +1,3 @@
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
@@ -17,8 +16,6 @@ if ('serviceWorker' in navigator && import.meta.env.PROD) {
   })
 }
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+// StrictMode temporarily disabled due to React 19 compatibility issues
+// TODO: Re-enable StrictMode once React 19 compatibility is confirmed
+createRoot(document.getElementById('root')!).render(<App />)

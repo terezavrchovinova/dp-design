@@ -13,14 +13,17 @@ export default defineConfig({
         drop_debugger: true,
         pure_funcs: ['console.log', 'console.info', 'console.debug'],
         passes: 2, // Multiple passes for better optimization
-        unsafe: true,
-        unsafe_comps: true,
-        unsafe_math: true,
-        unsafe_methods: true,
+        // Removed unsafe options to prevent breaking code
+        // unsafe: true,
+        // unsafe_comps: true,
+        // unsafe_math: true,
+        // unsafe_methods: true,
       },
       format: {
         comments: false, // Remove all comments
       },
+      keep_classnames: true, // Keep class names for better debugging
+      keep_fnames: true, // Keep function names for better debugging
     },
     rollupOptions: {
       output: {
