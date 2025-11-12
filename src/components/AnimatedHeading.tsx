@@ -1,10 +1,36 @@
-import { motion } from 'motion/react'
+import { motion, type TargetAndTransition } from 'motion/react'
 import { useState, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 
-const getCurlingSlide = () => {
+// Types
+interface ScatterState extends TargetAndTransition {
+  x?: number
+  y?: number
+  rotate?: number
+  scale?: number
+  opacity?: number
+}
+
+interface ScatteredState {
+  [index: number]: ScatterState
+}
+
+// Constants
+/** Animation reset delay in milliseconds */
+const ANIMATION_RESET_DELAY = 300
+
+/** Intersection observer threshold */
+const INTERSECTION_THRESHOLD = 0.1
+
+/**
+ * Generates random scatter animation values for a letter
+ *
+ * @returns Scatter animation state object
+ */
+const getCurlingSlide = (): ScatterState => {
   const xDirection = Math.random() > 0.5 ? 1 : -1
   const yDirection = Math.random() > 0.5 ? 1 : -1
+
   return {
     x: xDirection * (100 + Math.random() * 80),
     y: yDirection * (100 + Math.random() * 80),
@@ -14,35 +40,51 @@ const getCurlingSlide = () => {
   }
 }
 
+/**
+ * AnimatedHeading component
+ *
+ * Displays a heading with animated letters that scatter on hover (desktop only).
+ * Uses IntersectionObserver to reset animations when out of view.
+ *
+ * @returns Animated heading element
+ */
 export default function AnimatedHeading() {
   const { t } = useTranslation()
   const headingRef = useRef<HTMLHeadingElement>(null)
+  const [scattered, setScattered] = useState<ScatteredState>({})
 
-  const [scattered, setScattered] = useState<
-    Record<
-      number,
-      { x: number; y: number; rotate: number; scale: number; opacity: number }
-    >
-  >({})
-
+  // Reset animations when heading leaves viewport
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) {
-          setTimeout(() => setScattered({}), 300)
+          // Reset scattered state after a short delay
+          setTimeout(() => {
+            setScattered({})
+          }, ANIMATION_RESET_DELAY)
         }
       },
-      { threshold: 0.1 },
+      { threshold: INTERSECTION_THRESHOLD },
     )
 
     const current = headingRef.current
-    if (current) observer.observe(current)
+    if (current) {
+      observer.observe(current)
+    }
 
     return () => {
-      if (current) observer.unobserve(current)
+      if (current) {
+        observer.unobserve(current)
+      }
     }
   }, [])
 
+  /**
+   * Handles letter hover
+   * Scatters the letter on hover with random animation values
+   *
+   * @param index - Index of the letter in the heading
+   */
   const handleHover = (index: number) => {
     setScattered((prev) => ({
       ...prev,
@@ -63,24 +105,28 @@ export default function AnimatedHeading() {
           ref={headingRef}
           className="hidden md:flex flex-wrap justify-center text-4xl leading-snug text-center"
         >
-          {heading.split('').map((char, index) => (
-            <motion.span
-              key={index}
-              className="inline-block"
-              animate={
-                scattered[index] ?? {
-                  opacity: 1,
-                  y: 0,
-                  rotate: 0,
-                  scale: 1,
-                }
-              }
-              onHoverStart={() => handleHover(index)}
-              transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] }}
-            >
-              {char === ' ' ? '\u00A0' : char}
-            </motion.span>
-          ))}
+          {heading.split('').map((char, index) => {
+            const animationState = scattered[index] ?? {
+              opacity: 1,
+              y: 0,
+              rotate: 0,
+              scale: 1,
+              x: 0,
+            }
+
+            return (
+              <motion.span
+                key={index}
+                className="inline-block"
+                animate={animationState}
+                onHoverStart={() => handleHover(index)}
+                transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] }}
+              >
+                {/* Preserve spaces using non-breaking space */}
+                {char === ' ' ? '\u00A0' : char}
+              </motion.span>
+            )
+          })}
         </h3>
       </div>
     </div>

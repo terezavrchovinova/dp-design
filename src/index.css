@@ -2,6 +2,7 @@
 @tailwind utilities;
 
 @theme {
+    /* Base Colors */
     --color-dark: #0a0a0a;
     --color-surface: #1a1a1e;
     --color-white: #fafafa;
@@ -9,21 +10,25 @@
     --color-light-gray: #d4d4d8;
     --color-border: #2e2e32;
 
+    /* Accent Colors */
     --color-orange: #ff6a3d;
     --color-orange-light: #ffb347;
-
     --color-accent: #00bfa6;
 
+    /* Gradients */
     --gradient-accent: linear-gradient(135deg, #ff6a3d, #ffb347);
 
+    /* CTA (Call-to-Action) Colors */
     --color-cta-primary-bg: var(--color-orange);
     --color-cta-primary-hover: #ffd1b3;
     --color-cta-secondary-bg: #2e2e32;
     --color-cta-secondary-text: var(--color-orange);
 
+    /* Spacing & Effects */
     --radius-xl: 1.25rem;
     --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.25);
 
+    /* Transitions */
     --transition-fast: 0.2s ease;
     --transition-smooth: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
@@ -46,7 +51,6 @@ body {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
-
 }
 
 h1,
@@ -72,7 +76,6 @@ h3 {
     font-family: 'ClashDisplay-SemiBold', sans-serif;
     @apply text-2xl md:text-2xl lg:text-2xl mb-3;
     @apply text-center sm:text-left;
-
 }
 
 .section-description {
@@ -119,7 +122,6 @@ h3 {
 }
 
 @keyframes blob {
-
     0%,
     100% {
         transform: translate(0px, 0px) scale(1);
