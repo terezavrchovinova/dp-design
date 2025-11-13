@@ -42,4 +42,3 @@ export const LazyLottie = (props: LottieProps) => {
     </Suspense>
   )
 }
-

@@ -1,6 +1,6 @@
 /**
  * Prettier configuration
- * 
+ *
  * Configures Prettier code formatter with:
  * - No semicolons
  * - Single quotes

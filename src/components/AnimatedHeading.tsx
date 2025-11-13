@@ -1,5 +1,11 @@
 import { motion, type TargetAndTransition } from 'motion/react'
-import { useState, useEffect, useRef } from 'react'
+import {
+  useState,
+  useEffect,
+  useRef,
+  type Dispatch,
+  type SetStateAction,
+} from 'react'
 import { useTranslation } from 'react-i18next'
 
 // Types
@@ -27,7 +33,8 @@ const INTERSECTION_THRESHOLD = 0.1
  *
  * @returns Scatter animation state object
  */
-const getCurlingSlide = (): ScatterState => {
+// Export for testing
+export const getCurlingSlide = (): ScatterState => {
   const xDirection = Math.random() > 0.5 ? 1 : -1
   const yDirection = Math.random() > 0.5 ? 1 : -1
 
@@ -38,6 +45,24 @@ const getCurlingSlide = (): ScatterState => {
     scale: 1,
     opacity: 0.9,
   }
+}
+
+/**
+ * Handles letter hover
+ * Scatters the letter on hover with random animation values
+ *
+ * @param index - Index of the letter in the heading
+ * @param setScattered - State setter for scattered animation state
+ */
+// Export for testing
+export const handleHover = (
+  index: number,
+  setScattered: Dispatch<SetStateAction<ScatteredState>>,
+) => {
+  setScattered((prev) => ({
+    ...prev,
+    [index]: getCurlingSlide(),
+  }))
 }
 
 /**
@@ -79,19 +104,6 @@ export default function AnimatedHeading() {
     }
   }, [])
 
-  /**
-   * Handles letter hover
-   * Scatters the letter on hover with random animation values
-   *
-   * @param index - Index of the letter in the heading
-   */
-  const handleHover = (index: number) => {
-    setScattered((prev) => ({
-      ...prev,
-      [index]: getCurlingSlide(),
-    }))
-  }
-
   const heading = t('footer.cta_collaborate')
 
   return (
@@ -119,7 +131,7 @@ export default function AnimatedHeading() {
                 key={index}
                 className="inline-block"
                 animate={animationState}
-                onHoverStart={() => handleHover(index)}
+                onHoverStart={() => handleHover(index, setScattered)}
                 transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] }}
               >
                 {/* Preserve spaces using non-breaking space */}

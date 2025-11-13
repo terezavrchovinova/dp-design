@@ -1,102 +1,102 @@
 {
-    "nav": {
-        "home": "Domů",
-        "projects": "Projekty",
-        "whatIDo": "Služby",
-        "about": "Zkušenosti",
-        "contact": "Kontakt"
-    },
-    "home": {
-        "titleLine1": "Kreativní grafička",
-        "titleLine2": "a video editorka",
-        "subtitle": "Daniela Plamínková",
-        "viewProjects": "Zobrazit projekty",
-        "contactMe": "Kontaktovat mě"
-    },
-    "about": {
-        "experience": "Zkušenosti",
-        "education": "Vzdělání",
-        "tools": "Nástroje",
-        "jobs": [
-            {
-                "title": "Grafická designérka – Imper (Saleskit)",
-                "date": "říjen 2024 – dosud",
-                "description": "Reklamní tiskoviny, merch, online bannery, animované grafy pro web a design prezentací."
-            },
-            {
-                "title": "Grafická designérka & video editorka – JVS GROUP",
-                "date": "srpen 2021 – dosud",
-                "description": "Design vizuálního obsahu pro eventy a kulturní akce. Tvorba reklamních spotů pro TV i online prostředí. Tvorba brandingových materiálů, od loga po vizuální identitu. Kompletní předtisková příprava pro velkoformátové i běžné tiskoviny. Vizuální obsah pro sociální sítě a online reklamu (HTML5/PPC bannery). Motion grafika. Fotografování, natáčení rozhovorů a střih videí pro digitální obsah. Úpravy webových stránek ve Wixu."
-            },
-            {
-                "title": "DTP operátorka – GZ Media",
-                "date": "listopad 2019 – červen 2021",
-                "description": "Příprava dat pro tisk, barevné korekce tiskovin, spolupráce na výrobě propagačních materiálů a obsluha tiskových strojů."
-            },
-            {
-                "title": "Grafická designérka – BeefBrothers, s.r.o.",
-                "date": "květen 2018 – červen 2018",
-                "description": "Stáž – vytváření loga pro stavební firmu, retušování fotografií a tvorba bannerů pro firmu SYNLAB."
-            },
-            {
-                "title": "Print & Packaging – ART D",
-                "date": "květen 2017 – červenec 2017",
-                "description": "Stáž – kompletní zpracování zakázek pro klienty, od návrhu přes tisk až po finální úpravy."
-            }
-        ],
-        "school": {
-            "name": "Střední škola multimediální a propagační tvorby (EDUSO)",
-            "years": "2015 – 2019",
-            "focus": "Filmová a animační tvorba"
-        }
-    },
-    "projects": {
-        "title": "Projekty",
-        "items": {
-            "kynez": "Vizuální identita – Kynez",
-            "saleskit": "Design – Saleskit",
-            "dita": "Vizuál – Dita Von Teese",
-            "maastricht": "Vizuál – Maastricht Festival",
-            "letitroll": "Plakát – Let It Roll",
-            "newtonia": "Herní design – Newtonia",
-            "brejcha": "Video spot – Boris Brejcha",
-            "renaissance": "Video spot – Renesanční mistři",
-            "deathvalley": "Digital Art – Death Valley",
-            "jurassic": "Brožura – Jurassic Adventure",
-            "various_banners": "Banner designy – Eventy a výstavy"
-        }
-    },
-    "whatIDo": {
-        "title": "Služby",
-        "services": {
-            "design": {
-                "title": "Vizuální identita a branding",
-                "description": "Loga, vizuální identity značek, brožury, obaly a merchandising"
-            },
-            "video": {
-                "title": "Video a motion grafika",
-                "description": "Produkce a střih různých typů videí, včetně motion grafiky"
-            },
-            "digital": {
-                "title": "Tvorba digitálního obsahu",
-                "description": "Návrh a tvorba digitální grafiky a podkladů pro web a sociální sítě"
-            },
-            "photo": {
-                "title": "Fotografie",
-                "description": "Fotografie produktů, lidí, retušování a úprava snímků"
-            }
-        }
-    },
-    "contact": {
-        "email": "daniela@plaminkova.com"
-    },
-    "footer": {
-        "cta_collaborate": "Napište mi",
-        "name": "Daniela Plamínková",
-        "ico": "IČO: 22223622",
-        "address": "Sídlo: Voskovcova 1075/57, 152 00 Praha 5",
-        "registered": "Zapsaná v živnostenském rejstříku",
-        "supervisoryAuthority": "Dozorový orgán: Živnostenský úřad Praha 5",
-        "copyright": "© {year} Daniela Plamínková"
+  "nav": {
+    "home": "Domů",
+    "projects": "Projekty",
+    "whatIDo": "Služby",
+    "about": "Zkušenosti",
+    "contact": "Kontakt"
+  },
+  "home": {
+    "titleLine1": "Kreativní grafička",
+    "titleLine2": "a video editorka",
+    "subtitle": "Daniela Plamínková",
+    "viewProjects": "Zobrazit projekty",
+    "contactMe": "Kontaktovat mě"
+  },
+  "about": {
+    "experience": "Zkušenosti",
+    "education": "Vzdělání",
+    "tools": "Nástroje",
+    "jobs": [
+      {
+        "title": "Grafická designérka – Imper (Saleskit)",
+        "date": "říjen 2024 – dosud",
+        "description": "Reklamní tiskoviny, merch, online bannery, animované grafy pro web a design prezentací."
+      },
+      {
+        "title": "Grafická designérka & video editorka – JVS GROUP",
+        "date": "srpen 2021 – dosud",
+        "description": "Design vizuálního obsahu pro eventy a kulturní akce. Tvorba reklamních spotů pro TV i online prostředí. Tvorba brandingových materiálů, od loga po vizuální identitu. Kompletní předtisková příprava pro velkoformátové i běžné tiskoviny. Vizuální obsah pro sociální sítě a online reklamu (HTML5/PPC bannery). Motion grafika. Fotografování, natáčení rozhovorů a střih videí pro digitální obsah. Úpravy webových stránek ve Wixu."
+      },
+      {
+        "title": "DTP operátorka – GZ Media",
+        "date": "listopad 2019 – červen 2021",
+        "description": "Příprava dat pro tisk, barevné korekce tiskovin, spolupráce na výrobě propagačních materiálů a obsluha tiskových strojů."
+      },
+      {
+        "title": "Grafická designérka – BeefBrothers, s.r.o.",
+        "date": "květen 2018 – červen 2018",
+        "description": "Stáž – vytváření loga pro stavební firmu, retušování fotografií a tvorba bannerů pro firmu SYNLAB."
+      },
+      {
+        "title": "Print & Packaging – ART D",
+        "date": "květen 2017 – červenec 2017",
+        "description": "Stáž – kompletní zpracování zakázek pro klienty, od návrhu přes tisk až po finální úpravy."
+      }
+    ],
+    "school": {
+      "name": "Střední škola multimediální a propagační tvorby (EDUSO)",
+      "years": "2015 – 2019",
+      "focus": "Filmová a animační tvorba"
     }
+  },
+  "projects": {
+    "title": "Projekty",
+    "items": {
+      "kynez": "Vizuální identita – Kynez",
+      "saleskit": "Design – Saleskit",
+      "dita": "Vizuál – Dita Von Teese",
+      "maastricht": "Vizuál – Maastricht Festival",
+      "letitroll": "Plakát – Let It Roll",
+      "newtonia": "Herní design – Newtonia",
+      "brejcha": "Video spot – Boris Brejcha",
+      "renaissance": "Video spot – Renesanční mistři",
+      "deathvalley": "Digital Art – Death Valley",
+      "jurassic": "Brožura – Jurassic Adventure",
+      "various_banners": "Banner designy – Eventy a výstavy"
+    }
+  },
+  "whatIDo": {
+    "title": "Služby",
+    "services": {
+      "design": {
+        "title": "Vizuální identita a branding",
+        "description": "Loga, vizuální identity značek, brožury, obaly a merchandising"
+      },
+      "video": {
+        "title": "Video a motion grafika",
+        "description": "Produkce a střih různých typů videí, včetně motion grafiky"
+      },
+      "digital": {
+        "title": "Tvorba digitálního obsahu",
+        "description": "Návrh a tvorba digitální grafiky a podkladů pro web a sociální sítě"
+      },
+      "photo": {
+        "title": "Fotografie",
+        "description": "Fotografie produktů, lidí, retušování a úprava snímků"
+      }
+    }
+  },
+  "contact": {
+    "email": "daniela@plaminkova.com"
+  },
+  "footer": {
+    "cta_collaborate": "Napište mi",
+    "name": "Daniela Plamínková",
+    "ico": "IČO: 22223622",
+    "address": "Sídlo: Voskovcova 1075/57, 152 00 Praha 5",
+    "registered": "Zapsaná v živnostenském rejstříku",
+    "supervisoryAuthority": "Dozorový orgán: Živnostenský úřad Praha 5",
+    "copyright": "© {year} Daniela Plamínková"
+  }
 }
