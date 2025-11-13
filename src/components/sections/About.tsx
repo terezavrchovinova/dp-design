@@ -14,6 +14,7 @@ import lightroomIcon from '../../assets/icons/photoshop-lightroom.svg'
 import dimensionIcon from '../../assets/icons/dimension.svg'
 import cinema4dIcon from '../../assets/icons/cinema-4d.svg'
 import midjourneyIcon from '../../assets/icons/midjourney.webp'
+import figmaIcon from '../../assets/icons/figma.svg'
 
 // Types
 interface Tool {
@@ -43,6 +44,7 @@ const TOOLS: Tool[] = [
   { name: 'Adobe Premiere Pro', src: premiereProIcon },
   { name: 'Adobe Lightroom', src: lightroomIcon },
   { name: 'Adobe Dimension', src: dimensionIcon },
+  { name: 'Figma', src: figmaIcon },
   { name: 'Cinema 4D', src: cinema4dIcon },
   { name: 'Midjourney', src: midjourneyIcon },
 ]
