@@ -114,7 +114,7 @@ describe('About', () => {
     const toolsPattern = getTextInAnyLanguage('about.tools')
     const toolsHeading = screen.getByText(toolsPattern)
     expect(toolsHeading).toBeInTheDocument()
-    
+
     // When toolsInView is true, animate prop is { opacity: 1, y: 0 }
     // This tests the true branch of the ternary: toolsInView ? { opacity: 1, y: 0 } : {}
     // Line 110: animate={toolsInView ? { opacity: 1, y: 0 } : {}}
@@ -124,14 +124,14 @@ describe('About', () => {
   it('handles tools section animation when toolsInView is false', () => {
     // useInView is already mocked to return false by default
     // This tests the false branch in animate={toolsInView ? { opacity: 1, y: 0 } : {}}
-    
+
     render(<About />)
 
     // Component should render with tools section
     const toolsPattern = getTextInAnyLanguage('about.tools')
     const toolsHeading = screen.getByText(toolsPattern)
     expect(toolsHeading).toBeInTheDocument()
-    
+
     // When toolsInView is false, animate prop is {} (empty object)
     // This is the false branch of the ternary: toolsInView ? { opacity: 1, y: 0 } : {}
     // The component still renders, but without animation

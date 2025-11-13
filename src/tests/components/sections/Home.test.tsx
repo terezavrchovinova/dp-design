@@ -15,7 +15,7 @@ describe('Home', () => {
     // Use translation keys - works with any language
     const titlePattern = getTextInAnyLanguage('home.titleLine1')
     const titleLine2Pattern = getTextInAnyLanguage('home.titleLine2')
-    
+
     // Should display title regardless of current language
     expect(screen.getByText(titlePattern)).toBeInTheDocument()
     expect(screen.getByText(titleLine2Pattern)).toBeInTheDocument()
@@ -33,7 +33,7 @@ describe('Home', () => {
     // Use translation keys - works with any language
     const viewProjectsPattern = getTextInAnyLanguage('home.viewProjects')
     const contactMePattern = getTextInAnyLanguage('home.contactMe')
-    
+
     // Check for buttons regardless of current language
     const viewProjectsButton = screen.getByRole('link', {
       name: viewProjectsPattern,

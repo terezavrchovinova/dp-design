@@ -35,7 +35,7 @@ global.IntersectionObserver = class IntersectionObserver {
     return []
   }
   unobserve() {}
-} as any
+} as unknown as typeof IntersectionObserver
 
 // Mock HTMLCanvasElement for Lottie and other canvas-based libraries
 HTMLCanvasElement.prototype.getContext = vi.fn(() => {
@@ -64,6 +64,5 @@ HTMLCanvasElement.prototype.getContext = vi.fn(() => {
     transform: vi.fn(),
     rect: vi.fn(),
     clip: vi.fn(),
-  } as any
-}) as any
-
+  } as unknown as CanvasRenderingContext2D
+}) as unknown as typeof HTMLCanvasElement.prototype.getContext

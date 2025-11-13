@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '../../utils'
 import { Contact } from '../../../components/sections/Contact'
 import * as reactI18next from 'react-i18next'
@@ -24,19 +24,28 @@ describe('Contact', () => {
     // Email link should be present
     const emailLink = screen.getByRole('link')
     expect(emailLink).toBeInTheDocument()
-    expect(emailLink).toHaveAttribute('href', expect.stringContaining('mailto:'))
+    expect(emailLink).toHaveAttribute(
+      'href',
+      expect.stringContaining('mailto:'),
+    )
   })
 
   it('email link has mailto href', () => {
     render(<Contact />)
     const emailLink = screen.getByRole('link')
-    expect(emailLink).toHaveAttribute('href', expect.stringContaining('mailto:'))
+    expect(emailLink).toHaveAttribute(
+      'href',
+      expect.stringContaining('mailto:'),
+    )
   })
 
   it('email link has correct aria-label', () => {
     render(<Contact />)
     const emailLink = screen.getByRole('link')
-    expect(emailLink).toHaveAttribute('aria-label', expect.stringContaining('email'))
+    expect(emailLink).toHaveAttribute(
+      'aria-label',
+      expect.stringContaining('email'),
+    )
   })
 
   it('uses fallback email if translation is missing', () => {
@@ -53,7 +62,9 @@ describe('Contact', () => {
       ready: true,
     }))
 
-    vi.spyOn(reactI18next, 'useTranslation').mockImplementation(mockUseTranslation as any)
+    vi.spyOn(reactI18next, 'useTranslation').mockImplementation(
+      mockUseTranslation as unknown as typeof reactI18next.useTranslation,
+    )
 
     render(<Contact />)
     const emailLink = screen.getByRole('link')

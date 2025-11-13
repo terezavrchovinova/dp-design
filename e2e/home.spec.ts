@@ -29,7 +29,7 @@ test.describe('Home Page', () => {
     if (isMenuButtonVisible) {
       // On mobile, check for menu button and navbar structure
       await expect(menuButton).toBeVisible()
-      
+
       // Check that navbar is visible and contains the menu button
       // On mobile, navigation links are in the menu, not in the navbar directly
       await expect(navbar).toBeVisible()
@@ -41,7 +41,7 @@ test.describe('Home Page', () => {
 
       // Check navigation links within navbar only
       const navbarLinks = navbar.locator('a[href^="#"]')
-      
+
       // Check that navbar contains links to home, projects, and contact
       await expect(navbarLinks.filter({ hasText: homePattern })).toBeVisible()
       await expect(
@@ -53,7 +53,9 @@ test.describe('Home Page', () => {
     }
   })
 
-  test('should navigate to projects section when clicking "View Projects"', async ({ page }) => {
+  test('should navigate to projects section when clicking "View Projects"', async ({
+    page,
+  }) => {
     await page.goto('/')
     await page.waitForLoadState('networkidle')
 
@@ -69,7 +71,9 @@ test.describe('Home Page', () => {
     await expect(projectsSection).toBeInViewport()
   })
 
-  test('should navigate to contact section when clicking "Contact Me"', async ({ page }) => {
+  test('should navigate to contact section when clicking "Contact Me"', async ({
+    page,
+  }) => {
     await page.goto('/')
     await page.waitForLoadState('networkidle')
 
@@ -85,4 +89,3 @@ test.describe('Home Page', () => {
     await expect(contactSection).toBeInViewport()
   })
 })
-

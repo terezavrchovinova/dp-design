@@ -1,4 +1,3 @@
-
 import js from '@eslint/js'
 import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
@@ -8,8 +7,24 @@ import prettierPlugin from 'eslint-plugin-prettier'
 import prettierConfig from 'eslint-config-prettier'
 
 export default [
-  // Ignore build output directory
-  { ignores: ['dist'] },
+  // Ignore build output directory, node_modules, and other non-source files
+  {
+    ignores: [
+      'dist',
+      'node_modules',
+      '**/*.config.js',
+      '**/*.config.ts',
+      '**/coverage',
+      '**/playwright-report',
+      '**/test-results',
+      '**/.next',
+      '**/.vercel',
+      '**/build',
+      '**/*.min.js',
+      '**/*.bundle.js',
+      '**/package-lock.json',
+    ],
+  },
 
   // JavaScript recommended rules
   js.configs.recommended,
@@ -47,4 +62,3 @@ export default [
     },
   },
 ]
-

@@ -39,4 +39,3 @@ describe('ToolIcon', () => {
     expect(icon).toHaveAttribute('src', '/test-icon.svg')
   })
 })
-

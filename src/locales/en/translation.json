@@ -1,102 +1,102 @@
 {
-    "nav": {
-        "home": "Home",
-        "projects": "Projects",
-        "whatIDo": "Services",
-        "about": "Experience",
-        "contact": "Contact"
-    },
-    "home": {
-        "titleLine1": "Creative graphic designer",
-        "titleLine2": "and video editor",
-        "subtitle": "Daniela Plamínková",
-        "viewProjects": "View Projects",
-        "contactMe": "Contact Me"
-    },
-    "about": {
-        "experience": "Experience",
-        "education": "Education",
-        "tools": "Tools I Use",
-        "jobs": [
-            {
-                "title": "Graphic Designer – Imper (Saleskit)",
-                "date": "Oct 2024 – Present",
-                "description": "Advertising print materials, merchandise and online banners, animated charts for the web, and presentation design."
-            },
-            {
-                "title": "Graphic Designer & Video Editor – JVS GROUP",
-                "date": "Aug 2021 – Present",
-                "description": "Design of visual content for events and cultural events. Creation of advertising spots for TV and online platforms. Development of branding materials, from logo to visual identity. Complete prepress preparation for large-format and standard print materials. Visual content for social media and online advertising (HTML5 / PPC banners). Motion graphics. Photography, interview filming, and video editing for digital content. Website edits in Wix."
-            },
-            {
-                "title": "DTP Operator – GZ Media",
-                "date": "Nov 2019 – Jun 2021",
-                "description": "Prepared data for printing. Performed color correction on prints. Collaborated on the production of promotional materials. Operated printing machines."
-            },
-            {
-                "title": "Graphic Designer – BeefBrothers, s.r.o.",
-                "date": "May 2018 – Jun 2018",
-                "description": "Internship – creating a logo for a construction company, retouching photos, designing banners for the company SYNLAB."
-            },
-            {
-                "title": "Print & Packaging – ART D",
-                "date": "May 2017 – Jul 2017",
-                "description": "Internship – full handling of client orders, from design to printing and final touches."
-            }
-        ],
-        "school": {
-            "name": "Secondary School of Multimedia and Promotional Arts (EDUSO)",
-            "years": "2015 – 2019",
-            "focus": "Film and Animation Production"
-        }
-    },
-    "projects": {
-        "title": "Projects",
-        "items": {
-            "kynez": "Brand Identity – Kynez",
-            "saleskit": "Design – Saleskit",
-            "dita": "Visual – Dita Von Teese",
-            "maastricht": "Visual – Maastricht Festival",
-            "letitroll": "Poster – Let It Roll",
-            "newtonia": "Game Design – Newtonia",
-            "brejcha": "Video Spot – Boris Brejcha",
-            "renaissance": "Video Spot – The Great Masters of the Renaissance",
-            "deathvalley": "Digital Art – Death Valley",
-            "jurassic": "Brochure – Jurassic Adventure",
-            "various_banners": "Banner Designs – Event & Exhibition Series"
-        }
-    },
-    "whatIDo": {
-        "title": "Services",
-        "services": {
-            "design": {
-                "title": "Visual & Brand Design",
-                "description": "Logos, brand identities, brochures, packaging, and merchandising"
-            },
-            "video": {
-                "title": "Video & Motion",
-                "description": "Production and editing of all kinds of videos along with motion graphics"
-            },
-            "digital": {
-                "title": "Digital Content Creation",
-                "description": "Design and creation of digital graphics and assets for web and social media platforms"
-            },
-            "photo": {
-                "title": "Photography",
-                "description": "Photography of products, people, and everyday scenes, retouching and editing services"
-            }
-        }
-    },
-    "contact": {
-        "email": "daniela@plaminkova.com"
-    },
-    "footer": {
-        "cta_collaborate": "Send me a message",
-        "name": "Daniela Plamínková",
-        "ico": "VAT number: 22223622",
-        "address": "Headquarters: Voskovcova 1075/57, 152 00 Prague 5",
-        "registered": "Registered in the Tr vbade Register",
-        "supervisoryAuthority": "Supervisory authority: Trade Office Prague 5",
-        "copyright": "© {year} Daniela Plamínková"
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "whatIDo": "Services",
+    "about": "Experience",
+    "contact": "Contact"
+  },
+  "home": {
+    "titleLine1": "Creative graphic designer",
+    "titleLine2": "and video editor",
+    "subtitle": "Daniela Plamínková",
+    "viewProjects": "View Projects",
+    "contactMe": "Contact Me"
+  },
+  "about": {
+    "experience": "Experience",
+    "education": "Education",
+    "tools": "Tools I Use",
+    "jobs": [
+      {
+        "title": "Graphic Designer – Imper (Saleskit)",
+        "date": "Oct 2024 – Present",
+        "description": "Advertising print materials, merchandise and online banners, animated charts for the web, and presentation design."
+      },
+      {
+        "title": "Graphic Designer & Video Editor – JVS GROUP",
+        "date": "Aug 2021 – Present",
+        "description": "Design of visual content for events and cultural events. Creation of advertising spots for TV and online platforms. Development of branding materials, from logo to visual identity. Complete prepress preparation for large-format and standard print materials. Visual content for social media and online advertising (HTML5 / PPC banners). Motion graphics. Photography, interview filming, and video editing for digital content. Website edits in Wix."
+      },
+      {
+        "title": "DTP Operator – GZ Media",
+        "date": "Nov 2019 – Jun 2021",
+        "description": "Prepared data for printing. Performed color correction on prints. Collaborated on the production of promotional materials. Operated printing machines."
+      },
+      {
+        "title": "Graphic Designer – BeefBrothers, s.r.o.",
+        "date": "May 2018 – Jun 2018",
+        "description": "Internship – creating a logo for a construction company, retouching photos, designing banners for the company SYNLAB."
+      },
+      {
+        "title": "Print & Packaging – ART D",
+        "date": "May 2017 – Jul 2017",
+        "description": "Internship – full handling of client orders, from design to printing and final touches."
+      }
+    ],
+    "school": {
+      "name": "Secondary School of Multimedia and Promotional Arts (EDUSO)",
+      "years": "2015 – 2019",
+      "focus": "Film and Animation Production"
     }
+  },
+  "projects": {
+    "title": "Projects",
+    "items": {
+      "kynez": "Brand Identity – Kynez",
+      "saleskit": "Design – Saleskit",
+      "dita": "Visual – Dita Von Teese",
+      "maastricht": "Visual – Maastricht Festival",
+      "letitroll": "Poster – Let It Roll",
+      "newtonia": "Game Design – Newtonia",
+      "brejcha": "Video Spot – Boris Brejcha",
+      "renaissance": "Video Spot – The Great Masters of the Renaissance",
+      "deathvalley": "Digital Art – Death Valley",
+      "jurassic": "Brochure – Jurassic Adventure",
+      "various_banners": "Banner Designs – Event & Exhibition Series"
+    }
+  },
+  "whatIDo": {
+    "title": "Services",
+    "services": {
+      "design": {
+        "title": "Visual & Brand Design",
+        "description": "Logos, brand identities, brochures, packaging, and merchandising"
+      },
+      "video": {
+        "title": "Video & Motion",
+        "description": "Production and editing of all kinds of videos along with motion graphics"
+      },
+      "digital": {
+        "title": "Digital Content Creation",
+        "description": "Design and creation of digital graphics and assets for web and social media platforms"
+      },
+      "photo": {
+        "title": "Photography",
+        "description": "Photography of products, people, and everyday scenes, retouching and editing services"
+      }
+    }
+  },
+  "contact": {
+    "email": "daniela@plaminkova.com"
+  },
+  "footer": {
+    "cta_collaborate": "Send me a message",
+    "name": "Daniela Plamínková",
+    "ico": "VAT number: 22223622",
+    "address": "Headquarters: Voskovcova 1075/57, 152 00 Prague 5",
+    "registered": "Registered in the Tr vbade Register",
+    "supervisoryAuthority": "Supervisory authority: Trade Office Prague 5",
+    "copyright": "© {year} Daniela Plamínková"
+  }
 }

@@ -13,30 +13,34 @@ test.describe('Internationalization', () => {
     await expect(page.getByText(titlePattern)).toBeVisible()
   })
 
-  test('should switch language when language button is clicked', async ({ page }) => {
+  test('should switch language when language button is clicked', async ({
+    page,
+  }) => {
     await page.waitForLoadState('networkidle')
-    
+
     // Check if menu button exists (mobile) to determine approach
     const menuButton = page.getByRole('button', { name: /toggle menu/i })
     const isMenuButtonVisible = await menuButton.isVisible().catch(() => false)
-    
+
     if (isMenuButtonVisible) {
       // On mobile, open menu first to access language switcher
       await menuButton.click()
       await expect(menuButton).toHaveAttribute('aria-expanded', 'true')
-      
+
       // Language switcher is in the mobile menu
       // Click on English language button (default is Czech)
       // Mobile menu shows language buttons with aria-label "Switch to EN" or "Switch to CS"
-      const mobileMenu = page.getByRole('dialog', { name: /mobile navigation menu/i })
+      const mobileMenu = page.getByRole('dialog', {
+        name: /mobile navigation menu/i,
+      })
       await expect(mobileMenu).toBeVisible()
-      
+
       const englishButton = mobileMenu.getByRole('button', {
         name: /switch to en/i,
       })
       await expect(englishButton).toBeVisible()
       await englishButton.click()
-      
+
       // Wait for language change to complete
       // Note: Menu stays open after language change, so we don't check for menu close
       // Just wait for the English text to appear
@@ -62,4 +66,3 @@ test.describe('Internationalization', () => {
     })
   })
 })
-

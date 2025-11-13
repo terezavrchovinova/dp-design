@@ -1,145 +1,145 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @tailwind utilities;
 
 @theme {
-    /* Base Colors */
-    --color-dark: #0a0a0a;
-    --color-surface: #1a1a1e;
-    --color-white: #fafafa;
-    --color-gray: #bbbbbb;
-    --color-light-gray: #d4d4d8;
-    --color-border: #2e2e32;
+  /* Base Colors */
+  --color-dark: #0a0a0a;
+  --color-surface: #1a1a1e;
+  --color-white: #fafafa;
+  --color-gray: #bbbbbb;
+  --color-light-gray: #d4d4d8;
+  --color-border: #2e2e32;
 
-    /* Accent Colors */
-    --color-orange: #ff6a3d;
-    --color-orange-light: #ffb347;
-    --color-accent: #00bfa6;
+  /* Accent Colors */
+  --color-orange: #ff6a3d;
+  --color-orange-light: #ffb347;
+  --color-accent: #00bfa6;
 
-    /* Gradients */
-    --gradient-accent: linear-gradient(135deg, #ff6a3d, #ffb347);
+  /* Gradients */
+  --gradient-accent: linear-gradient(135deg, #ff6a3d, #ffb347);
 
-    /* CTA (Call-to-Action) Colors */
-    --color-cta-primary-bg: var(--color-orange);
-    --color-cta-primary-hover: #ffd1b3;
-    --color-cta-secondary-bg: #2e2e32;
-    --color-cta-secondary-text: var(--color-orange);
+  /* CTA (Call-to-Action) Colors */
+  --color-cta-primary-bg: var(--color-orange);
+  --color-cta-primary-hover: #ffd1b3;
+  --color-cta-secondary-bg: #2e2e32;
+  --color-cta-secondary-text: var(--color-orange);
 
-    /* Spacing & Effects */
-    --radius-xl: 1.25rem;
-    --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.25);
+  /* Spacing & Effects */
+  --radius-xl: 1.25rem;
+  --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.25);
 
-    /* Transitions */
-    --transition-fast: 0.2s ease;
-    --transition-smooth: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-smooth: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 @font-face {
-    font-family: 'ClashDisplay-SemiBold';
-    src: url('./assets/fonts/ClashDisplay-Semibold.otf') format('opentype');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
+  font-family: 'ClashDisplay-SemiBold';
+  src: url('./assets/fonts/ClashDisplay-Semibold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
 }
 
 html,
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Inter', system-ui, sans-serif;
-    background-color: var(--color-dark);
-    color: var(--color-white);
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 h1,
 h2,
 h3 {
-    font-family: 'ClashDisplay-SemiBold', sans-serif;
-    text-align: center;
+  font-family: 'ClashDisplay-SemiBold', sans-serif;
+  text-align: center;
 }
 
 h1 {
-    @apply text-4xl md:text-[64px] font-bold text-zinc-50;
+  @apply text-4xl md:text-[64px] font-bold text-zinc-50;
 }
 
 h2 {
-    @apply text-3xl md:text-3xl lg:text-4xl mb-6;
+  @apply text-3xl md:text-3xl lg:text-4xl mb-6;
 }
 
 h3 {
-    @apply text-2xl md:text-2xl lg:text-3xl mb-6;
+  @apply text-2xl md:text-2xl lg:text-3xl mb-6;
 }
 
 .section-title {
-    font-family: 'ClashDisplay-SemiBold', sans-serif;
-    @apply text-2xl md:text-2xl lg:text-2xl mb-3;
-    @apply text-center sm:text-left;
+  font-family: 'ClashDisplay-SemiBold', sans-serif;
+  @apply text-2xl md:text-2xl lg:text-2xl mb-3;
+  @apply text-center sm:text-left;
 }
 
 .section-description {
-    color: var(--color-gray);
-    @apply text-lg leading-relaxed mb-5;
+  color: var(--color-gray);
+  @apply text-lg leading-relaxed mb-5;
 }
 
 @layer utilities {
-    .shadow-soft {
-        box-shadow: var(--shadow-soft);
-    }
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
 
-    .glass {
-        background-color: var(--color-surface);
-        backdrop-filter: blur(16px);
-        border: 1px solid var(--color-border);
-        box-shadow: var(--shadow-soft);
-        border-radius: var(--radius-xl);
-    }
+  .glass {
+    background-color: var(--color-surface);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-soft);
+    border-radius: var(--radius-xl);
+  }
 
-    .transition-smooth {
-        transition: all var(--transition-smooth);
-    }
+  .transition-smooth {
+    transition: all var(--transition-smooth);
+  }
 
-    .section {
-        @apply min-h-screen flex items-center justify-center px-6 py-24;
-    }
+  .section {
+    @apply min-h-screen flex items-center justify-center px-6 py-24;
+  }
 
-    .container-content {
-        @apply w-full max-w-6xl space-y-16;
-    }
+  .container-content {
+    @apply w-full max-w-6xl space-y-16;
+  }
 
-    .text-muted {
-        @apply text-center text-[var(--color-light-gray)];
-    }
+  .text-muted {
+    @apply text-center text-[var(--color-light-gray)];
+  }
 
-    .hover-zoom {
-        @apply transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:brightness-75;
-    }
+  .hover-zoom {
+    @apply transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:brightness-75;
+  }
 
-    .btn-base {
-        @apply relative inline-block px-6 py-3 rounded-xl font-semibold transition-all duration-300 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--color-orange-light)] cursor-pointer;
-    }
+  .btn-base {
+    @apply relative inline-block px-6 py-3 rounded-xl font-semibold transition-all duration-300 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--color-orange-light)] cursor-pointer;
+  }
 }
 
 @keyframes blob {
-    0%,
-    100% {
-        transform: translate(0px, 0px) scale(1);
-    }
+  0%,
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
 
-    33% {
-        transform: translate(30px, -20px) scale(1.05);
-    }
+  33% {
+    transform: translate(30px, -20px) scale(1.05);
+  }
 
-    66% {
-        transform: translate(-20px, 20px) scale(0.95);
-    }
+  66% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
 }
 
 .animate-blob {
-    animation: blob 20s infinite;
+  animation: blob 20s infinite;
 }
 
 .will-change-transform {
-    will-change: transform;
+  will-change: transform;
 }

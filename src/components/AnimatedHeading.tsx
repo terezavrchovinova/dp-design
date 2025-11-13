@@ -1,5 +1,11 @@
 import { motion, type TargetAndTransition } from 'motion/react'
-import { useState, useEffect, useRef, type Dispatch, type SetStateAction } from 'react'
+import {
+  useState,
+  useEffect,
+  useRef,
+  type Dispatch,
+  type SetStateAction,
+} from 'react'
 import { useTranslation } from 'react-i18next'
 
 // Types

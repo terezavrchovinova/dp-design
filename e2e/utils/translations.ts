@@ -5,16 +5,10 @@ import { join } from 'path'
 // Using process.cwd() to get the project root since Playwright runs from project root
 const projectRoot = process.cwd()
 const enTranslations = JSON.parse(
-  readFileSync(
-    join(projectRoot, 'src/locales/en/translation.json'),
-    'utf-8',
-  ),
+  readFileSync(join(projectRoot, 'src/locales/en/translation.json'), 'utf-8'),
 )
 const csTranslations = JSON.parse(
-  readFileSync(
-    join(projectRoot, 'src/locales/cs/translation.json'),
-    'utf-8',
-  ),
+  readFileSync(join(projectRoot, 'src/locales/cs/translation.json'), 'utf-8'),
 )
 
 /**
@@ -26,11 +20,16 @@ export const getTranslation = (
 ): string => {
   const translations = lang === 'en' ? enTranslations : csTranslations
   const keys = key.split('.')
-  let value: any = translations
+  let value: unknown = translations
 
   for (const k of keys) {
-    value = value?.[k]
-    if (value === undefined) {
+    if (
+      typeof value === 'object' &&
+      value !== null &&
+      k in (value as Record<string, unknown>)
+    ) {
+      value = (value as Record<string, unknown>)[k]
+    } else {
       return key // Return key if translation not found
     }
   }
@@ -55,7 +54,8 @@ export const getTranslations = (key: string): { en: string; cs: string } => {
 export const getTextPattern = (key: string): RegExp => {
   const translations = getTranslations(key)
   // Escape special regex characters in both translations
-  const escapeRegex = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const escapeRegex = (str: string) =>
+    str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
   const pattern = `${escapeRegex(translations.en)}|${escapeRegex(translations.cs)}`
   return new RegExp(pattern, 'i')
 }
@@ -68,4 +68,3 @@ export const getTextArray = (key: string): string[] => {
   const translations = getTranslations(key)
   return [translations.en, translations.cs]
 }
-

@@ -1,6 +1,6 @@
 /**
  * Internationalization (i18n) configuration
- * 
+ *
  * Sets up i18next for React with Czech (cs) as default language
  * and English (en) as fallback. Translations are loaded from
  * JSON files in the locales directory.
@@ -20,21 +20,19 @@ const DEFAULT_LANGUAGE: SupportedLanguage = 'cs'
 // Fallback language (English)
 const FALLBACK_LANGUAGE: SupportedLanguage = 'en'
 
-i18n
-  .use(initReactI18next)
-  .init({
-    resources: {
-      en: { translation: en },
-      cs: { translation: cs },
-    },
-    lng: DEFAULT_LANGUAGE,
-    fallbackLng: FALLBACK_LANGUAGE,
-    interpolation: {
-      escapeValue: false, // React already escapes values by default
-    },
-    react: {
-      useSuspense: false, // Disable suspense to prevent loading issues
-    },
-  })
+i18n.use(initReactI18next).init({
+  resources: {
+    en: { translation: en },
+    cs: { translation: cs },
+  },
+  lng: DEFAULT_LANGUAGE,
+  fallbackLng: FALLBACK_LANGUAGE,
+  interpolation: {
+    escapeValue: false, // React already escapes values by default
+  },
+  react: {
+    useSuspense: false, // Disable suspense to prevent loading issues
+  },
+})
 
 export default i18n

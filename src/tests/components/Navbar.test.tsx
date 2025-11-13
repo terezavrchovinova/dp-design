@@ -115,8 +115,8 @@ describe('Navbar', () => {
   it('opens mailto link when email button is clicked', async () => {
     // Mock window.location
     const originalLocation = window.location
-    delete (window as any).location
-    window.location = { href: '' } as any
+    delete (window as unknown as { location?: Location }).location
+    window.location = { href: '' } as unknown as Location
 
     const user = userEvent.setup()
     render(<Navbar {...defaultProps} />)
@@ -126,9 +126,6 @@ describe('Navbar', () => {
     await user.click(emailButton)
 
     // Check that mailto link was set
-    const email = emailPattern.source
-      .replace('daniela\\.plaminkova\\.com|daniela@plaminkova\\.com', 'daniela@plaminkova.com')
-      .replace(/\\/g, '')
     expect(window.location.href).toContain('mailto:')
 
     // Restore window.location

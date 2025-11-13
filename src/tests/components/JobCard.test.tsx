@@ -56,4 +56,3 @@ describe('JobCard', () => {
     expect(listItems.length).toBeGreaterThan(0)
   })
 })
-

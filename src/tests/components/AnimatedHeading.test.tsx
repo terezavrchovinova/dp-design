@@ -1,18 +1,21 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { render, screen, getTextInAnyLanguage, fireEvent } from '../utils'
-import userEvent from '@testing-library/user-event'
-import AnimatedHeading, { getCurlingSlide, handleHover } from '../../components/AnimatedHeading'
+import AnimatedHeading, {
+  getCurlingSlide,
+  handleHover,
+} from '../../components/AnimatedHeading'
 import { useState } from 'react'
 
 describe('AnimatedHeading', () => {
   beforeEach(() => {
     // Mock IntersectionObserver
     global.IntersectionObserver = class IntersectionObserver {
-      observe = vi.fn()
-      unobserve = vi.fn()
-      disconnect = vi.fn()
+      observe = vi.fn<[Element], void>()
+      unobserve = vi.fn<[Element], void>()
+      disconnect = vi.fn<[], void>()
+      takeRecords = vi.fn<[], IntersectionObserverEntry[]>(() => [])
       constructor(public callback: IntersectionObserverCallback) {}
-    } as any
+    } as unknown as typeof IntersectionObserver
   })
 
   afterEach(() => {
@@ -53,9 +56,10 @@ describe('AnimatedHeading', () => {
     global.IntersectionObserver = class IntersectionObserver {
       observe = observeSpy
       unobserve = unobserveSpy
-      disconnect = vi.fn()
+      disconnect = vi.fn<[], void>()
+      takeRecords = vi.fn<[], IntersectionObserverEntry[]>(() => [])
       constructor(public callback: IntersectionObserverCallback) {}
-    } as any
+    } as unknown as typeof IntersectionObserver
 
     const { unmount } = render(<AnimatedHeading />)
     // Observer should be set up
@@ -69,13 +73,14 @@ describe('AnimatedHeading', () => {
   it('handles intersection observer callback when element leaves viewport', async () => {
     let observerCallback: IntersectionObserverCallback | null = null
     global.IntersectionObserver = class IntersectionObserver {
-      observe = vi.fn()
-      unobserve = vi.fn()
-      disconnect = vi.fn()
+      observe = vi.fn<[Element], void>()
+      unobserve = vi.fn<[Element], void>()
+      disconnect = vi.fn<[], void>()
+      takeRecords = vi.fn<[], IntersectionObserverEntry[]>(() => [])
       constructor(callback: IntersectionObserverCallback) {
         observerCallback = callback
       }
-    } as any
+    } as unknown as typeof IntersectionObserver
 
     vi.useFakeTimers()
     render(<AnimatedHeading />)
@@ -112,36 +117,36 @@ describe('AnimatedHeading', () => {
 
     render(<AnimatedHeading />)
     const headingPattern = getTextInAnyLanguage('footer.cta_collaborate')
-    
+
     // Find the desktop heading element (hidden on mobile, shown on desktop)
     const headings = screen.getAllByText(headingPattern)
     const desktopHeading = headings.find((h) => h.className.includes('hidden'))
-    
+
     if (desktopHeading) {
       // Get all span elements (letters) in the desktop heading
       // motion.span renders as a regular span with event handlers
       const letterSpans = Array.from(desktopHeading.querySelectorAll('span'))
-      
+
       if (letterSpans.length > 0) {
         // Get the first letter span
         const firstLetter = letterSpans[0] as HTMLElement
-        
+
         // motion.span should have onMouseEnter handler that triggers onHoverStart
         // Try to trigger mouseenter event
         fireEvent.mouseEnter(firstLetter)
-        
+
         // Also try pointerenter which motion.span might use
         fireEvent.pointerEnter(firstLetter)
-        
+
         // Wait for state update
         await new Promise((resolve) => setTimeout(resolve, 10))
-        
+
         // getCurlingSlide should have been called, which uses Math.random multiple times
         // It calls Math.random 5 times: xDirection, yDirection, x offset, y offset, rotate
         // Note: motion.span might not trigger onHoverStart in test environment,
         // but we can verify getCurlingSlide is exported and testable
         expect(randomCallCount).toBeGreaterThanOrEqual(0)
-        
+
         // Test that getCurlingSlide generates different directions for different letters
         randomCallCount = 0
         if (letterSpans.length > 1) {
@@ -159,40 +164,36 @@ describe('AnimatedHeading', () => {
   })
 
   it('calls handleHover when span is hovered', async () => {
-    // Mock Math.random to track calls
+    // Mock Math.random
     const originalRandom = Math.random
-    let randomCallCount = 0
-    Math.random = vi.fn(() => {
-      randomCallCount++
-      return 0.5
-    })
+    Math.random = vi.fn(() => 0.5)
 
     render(<AnimatedHeading />)
     const headingPattern = getTextInAnyLanguage('footer.cta_collaborate')
-    
+
     // Find the desktop heading
     const headings = screen.getAllByText(headingPattern)
     const desktopHeading = headings.find((h) => h.className.includes('hidden'))
-    
+
     if (desktopHeading) {
       const letterSpans = Array.from(desktopHeading.querySelectorAll('span'))
-      
+
       if (letterSpans.length > 0) {
         // Get the underlying DOM element (motion.span renders as a span)
         const firstLetter = letterSpans[0] as HTMLElement
-        
+
         // Get all event handlers attached to the element
         // motion.span should have onHoverStart callback attached
         // We need to trigger the hover event in a way that motion.span recognizes
-        
+
         // Try multiple event types that motion.span might listen to
         fireEvent.mouseEnter(firstLetter)
         fireEvent.pointerEnter(firstLetter)
         fireEvent.focus(firstLetter)
-        
+
         // Wait a bit for potential async state updates
         await new Promise((resolve) => setTimeout(resolve, 50))
-        
+
         // If handleHover was called, getCurlingSlide would have been called
         // and Math.random would have been called multiple times
         // However, motion.span may not trigger onHoverStart in jsdom environment
@@ -231,7 +232,7 @@ describe('AnimatedHeading', () => {
     expect(result).toHaveProperty('opacity')
     expect(result.scale).toBe(1)
     expect(result.opacity).toBe(0.9)
-    
+
     // Math.random should have been called multiple times (xDirection, yDirection, x offset, y offset, rotate)
     expect(randomCallCount).toBeGreaterThanOrEqual(5)
 
@@ -243,7 +244,7 @@ describe('AnimatedHeading', () => {
     // Test all branches of xDirection and yDirection
     const originalRandom = Math.random
     let randomCallCount = 0
-    
+
     // Test branch where xDirection is 1 (Math.random() > 0.5)
     Math.random = vi.fn(() => {
       randomCallCount++
@@ -286,8 +287,19 @@ describe('AnimatedHeading', () => {
     // Test handleHover function directly
     // This tests lines 90-94: handleHover function
     const TestComponent = () => {
-      const [scattered, setScattered] = useState<Record<number, any>>({})
-      
+      const [scattered, setScattered] = useState<
+        Record<
+          number,
+          {
+            x?: number
+            y?: number
+            rotate?: number
+            scale?: number
+            opacity?: number
+          }
+        >
+      >({})
+
       return (
         <div>
           <button onClick={() => handleHover(0, setScattered)}>Hover</button>
@@ -306,15 +318,15 @@ describe('AnimatedHeading', () => {
 
     render(<TestComponent />)
     const button = screen.getByRole('button', { name: /hover/i })
-    
+
     // Call handleHover by clicking the button
     fireEvent.click(button)
-    
+
     // Wait for state update
     const scatteredDiv = screen.getByTestId('scattered')
     // Scattered state should have been updated
     expect(scatteredDiv.textContent).toContain('0')
-    
+
     // getCurlingSlide should have been called, which uses Math.random
     expect(randomCallCount).toBeGreaterThan(0)
 
@@ -322,4 +334,3 @@ describe('AnimatedHeading', () => {
     Math.random = originalRandom
   })
 })
-

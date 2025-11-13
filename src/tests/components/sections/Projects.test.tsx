@@ -44,4 +44,3 @@ describe('Projects', () => {
     expect(images.length).toBeGreaterThan(0)
   })
 })
-

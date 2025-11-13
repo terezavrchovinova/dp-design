@@ -14,7 +14,7 @@ export function criticalCSS(): Plugin {
     generateBundle(_options, bundle) {
       // Find the CSS file in the bundle
       const cssAsset = Object.values(bundle).find(
-        (asset) => asset.type === 'asset' && asset.fileName.endsWith('.css')
+        (asset) => asset.type === 'asset' && asset.fileName.endsWith('.css'),
       )
 
       if (cssAsset && 'fileName' in cssAsset) {
@@ -31,30 +31,35 @@ export function criticalCSS(): Plugin {
       try {
         let html = readFileSync(htmlPath, 'utf-8')
         const cssPath = join(process.cwd(), 'dist', cssFileName)
-        
+
         if (!existsSync(cssPath)) return
 
         // Read the CSS file
         const fullCSS = readFileSync(cssPath, 'utf-8')
-        
+
         // Extract critical CSS (first ~14KB for above-the-fold content)
         const criticalCSS = extractCriticalCSS(fullCSS)
-        
+
         // Create inline style tag and async CSS loader
         const criticalStyleTag = `<style id="critical-css">${criticalCSS}</style>`
         // Use preload with onload for async CSS loading, with noscript fallback
         const asyncCSSLink = `<link rel="preload" href="/${cssFileName}" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/${cssFileName}"></noscript>`
-        
+
         // Find and replace the blocking stylesheet link
         const stylesheetRegex = new RegExp(
           `<link[^>]*href="/${cssFileName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"[^>]*>`,
-          'i'
+          'i',
         )
-        
+
         if (stylesheetRegex.test(html)) {
-          html = html.replace(stylesheetRegex, criticalStyleTag + '\n    ' + asyncCSSLink)
+          html = html.replace(
+            stylesheetRegex,
+            criticalStyleTag + '\n    ' + asyncCSSLink,
+          )
           writeFileSync(htmlPath, html, 'utf-8')
-          console.log(`✓ Inlined critical CSS and made main CSS load asynchronously`)
+          console.log(
+            `✓ Inlined critical CSS and made main CSS load asynchronously`,
+          )
         }
       } catch (error) {
         console.warn('Failed to inline critical CSS:', error)
@@ -71,37 +76,47 @@ function extractCriticalCSS(fullCSS: string): string {
   // Extract CSS custom properties (variables)
   const variablesMatch = fullCSS.match(/@theme\s*\{[^}]*\}/s)
   const variables = variablesMatch ? variablesMatch[0] : ''
-  
+
   // Extract @font-face
   const fontFaceMatch = fullCSS.match(/@font-face\s*\{[^}]*\}/s)
   const fontFace = fontFaceMatch ? fontFaceMatch[0] : ''
-  
+
   // Extract html, body styles
-  const htmlBodyMatch = fullCSS.match(/html[^}]*body[^}]*\{[^}]*\}/s) || 
-                       fullCSS.match(/html\s*,[^}]*\{[^}]*\}/s) ||
-                       fullCSS.match(/body\s*\{[^}]*\}/s)
+  const htmlBodyMatch =
+    fullCSS.match(/html[^}]*body[^}]*\{[^}]*\}/s) ||
+    fullCSS.match(/html\s*,[^}]*\{[^}]*\}/s) ||
+    fullCSS.match(/body\s*\{[^}]*\}/s)
   const htmlBody = htmlBodyMatch ? htmlBodyMatch[0] : ''
-  
+
   // Extract h1, h2, h3 styles
   const headingsMatch = fullCSS.match(/h[1-3][^}]*\{[^}]*\}/gs)
   const headings = headingsMatch ? headingsMatch.join('\n') : ''
-  
+
   // Extract .section utility (needed for Home section)
   const sectionMatch = fullCSS.match(/\.section\s*\{[^}]*\}/s)
   const section = sectionMatch ? sectionMatch[0] : ''
-  
+
   // Get first 10KB of CSS (which typically contains most critical styles)
   // This is a fallback to ensure we get enough critical CSS
   const first10KB = fullCSS.substring(0, 10000)
-  
+
   // Combine critical parts
-  let critical = variables + '\n' + fontFace + '\n' + htmlBody + '\n' + headings + '\n' + section
-  
+  let critical =
+    variables +
+    '\n' +
+    fontFace +
+    '\n' +
+    htmlBody +
+    '\n' +
+    headings +
+    '\n' +
+    section
+
   // If critical CSS is too small, use first 10KB as fallback
   if (critical.length < 5000) {
     critical = first10KB
   }
-  
+
   // Limit to ~14KB (recommended size for inline CSS)
   if (critical.length > 14000) {
     critical = critical.substring(0, 14000)
@@ -111,7 +126,6 @@ function extractCriticalCSS(fullCSS: string): string {
       critical = critical.substring(0, lastBrace + 1)
     }
   }
-  
+
   return critical.trim()
 }
-

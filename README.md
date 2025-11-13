@@ -16,7 +16,7 @@ A modern, performant portfolio website showcasing the creative work of Daniela P
 - **Framework**: React 19 with TypeScript
 - **Build Tool**: Vite 7
 - **Styling**: Tailwind CSS 4
-- **Animations**: 
+- **Animations**:
   - Lottie React
   - Motion (Framer Motion)
 - **Internationalization**: i18next & react-i18next
@@ -33,17 +33,20 @@ A modern, performant portfolio website showcasing the creative work of Daniela P
 ### Installation
 
 1. Clone the repository:
+
 ```bash
 git clone <repository-url>
 cd danca-portfolio
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 ```
 
 3. Start the development server:
+
 ```bash
 npm run dev
 ```
@@ -106,6 +109,7 @@ e2e/                    # Playwright e2e tests
 ## 🌐 Internationalization
 
 The portfolio supports multiple languages:
+
 - English (`en`)
 - Czech (`cs`)
 
@@ -124,6 +128,7 @@ Translation files are located in `src/locales/`. To add a new language, create a
 The project includes comprehensive testing setup:
 
 ### Unit and Integration Tests
+
 - **Framework**: Vitest with React Testing Library
 - **Location**: `src/tests/**/*.test.tsx`
 - **Run tests**: `npm run test`
@@ -131,6 +136,7 @@ The project includes comprehensive testing setup:
 - **Coverage**: `npm run test:coverage`
 
 ### End-to-End Tests
+
 - **Framework**: Playwright
 - **Location**: `e2e/*.spec.ts`
 - **Run tests**: `npm run test:e2e`
@@ -138,6 +144,7 @@ The project includes comprehensive testing setup:
 - **Tests include**: Navigation, home page, projects, language switching
 
 ### Test Configuration
+
 - Tests run automatically before deployment to Vercel
 - GitHub Actions workflow runs all tests on push/PR
 - Unit tests run in Vercel build command
@@ -148,11 +155,13 @@ The project includes comprehensive testing setup:
 The project is optimized for deployment on Vercel (or similar platforms). The build process generates optimized static assets ready for production.
 
 **Tests run automatically before deployment:**
+
 - Unit and integration tests run in Vercel build command
 - E2E tests run in GitHub Actions workflow
 - Deployment fails if any tests fail
 
 Build command:
+
 ```bash
 npm run build
 ```

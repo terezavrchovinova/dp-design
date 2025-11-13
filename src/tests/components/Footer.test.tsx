@@ -12,10 +12,7 @@ describe('Footer', () => {
   it('displays copyright with current year', () => {
     render(<Footer />)
     const currentYear = new Date().getFullYear()
-    const namePattern = getTextInAnyLanguage('footer.name')
-    const copyrightText = screen.getByText(
-      new RegExp(`${currentYear}`, 'i'),
-    )
+    const copyrightText = screen.getByText(new RegExp(`${currentYear}`, 'i'))
     expect(copyrightText).toBeInTheDocument()
   })
 
@@ -49,4 +46,3 @@ describe('Footer', () => {
     expect(screen.getByText(authorityPattern)).toBeInTheDocument()
   })
 })
-

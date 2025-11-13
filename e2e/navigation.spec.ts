@@ -20,16 +20,16 @@ test.describe('Navigation', () => {
 
   test('should navigate to projects section', async ({ page }) => {
     await page.waitForLoadState('networkidle')
-    
+
     // Check if menu button exists (mobile) to determine approach
     const menuButton = page.getByRole('button', { name: /toggle menu/i })
     const isMenuButtonVisible = await menuButton.isVisible().catch(() => false)
-    
+
     if (isMenuButtonVisible) {
       // On mobile, open menu first, then click link
       await menuButton.click()
       await expect(menuButton).toHaveAttribute('aria-expanded', 'true')
-      
+
       const projectsPattern = getTextPattern('nav.projects')
       const projectsLink = page
         .getByRole('dialog', { name: /mobile navigation menu/i })
@@ -53,16 +53,16 @@ test.describe('Navigation', () => {
 
   test('should navigate to about section', async ({ page }) => {
     await page.waitForLoadState('networkidle')
-    
+
     // Check if menu button exists (mobile) to determine approach
     const menuButton = page.getByRole('button', { name: /toggle menu/i })
     const isMenuButtonVisible = await menuButton.isVisible().catch(() => false)
-    
+
     if (isMenuButtonVisible) {
       // On mobile, open menu first, then click link
       await menuButton.click()
       await expect(menuButton).toHaveAttribute('aria-expanded', 'true')
-      
+
       const aboutPattern = getTextPattern('nav.about')
       const aboutLink = page
         .getByRole('dialog', { name: /mobile navigation menu/i })
@@ -82,16 +82,16 @@ test.describe('Navigation', () => {
 
   test('should navigate to contact section', async ({ page }) => {
     await page.waitForLoadState('networkidle')
-    
+
     // Check if menu button exists (mobile) to determine approach
     const menuButton = page.getByRole('button', { name: /toggle menu/i })
     const isMenuButtonVisible = await menuButton.isVisible().catch(() => false)
-    
+
     if (isMenuButtonVisible) {
       // On mobile, open menu first, then click link
       await menuButton.click()
       await expect(menuButton).toHaveAttribute('aria-expanded', 'true')
-      
+
       const contactPattern = getTextPattern('nav.contact')
       const contactLink = page
         .getByRole('dialog', { name: /mobile navigation menu/i })
@@ -117,28 +117,29 @@ test.describe('Navigation', () => {
     await page.waitForLoadState('networkidle')
     // Set mobile viewport
     await page.setViewportSize({ width: 375, height: 667 })
-    
+
     // Wait for menu button to be visible
     const menuButton = page.getByRole('button', { name: /toggle menu/i })
     await expect(menuButton).toBeVisible()
-    
+
     // Click menu button to open
     await menuButton.click()
-    
+
     // Wait for menu to be open and check aria-expanded
     await expect(menuButton).toHaveAttribute('aria-expanded', 'true')
-    
+
     // Wait for mobile menu to be visible
-    const mobileMenu = page.getByRole('dialog', { name: /mobile navigation menu/i })
+    const mobileMenu = page.getByRole('dialog', {
+      name: /mobile navigation menu/i,
+    })
     await expect(mobileMenu).toBeVisible()
-    
+
     // Close menu using the close button instead of menu button (which is now covered)
     const closeButton = page.getByRole('button', { name: /close menu/i })
     await expect(closeButton).toBeVisible()
     await closeButton.click()
-    
+
     // Wait for menu to close
     await expect(menuButton).toHaveAttribute('aria-expanded', 'false')
   })
 })
-
