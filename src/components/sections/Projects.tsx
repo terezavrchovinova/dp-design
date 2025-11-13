@@ -12,6 +12,7 @@ import brejchaImg from '../../assets/project_thumbnails/brejcha.webp'
 import renaissanceImg from '../../assets/project_thumbnails/mona_lisa.webp'
 import deathvalleyImg from '../../assets/project_thumbnails/death_valley.webp'
 import jurassicImg from '../../assets/project_thumbnails/jurassic_adventure.webp'
+import tmobileImg from '../../assets/project_thumbnails/t-mobile.webp'
 
 // Types
 interface Project {
@@ -35,9 +36,9 @@ const PROJECTS: Project[] = [
   },
   {
     id: 2,
-    key: 'various_banners',
-    image: variousBannersImg,
-    link: 'https://www.behance.net/gallery/223131257/Banner-Designs-Event-Exhibition-Series',
+    key: 'tmobile',
+    image: tmobileImg,
+    link: 'https://www.behance.net/gallery/238307417/T-Mobile-Concept-Campaign',
   },
   {
     id: 3,
@@ -53,42 +54,48 @@ const PROJECTS: Project[] = [
   },
   {
     id: 5,
+    key: 'various_banners',
+    image: variousBannersImg,
+    link: 'https://www.behance.net/gallery/223131257/Banner-Designs-Event-Exhibition-Series',
+  },
+  {
+    id: 6,
     key: 'dita',
     image: ditaImg,
     link: 'https://www.behance.net/gallery/205350295/Dita-Von-Teese-visual',
   },
   {
-    id: 6,
+    id: 7,
     key: 'letitroll',
     image: letItRollImg,
     link: 'https://www.behance.net/gallery/196798719/Let-It-Roll-Festival-poster',
   },
   {
-    id: 7,
+    id: 8,
     key: 'newtonia',
     image: newtoniaImg,
     link: 'https://www.behance.net/gallery/201179759/Game-designNewtonia',
   },
   {
-    id: 8,
+    id: 9,
     key: 'brejcha',
     image: brejchaImg,
     link: 'https://www.behance.net/gallery/189009581/Boris-Brejcha-video-spot',
   },
   {
-    id: 9,
+    id: 10,
     key: 'renaissance',
     image: renaissanceImg,
     link: 'https://www.behance.net/gallery/207746525/The-Great-Masters-of-the-Renaissance-video-spot',
   },
   {
-    id: 10,
+    id: 11,
     key: 'deathvalley',
     image: deathvalleyImg,
     link: 'https://www.behance.net/gallery/200322649/Death-Valley-design',
   },
   {
-    id: 11,
+    id: 12,
     key: 'jurassic',
     image: jurassicImg,
     link: 'https://www.behance.net/gallery/188776307/brochure-Jurassic-Adventure',
