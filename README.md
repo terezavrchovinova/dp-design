@@ -56,6 +56,15 @@ npm run dev
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build locally
 - `npm run lint` - Run ESLint
+- `npm run test` - Run unit and integration tests
+- `npm run test:watch` - Run tests in watch mode
+- `npm run test:ui` - Run tests with Vitest UI
+- `npm run test:coverage` - Run tests with coverage report
+- `npm run test:e2e` - Run end-to-end tests
+- `npm run test:e2e:ui` - Run e2e tests with Playwright UI
+- `npm run test:all` - Run all tests (unit + e2e)
+- `npm run test:ci` - Run tests for CI (unit tests only)
+- `npm run test:ci:full` - Run all tests for CI (unit + e2e)
 
 ## 📁 Project Structure
 
@@ -69,10 +78,20 @@ src/
 │   ├── sections/       # Page sections (Home, Projects, About, etc.)
 │   └── ...             # Shared components (Navbar, Footer, etc.)
 ├── locales/            # Translation files (en, cs)
+├── tests/              # Vitest unit/integration tests
+│   ├── components/     # Component tests
+│   ├── setup.ts        # Test setup file
+│   └── utils.tsx       # Test utilities
 ├── utils/              # Utility functions
 ├── App.tsx             # Main app component
 ├── i18n.ts             # i18n configuration
 └── main.tsx            # Entry point
+
+e2e/                    # Playwright e2e tests
+├── home.spec.ts
+├── navigation.spec.ts
+├── projects.spec.ts
+└── i18n.spec.ts
 ```
 
 ## ⚡ Performance Optimizations
@@ -100,9 +119,38 @@ Translation files are located in `src/locales/`. To add a new language, create a
 - **Experience** - Work experience and education
 - **Contact** - Contact information
 
+## 🧪 Testing
+
+The project includes comprehensive testing setup:
+
+### Unit and Integration Tests
+- **Framework**: Vitest with React Testing Library
+- **Location**: `src/tests/**/*.test.tsx`
+- **Run tests**: `npm run test`
+- **Watch mode**: `npm run test:watch`
+- **Coverage**: `npm run test:coverage`
+
+### End-to-End Tests
+- **Framework**: Playwright
+- **Location**: `e2e/*.spec.ts`
+- **Run tests**: `npm run test:e2e`
+- **UI mode**: `npm run test:e2e:ui`
+- **Tests include**: Navigation, home page, projects, language switching
+
+### Test Configuration
+- Tests run automatically before deployment to Vercel
+- GitHub Actions workflow runs all tests on push/PR
+- Unit tests run in Vercel build command
+- E2E tests run in GitHub Actions for faster builds
+
 ## 🚢 Deployment
 
 The project is optimized for deployment on Vercel (or similar platforms). The build process generates optimized static assets ready for production.
+
+**Tests run automatically before deployment:**
+- Unit and integration tests run in Vercel build command
+- E2E tests run in GitHub Actions workflow
+- Deployment fails if any tests fail
 
 Build command:
 ```bash
