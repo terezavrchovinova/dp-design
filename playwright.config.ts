@@ -11,16 +11,33 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
-  /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  /* Parallelize tests for faster execution
+   * - Local: Auto-detect based on CPU cores (default: 50% of cores)
+   * - CI: Use 4 workers by default for faster execution
+   * - Can be overridden with --workers flag or CI_WORKERS env variable
+   * - Use sharding (--shard=1/2) for even better parallelization across CI jobs
+   */
+  workers: process.env.CI
+    ? process.env.CI_WORKERS
+      ? parseInt(process.env.CI_WORKERS, 10)
+      : 4 // Default to 4 workers on CI for faster execution
+    : undefined, // Local: auto-detect based on CPU cores (typically 50% of cores)
+  /* Maximum number of test failures before stopping */
+  maxFailures: process.env.CI ? 10 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: process.env.CI
+    ? [['html'], ['list']] // HTML report + list for CI
+    : 'html', // HTML report for local
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: 'http://localhost:5173',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    /* Screenshot on failure */
+    screenshot: 'only-on-failure',
+    /* Video on failure */
+    video: 'retain-on-failure',
   },
 
   /* Configure projects for major browsers */

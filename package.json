@@ -14,6 +14,8 @@
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
+    "test:e2e:headed": "playwright test --headed",
+    "test:e2e:workers": "playwright test --workers=4",
     "test:all": "npm run test && npm run test:e2e",
     "test:ci": "npm run test",
     "test:ci:full": "npm run test && npm run test:e2e"

@@ -34,10 +34,15 @@ jobs:
         run: npm run test
 
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps
+        # Only install chromium for faster CI runs (install all browsers for full testing)
+        run: npx playwright install --with-deps chromium
 
       - name: Run e2e tests
-        run: npm run test:e2e
+        # Run tests with 4 workers in parallel on chromium only (fastest)
+        # For full browser testing, run: npm run test:e2e (all browsers)
+        run: npm run test:e2e -- --project=chromium
+        env:
+          CI_WORKERS: 4 # Use 4 workers for parallel execution
 
       - name: Build application
         run: npm run build

@@ -10,10 +10,10 @@ describe('AnimatedHeading', () => {
   beforeEach(() => {
     // Mock IntersectionObserver
     global.IntersectionObserver = class IntersectionObserver {
-      observe = vi.fn<[Element], void>()
-      unobserve = vi.fn<[Element], void>()
-      disconnect = vi.fn<[], void>()
-      takeRecords = vi.fn<[], IntersectionObserverEntry[]>(() => [])
+      observe = vi.fn()
+      unobserve = vi.fn()
+      disconnect = vi.fn()
+      takeRecords = vi.fn(() => []) as () => IntersectionObserverEntry[]
       constructor(public callback: IntersectionObserverCallback) {}
     } as unknown as typeof IntersectionObserver
   })
@@ -56,8 +56,8 @@ describe('AnimatedHeading', () => {
     global.IntersectionObserver = class IntersectionObserver {
       observe = observeSpy
       unobserve = unobserveSpy
-      disconnect = vi.fn<[], void>()
-      takeRecords = vi.fn<[], IntersectionObserverEntry[]>(() => [])
+      disconnect = vi.fn()
+      takeRecords = vi.fn(() => []) as () => IntersectionObserverEntry[]
       constructor(public callback: IntersectionObserverCallback) {}
     } as unknown as typeof IntersectionObserver
 
@@ -73,10 +73,10 @@ describe('AnimatedHeading', () => {
   it('handles intersection observer callback when element leaves viewport', async () => {
     let observerCallback: IntersectionObserverCallback | null = null
     global.IntersectionObserver = class IntersectionObserver {
-      observe = vi.fn<[Element], void>()
-      unobserve = vi.fn<[Element], void>()
-      disconnect = vi.fn<[], void>()
-      takeRecords = vi.fn<[], IntersectionObserverEntry[]>(() => [])
+      observe = vi.fn()
+      unobserve = vi.fn()
+      disconnect = vi.fn()
+      takeRecords = vi.fn(() => []) as () => IntersectionObserverEntry[]
       constructor(callback: IntersectionObserverCallback) {
         observerCallback = callback
       }
@@ -87,16 +87,37 @@ describe('AnimatedHeading', () => {
 
     // Simulate element leaving viewport
     if (observerCallback) {
-      observerCallback([
-        {
-          isIntersecting: false,
-          intersectionRatio: 0,
-          boundingClientRect: {} as DOMRectReadOnly,
-          rootBounds: null,
-          target: document.createElement('div'),
-          time: 0,
-        },
-      ] as IntersectionObserverEntry[])
+      const rect: DOMRectReadOnly = {
+        bottom: 0,
+        height: 0,
+        left: 0,
+        right: 0,
+        top: 0,
+        width: 0,
+        x: 0,
+        y: 0,
+        toJSON: vi.fn(),
+      } as DOMRectReadOnly
+
+      const entry: IntersectionObserverEntry = {
+        boundingClientRect: rect,
+        intersectionRatio: 0,
+        intersectionRect: rect,
+        isIntersecting: false,
+        rootBounds: null,
+        target: document.createElement('div'),
+        time: 0,
+      }
+
+      const mockObserver = {
+        observe: vi.fn(),
+        unobserve: vi.fn(),
+        disconnect: vi.fn(),
+        takeRecords: vi.fn(() => []) as () => IntersectionObserverEntry[],
+      } as unknown as IntersectionObserver
+
+      // Type assertion needed because TypeScript can't infer the callback type correctly
+      ;(observerCallback as IntersectionObserverCallback)([entry], mockObserver)
 
       // Fast-forward timers to trigger setTimeout
       vi.advanceTimersByTime(300)

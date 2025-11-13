@@ -113,10 +113,23 @@ describe('Navbar', () => {
   })
 
   it('opens mailto link when email button is clicked', async () => {
-    // Mock window.location
+    // Mock window.location.href
     const originalLocation = window.location
+    let mockHref = ''
     delete (window as unknown as { location?: Location }).location
-    window.location = { href: '' } as unknown as Location
+
+    Object.defineProperty(window, 'location', {
+      value: {
+        get href() {
+          return mockHref
+        },
+        set href(value: string) {
+          mockHref = value
+        },
+      },
+      writable: true,
+      configurable: true,
+    })
 
     const user = userEvent.setup()
     render(<Navbar {...defaultProps} />)
@@ -126,10 +139,14 @@ describe('Navbar', () => {
     await user.click(emailButton)
 
     // Check that mailto link was set
-    expect(window.location.href).toContain('mailto:')
+    expect(mockHref).toContain('mailto:')
 
     // Restore window.location
-    window.location = originalLocation
+    Object.defineProperty(window, 'location', {
+      value: originalLocation,
+      writable: true,
+      configurable: true,
+    })
   })
 
   it('changes nav link color on hover', async () => {
