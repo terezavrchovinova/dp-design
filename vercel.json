@@ -1,13 +1,8 @@
 {
   "buildCommand": "npm run test:ci && npm run build",
   "devCommand": "npm run dev",
-  "installCommand": "npm install",
+  "installCommand": "npm ci --include=dev",
   "framework": "vite",
-  "build": {
-    "env": {
-      "NODE_ENV": "production"
-    }
-  },
   "git": {
     "deploymentEnabled": {
       "main": true
