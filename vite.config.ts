@@ -2,10 +2,11 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { criticalCSS } from './vite-plugin-critical-css'
 import { optimizeHead } from './vite-plugin-optimize-head'
+import { siteUrlPlugin } from './vite-plugin-site-url'
 
 export default defineConfig({
   base: '/',
-  plugins: [react(), criticalCSS(), optimizeHead()],
+  plugins: [react(), criticalCSS(), optimizeHead(), siteUrlPlugin()],
   build: {
     minify: 'terser',
     terserOptions: {

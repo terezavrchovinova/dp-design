@@ -239,6 +239,7 @@ const LanguageSwitcher = ({ currentLang, onChange }: LanguageSwitcherProps) => {
           height={24}
           className="w-5 sm:w-6 h-auto transition duration-200"
           loading="lazy"
+          decoding="async"
         />
       </button>
 
