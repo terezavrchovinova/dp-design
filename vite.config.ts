@@ -4,6 +4,7 @@ import { defineConfig } from 'vite'
 import removeConsole from 'vite-plugin-remove-console'
 import { criticalCSS } from './vite-plugin-critical-css'
 import { optimizeHead } from './vite-plugin-optimize-head'
+import { siteUrlPlugin } from './vite-plugin-site-url'
 
 export default defineConfig({
   base: '/',
@@ -12,6 +13,7 @@ export default defineConfig({
     tailwindcss(),
     criticalCSS(),
     optimizeHead(),
+    siteUrlPlugin(),
     removeConsole({ includes: ['log', 'info', 'warn', 'error', 'debug'] }),
   ],
   build: {

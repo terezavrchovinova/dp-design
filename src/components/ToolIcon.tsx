@@ -37,6 +37,7 @@ export const ToolIcon = ({ name, src }: ToolIconProps) => (
       className="w-10 h-10 object-contain"
       draggable={false}
       loading="lazy"
+      decoding="async"
     />
   </div>
 )

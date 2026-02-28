@@ -171,6 +171,8 @@ npm run build
 
 The `dist/` folder contains the production-ready files.
 
+**SEO & deployment:** Set `VITE_SITE_URL` (e.g. in Vercel env vars) to your production URL to update meta tags, sitemap, and robots.txt. Add `public/og-image.png` (1200×630) for social previews.
+
 ## 📄 License
 
 This project is private and proprietary.
