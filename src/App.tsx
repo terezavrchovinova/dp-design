@@ -1,4 +1,4 @@
-import { useState, lazy, Suspense } from 'react'
+import { useState, lazy, Suspense, useEffect } from 'react'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 
@@ -11,6 +11,27 @@ import { Navbar } from './components/Navbar'
 import { Footer } from './components/Footer'
 import { MobileMenu } from './components/MobileMenu'
 import { Home } from './components/sections/Home'
+
+/** Renders analytics after idle to avoid blocking initial paint */
+function DeferredAnalytics() {
+  const [ready, setReady] = useState(false)
+  useEffect(() => {
+    const cb = () => setReady(true)
+    if (typeof requestIdleCallback !== 'undefined') {
+      const id = requestIdleCallback(cb, { timeout: 2000 })
+      return () => cancelIdleCallback(id)
+    }
+    const id = window.setTimeout(cb, 1000)
+    return () => window.clearTimeout(id)
+  }, [])
+  if (!ready) return null
+  return (
+    <>
+      <SpeedInsights />
+      <Analytics />
+    </>
+  )
+}
 
 // Lazy load non-critical sections for code splitting
 const Projects = lazy(() =>
@@ -39,9 +60,7 @@ function App() {
 
   return (
     <>
-      {/* Performance and analytics monitoring */}
-      <SpeedInsights />
-      <Analytics />
+      <DeferredAnalytics />
 
       {/* Navigation */}
       <Navbar menuOpen={isMenuOpen} setMenuOpen={setIsMenuOpen} />
