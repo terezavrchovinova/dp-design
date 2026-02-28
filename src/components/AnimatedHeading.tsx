@@ -1,11 +1,5 @@
 import { motion, type TargetAndTransition } from 'motion/react'
-import {
-  useState,
-  useEffect,
-  useRef,
-  type Dispatch,
-  type SetStateAction,
-} from 'react'
+import { type Dispatch, type SetStateAction, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 // Types
@@ -57,7 +51,7 @@ export const getCurlingSlide = (): ScatterState => {
 // Export for testing
 export const handleHover = (
   index: number,
-  setScattered: Dispatch<SetStateAction<ScatteredState>>,
+  setScattered: Dispatch<SetStateAction<ScatteredState>>
 ) => {
   setScattered((prev) => ({
     ...prev,
@@ -89,7 +83,7 @@ export default function AnimatedHeading() {
           }, ANIMATION_RESET_DELAY)
         }
       },
-      { threshold: INTERSECTION_THRESHOLD },
+      { threshold: INTERSECTION_THRESHOLD }
     )
 
     const current = headingRef.current
@@ -128,7 +122,7 @@ export default function AnimatedHeading() {
 
             return (
               <motion.span
-                key={index}
+                key={`${index}-${char}`}
                 className="inline-block"
                 animate={animationState}
                 onHoverStart={() => handleHover(index, setScattered)}

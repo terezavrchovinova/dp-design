@@ -1,20 +1,21 @@
-import { defineConfig } from 'vite'
+import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite'
+import removeConsole from 'vite-plugin-remove-console'
 import { criticalCSS } from './vite-plugin-critical-css'
 import { optimizeHead } from './vite-plugin-optimize-head'
 
 export default defineConfig({
   base: '/',
-  plugins: [react(), criticalCSS(), optimizeHead()],
+  plugins: [
+    react(),
+    tailwindcss(),
+    criticalCSS(),
+    optimizeHead(),
+    removeConsole({ includes: ['log', 'info', 'warn', 'error', 'debug'] }),
+  ],
   build: {
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true, // Remove console statements in production
-        drop_debugger: true, // Remove debugger statements
-        pure_funcs: ['console.log', 'console.info'], // Remove specific console methods
-      },
-    },
+    minify: 'esbuild', // 10x faster than terser; console removal handled by plugin above
     rollupOptions: {
       output: {
         // Manual code splitting for better caching
@@ -37,10 +38,7 @@ export default defineConfig({
             return 'i18n-vendor'
           }
           // Analytics
-          if (
-            id.includes('@vercel/analytics') ||
-            id.includes('@vercel/speed-insights')
-          ) {
+          if (id.includes('@vercel/analytics') || id.includes('@vercel/speed-insights')) {
             return 'analytics-vendor'
           }
           // Default: let Vite handle other chunks

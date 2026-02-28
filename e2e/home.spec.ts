@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { expect, test } from '@playwright/test'
 import { getTextPattern } from './utils/translations'
 
 test.describe('Home Page', () => {
@@ -44,18 +44,12 @@ test.describe('Home Page', () => {
 
       // Check that navbar contains links to home, projects, and contact
       await expect(navbarLinks.filter({ hasText: homePattern })).toBeVisible()
-      await expect(
-        navbarLinks.filter({ hasText: projectsPattern }).first(),
-      ).toBeVisible()
-      await expect(
-        navbarLinks.filter({ hasText: contactPattern }),
-      ).toBeVisible()
+      await expect(navbarLinks.filter({ hasText: projectsPattern }).first()).toBeVisible()
+      await expect(navbarLinks.filter({ hasText: contactPattern })).toBeVisible()
     }
   })
 
-  test('should navigate to projects section when clicking "View Projects"', async ({
-    page,
-  }) => {
+  test('should navigate to projects section when clicking "View Projects"', async ({ page }) => {
     await page.goto('/')
     await page.waitForLoadState('networkidle')
 
@@ -71,9 +65,7 @@ test.describe('Home Page', () => {
     await expect(projectsSection).toBeInViewport()
   })
 
-  test('should navigate to contact section when clicking "Contact Me"', async ({
-    page,
-  }) => {
+  test('should navigate to contact section when clicking "Contact Me"', async ({ page }) => {
     await page.goto('/')
     await page.waitForLoadState('networkidle')
 

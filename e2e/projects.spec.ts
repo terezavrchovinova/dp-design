@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { expect, test } from '@playwright/test'
 import { getTextPattern } from './utils/translations'
 
 test.describe('Projects Section', () => {
@@ -49,9 +49,7 @@ test.describe('Projects Section', () => {
     // Scope to projects section to avoid matching navbar links or CTA buttons
     const projectsSection = page.locator('#projects')
     const projectsTitlePattern = getTextPattern('projects.title')
-    await expect(
-      projectsSection.getByRole('heading', { name: projectsTitlePattern }),
-    ).toBeVisible()
+    await expect(projectsSection.getByRole('heading', { name: projectsTitlePattern })).toBeVisible()
   })
 
   test('should display project images', async ({ page }) => {
@@ -70,10 +68,7 @@ test.describe('Projects Section', () => {
     const projectLink = page.locator('#projects a[href*="behance"]').first()
 
     // Check if it opens in a new tab
-    const [newPage] = await Promise.all([
-      context.waitForEvent('page'),
-      projectLink.click(),
-    ])
+    const [newPage] = await Promise.all([context.waitForEvent('page'), projectLink.click()])
 
     // Wait for the new page to load
     await newPage.waitForLoadState()
@@ -84,9 +79,7 @@ test.describe('Projects Section', () => {
     await newPage.close()
   })
 
-  test('should have proper accessibility attributes on project links', async ({
-    page,
-  }) => {
+  test('should have proper accessibility attributes on project links', async ({ page }) => {
     await page.waitForSelector('#projects a[href*="behance"]', {
       state: 'visible',
     })

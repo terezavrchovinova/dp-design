@@ -1,7 +1,7 @@
-import { describe, it, expect, vi } from 'vitest'
-import { render, screen, getTextInAnyLanguage } from '../utils'
 import userEvent from '@testing-library/user-event'
+import { describe, expect, it, vi } from 'vitest'
 import { Navbar } from '../../components/Navbar'
+import { getTextInAnyLanguage, render, screen } from '../utils'
 
 describe('Navbar', () => {
   const defaultProps = {
@@ -38,16 +38,10 @@ describe('Navbar', () => {
     const homeLinks = screen.getAllByRole('link', { name: homePattern })
     expect(homeLinks.length).toBeGreaterThan(0)
 
-    expect(
-      screen.getByRole('link', { name: projectsPattern }),
-    ).toBeInTheDocument()
-    expect(
-      screen.getByRole('link', { name: whatIDoPattern }),
-    ).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: projectsPattern })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: whatIDoPattern })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: aboutPattern })).toBeInTheDocument()
-    expect(
-      screen.getByRole('link', { name: contactPattern }),
-    ).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: contactPattern })).toBeInTheDocument()
   })
 
   it('renders mobile menu toggle button', () => {

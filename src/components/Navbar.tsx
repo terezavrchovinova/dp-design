@@ -1,12 +1,11 @@
-import { useState, useRef, useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { LazyLottie } from './LazyLottie'
-
 // Assets
 import logo from '../assets/icons/dp_icon_white.svg'
-import greenDot from '../assets/icons/green_dot.json'
-import globeLight from '../assets/icons/globe_light.svg'
 import globeDark from '../assets/icons/globe_dark.svg'
+import globeLight from '../assets/icons/globe_light.svg'
+import greenDot from '../assets/icons/green_dot.json'
+import { LazyLottie } from './LazyLottie'
 
 // Constants
 export interface NavbarProps {
@@ -51,7 +50,6 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
         backgroundColor: 'rgba(10,10,10,0.75)',
         borderColor: 'var(--color-border)',
       }}
-      role="navigation"
       aria-label="Main navigation"
     >
       <div className="max-w-6xl mx-auto">
@@ -80,10 +78,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
 
           {/* Language Switcher and Email */}
           <div className="flex items-center justify-end space-x-4">
-            <LanguageSwitcher
-              currentLang={i18n.language}
-              onChange={i18n.changeLanguage}
-            />
+            <LanguageSwitcher currentLang={i18n.language} onChange={i18n.changeLanguage} />
             <EmailButton email={email} />
           </div>
         </div>
@@ -104,17 +99,15 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
 
           {/* Menu Toggle Button */}
           <button
+            type="button"
             aria-label="Toggle Menu"
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             onClick={() => setMenuOpen((prev) => !prev)}
             className="flex flex-col justify-between w-7 h-5 z-50 cursor-pointer"
           >
-            {Array.from({ length: 3 }, (_, i) => (
-              <span
-                key={i}
-                className="block h-0.5 w-full rounded-sm bg-[var(--color-white)]"
-              />
+            {(['top', 'middle', 'bottom'] as const).map((id) => (
+              <span key={id} className="block h-0.5 w-full rounded-sm bg-[var(--color-white)]" />
             ))}
           </button>
         </div>
@@ -166,6 +159,7 @@ interface EmailButtonProps {
 
 const EmailButton = ({ email }: EmailButtonProps) => (
   <button
+    type="button"
     onClick={() => {
       window.location.href = `mailto:${email}`
     }}
@@ -173,11 +167,7 @@ const EmailButton = ({ email }: EmailButtonProps) => (
     aria-label={`Send email to ${email}`}
   >
     <span>{email}</span>
-    <LazyLottie
-      animationData={greenDot}
-      loop
-      style={{ width: 20, height: 20 }}
-    />
+    <LazyLottie animationData={greenDot} loop style={{ width: 20, height: 20 }} />
   </button>
 )
 
@@ -202,10 +192,7 @@ const LanguageSwitcher = ({ currentLang, onChange }: LanguageSwitcherProps) => {
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsOpen(false)
         setIsHovered(false)
       }
@@ -219,6 +206,8 @@ const LanguageSwitcher = ({ currentLang, onChange }: LanguageSwitcherProps) => {
 
   return (
     <div
+      role="group"
+      aria-label="Language switcher"
       className="relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

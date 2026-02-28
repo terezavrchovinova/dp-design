@@ -1,32 +1,30 @@
 import { useTranslation } from 'react-i18next'
-
+import brejchaImgDesktop from '../../assets/project_thumbnails/desktop/brejcha.webp'
+import deathvalleyImgDesktop from '../../assets/project_thumbnails/desktop/death_valley.webp'
+import ditaImgDesktop from '../../assets/project_thumbnails/desktop/dita.webp'
+import jurassicImgDesktop from '../../assets/project_thumbnails/desktop/jurassic_adventure.webp'
 // Project assets - Desktop
 import kynezImgDesktop from '../../assets/project_thumbnails/desktop/kynez.webp'
-import variousBannersImgDesktop from '../../assets/project_thumbnails/desktop/various_banners.webp'
-import saleskitImgDesktop from '../../assets/project_thumbnails/desktop/saleskit.webp'
-import ditaImgDesktop from '../../assets/project_thumbnails/desktop/dita.webp'
-import maastrichtImgDesktop from '../../assets/project_thumbnails/desktop/maastricht.webp'
 import letItRollImgDesktop from '../../assets/project_thumbnails/desktop/let_it_roll.webp'
-import newtoniaImgDesktop from '../../assets/project_thumbnails/desktop/newtonia.webp'
-import brejchaImgDesktop from '../../assets/project_thumbnails/desktop/brejcha.webp'
+import maastrichtImgDesktop from '../../assets/project_thumbnails/desktop/maastricht.webp'
 import renaissanceImgDesktop from '../../assets/project_thumbnails/desktop/mona_lisa.webp'
-import deathvalleyImgDesktop from '../../assets/project_thumbnails/desktop/death_valley.webp'
-import jurassicImgDesktop from '../../assets/project_thumbnails/desktop/jurassic_adventure.webp'
+import newtoniaImgDesktop from '../../assets/project_thumbnails/desktop/newtonia.webp'
+import saleskitImgDesktop from '../../assets/project_thumbnails/desktop/saleskit.webp'
 import tmobileImgDesktop from '../../assets/project_thumbnails/desktop/t-mobile.webp'
-
+import variousBannersImgDesktop from '../../assets/project_thumbnails/desktop/various_banners.webp'
+import brejchaImgMobile from '../../assets/project_thumbnails/mobile/brejcha.webp'
+import deathvalleyImgMobile from '../../assets/project_thumbnails/mobile/death_valley.webp'
+import ditaImgMobile from '../../assets/project_thumbnails/mobile/dita.webp'
+import jurassicImgMobile from '../../assets/project_thumbnails/mobile/jurassic_adventure.webp'
 // Project assets - Mobile
 import kynezImgMobile from '../../assets/project_thumbnails/mobile/kynez.webp'
-import variousBannersImgMobile from '../../assets/project_thumbnails/mobile/various_banners.webp'
-import saleskitImgMobile from '../../assets/project_thumbnails/mobile/saleskit.webp'
-import ditaImgMobile from '../../assets/project_thumbnails/mobile/dita.webp'
-import maastrichtImgMobile from '../../assets/project_thumbnails/mobile/maastricht.webp'
 import letItRollImgMobile from '../../assets/project_thumbnails/mobile/let_it_roll.webp'
-import newtoniaImgMobile from '../../assets/project_thumbnails/mobile/newtonia.webp'
-import brejchaImgMobile from '../../assets/project_thumbnails/mobile/brejcha.webp'
+import maastrichtImgMobile from '../../assets/project_thumbnails/mobile/maastricht.webp'
 import renaissanceImgMobile from '../../assets/project_thumbnails/mobile/mona_lisa.webp'
-import deathvalleyImgMobile from '../../assets/project_thumbnails/mobile/death_valley.webp'
-import jurassicImgMobile from '../../assets/project_thumbnails/mobile/jurassic_adventure.webp'
+import newtoniaImgMobile from '../../assets/project_thumbnails/mobile/newtonia.webp'
+import saleskitImgMobile from '../../assets/project_thumbnails/mobile/saleskit.webp'
 import tmobileImgMobile from '../../assets/project_thumbnails/mobile/t-mobile.webp'
+import variousBannersImgMobile from '../../assets/project_thumbnails/mobile/various_banners.webp'
 
 // Types
 interface Project {
@@ -141,11 +139,7 @@ export const Projects = () => {
   const { t } = useTranslation()
 
   return (
-    <section
-      id="projects"
-      className="section bg-[var(--color-dark)]"
-      aria-label="Projects section"
-    >
+    <section id="projects" className="section bg-[var(--color-dark)]" aria-label="Projects section">
       <div className="w-full max-w-[1600px] px-10 mx-auto">
         {/* Section Title */}
         <h2>{t('projects.title')}</h2>

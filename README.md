@@ -21,14 +21,13 @@ A modern, performant portfolio website showcasing the creative work of Daniela P
   - Motion (Framer Motion)
 - **Internationalization**: i18next & react-i18next
 - **Analytics**: Vercel Analytics & Speed Insights
-- **Code Quality**: ESLint, Prettier, TypeScript
+- **Code Quality**: Biome (lint + format), TypeScript
 
 ## 📦 Getting Started
 
 ### Prerequisites
 
-- Node.js (v18 or higher recommended)
-- npm or yarn
+- Node.js v18+
 
 ### Installation
 
@@ -55,19 +54,23 @@ npm run dev
 
 ## 🛠️ Available Scripts
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build locally
-- `npm run lint` - Run ESLint
-- `npm run test` - Run unit and integration tests
-- `npm run test:watch` - Run tests in watch mode
-- `npm run test:ui` - Run tests with Vitest UI
-- `npm run test:coverage` - Run tests with coverage report
-- `npm run test:e2e` - Run end-to-end tests
-- `npm run test:e2e:ui` - Run e2e tests with Playwright UI
-- `npm run test:all` - Run all tests (unit + e2e)
-- `npm run test:ci` - Run tests for CI (unit tests only)
-- `npm run test:ci:full` - Run all tests for CI (unit + e2e)
+Run with `npm run <script>`:
+
+- `dev` - Start development server
+- `build` - Build for production
+- `preview` - Preview production build locally
+- `lint` - Run Biome (lint + format check)
+- `lint:fix` - Fix lint issues and format with Biome
+- `format` - Format code with Biome
+- `test` - Run unit and integration tests
+- `test:watch` - Run tests in watch mode
+- `test:ui` - Run tests with Vitest UI
+- `test:coverage` - Run tests with coverage report
+- `test:e2e` - Run end-to-end tests
+- `test:e2e:ui` - Run e2e tests with Playwright UI
+- `test:all` - Run all tests (unit + e2e)
+- `test:ci` - Run tests for CI (unit tests only)
+- `test:ci:full` - Run all tests for CI (unit + e2e)
 
 ## 📁 Project Structure
 
@@ -102,7 +105,7 @@ e2e/                    # Playwright e2e tests
 - **Code Splitting**: Manual chunk configuration for optimal caching
 - **Lazy Loading**: Non-critical sections loaded on demand
 - **Critical CSS**: Inline critical CSS for faster initial render
-- **Asset Optimization**: WebP images, optimized builds with Terser
+- **Asset Optimization**: WebP images, optimized builds with esbuild
 - **Vendor Chunks**: Separate chunks for React, Lottie, Motion, and i18n
 - **Console Removal**: Production builds strip console statements
 

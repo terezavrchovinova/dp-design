@@ -1,6 +1,6 @@
+import { existsSync, readFileSync, writeFileSync } from 'node:fs'
+import { join } from 'node:path'
 import type { Plugin } from 'vite'
-import { readFileSync, writeFileSync, existsSync } from 'fs'
-import { join } from 'path'
 
 /**
  * Vite plugin to optimize HTML head with preconnect and preload directives
@@ -26,8 +26,7 @@ export function optimizeHead(): Plugin {
 
         // Check if preconnects already exist
         const hasVercelPreconnect =
-          html.includes('vercel-insights.com') ||
-          html.includes('vercel-analytics.com')
+          html.includes('vercel-insights.com') || html.includes('vercel-analytics.com')
 
         // Insert preconnects after meta tags but before existing preloads
         if (!hasVercelPreconnect) {
@@ -61,7 +60,7 @@ export function optimizeHead(): Plugin {
                 '</head>',
                 '    <!-- Preconnect to external services -->\n    ' +
                   preconnects.join('\n    ') +
-                  '\n  </head>',
+                  '\n  </head>'
               )
             }
           }
@@ -69,10 +68,7 @@ export function optimizeHead(): Plugin {
 
         // Remove modulepreload for lottie-vendor (not on critical path, loads lazily)
         // This reduces critical path chain length
-        html = html.replace(
-          /<link rel="modulepreload"[^>]*lottie-vendor[^>]*>\s*/gi,
-          '',
-        )
+        html = html.replace(/<link rel="modulepreload"[^>]*lottie-vendor[^>]*>\s*/gi, '')
 
         // Reorder modulepreload links: react-vendor should be first (most critical)
         // This ensures React loads before other dependencies
@@ -81,12 +77,8 @@ export function optimizeHead(): Plugin {
 
         if (modulepreloads.length > 0) {
           // Separate react-vendor from others
-          const reactVendor = modulepreloads.find((link) =>
-            link.includes('react-vendor'),
-          )
-          const otherPreloads = modulepreloads.filter(
-            (link) => !link.includes('react-vendor'),
-          )
+          const reactVendor = modulepreloads.find((link) => link.includes('react-vendor'))
+          const otherPreloads = modulepreloads.filter((link) => !link.includes('react-vendor'))
 
           // Remove all modulepreloads
           html = html.replace(modulepreloadRegex, '')
@@ -103,17 +95,13 @@ export function optimizeHead(): Plugin {
             if (reactVendor) orderedPreloads.push(reactVendor)
             orderedPreloads.push(...otherPreloads)
 
-            html =
-              before +
-              orderedPreloads.map((link) => '    ' + link).join('\n') +
-              '\n    ' +
-              after
+            html = `${before + orderedPreloads.map((link) => `    ${link}`).join('\n')}\n    ${after}`
           }
         }
 
         writeFileSync(htmlPath, html, 'utf-8')
         console.log(
-          `✓ Optimized critical path: removed lottie-vendor preload, reordered modulepreloads`,
+          `✓ Optimized critical path: removed lottie-vendor preload, reordered modulepreloads`
         )
       } catch (error) {
         console.warn('Failed to optimize HTML head:', error)

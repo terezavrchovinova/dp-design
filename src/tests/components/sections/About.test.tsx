@@ -1,7 +1,7 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
-import { render, screen, getTextInAnyLanguage } from '../../utils'
+import type * as motionReact from 'motion/react'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { About } from '../../../components/sections/About'
-import * as motionReact from 'motion/react'
+import { getTextInAnyLanguage, render, screen } from '../../utils'
 
 // Mock motion/react to control useInView return value
 vi.mock('motion/react', async () => {
@@ -79,7 +79,7 @@ describe('About', () => {
         (img) =>
           img.getAttribute('alt')?.includes('Adobe') ||
           img.getAttribute('alt')?.includes('Cinema') ||
-          img.getAttribute('alt')?.includes('Midjourney'),
+          img.getAttribute('alt')?.includes('Midjourney')
       )
     // At least some tools should be rendered
     expect(toolImages.length).toBeGreaterThanOrEqual(0)

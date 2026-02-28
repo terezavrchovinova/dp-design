@@ -1,6 +1,6 @@
-import { describe, it, expect } from 'vitest'
-import { render, screen } from '../utils'
+import { describe, expect, it } from 'vitest'
 import { ToolIcon } from '../../components/ToolIcon'
+import { render, screen } from '../utils'
 
 describe('ToolIcon', () => {
   const defaultProps = {
@@ -19,12 +19,6 @@ describe('ToolIcon', () => {
     const icon = screen.getByAltText(/adobe photoshop/i)
     expect(icon).toBeInTheDocument()
     expect(icon).toHaveAttribute('alt', 'Adobe Photoshop')
-  })
-
-  it('has accessibility label', () => {
-    render(<ToolIcon {...defaultProps} />)
-    const container = screen.getByLabelText(/adobe photoshop/i)
-    expect(container).toBeInTheDocument()
   })
 
   it('has title attribute for tooltip', () => {

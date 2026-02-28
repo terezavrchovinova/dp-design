@@ -1,7 +1,7 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
-import { render, screen, getTextInAnyLanguage } from '../utils'
 import userEvent from '@testing-library/user-event'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { MobileMenu } from '../../components/MobileMenu'
+import { getTextInAnyLanguage, render, screen } from '../utils'
 
 describe('MobileMenu', () => {
   const defaultProps = {
@@ -68,16 +68,10 @@ describe('MobileMenu', () => {
     const whatIDoPattern = getTextInAnyLanguage('nav.whatIDo')
 
     expect(screen.getByRole('link', { name: homePattern })).toBeInTheDocument()
-    expect(
-      screen.getByRole('link', { name: projectsPattern }),
-    ).toBeInTheDocument()
-    expect(
-      screen.getByRole('link', { name: contactPattern }),
-    ).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: projectsPattern })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: contactPattern })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: aboutPattern })).toBeInTheDocument()
-    expect(
-      screen.getByRole('link', { name: whatIDoPattern }),
-    ).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: whatIDoPattern })).toBeInTheDocument()
   })
 
   it('closes menu when navigation link is clicked', async () => {
@@ -122,9 +116,7 @@ describe('MobileMenu', () => {
   })
 
   it('restores body scroll when menu is closed', () => {
-    const { rerender } = render(
-      <MobileMenu menuOpen={true} setMenuOpen={vi.fn()} />,
-    )
+    const { rerender } = render(<MobileMenu menuOpen={true} setMenuOpen={vi.fn()} />)
     expect(document.body.style.overflow).toBe('hidden')
     rerender(<MobileMenu menuOpen={false} setMenuOpen={vi.fn()} />)
     // After menu closes, overflow should be restored
@@ -134,9 +126,7 @@ describe('MobileMenu', () => {
   it('focuses close button when menu opens', async () => {
     vi.useFakeTimers()
     const setMenuOpen = vi.fn()
-    const { rerender } = render(
-      <MobileMenu menuOpen={false} setMenuOpen={setMenuOpen} />,
-    )
+    const { rerender } = render(<MobileMenu menuOpen={false} setMenuOpen={setMenuOpen} />)
 
     // Open menu
     rerender(<MobileMenu menuOpen={true} setMenuOpen={setMenuOpen} />)

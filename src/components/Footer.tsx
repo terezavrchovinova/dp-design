@@ -19,7 +19,6 @@ export const Footer = () => {
         backgroundColor: 'rgba(10,10,10,0.75)',
         borderColor: 'var(--color-border)',
       }}
-      role="contentinfo"
     >
       <div className="max-w-6xl mx-auto px-6 py-4 text-xs text-[var(--color-gray)]">
         <div className="flex flex-wrap justify-center space-x-8 space-y-2 md:space-y-0">

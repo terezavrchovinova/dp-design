@@ -28,7 +28,6 @@ export const ToolIcon = ({ name, src }: ToolIconProps) => (
       cursor-pointer
     "
     title={name}
-    aria-label={name}
   >
     <img
       src={src}

@@ -1,11 +1,11 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
-import { render, screen, getTextInAnyLanguage } from '../../utils'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { WhatIDo } from '../../../components/sections/WhatIDo'
+import { getTextInAnyLanguage, render, screen } from '../../utils'
 
 // Helper function to create a complete IntersectionObserverEntry mock
 function createIntersectionEntry(
   isIntersecting: boolean,
-  target: Element,
+  target: Element
 ): IntersectionObserverEntry {
   const rect: DOMRectReadOnly = {
     bottom: 0,
@@ -64,9 +64,7 @@ describe('WhatIDo', () => {
     // Check for all service titles using translation keys
     const designPattern = getTextInAnyLanguage('whatIDo.services.design.title')
     const videoPattern = getTextInAnyLanguage('whatIDo.services.video.title')
-    const digitalPattern = getTextInAnyLanguage(
-      'whatIDo.services.digital.title',
-    )
+    const digitalPattern = getTextInAnyLanguage('whatIDo.services.digital.title')
     const photoPattern = getTextInAnyLanguage('whatIDo.services.photo.title')
 
     // Use getAllByText since some services might appear multiple times
@@ -79,12 +77,8 @@ describe('WhatIDo', () => {
   it('displays service descriptions', () => {
     render(<WhatIDo />)
     // Check for service descriptions using translation keys
-    const designDescPattern = getTextInAnyLanguage(
-      'whatIDo.services.design.description',
-    )
-    const videoDescPattern = getTextInAnyLanguage(
-      'whatIDo.services.video.description',
-    )
+    const designDescPattern = getTextInAnyLanguage('whatIDo.services.design.description')
+    const videoDescPattern = getTextInAnyLanguage('whatIDo.services.video.description')
 
     expect(screen.getByText(designDescPattern)).toBeInTheDocument()
     expect(screen.getByText(videoDescPattern)).toBeInTheDocument()
@@ -165,10 +159,7 @@ describe('WhatIDo', () => {
           // This ensures the false branch of the if statement is executed
           const entry = createIntersectionEntry(false, element)
           // Type assertion needed because TypeScript can't infer the callback type correctly
-          ;(observerCallback as IntersectionObserverCallback)(
-            [entry],
-            mockObserver,
-          )
+          ;(observerCallback as IntersectionObserverCallback)([entry], mockObserver)
         }
       })
       unobserve = vi.fn()
