@@ -1,6 +1,6 @@
-import { describe, it, expect } from 'vitest'
-import { render, screen } from '../utils'
+import { describe, expect, it } from 'vitest'
 import { JobCard } from '../../components/JobCard'
+import { render, screen } from '../utils'
 
 describe('JobCard', () => {
   const defaultProps = {
@@ -39,11 +39,7 @@ describe('JobCard', () => {
 
   it('handles single-part title', () => {
     render(
-      <JobCard
-        title="Graphic Designer"
-        date="Jan 2020 – Present"
-        description="Description text."
-      />,
+      <JobCard title="Graphic Designer" date="Jan 2020 – Present" description="Description text." />
     )
     expect(screen.getByText(/graphic designer/i)).toBeInTheDocument()
   })

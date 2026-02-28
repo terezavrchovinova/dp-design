@@ -77,11 +77,7 @@ export const Button = ({
 
   // Render as anchor element
   return (
-    <a
-      href={href}
-      className={`group ${baseStyles} ${variantStyles[variant]}`}
-      style={primaryStyle}
-    >
+    <a href={href} className={`group ${baseStyles} ${variantStyles[variant]}`} style={primaryStyle}>
       <span className="relative z-10">{children}</span>
     </a>
   )

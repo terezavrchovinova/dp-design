@@ -55,21 +55,15 @@ export const JobCard = ({ title, date, description }: JobCardProps) => {
         </p>
 
         {/* Date */}
-        <span
-          className="text-sm text-muted -mt-4"
-          style={{ color: 'var(--color-gray)' }}
-        >
+        <span className="text-sm text-muted -mt-4" style={{ color: 'var(--color-gray)' }}>
           {date}
         </span>
       </div>
 
       {/* Description as bullet points */}
       <ul className="space-y-4 text-base leading-relaxed pr-8">
-        {bulletPoints.map((point, index) => (
-          <li
-            key={index}
-            className="section-description flex items-start gap-3"
-          >
+        {bulletPoints.map((point) => (
+          <li key={point} className="section-description flex items-start gap-3">
             {/* Bullet icon */}
             <span className="relative top-[6px] text-accent inline-flex items-center justify-center">
               <svg

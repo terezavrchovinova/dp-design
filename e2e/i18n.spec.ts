@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { expect, test } from '@playwright/test'
 import { getTextPattern, getTranslation } from './utils/translations'
 
 test.describe('Internationalization', () => {
@@ -13,9 +13,7 @@ test.describe('Internationalization', () => {
     await expect(page.getByText(titlePattern)).toBeVisible()
   })
 
-  test('should switch language when language button is clicked', async ({
-    page,
-  }) => {
+  test('should switch language when language button is clicked', async ({ page }) => {
     await page.waitForLoadState('networkidle')
 
     // Check if menu button exists (mobile) to determine approach

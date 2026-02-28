@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { expect, test } from '@playwright/test'
 import { getTextPattern } from './utils/translations'
 
 test.describe('Navigation', () => {

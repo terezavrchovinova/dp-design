@@ -1,6 +1,6 @@
+import { existsSync, readFileSync, writeFileSync } from 'node:fs'
+import { join } from 'node:path'
 import type { Plugin } from 'vite'
-import { readFileSync, writeFileSync, existsSync } from 'fs'
-import { join } from 'path'
 
 /**
  * Vite plugin to inline critical CSS and load the rest asynchronously
@@ -14,7 +14,7 @@ export function criticalCSS(): Plugin {
     generateBundle(_options, bundle) {
       // Find the CSS file in the bundle
       const cssAsset = Object.values(bundle).find(
-        (asset) => asset.type === 'asset' && asset.fileName.endsWith('.css'),
+        (asset) => asset.type === 'asset' && asset.fileName.endsWith('.css')
       )
 
       if (cssAsset && 'fileName' in cssAsset) {
@@ -48,18 +48,13 @@ export function criticalCSS(): Plugin {
         // Find and replace the blocking stylesheet link
         const stylesheetRegex = new RegExp(
           `<link[^>]*href="/${cssFileName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"[^>]*>`,
-          'i',
+          'i'
         )
 
         if (stylesheetRegex.test(html)) {
-          html = html.replace(
-            stylesheetRegex,
-            criticalStyleTag + '\n    ' + asyncCSSLink,
-          )
+          html = html.replace(stylesheetRegex, `${criticalStyleTag}\n    ${asyncCSSLink}`)
           writeFileSync(htmlPath, html, 'utf-8')
-          console.log(
-            `✓ Inlined critical CSS and made main CSS load asynchronously`,
-          )
+          console.log(`✓ Inlined critical CSS and made main CSS load asynchronously`)
         }
       } catch (error) {
         console.warn('Failed to inline critical CSS:', error)
@@ -101,16 +96,7 @@ function extractCriticalCSS(fullCSS: string): string {
   const first10KB = fullCSS.substring(0, 10000)
 
   // Combine critical parts
-  let critical =
-    variables +
-    '\n' +
-    fontFace +
-    '\n' +
-    htmlBody +
-    '\n' +
-    headings +
-    '\n' +
-    section
+  let critical = `${variables}\n${fontFace}\n${htmlBody}\n${headings}\n${section}`
 
   // If critical CSS is too small, use first 10KB as fallback
   if (critical.length < 5000) {

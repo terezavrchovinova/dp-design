@@ -81,9 +81,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
     <div
       id="mobile-menu"
       className={`fixed inset-0 z-40 flex flex-col items-center justify-center bg-[var(--color-dark)] backdrop-blur-xl transition-all duration-500 ease-in-out ${
-        menuOpen
-          ? 'opacity-100 pointer-events-auto'
-          : 'opacity-0 pointer-events-none'
+        menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
       }`}
       role="dialog"
       aria-modal="true"
@@ -103,11 +101,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
       </button>
 
       {/* Menu Items */}
-      <nav
-        className="flex flex-col items-center space-y-6 mt-8"
-        role="navigation"
-        aria-label="Mobile menu"
-      >
+      <nav className="flex flex-col items-center space-y-6 mt-8" aria-label="Mobile menu">
         {MENU_ITEMS.map((item, index) => (
           <a
             key={item.key}
@@ -127,17 +121,11 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
       </nav>
 
       {/* Divider */}
-      <div
-        className="w-16 h-px bg-[var(--color-border)] my-8"
-        aria-hidden="true"
-      />
+      <div className="w-16 h-px bg-[var(--color-border)] my-8" aria-hidden="true" />
 
       {/* Language Switcher */}
-      <div
-        className="flex space-x-6"
-        role="group"
-        aria-label="Language selection"
-      >
+      <fieldset className="flex space-x-6 border-0 p-0 m-0">
+        <legend className="sr-only">Language selection</legend>
         {SUPPORTED_LANGUAGES.map((lang) => {
           const isActive = i18n.language === lang
 
@@ -159,7 +147,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
             </button>
           )
         })}
-      </div>
+      </fieldset>
     </div>
   )
 }

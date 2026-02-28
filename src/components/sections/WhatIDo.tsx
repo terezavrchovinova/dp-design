@@ -1,12 +1,11 @@
-import { useRef, useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { LazyLottie } from '../LazyLottie'
-
+import photoIcon from '../../assets/icons/photography.json'
+import digitalIcon from '../../assets/icons/social.json'
+import videoIcon from '../../assets/icons/video.json'
 // Lottie animation assets
 import visualBrandDesign from '../../assets/icons/visual-brand-design.json'
-import videoIcon from '../../assets/icons/video.json'
-import digitalIcon from '../../assets/icons/social.json'
-import photoIcon from '../../assets/icons/photography.json'
+import { LazyLottie } from '../LazyLottie'
 
 // Types
 interface Service {
@@ -50,7 +49,7 @@ const LottieAnimation = ({ asset }: LottieAnimationProps) => {
           setIsVisible(true)
         }
       },
-      { threshold: INTERSECTION_THRESHOLD },
+      { threshold: INTERSECTION_THRESHOLD }
     )
 
     const current = containerRef.current
@@ -67,9 +66,7 @@ const LottieAnimation = ({ asset }: LottieAnimationProps) => {
 
   return (
     <div ref={containerRef} className="w-24 h-24">
-      {isVisible && (
-        <LazyLottie animationData={asset} className="w-24 h-24" loop autoplay />
-      )}
+      {isVisible && <LazyLottie animationData={asset} className="w-24 h-24" loop autoplay />}
     </div>
   )
 }
@@ -109,12 +106,8 @@ export const WhatIDo = () => {
 
               {/* Service Content */}
               <div className="flex flex-col justify-center h-full">
-                <p className="section-title">
-                  {t(`whatIDo.services.${key}.title`)}
-                </p>
-                <p className="section-description">
-                  {t(`whatIDo.services.${key}.description`)}
-                </p>
+                <p className="section-title">{t(`whatIDo.services.${key}.title`)}</p>
+                <p className="section-description">{t(`whatIDo.services.${key}.description`)}</p>
               </div>
             </div>
           ))}

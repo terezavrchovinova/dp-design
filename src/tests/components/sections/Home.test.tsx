@@ -1,6 +1,6 @@
-import { describe, it, expect } from 'vitest'
-import { render, screen, getTextInAnyLanguage } from '../../utils'
+import { describe, expect, it } from 'vitest'
 import { Home } from '../../../components/sections/Home'
+import { getTextInAnyLanguage, render, screen } from '../../utils'
 
 describe('Home', () => {
   it('renders the home section', () => {

@@ -1,10 +1,7 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
-import { render, screen, getTextInAnyLanguage, fireEvent } from '../utils'
-import AnimatedHeading, {
-  getCurlingSlide,
-  handleHover,
-} from '../../components/AnimatedHeading'
 import { useState } from 'react'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import AnimatedHeading, { getCurlingSlide, handleHover } from '../../components/AnimatedHeading'
+import { fireEvent, getTextInAnyLanguage, render, screen } from '../utils'
 
 describe('AnimatedHeading', () => {
   beforeEach(() => {
@@ -323,7 +320,9 @@ describe('AnimatedHeading', () => {
 
       return (
         <div>
-          <button onClick={() => handleHover(0, setScattered)}>Hover</button>
+          <button type="button" onClick={() => handleHover(0, setScattered)}>
+            Hover
+          </button>
           <div data-testid="scattered">{JSON.stringify(scattered)}</div>
         </div>
       )

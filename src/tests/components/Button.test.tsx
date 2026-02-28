@@ -1,7 +1,7 @@
-import { describe, it, expect, vi } from 'vitest'
-import { render, screen } from '../utils'
 import userEvent from '@testing-library/user-event'
+import { describe, expect, it, vi } from 'vitest'
 import { Button } from '../../components/Button'
+import { render, screen } from '../utils'
 
 describe('Button', () => {
   it('renders as a link by default', () => {
@@ -15,7 +15,7 @@ describe('Button', () => {
     render(
       <Button as="button" onClick={vi.fn()}>
         Click me
-      </Button>,
+      </Button>
     )
     const button = screen.getByRole('button', { name: /click me/i })
     expect(button).toBeInTheDocument()
@@ -28,7 +28,7 @@ describe('Button', () => {
     render(
       <Button as="button" onClick={handleClick}>
         Click me
-      </Button>,
+      </Button>
     )
     const button = screen.getByRole('button', { name: /click me/i })
     await user.click(button)
@@ -57,7 +57,7 @@ describe('Button', () => {
     render(
       <Button as="button" type="submit">
         Submit
-      </Button>,
+      </Button>
     )
     const button = screen.getByRole('button')
     expect(button).toHaveAttribute('type', 'submit')

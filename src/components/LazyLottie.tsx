@@ -7,7 +7,7 @@ import { lazy, Suspense } from 'react'
 const LottieLazy = lazy(() =>
   import('lottie-react').then((module) => ({
     default: module.default,
-  })),
+  }))
 )
 
 interface LottieProps {
@@ -34,6 +34,7 @@ export const LazyLottie = (props: LottieProps) => {
         <div
           className={props.className}
           style={props.style}
+          role="status"
           aria-label="Loading animation"
         />
       }

@@ -1,31 +1,29 @@
-import { useState, lazy, Suspense } from 'react'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
+import { lazy, Suspense, useState } from 'react'
 
 // Global styles & i18n configuration
 import './i18n'
 import './index.css'
 
-// Core components (loaded immediately)
-import { Navbar } from './components/Navbar'
 import { Footer } from './components/Footer'
 import { MobileMenu } from './components/MobileMenu'
+// Core components (loaded immediately)
+import { Navbar } from './components/Navbar'
 import { Home } from './components/sections/Home'
 
 // Lazy load non-critical sections for code splitting
 const Projects = lazy(() =>
   import('./components/sections/Projects').then((m) => ({
     default: m.Projects,
-  })),
+  }))
 )
 const WhatIDo = lazy(() =>
-  import('./components/sections/WhatIDo').then((m) => ({ default: m.WhatIDo })),
+  import('./components/sections/WhatIDo').then((m) => ({ default: m.WhatIDo }))
 )
-const About = lazy(() =>
-  import('./components/sections/About').then((m) => ({ default: m.About })),
-)
+const About = lazy(() => import('./components/sections/About').then((m) => ({ default: m.About })))
 const Contact = lazy(() =>
-  import('./components/sections/Contact').then((m) => ({ default: m.Contact })),
+  import('./components/sections/Contact').then((m) => ({ default: m.Contact }))
 )
 
 /**

@@ -1,10 +1,9 @@
-/* eslint-disable react-refresh/only-export-components */
-import { ReactElement } from 'react'
-import { render, RenderOptions } from '@testing-library/react'
-import { I18nextProvider } from 'react-i18next'
+import { type RenderOptions, render } from '@testing-library/react'
 import i18n from 'i18next'
-import enTranslations from '../locales/en/translation.json'
+import type { ReactElement } from 'react'
+import { I18nextProvider } from 'react-i18next'
 import csTranslations from '../locales/cs/translation.json'
+import enTranslations from '../locales/en/translation.json'
 
 // Initialize i18n for tests with actual translation files
 const testI18n = i18n.createInstance()
@@ -27,10 +26,7 @@ testI18n.init({
  * Get translation text for a given key
  * This allows tests to be language-agnostic by using translation keys
  */
-export const getTranslation = (
-  key: string,
-  lang: 'en' | 'cs' = 'cs',
-): string => {
+export const getTranslation = (key: string, lang: 'en' | 'cs' = 'cs'): string => {
   return testI18n.getFixedT(lang)(key)
 }
 
@@ -66,8 +62,7 @@ export const resetTestLanguage = () => {
 export const getTextInAnyLanguage = (key: string): RegExp => {
   const translations = getTranslations(key)
   // Escape special regex characters in both translations
-  const escapeRegex = (str: string) =>
-    str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const escapeRegex = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
   const pattern = `${escapeRegex(translations.en)}|${escapeRegex(translations.cs)}`
   return new RegExp(pattern, 'i')
 }
@@ -84,10 +79,8 @@ const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
   return <I18nextProvider i18n={testI18n}>{children}</I18nextProvider>
 }
 
-const customRender = (
-  ui: ReactElement,
-  options?: Omit<RenderOptions, 'wrapper'>,
-) => render(ui, { wrapper: AllTheProviders, ...options })
+const customRender = (ui: ReactElement, options?: Omit<RenderOptions, 'wrapper'>) =>
+  render(ui, { wrapper: AllTheProviders, ...options })
 
 export * from '@testing-library/react'
 export { customRender as render }

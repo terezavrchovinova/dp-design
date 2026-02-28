@@ -21,7 +21,7 @@ A modern, performant portfolio website showcasing the creative work of Daniela P
   - Motion (Framer Motion)
 - **Internationalization**: i18next & react-i18next
 - **Analytics**: Vercel Analytics & Speed Insights
-- **Code Quality**: ESLint, Prettier, TypeScript
+- **Code Quality**: Biome (lint + format), TypeScript
 
 ## 📦 Getting Started
 
@@ -58,7 +58,9 @@ npm run dev
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build locally
-- `npm run lint` - Run ESLint
+- `npm run lint` - Run Biome (lint + format check)
+- `npm run lint:fix` - Fix lint issues and format with Biome
+- `npm run format` - Format code with Biome
 - `npm run test` - Run unit and integration tests
 - `npm run test:watch` - Run tests in watch mode
 - `npm run test:ui` - Run tests with Vitest UI
@@ -102,7 +104,7 @@ e2e/                    # Playwright e2e tests
 - **Code Splitting**: Manual chunk configuration for optimal caching
 - **Lazy Loading**: Non-critical sections loaded on demand
 - **Critical CSS**: Inline critical CSS for faster initial render
-- **Asset Optimization**: WebP images, optimized builds with Terser
+- **Asset Optimization**: WebP images, optimized builds with esbuild
 - **Vendor Chunks**: Separate chunks for React, Lottie, Motion, and i18n
 - **Console Removal**: Production builds strip console statements
 

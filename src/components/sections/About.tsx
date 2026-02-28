@@ -1,20 +1,19 @@
-import { useTranslation } from 'react-i18next'
-import { JobCard } from '../JobCard'
-import { ToolIcon } from '../ToolIcon'
-import { motion, AnimatePresence, useInView } from 'motion/react'
+import { AnimatePresence, motion, useInView } from 'motion/react'
 import { useRef } from 'react'
-
-// Tool icon assets
-import photoshopIcon from '../../assets/icons/photoshop.svg'
+import { useTranslation } from 'react-i18next'
+import afterEffectsIcon from '../../assets/icons/after-effects.svg'
+import cinema4dIcon from '../../assets/icons/cinema-4d.svg'
+import dimensionIcon from '../../assets/icons/dimension.svg'
+import figmaIcon from '../../assets/icons/figma.svg'
 import illustratorIcon from '../../assets/icons/illustrator.svg'
 import indesignIcon from '../../assets/icons/indesign.svg'
-import afterEffectsIcon from '../../assets/icons/after-effects.svg'
-import premiereProIcon from '../../assets/icons/premiere-pro.svg'
-import lightroomIcon from '../../assets/icons/photoshop-lightroom.svg'
-import dimensionIcon from '../../assets/icons/dimension.svg'
-import cinema4dIcon from '../../assets/icons/cinema-4d.svg'
 import midjourneyIcon from '../../assets/icons/midjourney.webp'
-import figmaIcon from '../../assets/icons/figma.svg'
+// Tool icon assets
+import photoshopIcon from '../../assets/icons/photoshop.svg'
+import lightroomIcon from '../../assets/icons/photoshop-lightroom.svg'
+import premiereProIcon from '../../assets/icons/premiere-pro.svg'
+import { JobCard } from '../JobCard'
+import { ToolIcon } from '../ToolIcon'
 
 // Types
 interface Tool {
@@ -77,11 +76,7 @@ export const About = () => {
   const toolsInView = useInView(toolsRef, { once: true })
 
   return (
-    <section
-      id="about"
-      className="section bg-[var(--color-dark)]"
-      aria-label="About section"
-    >
+    <section id="about" className="section bg-[var(--color-dark)]" aria-label="About section">
       <div className="container-content">
         {/* Experience Section */}
         <div>
@@ -97,11 +92,7 @@ export const About = () => {
         <div>
           <h3>{t('about.education')}</h3>
           <div className="space-y-6">
-            <JobCard
-              title={school.name}
-              date={school.years}
-              description={school.focus}
-            />
+            <JobCard title={school.name} date={school.years} description={school.focus} />
           </div>
         </div>
 
