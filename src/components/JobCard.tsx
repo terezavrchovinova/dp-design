@@ -29,7 +29,7 @@ export const JobCard = ({ title, date, description }: JobCardProps) => {
   const [part1, part2] = titleParts
 
   return (
-    <div className="mb-8 p-5 max-w-4xl mx-auto card-minimal transition-smooth">
+    <div className="mb-8 p-5 max-w-4xl mx-auto card-minimal transition-all duration-500 ease-out hover:border-[var(--color-gray)] hover:shadow-lg">
       {/* Header: Title and Date */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
         <p className="section-title text-center sm:text-left">

@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next'
 import logo from '../assets/icons/dp_icon_white.svg'
 import globeDark from '../assets/icons/globe_dark.svg'
 import globeLight from '../assets/icons/globe_light.svg'
+import greenDot from '../assets/icons/green_dot.json'
+import { LazyLottie } from './LazyLottie'
 
 // Constants
 export interface NavbarProps {
@@ -161,10 +163,11 @@ const EmailButton = ({ email }: EmailButtonProps) => (
     onClick={() => {
       window.location.href = `mailto:${email}`
     }}
-    className="px-3 py-1.5 rounded-lg border border-[var(--color-border)] text-[var(--color-gray)] text-sm hover:text-[var(--color-white)] hover:border-[var(--color-light-gray)] transition-colors cursor-pointer"
+    className="flex items-center space-x-2 px-3 py-1.5 rounded-lg border border-[var(--color-border)] text-[var(--color-gray)] text-sm hover:text-[var(--color-white)] hover:border-[var(--color-light-gray)] transition-colors cursor-pointer"
     aria-label={`Send email to ${email}`}
   >
-    {email}
+    <span>{email}</span>
+    <LazyLottie animationData={greenDot} loop style={{ width: 20, height: 20 }} />
   </button>
 )
 

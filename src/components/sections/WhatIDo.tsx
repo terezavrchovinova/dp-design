@@ -97,7 +97,7 @@ export const WhatIDo = () => {
           {SERVICES.map(({ key, asset }) => (
             <div
               key={key}
-              className="card-minimal transition-smooth flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-6 p-5 sm:p-6 text-center sm:text-left"
+              className="card-minimal flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-6 p-5 sm:p-6 text-center sm:text-left transition-all duration-500 ease-out hover:border-[var(--color-gray)] hover:shadow-lg"
             >
               {/* Service Icon */}
               <div className="w-16 h-16 flex items-center justify-center flex-shrink-0 mx-auto sm:mx-0 opacity-80">

@@ -153,7 +153,7 @@ export const Projects = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`View project: ${title}`}
-                className="group block aspect-[16/9] overflow-hidden rounded-lg border border-[var(--color-border)] transition-colors duration-150 hover:border-[var(--color-gray)]"
+                className="group relative block aspect-[16/9] overflow-hidden rounded-lg border border-[var(--color-border)] transition-all duration-500 ease-out hover:border-[var(--color-gray)] hover:shadow-lg"
               >
                 {/* Project Image - Desktop and Mobile */}
                 <picture>
@@ -175,9 +175,25 @@ export const Projects = () => {
                     height={450}
                     decoding="async"
                     fetchPriority="low"
-                    className="w-full h-full object-cover transition-opacity duration-150 group-hover:opacity-95"
+                    className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105 group-hover:-translate-y-1"
                   />
                 </picture>
+
+                {/* Overlay on Hover */}
+                <div
+                  className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-80 transition-opacity duration-500 ease-out"
+                  aria-hidden="true"
+                />
+
+                {/* Project Title on Hover */}
+                <div
+                  className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out"
+                  aria-hidden="true"
+                >
+                  <span className="px-5 py-2 text-lg font-semibold text-white bg-black/60 rounded-lg text-center translate-y-2 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                    {title}
+                  </span>
+                </div>
               </a>
             )
           })}
