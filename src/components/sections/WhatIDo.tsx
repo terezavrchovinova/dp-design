@@ -1,27 +1,12 @@
 import { motion, useInView } from 'motion/react'
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import photoIcon from '../../assets/icons/photography.json'
-import digitalIcon from '../../assets/icons/social.json'
-import videoIcon from '../../assets/icons/video.json'
-import visualBrandDesign from '../../assets/icons/visual-brand-design.json'
+import { SERVICES } from '../../data/services'
 import { LazyLottie } from '../LazyLottie'
-
-interface Service {
-  key: string
-  asset: unknown
-}
 
 interface LottieAnimationProps {
   asset: unknown
 }
-
-const SERVICES: Service[] = [
-  { key: 'design', asset: visualBrandDesign },
-  { key: 'video', asset: videoIcon },
-  { key: 'digital', asset: digitalIcon },
-  { key: 'photo', asset: photoIcon },
-]
 
 const LottieAnimation = ({ asset }: LottieAnimationProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
