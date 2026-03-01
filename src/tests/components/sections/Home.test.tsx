@@ -23,6 +23,12 @@ describe('Home', () => {
     expect(h1.textContent).toMatch(titleLine2Pattern)
   })
 
+  it('displays the hero tag', () => {
+    render(<Home />)
+    const heroTagPattern = getTextInAnyLanguage('home.heroTag')
+    expect(screen.getByText(heroTagPattern)).toBeInTheDocument()
+  })
+
   it('displays the subtitle', () => {
     render(<Home />)
     // Use translation key - subtitle is the same in both languages, but use key for consistency

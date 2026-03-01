@@ -36,6 +36,17 @@ global.IntersectionObserver = class IntersectionObserver {
   unobserve() {}
 } as unknown as typeof IntersectionObserver
 
+// Polyfill SVGPathElement.getTotalLength for jsdom (not fully implemented)
+try {
+  const pathEl = document.createElementNS('http://www.w3.org/2000/svg', 'path')
+  const pathProto = Object.getPrototypeOf(pathEl) as SVGPathElement
+  if (pathProto && typeof pathProto.getTotalLength !== 'function') {
+    pathProto.getTotalLength = () => 500
+  }
+} catch {
+  // Ignore if SVG not available
+}
+
 // Mock HTMLCanvasElement for Lottie and other canvas-based libraries
 HTMLCanvasElement.prototype.getContext = vi.fn(() => {
   return {

@@ -80,4 +80,24 @@ test.describe('Home Page', () => {
     const contactSection = page.locator('#contact')
     await expect(contactSection).toBeInViewport()
   })
+
+  test('should display scroll animation section on desktop', async ({ page }, testInfo) => {
+    // Scroll animation is hidden on mobile (xl:block), skip for mobile projects
+    if (['Mobile Chrome', 'Mobile Safari'].includes(testInfo.project.name)) {
+      testInfo.skip()
+    }
+
+    await page.goto('/')
+    await page.waitForLoadState('networkidle')
+
+    // Ensure desktop viewport (xl breakpoint is 1280px)
+    await page.setViewportSize({ width: 1400, height: 900 })
+
+    const scrollAnimationSection = page.locator('#scroll-animation')
+    await expect(scrollAnimationSection).toBeVisible()
+
+    // Verify phase label from animation translations
+    const phaseLabelPattern = getTextPattern('animation.phase1')
+    await expect(scrollAnimationSection.getByText(phaseLabelPattern)).toBeVisible()
+  })
 })
