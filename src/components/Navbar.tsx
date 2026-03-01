@@ -2,8 +2,7 @@ import { motion } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import logo from '../assets/icons/dp_icon_white.svg'
-import globeDark from '../assets/icons/globe_dark.svg'
-import globeLight from '../assets/icons/globe_light.svg'
+import globeIcon from '../assets/icons/globe_dark.svg'
 import { LANGUAGES } from '../constants/i18n'
 import { DEFAULT_TRANSITION } from '../constants/motion'
 import { NAV_ITEMS } from '../constants/navigation'
@@ -89,21 +88,14 @@ interface NavLinkProps {
   label: string
 }
 
-const NavLink = ({ href, label }: NavLinkProps) => {
-  const [isHovered, setIsHovered] = useState(false)
-
-  return (
-    <a
-      href={href}
-      className="text-sm transition-all duration-200 ease-out"
-      style={{ color: isHovered ? 'var(--color-white)' : 'var(--color-gray)' }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {label}
-    </a>
-  )
-}
+const NavLink = ({ href, label }: NavLinkProps) => (
+  <a
+    href={href}
+    className="text-sm text-[var(--color-gray)] hover:text-[var(--color-white)] transition-all duration-200 ease-out"
+  >
+    {label}
+  </a>
+)
 
 interface EmailButtonProps {
   email: string
@@ -128,7 +120,6 @@ interface LanguageSwitcherProps {
 }
 
 const LanguageSwitcher = ({ currentLang, onChange }: LanguageSwitcherProps) => {
-  const [isHovered, setIsHovered] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
@@ -136,7 +127,6 @@ const LanguageSwitcher = ({ currentLang, onChange }: LanguageSwitcherProps) => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsOpen(false)
-        setIsHovered(false)
       }
     }
 
@@ -147,14 +137,7 @@ const LanguageSwitcher = ({ currentLang, onChange }: LanguageSwitcherProps) => {
   }, [])
 
   return (
-    <div
-      role="group"
-      aria-label="Language switcher"
-      className="relative"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      ref={dropdownRef}
-    >
+    <div role="group" aria-label="Language switcher" className="relative group" ref={dropdownRef}>
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
@@ -163,11 +146,11 @@ const LanguageSwitcher = ({ currentLang, onChange }: LanguageSwitcherProps) => {
         className="size-8 flex items-center justify-center cursor-pointer p-0"
       >
         <img
-          src={isHovered ? globeLight : globeDark}
+          src={globeIcon}
           alt="Language selector"
           width={24}
           height={24}
-          className="w-5 sm:w-6 h-5 sm:h-6 object-contain transition duration-200"
+          className="w-5 sm:w-6 h-5 sm:h-6 object-contain transition-all duration-200 ease-out group-hover:brightness-[1.4]"
           loading="lazy"
         />
       </button>
@@ -186,7 +169,6 @@ const LanguageSwitcher = ({ currentLang, onChange }: LanguageSwitcherProps) => {
               onClick={() => {
                 onChange(code)
                 setIsOpen(false)
-                setIsHovered(false)
               }}
               className={`w-full text-left px-4 py-2 hover:bg-[var(--color-accent)]/20 cursor-pointer text-[var(--color-white)] transition-all duration-200 ease-out ${
                 currentLang === code ? 'font-semibold' : ''

@@ -143,20 +143,13 @@ describe('Navbar', () => {
     })
   })
 
-  it('changes nav link color on hover', async () => {
-    const user = userEvent.setup()
+  it('applies hover styling via CSS classes', () => {
     render(<Navbar {...defaultProps} />)
     const projectsPattern = getTextInAnyLanguage('nav.projects')
     const projectsLink = screen.getByRole('link', { name: projectsPattern })
 
-    // Hover over the link
-    await user.hover(projectsLink)
-    // Check that the link has hover styling
-    expect(projectsLink).toHaveStyle({ color: 'var(--color-white)' })
-
-    // Move mouse away
-    await user.unhover(projectsLink)
-    // Check that the link returns to normal styling
-    expect(projectsLink).toHaveStyle({ color: 'var(--color-gray)' })
+    // Nav links use CSS hover (hover:text-[var(--color-white)]) - verify classes are present
+    expect(projectsLink).toHaveClass('hover:text-[var(--color-white)]')
+    expect(projectsLink).toHaveClass('text-[var(--color-gray)]')
   })
 })

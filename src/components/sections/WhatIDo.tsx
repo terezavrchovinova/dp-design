@@ -1,5 +1,5 @@
-import { motion } from 'motion/react'
-import { useEffect, useRef, useState } from 'react'
+import { motion, useInView } from 'motion/react'
+import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import photoIcon from '../../assets/icons/photography.json'
 import digitalIcon from '../../assets/icons/social.json'
@@ -16,8 +16,6 @@ interface LottieAnimationProps {
   asset: unknown
 }
 
-const INTERSECTION_THRESHOLD = 0.1
-
 const SERVICES: Service[] = [
   { key: 'design', asset: visualBrandDesign },
   { key: 'video', asset: videoIcon },
@@ -26,30 +24,8 @@ const SERVICES: Service[] = [
 ]
 
 const LottieAnimation = ({ asset }: LottieAnimationProps) => {
-  const [isVisible, setIsVisible] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: INTERSECTION_THRESHOLD }
-    )
-
-    const current = containerRef.current
-    if (current) {
-      observer.observe(current)
-    }
-
-    return () => {
-      if (current) {
-        observer.unobserve(current)
-      }
-    }
-  }, [])
+  const isVisible = useInView(containerRef, { threshold: 0.1, once: true })
 
   return (
     <div ref={containerRef} className="w-16 h-16">
