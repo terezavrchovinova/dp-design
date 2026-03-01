@@ -45,10 +45,9 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
 
   return (
     <nav
-      className="fixed top-0 w-full z-40 backdrop-blur-lg border-b"
+      className="fixed top-0 w-full z-40 backdrop-blur-lg"
       style={{
         backgroundColor: 'rgba(10,10,10,0.75)',
-        borderColor: 'var(--color-border)',
       }}
       aria-label="Main navigation"
     >
@@ -135,7 +134,7 @@ const NavLink = ({ href, label }: NavLinkProps) => {
   return (
     <a
       href={href}
-      className="text-sm transition-colors duration-200"
+      className="text-lg transition-colors duration-200"
       style={{ color: isHovered ? 'var(--color-white)' : 'var(--color-gray)' }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

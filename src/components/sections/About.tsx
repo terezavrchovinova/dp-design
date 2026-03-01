@@ -71,7 +71,7 @@ export const About = () => {
       <div className="container-content">
         {/* Experience & Education - Timeline layout */}
         <div>
-          <h3 className="mb-10">{t('about.experience')}</h3>
+          <h3 className="mb-10 text-center text-2xl md:text-2xl lg:text-3xl">{t('about.experience')}</h3>
           <div className="relative">
             {jobs.map((job, index) => (
               <TimelineEntry
@@ -84,7 +84,7 @@ export const About = () => {
             ))}
           </div>
 
-          <h3 className="mb-10 mt-16">{t('about.education')}</h3>
+          <h3 className="mb-10 mt-16 text-center text-2xl md:text-2xl lg:text-3xl">{t('about.education')}</h3>
           <div className="relative">
             <TimelineEntry
               title={school.name}
@@ -97,7 +97,7 @@ export const About = () => {
 
         {/* Tools Section */}
         <div ref={toolsRef}>
-          <h3>{t('about.tools')}</h3>
+          <h3 className="text-center text-2xl md:text-2xl lg:text-3xl">{t('about.tools')}</h3>
 
           <div className="flex flex-wrap justify-center gap-5">
             {TOOLS.map((tool) => (

@@ -18,7 +18,7 @@ export const Contact = () => {
   return (
     <section
       id="contact"
-      className="min-h-screen flex items-center justify-center bg-[var(--color-dark)] px-6 py-20"
+      className="min-h-screen flex items-center justify-center bg-[var(--color-dark)] px-6 py-16"
       aria-label="Contact section"
     >
       <div className="w-full flex flex-col items-center text-center">

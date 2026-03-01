@@ -90,7 +90,7 @@ export const WhatIDo = () => {
     >
       <div className="container-content">
         {/* Section Title */}
-        <h2>{t('whatIDo.title')}</h2>
+        <h2 className="text-[2rem] sm:text-2xl md:text-3xl lg:text-4xl">{t('whatIDo.title')}</h2>
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
@@ -106,8 +106,8 @@ export const WhatIDo = () => {
 
               {/* Service Content */}
               <div className="flex flex-col justify-center h-full">
-                <p className="section-title">{t(`whatIDo.services.${key}.title`)}</p>
-                <p className="section-description">{t(`whatIDo.services.${key}.description`)}</p>
+                <p className="section-title text-[10px] sm:text-xs md:text-base">{t(`whatIDo.services.${key}.title`)}</p>
+                <p className="section-description text-[9px] sm:text-xs md:text-sm">{t(`whatIDo.services.${key}.description`)}</p>
               </div>
             </div>
           ))}

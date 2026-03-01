@@ -60,8 +60,8 @@ export const TimelineEntry = ({
             {date}
           </p>
 
-          {/* Title */}
-          <p className="section-title mb-3">
+          {/* Title - smaller on mobile for hierarchy */}
+          <p className="section-title !text-left text-[10px] sm:text-xs md:text-base mb-2">
             {part2 ? (
               <>
                 <span className="block sm:hidden">
@@ -78,14 +78,14 @@ export const TimelineEntry = ({
             )}
           </p>
 
-          {/* Bullet points */}
-          <ul className="space-y-2 text-base leading-relaxed">
+          {/* Bullet points - smaller on mobile for hierarchy */}
+          <ul className="space-y-1.5 text-[9px] sm:text-xs md:text-sm leading-relaxed">
             {bulletPoints.map((point) => (
               <li
                 key={point}
                 className="section-description flex items-start gap-2 text-[var(--color-gray)]"
               >
-                <span className="flex-shrink-0 w-[1em] h-[1.625em] flex items-center justify-center text-lg">
+                <span className="hidden sm:flex flex-shrink-0 w-[1em] h-[1.625em] items-center justify-center text-lg">
                   ·
                 </span>
                 <span>{point}</span>

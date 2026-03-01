@@ -14,10 +14,9 @@ export const Footer = () => {
 
   return (
     <footer
-      className="w-full mt-20 border-t backdrop-blur-lg"
+      className="w-full mt-12 backdrop-blur-lg"
       style={{
         backgroundColor: 'rgba(10,10,10,0.75)',
-        borderColor: 'var(--color-border)',
       }}
     >
       <div className="max-w-6xl mx-auto px-6 py-4 text-xs text-[var(--color-gray)]">
