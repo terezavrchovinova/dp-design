@@ -65,8 +65,8 @@ const LottieAnimation = ({ asset }: LottieAnimationProps) => {
   }, [])
 
   return (
-    <div ref={containerRef} className="w-24 h-24">
-      {isVisible && <LazyLottie animationData={asset} className="w-24 h-24" loop autoplay />}
+    <div ref={containerRef} className="w-16 h-16">
+      {isVisible && <LazyLottie animationData={asset} className="w-16 h-16" loop autoplay />}
     </div>
   )
 }
@@ -93,14 +93,14 @@ export const WhatIDo = () => {
         <h2>{t('whatIDo.title')}</h2>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
           {SERVICES.map(({ key, asset }) => (
             <div
               key={key}
-              className="glass transition-smooth flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-8 p-6 sm:p-8 hover:shadow-2xl text-center sm:text-left"
+              className="card-minimal transition-smooth flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-6 p-5 sm:p-6 text-center sm:text-left"
             >
               {/* Service Icon */}
-              <div className="w-24 h-24 flex items-center justify-center flex-shrink-0 mx-auto sm:mx-0">
+              <div className="w-16 h-16 flex items-center justify-center flex-shrink-0 mx-auto sm:mx-0 opacity-80">
                 <LottieAnimation asset={asset} />
               </div>
 

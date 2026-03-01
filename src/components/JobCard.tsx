@@ -29,7 +29,7 @@ export const JobCard = ({ title, date, description }: JobCardProps) => {
   const [part1, part2] = titleParts
 
   return (
-    <div className="mb-10 p-6 max-w-4xl mx-auto backdrop-blur-md transition-smooth glass">
+    <div className="mb-8 p-5 max-w-4xl mx-auto card-minimal transition-smooth">
       {/* Header: Title and Date */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
         <p className="section-title text-center sm:text-left">
@@ -61,23 +61,11 @@ export const JobCard = ({ title, date, description }: JobCardProps) => {
       </div>
 
       {/* Description as bullet points */}
-      <ul className="space-y-4 text-base leading-relaxed pr-8">
+      <ul className="space-y-3 text-base leading-relaxed">
         {bulletPoints.map((point) => (
-          <li key={point} className="section-description flex items-start gap-3">
-            {/* Bullet icon */}
-            <span className="relative top-[6px] text-accent inline-flex items-center justify-center">
-              <svg
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                width="14"
-                height="14"
-                className="flex-shrink-0"
-                aria-hidden="true"
-              >
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </span>
-            <span className="flex-1 text-light-gray">{point}</span>
+          <li key={point} className="section-description flex items-start gap-2">
+            <span className="text-[var(--color-gray)] mt-1">·</span>
+            <span className="flex-1 text-[var(--color-gray)]">{point}</span>
           </li>
         ))}
       </ul>

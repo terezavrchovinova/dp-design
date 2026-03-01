@@ -36,30 +36,20 @@ export const Button = ({
 }: ButtonProps) => {
   // Base styles shared by all button variants
   const baseStyles = [
-    'relative inline-block px-6 py-3 rounded-xl font-semibold',
-    'transition-all duration-300 ease-in-out',
-    'focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
-    'focus-visible:ring-[var(--color-orange-light)]',
+    'relative inline-block px-5 py-2.5 rounded-lg font-medium',
+    'transition-colors duration-150',
+    'focus:outline-none focus-visible:ring-1 focus-visible:ring-[var(--color-border)]',
     'cursor-pointer',
     className,
   ].join(' ')
 
-  // Variant-specific styles
+  // Variant-specific styles - minimal flat design
   const variantStyles = {
-    primary: 'text-white shadow-soft hover:shadow-lg hover:-translate-y-0.5',
+    primary:
+      'text-[var(--color-dark)] bg-[var(--color-white)] hover:bg-[var(--color-light-gray)]',
     outline:
-      'text-[var(--color-orange)] border border-[var(--color-orange)] hover:text-white hover:bg-[var(--color-orange)]/10 hover:shadow-md hover:-translate-y-0.5',
+      'text-[var(--color-light-gray)] border border-[var(--color-border)] hover:text-[var(--color-white)] hover:border-[var(--color-light-gray)]',
   }
-
-  // Primary variant uses gradient background
-  const primaryStyle =
-    variant === 'primary'
-      ? {
-          backgroundImage: 'var(--gradient-accent)',
-          backgroundSize: '200% auto',
-          backgroundPosition: 'left',
-        }
-      : undefined
 
   // Render as button element
   if (as === 'button') {
@@ -67,18 +57,17 @@ export const Button = ({
       <button
         type={type}
         onClick={onClick}
-        className={`group ${baseStyles} ${variantStyles[variant]}`}
-        style={primaryStyle}
+        className={`${baseStyles} ${variantStyles[variant]}`}
       >
-        <span className="relative z-10">{children}</span>
+        {children}
       </button>
     )
   }
 
   // Render as anchor element
   return (
-    <a href={href} className={`group ${baseStyles} ${variantStyles[variant]}`} style={primaryStyle}>
-      <span className="relative z-10">{children}</span>
+    <a href={href} className={`${baseStyles} ${variantStyles[variant]}`}>
+      {children}
     </a>
   )
 }

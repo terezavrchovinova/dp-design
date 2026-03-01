@@ -27,7 +27,7 @@ export const Home = () => {
         </h1>
 
         {/* Subtitle */}
-        <p className="mt-8 mb-12 text-xl md:text-2xl text-zinc-400">{t('home.subtitle')}</p>
+        <p className="mt-6 mb-10 text-base md:text-lg text-[var(--color-gray)]">{t('home.subtitle')}</p>
 
         {/* Call-to-Action Buttons */}
         <div className="flex justify-center items-center gap-4 flex-wrap text-center">

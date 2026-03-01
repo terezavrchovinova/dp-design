@@ -1,4 +1,3 @@
-import { AnimatePresence, motion, useInView } from 'motion/react'
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import afterEffectsIcon from '../../assets/icons/after-effects.svg'
@@ -48,12 +47,6 @@ const TOOLS: Tool[] = [
   { name: 'Midjourney', src: midjourneyIcon },
 ]
 
-/** Adobe tools (filtered from all tools) */
-const ADOBE_TOOLS = TOOLS.filter((tool) => tool.name.startsWith('Adobe'))
-
-/** Other tools (non-Adobe) */
-const OTHER_TOOLS = TOOLS.filter((tool) => !ADOBE_TOOLS.includes(tool))
-
 /**
  * About component
  *
@@ -71,9 +64,7 @@ export const About = () => {
   // Get school information from translations
   const school = t('about.school', { returnObjects: true }) as School
 
-  // Ref for tools section intersection observer
   const toolsRef = useRef(null)
-  const toolsInView = useInView(toolsRef, { once: true })
 
   return (
     <section id="about" className="section bg-[var(--color-dark)]" aria-label="About section">
@@ -98,74 +89,13 @@ export const About = () => {
 
         {/* Tools Section */}
         <div ref={toolsRef}>
-          <motion.h3
-            initial={{ opacity: 0, y: -20 }}
-            animate={toolsInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-          >
-            {t('about.tools')}
-          </motion.h3>
+          <h3>{t('about.tools')}</h3>
 
-          {/* Adobe Tools */}
-          <motion.div
-            className="flex flex-wrap justify-center gap-6 mb-12"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={{
-              hidden: {},
-              visible: {
-                transition: { staggerChildren: 0.1 },
-              },
-            }}
-          >
-            {ADOBE_TOOLS.map((tool) => (
-              <motion.div
-                key={tool.name}
-                layout
-                variants={{
-                  hidden: { opacity: 0, scale: 0.95 },
-                  visible: { opacity: 1, scale: 1 },
-                }}
-                whileHover={{ scale: 1.1 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              >
-                <ToolIcon {...tool} />
-              </motion.div>
+          <div className="flex flex-wrap justify-center gap-5">
+            {TOOLS.map((tool) => (
+              <ToolIcon key={tool.name} {...tool} />
             ))}
-          </motion.div>
-
-          {/* Other Tools */}
-          <AnimatePresence>
-            {OTHER_TOOLS.length > 0 && (
-              <motion.div
-                key="other-tools"
-                className="flex flex-wrap justify-center gap-6"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -30 }}
-                transition={{ duration: 0.5 }}
-              >
-                {OTHER_TOOLS.map((tool) => (
-                  <motion.div
-                    key={tool.name}
-                    layout
-                    whileHover={{ scale: 1.1 }}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{
-                      type: 'spring',
-                      stiffness: 250,
-                      damping: 18,
-                    }}
-                  >
-                    <ToolIcon {...tool} />
-                  </motion.div>
-                ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>

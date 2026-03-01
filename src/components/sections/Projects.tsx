@@ -36,9 +36,6 @@ interface Project {
 }
 
 // Constants
-/** Animation delay multiplier for staggered project animations */
-const ANIMATION_DELAY_MULTIPLIER = 80
-
 /** Project configuration */
 const PROJECTS: Project[] = [
   {
@@ -145,10 +142,9 @@ export const Projects = () => {
         <h2>{t('projects.title')}</h2>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
-          {PROJECTS.map((project, index) => {
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+          {PROJECTS.map((project) => {
             const title = t(`projects.items.${project.key}`, project.key)
-            const animationDelay = index * ANIMATION_DELAY_MULTIPLIER
 
             return (
               <a
@@ -157,8 +153,7 @@ export const Projects = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`View project: ${title}`}
-                className="group relative aspect-[16/9] overflow-hidden rounded-2xl shadow-md transition-shadow duration-300 ease-in-out hover:shadow-lg"
-                style={{ transitionDelay: `${animationDelay}ms` }}
+                className="group block aspect-[16/9] overflow-hidden rounded-lg border border-[var(--color-border)] transition-colors duration-150 hover:border-[var(--color-gray)]"
               >
                 {/* Project Image - Desktop and Mobile */}
                 <picture>
@@ -180,25 +175,9 @@ export const Projects = () => {
                     height={450}
                     decoding="async"
                     fetchPriority="low"
-                    className="w-full h-full object-cover transform will-change-transform transition-transform duration-300 ease-in-out group-hover:scale-105 group-hover:-translate-y-1"
+                    className="w-full h-full object-cover transition-opacity duration-150 group-hover:opacity-95"
                   />
                 </picture>
-
-                {/* Overlay on Hover */}
-                <div
-                  className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-80 transition-opacity duration-300 ease-in-out will-change-opacity"
-                  aria-hidden="true"
-                />
-
-                {/* Project Title on Hover */}
-                <div
-                  className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out will-change-opacity"
-                  aria-hidden="true"
-                >
-                  <span className="px-5 py-2 text-lg font-semibold text-white bg-black bg-opacity-60 rounded-lg shadow-sm text-center transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300 ease-in-out will-change-transform">
-                    {title}
-                  </span>
-                </div>
               </a>
             )
           })}

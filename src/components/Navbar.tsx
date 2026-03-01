@@ -4,8 +4,6 @@ import { useTranslation } from 'react-i18next'
 import logo from '../assets/icons/dp_icon_white.svg'
 import globeDark from '../assets/icons/globe_dark.svg'
 import globeLight from '../assets/icons/globe_light.svg'
-import greenDot from '../assets/icons/green_dot.json'
-import { LazyLottie } from './LazyLottie'
 
 // Constants
 export interface NavbarProps {
@@ -61,9 +59,9 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
               <img
                 src={logo}
                 alt="Daniela Plamínková Logo"
-                width={64}
-                height={64}
-                className="w-16 h-auto"
+                width={40}
+                height={40}
+                className="w-10 h-auto"
                 fetchPriority="high"
               />
             </a>
@@ -90,9 +88,9 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
             <img
               src={logo}
               alt="Daniela Plamínková Logo"
-              width={48}
-              height={48}
-              className="w-12 h-auto"
+              width={36}
+              height={36}
+              className="w-9 h-auto"
               fetchPriority="high"
             />
           </a>
@@ -163,11 +161,10 @@ const EmailButton = ({ email }: EmailButtonProps) => (
     onClick={() => {
       window.location.href = `mailto:${email}`
     }}
-    className="flex items-center space-x-2 px-3 py-1.5 rounded-2xl bg-[var(--color-accent)] text-[var(--color-dark)] text-sm hover:bg-[var(--color-orange-light)] shadow-md cursor-pointer"
+    className="px-3 py-1.5 rounded-lg border border-[var(--color-border)] text-[var(--color-gray)] text-sm hover:text-[var(--color-white)] hover:border-[var(--color-light-gray)] transition-colors cursor-pointer"
     aria-label={`Send email to ${email}`}
   >
-    <span>{email}</span>
-    <LazyLottie animationData={greenDot} loop style={{ width: 20, height: 20 }} />
+    {email}
   </button>
 )
 
@@ -219,14 +216,14 @@ const LanguageSwitcher = ({ currentLang, onChange }: LanguageSwitcherProps) => {
         onClick={() => setIsOpen((prev) => !prev)}
         aria-label="Change language"
         aria-expanded={isOpen}
-        className="cursor-pointer"
+        className="size-8 flex items-center justify-center cursor-pointer p-0"
       >
         <img
           src={isHovered ? globeLight : globeDark}
           alt="Language selector"
           width={24}
           height={24}
-          className="w-5 sm:w-6 h-auto transition duration-200"
+          className="w-5 sm:w-6 h-5 sm:h-6 object-contain transition duration-200"
           loading="lazy"
         />
       </button>

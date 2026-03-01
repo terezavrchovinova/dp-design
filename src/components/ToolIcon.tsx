@@ -15,26 +15,15 @@ export interface ToolIconProps {
  */
 export const ToolIcon = ({ name, src }: ToolIconProps) => (
   <div
-    className="
-      w-12 h-12 md:w-14 md:h-14
-      flex items-center justify-center
-      rounded-lg
-      transition
-      duration-300
-      ease-in-out
-      hover:shadow-lg
-      hover:scale-110
-      hover:rotate-3
-      cursor-pointer
-    "
+    className="w-10 h-10 flex items-center justify-center rounded opacity-70 hover:opacity-100 transition-opacity duration-150"
     title={name}
   >
     <img
       src={src}
       alt={name}
-      width={40}
-      height={40}
-      className="w-10 h-10 object-contain"
+      width={32}
+      height={32}
+      className="w-8 h-8 object-contain"
       draggable={false}
       loading="lazy"
     />
