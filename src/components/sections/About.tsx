@@ -11,7 +11,7 @@ import midjourneyIcon from '../../assets/icons/midjourney.webp'
 import photoshopIcon from '../../assets/icons/photoshop.svg'
 import lightroomIcon from '../../assets/icons/photoshop-lightroom.svg'
 import premiereProIcon from '../../assets/icons/premiere-pro.svg'
-import { JobCard } from '../JobCard'
+import { TimelineEntry } from '../ExperienceTimeline'
 import { ToolIcon } from '../ToolIcon'
 
 // Types
@@ -69,21 +69,29 @@ export const About = () => {
   return (
     <section id="about" className="section bg-[var(--color-dark)]" aria-label="About section">
       <div className="container-content">
-        {/* Experience Section */}
+        {/* Experience & Education - Timeline layout */}
         <div>
-          <h3>{t('about.experience')}</h3>
-          <div className="space-y-6">
+          <h3 className="mb-10">{t('about.experience')}</h3>
+          <div className="relative">
             {jobs.map((job, index) => (
-              <JobCard key={`${job.title}-${index}`} {...job} />
+              <TimelineEntry
+                key={`${job.title}-${index}`}
+                title={job.title}
+                date={job.date}
+                description={job.description}
+                isLast={index === jobs.length - 1}
+              />
             ))}
           </div>
-        </div>
 
-        {/* Education Section */}
-        <div>
-          <h3>{t('about.education')}</h3>
-          <div className="space-y-6">
-            <JobCard title={school.name} date={school.years} description={school.focus} />
+          <h3 className="mb-10 mt-16">{t('about.education')}</h3>
+          <div className="relative">
+            <TimelineEntry
+              title={school.name}
+              date={school.years}
+              description={school.focus}
+              isLast
+            />
           </div>
         </div>
 
