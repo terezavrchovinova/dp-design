@@ -18,7 +18,7 @@ export const Home = () => {
         style={{
           background: 'radial-gradient(circle, rgba(255,107,43,0.08) 0%, transparent 70%)',
         }}
-        aria-hidden
+        aria-hidden="true"
       />
 
       <motion.div

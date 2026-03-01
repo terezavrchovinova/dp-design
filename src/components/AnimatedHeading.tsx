@@ -41,7 +41,7 @@ export const handleHover = (
   }))
 }
 
-export default function AnimatedHeading() {
+export const AnimatedHeading = () => {
   const { t } = useTranslation()
   const headingRef = useRef<HTMLHeadingElement>(null)
   const [scattered, setScattered] = useState<ScatteredState>({})

@@ -1,7 +1,7 @@
 import { motion } from 'motion/react'
 import { useTranslation } from 'react-i18next'
 import { DEFAULT_TRANSITION } from '../../constants/motion'
-import AnimatedHeading from '../AnimatedHeading'
+import { AnimatedHeading } from '../AnimatedHeading'
 import { Button } from '../Button'
 
 const FALLBACK_EMAIL = 'email@example.com'

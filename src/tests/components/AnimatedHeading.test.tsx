@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import AnimatedHeading, { getCurlingSlide, handleHover } from '../../components/AnimatedHeading'
+import { AnimatedHeading, getCurlingSlide, handleHover } from '../../components/AnimatedHeading'
 import { act, fireEvent, getTextInAnyLanguage, render, screen } from '../utils'
 
 describe('AnimatedHeading', () => {

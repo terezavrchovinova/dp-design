@@ -8,6 +8,8 @@ import { LANGUAGES } from '../constants/i18n'
 import { DEFAULT_TRANSITION } from '../constants/motion'
 import { NAV_ITEMS } from '../constants/navigation'
 
+const FALLBACK_EMAIL = 'email@example.com'
+
 export interface NavbarProps {
   /** Whether the mobile menu is open */
   menuOpen: boolean
@@ -17,7 +19,7 @@ export interface NavbarProps {
 
 export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
   const { t, i18n } = useTranslation()
-  const email = t('contact.email')
+  const email = t('contact.email') || FALLBACK_EMAIL
 
   return (
     <motion.nav
