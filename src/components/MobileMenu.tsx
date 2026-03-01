@@ -92,7 +92,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
       <button
         ref={closeButtonRef}
         onClick={handleClose}
-        className="absolute top-6 right-6 text-[var(--color-white)] text-3xl focus:outline-none hover:scale-110 transition-transform duration-200 cursor-pointer"
+        className="absolute top-6 right-6 text-[var(--color-white)] text-3xl focus:outline-none hover:scale-110 hover:opacity-80 transition-all duration-200 ease-out cursor-pointer"
         aria-label="Close menu"
         type="button"
         tabIndex={menuOpen ? 0 : -1}
@@ -107,7 +107,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
             key={item.key}
             href={item.href}
             onClick={handleMenuItemClick}
-            className={`text-3xl font-semibold text-[var(--color-white)] tracking-tight transition-all duration-500 ease-out cursor-pointer ${
+            className={`text-3xl font-semibold text-[var(--color-white)] tracking-tight transition-all duration-500 ease-out cursor-pointer hover:text-[var(--color-accent)] hover:scale-105 ${
               menuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
             style={{

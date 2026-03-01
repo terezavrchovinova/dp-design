@@ -1,3 +1,4 @@
+import { motion } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import photoIcon from '../../assets/icons/photography.json'
@@ -66,7 +67,16 @@ const LottieAnimation = ({ asset }: LottieAnimationProps) => {
 
   return (
     <div ref={containerRef} className="w-16 h-16">
-      {isVisible && <LazyLottie animationData={asset} className="w-16 h-16" loop autoplay />}
+      {isVisible && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.35, ease: 'easeOut' }}
+          className="w-16 h-16"
+        >
+          <LazyLottie animationData={asset} className="w-16 h-16" loop autoplay />
+        </motion.div>
+      )}
     </div>
   )
 }
@@ -85,33 +95,33 @@ export const WhatIDo = () => {
   return (
     <section
       id="what-i-do"
-      className="section bg-[var(--color-dark)]"
+      className="py-24 px-8 max-w-[960px] mx-auto text-center bg-[var(--color-dark)]"
       aria-label="Services section"
     >
-      <div className="container-content">
-        {/* Section Title */}
-        <h2 className="text-[2rem] sm:text-2xl md:text-3xl lg:text-4xl">{t('whatIDo.title')}</h2>
-
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
-          {SERVICES.map(({ key, asset }) => (
-            <div
-              key={key}
-              className="card-minimal flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-6 p-5 sm:p-6 text-center sm:text-left transition-all duration-500 ease-out hover:border-[var(--color-gray)] hover:shadow-lg"
-            >
-              {/* Service Icon */}
-              <div className="w-16 h-16 flex items-center justify-center flex-shrink-0 mx-auto sm:mx-0 opacity-80">
-                <LottieAnimation asset={asset} />
-              </div>
-
-              {/* Service Content */}
-              <div className="flex flex-col justify-center h-full">
-                <p className="section-title text-[10px] sm:text-xs md:text-base">{t(`whatIDo.services.${key}.title`)}</p>
-                <p className="section-description text-[9px] sm:text-xs md:text-sm">{t(`whatIDo.services.${key}.description`)}</p>
-              </div>
+      <h2 className="text-[clamp(1.8rem,4vw,2.8rem)] font-black tracking-[-0.02em] mb-12">
+        {t('whatIDo.title')}
+      </h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {SERVICES.map(({ key, asset }, index) => (
+          <motion.div
+            key={key}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: '-20px' }}
+            transition={{ duration: 0.5, delay: index * 0.08, ease: 'easeOut' }}
+            className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-2xl p-6 text-left transition-all duration-300 ease-out hover:border-[var(--color-accent)] hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(255,107,43,0.12)] flex items-center gap-5"
+          >
+            <div className="w-16 flex-shrink-0 self-stretch flex items-center justify-center">
+              <LottieAnimation asset={asset} />
             </div>
-          ))}
-        </div>
+            <div className="min-w-0">
+              <h3 className="font-bold !text-[20px] !mb-2 !text-left">{t(`whatIDo.services.${key}.title`)}</h3>
+              <p className="text-[var(--color-gray)] !text-[16px] leading-relaxed" style={{ lineHeight: 1.6 }}>
+                {t(`whatIDo.services.${key}.description`)}
+              </p>
+            </div>
+          </motion.div>
+        ))}
       </div>
     </section>
   )

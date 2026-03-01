@@ -1,38 +1,33 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Base Colors - refined minimal palette */
-  --color-dark: #0a0a0a;
-  --color-surface: #141414;
-  --color-white: #fafafa;
-  --color-gray: #888888;
-  --color-light-gray: #a3a3a3;
-  --color-border: #262626;
+  /* Base Colors - plaminkova-inspired palette */
+  --color-dark: #0d0d0d;
+  --color-surface: #161616;
+  --color-card: #1c1c1c;
+  --color-white: #ffffff;
+  --color-gray: #666666;
+  --color-light-gray: #888888;
+  --color-border: #2a2a2a;
 
-  /* Accent - single muted accent */
-  --color-accent: #404040;
+  /* Accent - orange */
+  --color-accent: #FF6B2B;
+  --color-accent-dim: rgba(255, 107, 43, 0.15);
 
   /* CTA */
-  --color-cta-primary-bg: var(--color-white);
-  --color-cta-primary-text: var(--color-dark);
+  --color-cta-primary-bg: var(--color-accent);
+  --color-cta-primary-text: var(--color-white);
   --color-cta-secondary-bg: transparent;
-  --color-cta-secondary-text: var(--color-light-gray);
+  --color-cta-secondary-text: var(--color-white);
 
-  /* Spacing & Effects - minimal */
+  /* Spacing & Effects */
   --radius-lg: 0.5rem;
   --radius-xl: 0.75rem;
+  --radius-full: 100px;
 
   /* Transitions */
   --transition-fast: 0.15s ease;
   --transition-smooth: 0.25s ease;
-}
-
-@font-face {
-  font-family: 'ClashDisplay-SemiBold';
-  src: url('./assets/fonts/ClashDisplay-Semibold.otf') format('opentype');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
 }
 
 html {
@@ -40,10 +35,22 @@ html {
   scroll-padding-top: 4rem; /* navbar height - keeps section at top when scrolling via anchor */
 }
 
+/* Prevent flash of unstyled text – fade in when fonts are ready */
+html:not(.fonts-loaded) body {
+  opacity: 0;
+  visibility: hidden;
+}
+
+html.fonts-loaded body {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.25s ease-out;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Figtree', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background-color: var(--color-dark);
   color: var(--color-white);
   -webkit-font-smoothing: antialiased;
@@ -53,20 +60,23 @@ body {
 h1,
 h2,
 h3 {
-  font-family: 'ClashDisplay-SemiBold', sans-serif;
+  font-family: 'Figtree', sans-serif;
   text-align: center;
 }
 
 h1 {
-  @apply text-4xl md:text-5xl font-medium text-zinc-50 tracking-tight;
+  @apply text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
 }
 
 h2 {
-  @apply text-2xl md:text-3xl lg:text-4xl mb-8 font-medium;
+  @apply text-2xl md:text-3xl lg:text-4xl mb-8 font-black;
+  letter-spacing: -0.02em;
 }
 
 h3 {
-  @apply text-2xl md:text-2xl lg:text-3xl mb-6 font-medium;
+  @apply text-5xl md:text-2xl lg:text-3xl mb-6 font-bold;
 }
 
 .section-title {
@@ -77,6 +87,81 @@ h3 {
 .section-description {
   color: var(--color-gray);
   @apply text-base leading-relaxed;
+}
+
+@keyframes nudge {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(7px); }
+}
+
+/* Scroll animation section (chaos → solution) */
+.scroll-anim-section {
+  height: 200vh;
+  width: 100%;
+  position: relative;
+}
+
+.scroll-anim-sticky {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--color-dark);
+  display: grid;
+  place-items: center;
+}
+
+.scroll-anim-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 90vw;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.scroll-anim-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 200px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+}
+
+.scroll-anim-svg-wrap {
+  width: 90vw;
+  max-width: 860px;
+  position: relative;
+}
+
+.scroll-anim-svg {
+  width: 100%;
+  overflow: visible;
+}
+
+.scroll-anim-phase-label {
+  font-weight: 900;
+  font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+  letter-spacing: -0.02em;
+  text-align: center;
+  white-space: nowrap;
+  transition: color 0.4s ease, opacity 0.4s ease;
+}
+
+.scroll-anim-sub-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: opacity 0.4s ease, color 0.4s ease;
 }
 
 @layer utilities {

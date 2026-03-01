@@ -1,3 +1,4 @@
+import { motion } from 'motion/react'
 import { useTranslation } from 'react-i18next'
 import brejchaImgDesktop from '../../assets/project_thumbnails/desktop/brejcha.webp'
 import deathvalleyImgDesktop from '../../assets/project_thumbnails/desktop/death_valley.webp'
@@ -139,21 +140,32 @@ export const Projects = () => {
     <section id="projects" className="section bg-[var(--color-dark)]" aria-label="Projects section">
       <div className="w-full max-w-[1600px] px-10 mx-auto">
         {/* Section Title */}
-        <h2>{t('projects.title')}</h2>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+        >
+          {t('projects.title')}
+        </motion.h2>
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
-          {PROJECTS.map((project) => {
+          {PROJECTS.map((project, index) => {
             const title = t(`projects.items.${project.key}`, project.key)
 
             return (
-              <a
+              <motion.a
                 key={project.id}
                 href={project.link}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-30px' }}
+                transition={{ duration: 0.4, delay: index * 0.06, ease: [0.25, 1, 0.5, 1] }}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`View project: ${title}`}
-                className="group relative block aspect-[16/9] overflow-hidden rounded-lg border border-[var(--color-border)] transition-all duration-500 ease-out hover:border-[var(--color-gray)] hover:shadow-lg"
+                className="group relative block aspect-[16/9] overflow-hidden rounded-lg border border-[var(--color-border)] transition-all duration-300 ease-out hover:border-[var(--color-accent)] hover:shadow-[0_8px_30px_rgba(255,107,43,0.15)] hover:-translate-y-0.5"
               >
                 {/* Project Image - Desktop and Mobile */}
                 <picture>
@@ -175,26 +187,26 @@ export const Projects = () => {
                     height={450}
                     decoding="async"
                     fetchPriority="low"
-                    className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105 group-hover:-translate-y-1"
+                    className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
                   />
                 </picture>
 
                 {/* Overlay on Hover */}
                 <div
-                  className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-80 transition-opacity duration-500 ease-out"
+                  className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"
                   aria-hidden="true"
                 />
 
                 {/* Project Title on Hover */}
                 <div
-                  className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out"
+                  className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"
                   aria-hidden="true"
                 >
-                  <span className="px-5 py-2 text-lg font-semibold text-white bg-black/60 rounded-lg text-center translate-y-2 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                  <span className="px-5 py-2 text-lg font-semibold text-white bg-black/60 rounded-lg text-center translate-y-3 group-hover:translate-y-0 transition-transform duration-300 ease-out group-hover:scale-105">
                     {title}
                   </span>
                 </div>
-              </a>
+              </motion.a>
             )
           })}
         </div>

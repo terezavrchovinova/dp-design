@@ -6,10 +6,22 @@
     "about": "Zkušenosti",
     "contact": "Kontakt"
   },
+  "animation": {
+    "phase1": "problém",
+    "phase2": "hledám cestu…",
+    "phase3": "řešení",
+    "sub1": "zadání klienta",
+    "sub2": "analýza & proces",
+    "sub3": "čistý výsledek"
+  },
   "home": {
-    "titleLine1": "Kreativní grafička",
-    "titleLine2": "a video editorka",
-    "subtitle": "Daniela Plamínková",
+    "heroTag": "Kreativní grafička & video editorka",
+    "titleLine1a": "Turning ",
+    "titleLine1b": "messy",
+    "titleLine1b2": "challenges",
+    "titleLine1c": "into",
+    "titleLine2": "clear solutions.",
+    "subtitle": "Pomáhám firmám proměnit chaos v čistý vizuál, který funguje — od brandingu po motion grafiku.",
     "viewProjects": "Zobrazit projekty",
     "contactMe": "Kontaktovat mě"
   },
@@ -77,19 +89,19 @@
     "services": {
       "design": {
         "title": "Vizuální identita a branding",
-        "description": "Loga, vizuální identity značek, brožury, obaly a merchandising"
+        "description": "Logo, vizuální identita, tiskoviny"
       },
       "video": {
         "title": "Video a motion grafika",
-        "description": "Produkce a střih různých typů videí, včetně motion grafiky"
+        "description": "Produkce a střih videí, animace"
       },
       "digital": {
         "title": "Tvorba digitálního obsahu",
-        "description": "Návrh a tvorba digitální grafiky a podkladů pro web a sociální sítě"
+        "description": "Digitální obsah pro web a sociální sítě"
       },
       "photo": {
         "title": "Fotografie",
-        "description": "Fotografie produktů, lidí, retušování a úprava snímků"
+        "description": "Focení a digitální úprava"
       }
     }
   },

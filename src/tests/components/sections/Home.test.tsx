@@ -13,7 +13,7 @@ describe('Home', () => {
   it('displays the main title', () => {
     render(<Home />)
     // Use translation keys - works with any language
-    const titlePattern = getTextInAnyLanguage('home.titleLine1')
+    const titlePattern = getTextInAnyLanguage('home.titleLine1a')
     const titleLine2Pattern = getTextInAnyLanguage('home.titleLine2')
 
     // Should display title regardless of current language

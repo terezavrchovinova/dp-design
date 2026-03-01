@@ -101,15 +101,16 @@ export default function AnimatedHeading() {
   const heading = t('footer.cta_collaborate')
 
   return (
-    <div className="w-full py-8 flex justify-center items-center px-4">
+    <div className="w-full pt-4 pb-2 flex justify-center items-center px-4">
       <div className="w-full max-w-5xl text-center">
-        {/* Mobile View - Static Heading */}
-        <h3 className="block md:hidden text-2xl font-semibold">{heading}</h3>
+        {/* Mobile View - Static Heading - matches h2 (Nástroje) styling */}
+        <h2 className="block md:hidden text-2xl md:text-3xl lg:text-4xl font-black !mb-0" style={{ letterSpacing: '-0.02em' }}>{heading}</h2>
 
-        {/* Desktop View - Animated Letters */}
-        <h3
+        {/* Desktop View - Animated Letters - matches h2 (Nástroje) styling */}
+        <h2
           ref={headingRef}
-          className="hidden md:flex flex-wrap justify-center text-4xl leading-snug text-center"
+          className="hidden md:flex flex-wrap justify-center text-2xl md:text-3xl lg:text-4xl font-black text-center !mb-0"
+          style={{ letterSpacing: '-0.02em' }}
         >
           {heading.split('').map((char, index) => {
             const animationState = scattered[index] ?? {
@@ -133,7 +134,7 @@ export default function AnimatedHeading() {
               </motion.span>
             )
           })}
-        </h3>
+        </h2>
       </div>
     </div>
   )

@@ -9,7 +9,7 @@ test.describe('Home Page', () => {
     await page.waitForLoadState('networkidle')
 
     // Use translation key - works with any language
-    const headingPattern = getTextPattern('home.titleLine1')
+    const headingPattern = getTextPattern('home.titleLine1a')
     const heading = page.getByText(headingPattern)
     await expect(heading).toBeVisible()
   })

@@ -1,6 +1,6 @@
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
-import { lazy, Suspense, useState } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 
 // Global styles & i18n configuration
 import './i18n'
@@ -11,6 +11,7 @@ import { MobileMenu } from './components/MobileMenu'
 // Core components (loaded immediately)
 import { Navbar } from './components/Navbar'
 import { Home } from './components/sections/Home'
+import { ScrollAnimation } from './components/sections/ScrollAnimation'
 
 // Lazy load non-critical sections for code splitting
 const Projects = lazy(() =>
@@ -35,6 +36,10 @@ const Contact = lazy(() =>
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <>
       {/* Performance and analytics monitoring */}
@@ -49,6 +54,7 @@ function App() {
       <main>
         {/* Critical section - loaded immediately */}
         <Home />
+        <ScrollAnimation />
 
         {/* Non-critical sections - lazy loaded */}
         <Suspense fallback={null}>

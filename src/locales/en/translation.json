@@ -6,10 +6,22 @@
     "about": "Experience",
     "contact": "Contact"
   },
+  "animation": {
+    "phase1": "problem",
+    "phase2": "finding the way…",
+    "phase3": "solution",
+    "sub1": "client brief",
+    "sub2": "analysis & process",
+    "sub3": "clean result"
+  },
   "home": {
-    "titleLine1": "Creative graphic designer",
-    "titleLine2": "and video editor",
-    "subtitle": "Daniela Plamínková",
+    "heroTag": "Creative graphic designer & video editor",
+    "titleLine1a": "Turning ",
+    "titleLine1b": "messy",
+    "titleLine1b2": "challenges",
+    "titleLine1c": "into",
+    "titleLine2": "clear solutions.",
+    "subtitle": "I help brands turn ideas into clear visuals — from branding to motion graphics.",
     "viewProjects": "View Projects",
     "contactMe": "Contact Me"
   },

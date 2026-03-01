@@ -1,11 +1,10 @@
+import { motion } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 // Assets
 import logo from '../assets/icons/dp_icon_white.svg'
 import globeDark from '../assets/icons/globe_dark.svg'
 import globeLight from '../assets/icons/globe_light.svg'
-import greenDot from '../assets/icons/green_dot.json'
-import { LazyLottie } from './LazyLottie'
 
 // Constants
 export interface NavbarProps {
@@ -44,46 +43,47 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
   const email = t('contact.email')
 
   return (
-    <nav
-      className="fixed top-0 w-full z-40 backdrop-blur-lg"
+    <motion.nav
+      initial={{ opacity: 0, y: -16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+      className="fixed top-0 w-full z-40 border-b border-[var(--color-border)] py-[1.1rem] px-6 md:px-10"
       style={{
-        backgroundColor: 'rgba(10,10,10,0.75)',
+        backgroundColor: 'rgba(13,13,13,0.85)',
+        backdropFilter: 'blur(12px)',
       }}
       aria-label="Main navigation"
     >
-      <div className="max-w-6xl mx-auto">
-        {/* Desktop Navigation */}
-        <div className="hidden md:grid md:grid-cols-3 items-center h-16 w-full px-6">
-          {/* Logo */}
-          <div className="flex items-center justify-start">
-            <a href="#home" className="flex items-center" aria-label="Home">
-              <img
-                src={logo}
-                alt="Daniela Plamínková Logo"
-                width={40}
-                height={40}
-                className="w-10 h-auto"
-                fetchPriority="high"
-              />
-            </a>
-          </div>
+      {/* Desktop Navigation - logo left, links center, email right */}
+      <div className="hidden md:flex md:items-center md:justify-between w-full relative">
+        {/* Logo - left */}
+        <a href="#home" className="flex items-center shrink-0" aria-label="Home">
+          <img
+            src={logo}
+            alt="Daniela Plamínková Logo"
+            width={40}
+            height={40}
+            className="w-10 h-auto"
+            fetchPriority="high"
+          />
+        </a>
 
-          {/* Navigation Links */}
-          <div className="flex items-center justify-center space-x-6">
-            {NAV_LINKS.map(({ href, key }) => (
-              <NavLink key={href} href={href} label={t(key)} />
-            ))}
-          </div>
-
-          {/* Language Switcher and Email */}
-          <div className="flex items-center justify-end space-x-4">
-            <LanguageSwitcher currentLang={i18n.language} onChange={i18n.changeLanguage} />
-            <EmailButton email={email} />
-          </div>
+        {/* Navigation Links - center */}
+        <div className="flex items-center justify-center gap-8 absolute left-1/2 -translate-x-1/2">
+          {NAV_LINKS.map(({ href, key }) => (
+            <NavLink key={href} href={href} label={t(key)} />
+          ))}
         </div>
 
-        {/* Mobile Navigation */}
-        <div className="flex md:hidden items-center justify-between h-16 w-full px-4">
+        {/* Language Switcher and Email - right */}
+        <div className="flex items-center gap-4 shrink-0">
+          <LanguageSwitcher currentLang={i18n.language} onChange={i18n.changeLanguage} />
+          <EmailButton email={email} />
+        </div>
+      </div>
+
+      {/* Mobile Navigation */}
+      <div className="flex md:hidden items-center justify-between w-full">
           {/* Logo */}
           <a href="#home" className="flex items-center z-10" aria-label="Home">
             <img
@@ -110,8 +110,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
             ))}
           </button>
         </div>
-      </div>
-    </nav>
+    </motion.nav>
   )
 }
 
@@ -134,7 +133,7 @@ const NavLink = ({ href, label }: NavLinkProps) => {
   return (
     <a
       href={href}
-      className="text-lg transition-colors duration-200"
+      className="text-sm transition-all duration-200 ease-out"
       style={{ color: isHovered ? 'var(--color-white)' : 'var(--color-gray)' }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -162,11 +161,10 @@ const EmailButton = ({ email }: EmailButtonProps) => (
     onClick={() => {
       window.location.href = `mailto:${email}`
     }}
-    className="flex items-center space-x-2 px-3 py-1.5 rounded-lg border border-[var(--color-border)] text-[var(--color-gray)] text-sm hover:text-[var(--color-white)] hover:border-[var(--color-light-gray)] transition-colors cursor-pointer"
+    className="py-[0.45rem] px-[1.3rem] rounded-[100px] bg-[var(--color-accent)] text-[var(--color-white)] text-[0.8rem] font-bold hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 ease-out cursor-pointer leading-none"
     aria-label={`Send email to ${email}`}
   >
-    <span>{email}</span>
-    <LazyLottie animationData={greenDot} loop style={{ width: 20, height: 20 }} />
+    {email}
   </button>
 )
 
@@ -247,7 +245,7 @@ const LanguageSwitcher = ({ currentLang, onChange }: LanguageSwitcherProps) => {
                 setIsOpen(false)
                 setIsHovered(false)
               }}
-              className={`w-full text-left px-4 py-2 hover:bg-[var(--color-border)] cursor-pointer text-[var(--color-white)] transition-colors duration-150 ${
+              className={`w-full text-left px-4 py-2 hover:bg-[var(--color-accent)]/20 cursor-pointer text-[var(--color-white)] transition-all duration-200 ease-out ${
                 currentLang === code ? 'font-semibold' : ''
               }`}
               aria-label={`Switch to ${label}`}

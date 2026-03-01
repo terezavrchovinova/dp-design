@@ -36,19 +36,19 @@ export const Button = ({
 }: ButtonProps) => {
   // Base styles shared by all button variants
   const baseStyles = [
-    'relative inline-block px-5 py-2.5 rounded-lg font-medium',
-    'transition-colors duration-150',
+    'relative inline-block py-[0.85rem] px-8 rounded-[100px] font-bold text-[0.9rem]',
+    'transition-all duration-200 ease-out',
     'focus:outline-none focus-visible:ring-1 focus-visible:ring-[var(--color-border)]',
     'cursor-pointer',
     className,
   ].join(' ')
 
-  // Variant-specific styles - minimal flat design
+  // Variant-specific styles - plaminkova-inspired
   const variantStyles = {
     primary:
-      'text-[var(--color-dark)] bg-[var(--color-white)] hover:bg-[var(--color-light-gray)]',
+      'text-[var(--color-white)] bg-[var(--color-accent)] hover:opacity-[0.9] hover:scale-[1.02] active:scale-[0.98]',
     outline:
-      'text-[var(--color-light-gray)] border border-[var(--color-border)] hover:text-[var(--color-white)] hover:border-[var(--color-light-gray)]',
+      'text-[var(--color-white)] border-[1.5px] border-[var(--color-border)] hover:border-[var(--color-accent)] hover:scale-[1.02] active:scale-[0.98]',
   }
 
   // Render as button element

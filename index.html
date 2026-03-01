@@ -17,13 +17,45 @@
     <meta name="author" content="Daniela Plamínková" />
 
     <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="preload"
-      href="./src/assets/fonts/ClashDisplay-Semibold.otf"
-      as="font"
-      type="font/otf"
-      crossorigin="anonymous"
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Figtree:wght@400;700;900&display=swap"
+      as="style"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Figtree:wght@400;700;900&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Figtree:wght@400;700;900&display=swap"
+      />
+    </noscript>
+    <script>
+      (function () {
+        var timeout = setTimeout(function () {
+          document.documentElement.classList.add('fonts-loaded')
+        }, 1500)
+        if ('fonts' in document) {
+          document.fonts.ready.then(function () {
+            clearTimeout(timeout)
+            document.documentElement.classList.add('fonts-loaded')
+          })
+          if (document.fonts.check('1em Figtree')) {
+            clearTimeout(timeout)
+            document.documentElement.classList.add('fonts-loaded')
+          }
+        } else {
+          clearTimeout(timeout)
+          document.documentElement.classList.add('fonts-loaded')
+        }
+      })()
+    </script>
 
     <link
       rel="icon"
@@ -32,6 +64,10 @@
     />
   </head>
   <body>
+    <script>
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual'
+      window.scrollTo(0, 0)
+    </script>
     <div id="root"></div>
     <script type="module" src="./src/main.tsx"></script>
   </body>
