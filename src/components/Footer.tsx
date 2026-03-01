@@ -19,24 +19,17 @@ export const Footer = () => {
         backgroundColor: 'rgba(10,10,10,0.75)',
       }}
     >
-      <div className="max-w-6xl mx-auto px-6 py-4 text-xs text-[var(--color-gray)]">
-        <div className="flex flex-wrap justify-center space-x-8 space-y-2 md:space-y-0">
-          {/* Copyright */}
-          <p>
-            © {currentYear} {t('footer.name')}
-          </p>
-
-          {/* ICO Number */}
-          <p>{t('footer.ico')}</p>
-
-          {/* Address */}
-          <p>{t('footer.address')}</p>
-
-          {/* Registration Info */}
-          <p>{t('footer.registered')}</p>
-
-          {/* Supervisory Authority */}
-          <p>{t('footer.supervisoryAuthority')}</p>
+      <div className="max-w-6xl mx-auto px-6 py-4 text-[var(--color-gray)]">
+        <div className="flex flex-wrap justify-center items-center gap-x-2 sm:gap-x-4 gap-y-1 text-[10px] sm:text-xs">
+          <span>© {currentYear} {t('footer.name')}</span>
+          <span className="opacity-50">·</span>
+          <span>{t('footer.ico')}</span>
+          <span className="opacity-50">·</span>
+          <span>{t('footer.address')}</span>
+          <span className="opacity-50">·</span>
+          <span>{t('footer.registered')}</span>
+          <span className="opacity-50">·</span>
+          <span>{t('footer.supervisoryAuthority')}</span>
         </div>
       </div>
     </footer>
