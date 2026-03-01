@@ -114,11 +114,11 @@ test.describe('Navigation', () => {
   })
 
   test('should toggle mobile menu on mobile viewport', async ({ page }) => {
-    await page.waitForLoadState('networkidle')
-    // Set mobile viewport
+    // Set mobile viewport before any checks so layout is correct
     await page.setViewportSize({ width: 375, height: 667 })
+    await page.waitForLoadState('load')
 
-    // Wait for menu button to be visible
+    // Wait for menu button to be visible (hamburger shows below xl breakpoint)
     const menuButton = page.getByRole('button', { name: /toggle menu/i })
     await expect(menuButton).toBeVisible()
 
@@ -128,18 +128,16 @@ test.describe('Navigation', () => {
     // Wait for menu to be open and check aria-expanded
     await expect(menuButton).toHaveAttribute('aria-expanded', 'true')
 
-    // Wait for mobile menu to be visible
+    // Wait for mobile menu to be visible (has 500ms CSS transition)
     const mobileMenu = page.getByRole('dialog', {
       name: /mobile navigation menu/i,
     })
     await expect(mobileMenu).toBeVisible()
 
-    // Close menu using the close button instead of menu button (which is now covered)
-    const closeButton = page.getByRole('button', { name: /close menu/i })
-    await expect(closeButton).toBeVisible()
-    await closeButton.click()
+    // Close menu by clicking the hamburger again (navbar z-50 overlays the close button which is in z-40)
+    await menuButton.click()
 
-    // Wait for menu to close
+    // Wait for menu to close (aria-expanded back to false)
     await expect(menuButton).toHaveAttribute('aria-expanded', 'false')
   })
 })

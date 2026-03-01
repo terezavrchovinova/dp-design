@@ -116,7 +116,10 @@ export const WhatIDo = () => {
             </div>
             <div className="min-w-0 flex flex-col items-center sm:items-start text-center sm:text-left">
               <h3 className="font-bold !text-[20px] !mb-2">{t(`whatIDo.services.${key}.title`)}</h3>
-              <p className="text-[var(--color-gray)] !text-[16px] leading-relaxed" style={{ lineHeight: 1.6 }}>
+              <p
+                className="text-[var(--color-gray)] !text-[16px] leading-relaxed"
+                style={{ lineHeight: 1.6 }}
+              >
                 {t(`whatIDo.services.${key}.description`)}
               </p>
             </div>

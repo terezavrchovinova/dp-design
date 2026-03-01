@@ -21,6 +21,7 @@ const DEFAULT_LANGUAGE: SupportedLanguage = 'cs'
 const FALLBACK_LANGUAGE: SupportedLanguage = 'en'
 
 i18n.use(initReactI18next).init({
+  showSupportNotice: false, // Suppress Locize promotional message in console
   resources: {
     en: { translation: en },
     cs: { translation: cs },

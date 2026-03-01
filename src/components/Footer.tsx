@@ -28,7 +28,9 @@ export const Footer = () => {
         }}
       >
         <div className="flex flex-wrap justify-center items-center gap-x-2 sm:gap-x-4 gap-y-1 text-[10px] sm:text-xs text-center">
-          <span>© {currentYear} {t('footer.name')}</span>
+          <span>
+            © {currentYear} {t('footer.name')}
+          </span>
           <span className="opacity-50">·</span>
           <span>{t('footer.ico')}</span>
           <span className="opacity-50">·</span>

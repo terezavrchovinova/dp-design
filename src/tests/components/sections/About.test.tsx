@@ -3,7 +3,6 @@ import { About } from '../../../components/sections/About'
 import { getTextInAnyLanguage, render, screen } from '../../utils'
 
 describe('About', () => {
-
   it('renders the about section', () => {
     render(<About />)
     const section = screen.getByRole('region', { name: /about section/i })
@@ -50,5 +49,4 @@ describe('About', () => {
     // At least some tools should be rendered
     expect(toolImages.length).toBeGreaterThanOrEqual(0)
   })
-
 })

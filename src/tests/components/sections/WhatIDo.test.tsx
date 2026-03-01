@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { WhatIDo } from '../../../components/sections/WhatIDo'
-import { getTextInAnyLanguage, render, screen } from '../../utils'
+import { act, getTextInAnyLanguage, render, screen } from '../../utils'
 
 // Helper function to create a complete IntersectionObserverEntry mock
 function createIntersectionEntry(
@@ -117,7 +117,7 @@ describe('WhatIDo', () => {
 
     render(<WhatIDo />)
 
-    // Simulate element entering viewport (isVisible = true)
+    // Simulate element entering viewport (isVisible = true) - wrap in act for React state updates
     if (observerCallback) {
       const entry = createIntersectionEntry(true, target)
       const mockObserver = {
@@ -126,8 +126,9 @@ describe('WhatIDo', () => {
         disconnect: vi.fn(),
         takeRecords: vi.fn(() => []) as () => IntersectionObserverEntry[],
       } as unknown as IntersectionObserver
-      // Type assertion needed because TypeScript can't infer the callback type correctly
-      ;(observerCallback as IntersectionObserverCallback)([entry], mockObserver)
+      act(() => {
+        ;(observerCallback as IntersectionObserverCallback)([entry], mockObserver)
+      })
     }
   })
 
@@ -181,9 +182,9 @@ describe('WhatIDo', () => {
     expect(observerCallback).not.toBeNull()
 
     // Check that Lottie containers exist
-    // The LottieAnimation component renders a div with ref, but no LazyLottie inside
+    // The LottieAnimation component renders a div with ref (w-16 h-16), but no LazyLottie inside
     // when isVisible is false
-    const lottieContainers = container.querySelectorAll('div.w-24.h-24')
+    const lottieContainers = container.querySelectorAll('div.w-16.h-16')
     expect(lottieContainers.length).toBeGreaterThan(0)
 
     // Verify that IntersectionObserver callback was called with isIntersecting: false

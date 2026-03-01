@@ -63,8 +63,13 @@ export const JobCard = ({ title, date, description }: JobCardProps) => {
       {/* Description as bullet points */}
       <ul className="space-y-3 text-base leading-relaxed">
         {bulletPoints.map((point) => (
-          <li key={point} className="section-description flex items-start gap-2 text-[var(--color-gray)]">
-            <span className="flex-shrink-0 w-[1em] h-[1.625em] flex items-center justify-center text-lg">·</span>
+          <li
+            key={point}
+            className="section-description flex items-start gap-2 text-[var(--color-gray)]"
+          >
+            <span className="flex-shrink-0 w-[1em] h-[1.625em] flex items-center justify-center text-lg">
+              ·
+            </span>
             <span>{point}</span>
           </li>
         ))}

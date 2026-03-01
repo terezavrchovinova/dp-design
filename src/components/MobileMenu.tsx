@@ -135,9 +135,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
               type="button"
               onClick={() => changeLanguage(lang)}
               className={`text-sm font-medium transition-opacity duration-200 cursor-pointer ${
-                isActive
-                  ? 'text-[var(--color-white)]'
-                  : 'text-[var(--color-gray)] hover:opacity-80'
+                isActive ? 'text-[var(--color-white)]' : 'text-[var(--color-gray)] hover:opacity-80'
               }`}
               aria-label={`Switch to ${lang.toUpperCase()}`}
               aria-pressed={isActive}

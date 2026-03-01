@@ -84,30 +84,30 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
 
       {/* Mobile / Tablet Navigation - hamburger up to xl breakpoint */}
       <div className="flex xl:hidden items-center justify-between w-full">
-          {/* Logo */}
-          <a href="#home" className="flex items-center z-10" aria-label="Home">
-            <img
-              src={logo}
-              alt="Daniela Plamínková Logo"
-              width={36}
-              height={36}
-              className="w-9 h-auto"
-              fetchPriority="high"
-            />
-          </a>
+        {/* Logo */}
+        <a href="#home" className="flex items-center z-10" aria-label="Home">
+          <img
+            src={logo}
+            alt="Daniela Plamínková Logo"
+            width={36}
+            height={36}
+            className="w-9 h-auto"
+            fetchPriority="high"
+          />
+        </a>
 
-          {/* Menu Toggle Button - hamburger (☰) always renders as text */}
-          <button
-            type="button"
-            aria-label="Toggle Menu"
-            aria-expanded={menuOpen}
-            aria-controls="mobile-menu"
-            onClick={() => setMenuOpen((prev) => !prev)}
-            className="flex items-center justify-center w-10 h-10 min-w-10 min-h-10 cursor-pointer hover:opacity-80 transition-opacity text-[var(--color-white)] text-2xl font-light leading-none"
-          >
-            &#9776;
-          </button>
-        </div>
+        {/* Menu Toggle Button - hamburger (☰) always renders as text */}
+        <button
+          type="button"
+          aria-label="Toggle Menu"
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
+          onClick={() => setMenuOpen((prev) => !prev)}
+          className="flex items-center justify-center w-10 h-10 min-w-10 min-h-10 cursor-pointer hover:opacity-80 transition-opacity text-[var(--color-white)] text-2xl font-light leading-none"
+        >
+          &#9776;
+        </button>
+      </div>
     </motion.nav>
   )
 }

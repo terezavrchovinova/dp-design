@@ -104,7 +104,12 @@ export default function AnimatedHeading() {
     <div className="w-full pt-4 pb-2 flex justify-center items-center px-4">
       <div className="w-full max-w-5xl text-center">
         {/* Mobile View - Static Heading - matches h2 (Nástroje) styling */}
-        <h2 className="block md:hidden text-2xl md:text-3xl lg:text-4xl font-black !mb-0" style={{ letterSpacing: '-0.02em' }}>{heading}</h2>
+        <h2
+          className="block md:hidden text-2xl md:text-3xl lg:text-4xl font-black !mb-0"
+          style={{ letterSpacing: '-0.02em' }}
+        >
+          {heading}
+        </h2>
 
         {/* Desktop View - Animated Letters - matches h2 (Nástroje) styling */}
         <h2

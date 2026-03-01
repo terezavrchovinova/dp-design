@@ -62,12 +62,15 @@ export const Home = () => {
         >
           <span className="whitespace-normal md:whitespace-nowrap">
             {t('home.titleLine1a')}
-            <span className="font-['DM_Serif_Display'] italic" style={{ color: 'var(--color-accent)' }}>
+            <span
+              className="font-['DM_Serif_Display'] italic"
+              style={{ color: 'var(--color-accent)' }}
+            >
               {t('home.titleLine1b')} {t('home.titleLine1b2')}
             </span>
           </span>
           <span className="whitespace-normal md:whitespace-nowrap">
-            {t('home.titleLine1c')}{' '}{t('home.titleLine2')}
+            {t('home.titleLine1c')} {t('home.titleLine2')}
           </span>
         </motion.h1>
 

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import AnimatedHeading, { getCurlingSlide, handleHover } from '../../components/AnimatedHeading'
-import { fireEvent, getTextInAnyLanguage, render, screen } from '../utils'
+import { act, fireEvent, getTextInAnyLanguage, render, screen } from '../utils'
 
 describe('AnimatedHeading', () => {
   beforeEach(() => {
@@ -36,7 +36,7 @@ describe('AnimatedHeading', () => {
     render(<AnimatedHeading />)
     const headingPattern = getTextInAnyLanguage('footer.cta_collaborate')
     const heading = screen.getByText(headingPattern)
-    expect(heading.tagName).toBe('H3')
+    expect(heading.tagName).toBe('H2')
   })
 
   it('renders all letters of the heading', () => {
@@ -82,7 +82,7 @@ describe('AnimatedHeading', () => {
     vi.useFakeTimers()
     render(<AnimatedHeading />)
 
-    // Simulate element leaving viewport
+    // Simulate element leaving viewport (wrap in act for React state updates)
     if (observerCallback) {
       const rect: DOMRectReadOnly = {
         bottom: 0,
@@ -113,11 +113,10 @@ describe('AnimatedHeading', () => {
         takeRecords: vi.fn(() => []) as () => IntersectionObserverEntry[],
       } as unknown as IntersectionObserver
 
-      // Type assertion needed because TypeScript can't infer the callback type correctly
-      ;(observerCallback as IntersectionObserverCallback)([entry], mockObserver)
-
-      // Fast-forward timers to trigger setTimeout
-      vi.advanceTimersByTime(300)
+      await act(async () => {
+        ;(observerCallback as IntersectionObserverCallback)([entry], mockObserver)
+        vi.advanceTimersByTime(300)
+      })
     }
 
     vi.useRealTimers()

@@ -178,12 +178,7 @@ export const ScrollAnimation = () => {
   }, [t])
 
   return (
-    <section
-      ref={sectionRef}
-      id="scroll-animation"
-      className="scroll-anim-section"
-      aria-hidden
-    >
+    <section ref={sectionRef} id="scroll-animation" className="scroll-anim-section" aria-hidden>
       <div className="scroll-anim-sticky">
         <div
           ref={glowOverlayRef}
@@ -194,42 +189,36 @@ export const ScrollAnimation = () => {
         />
 
         <div className="scroll-anim-content">
-          <div
-            className="scroll-anim-phase-label"
-            style={{ color: phaseColor }}
-          >
+          <div className="scroll-anim-phase-label" style={{ color: phaseColor }}>
             {phaseLabel}
           </div>
 
           <div className="scroll-anim-svg-wrap">
-          <svg className="scroll-anim-svg" viewBox="0 0 860 180" aria-hidden="true">
-            <path
-              ref={chaosPathRef}
-              fill="none"
-              stroke="#3a3a3a"
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d={buildChaosPath(0)}
-            />
-            <path
-              ref={cleanPathRef}
-              fill="none"
-              stroke="#FF6B2B"
-              strokeWidth={2.5}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M 40 90 C 280 90 580 90 820 90"
-            />
-            <circle ref={endGlowRef} cx="820" cy="90" r="0" fill="rgba(255,107,43,0.2)" />
-            <circle ref={endDotRef} cx="820" cy="90" r="0" fill="#FF6B2B" />
-          </svg>
+            <svg className="scroll-anim-svg" viewBox="0 0 860 180" aria-hidden="true">
+              <path
+                ref={chaosPathRef}
+                fill="none"
+                stroke="#3a3a3a"
+                strokeWidth={2}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d={buildChaosPath(0)}
+              />
+              <path
+                ref={cleanPathRef}
+                fill="none"
+                stroke="#FF6B2B"
+                strokeWidth={2.5}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M 40 90 C 280 90 580 90 820 90"
+              />
+              <circle ref={endGlowRef} cx="820" cy="90" r="0" fill="rgba(255,107,43,0.2)" />
+              <circle ref={endDotRef} cx="820" cy="90" r="0" fill="#FF6B2B" />
+            </svg>
           </div>
 
-          <div
-            className="scroll-anim-sub-label"
-            style={{ color: subColor, opacity: subOpacity }}
-          >
+          <div className="scroll-anim-sub-label" style={{ color: subColor, opacity: subOpacity }}>
             {subLabel}
           </div>
         </div>
