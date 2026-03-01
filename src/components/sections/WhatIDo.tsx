@@ -109,13 +109,13 @@ export const WhatIDo = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: '-20px' }}
             transition={{ duration: 0.5, delay: index * 0.08, ease: 'easeOut' }}
-            className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-2xl p-6 text-left transition-all duration-300 ease-out hover:border-[var(--color-accent)] hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(255,107,43,0.12)] flex items-center gap-5"
+            className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-2xl p-6 text-center sm:text-left transition-all duration-300 ease-out hover:border-[var(--color-accent)] hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(255,107,43,0.12)] flex flex-col sm:flex-row sm:items-center gap-5"
           >
-            <div className="w-16 flex-shrink-0 self-stretch flex items-center justify-center">
+            <div className="w-16 flex-shrink-0 self-center sm:self-stretch flex items-center justify-center">
               <LottieAnimation asset={asset} />
             </div>
-            <div className="min-w-0">
-              <h3 className="font-bold !text-[20px] !mb-2 !text-left">{t(`whatIDo.services.${key}.title`)}</h3>
+            <div className="min-w-0 flex flex-col items-center sm:items-start text-center sm:text-left">
+              <h3 className="font-bold !text-[20px] !mb-2">{t(`whatIDo.services.${key}.title`)}</h3>
               <p className="text-[var(--color-gray)] !text-[16px] leading-relaxed" style={{ lineHeight: 1.6 }}>
                 {t(`whatIDo.services.${key}.description`)}
               </p>

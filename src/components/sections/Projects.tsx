@@ -138,7 +138,7 @@ export const Projects = () => {
 
   return (
     <section id="projects" className="section bg-[var(--color-dark)]" aria-label="Projects section">
-      <div className="w-full max-w-[1600px] px-10 mx-auto">
+      <div className="w-full max-w-[1600px] px-6 sm:px-10 mx-auto text-center sm:text-left">
         {/* Section Title */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

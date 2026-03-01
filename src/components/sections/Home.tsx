@@ -16,8 +16,8 @@ export const Home = () => {
   return (
     <section
       id="home"
-      className="relative flex flex-col items-center justify-center min-h-screen text-center px-8"
-      style={{ paddingTop: '7rem', paddingBottom: '4rem' }}
+      className="relative flex flex-col items-center justify-center min-h-screen text-center w-full px-5 sm:px-8"
+      style={{ paddingTop: 'calc(7rem + env(safe-area-inset-top, 0px))', paddingBottom: '4rem' }}
       aria-label="Home section"
     >
       {/* Subtle radial glow behind hero */}
@@ -30,7 +30,7 @@ export const Home = () => {
       />
 
       <motion.div
-        className="relative z-10 flex flex-col items-center max-w-[750px]"
+        className="relative z-10 flex flex-col items-center justify-center w-full max-w-[750px]"
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
@@ -57,16 +57,16 @@ export const Home = () => {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.2, ease: [0.25, 1, 0.5, 1] }}
-          className="max-w-[750px] flex flex-col items-center"
-          style={{ fontSize: 'clamp(2.8rem, 7vw, 5.5rem)', marginBottom: '1.5rem', lineHeight: 0.92 }}
+          className="max-w-[750px] flex flex-col items-center text-center"
+          style={{ fontSize: 'clamp(2.5rem, 8vw, 6rem)', marginBottom: '1.5rem', lineHeight: 1.1 }}
         >
-          <span className="whitespace-nowrap">
+          <span className="whitespace-normal md:whitespace-nowrap">
             {t('home.titleLine1a')}
             <span className="font-['DM_Serif_Display'] italic" style={{ color: 'var(--color-accent)' }}>
               {t('home.titleLine1b')} {t('home.titleLine1b2')}
             </span>
           </span>
-          <span className="whitespace-nowrap">
+          <span className="whitespace-normal md:whitespace-nowrap">
             {t('home.titleLine1c')}{' '}{t('home.titleLine2')}
           </span>
         </motion.h1>
@@ -76,8 +76,8 @@ export const Home = () => {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.3, ease: [0.25, 1, 0.5, 1] }}
-          className="text-[var(--color-gray)] max-w-[420px]"
-          style={{ fontSize: '1rem', lineHeight: 1.65, marginBottom: '2.5rem' }}
+          className="text-[var(--color-gray)] max-w-[420px] mx-auto text-center text-sm md:text-base"
+          style={{ lineHeight: 1.65, marginBottom: '2.5rem' }}
         >
           {t('home.subtitle')}
         </motion.p>

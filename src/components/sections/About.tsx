@@ -69,9 +69,9 @@ export const About = () => {
 
   return (
     <section id="about" className="section bg-[var(--color-dark)]" aria-label="About section">
-      <div className="w-full max-w-[1600px] px-10 mx-auto space-y-16">
+      <div className="w-full max-w-[1600px] px-6 sm:px-10 mx-auto space-y-16 text-center sm:text-left">
         {/* Experience & Education - Timeline layout */}
-        <div>
+        <div className="max-w-3xl mx-auto">
           <motion.h2
             className="mb-8"
             initial={{ opacity: 0, y: 20 }}

@@ -33,11 +33,29 @@ const Contact = lazy(() =>
  * Manages the overall application structure, including navigation,
  * mobile menu state, and lazy-loaded sections.
  */
+const XL_BREAKPOINT = 1280
+
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   useEffect(() => {
     window.scrollTo(0, 0)
+  }, [])
+
+  // Prevent content jump on resize: when crossing below xl, scroll to top
+  useEffect(() => {
+    let wasXl = window.innerWidth >= XL_BREAKPOINT
+
+    const handleResize = () => {
+      const isXl = window.innerWidth >= XL_BREAKPOINT
+      if (wasXl && !isXl) {
+        window.scrollTo({ top: 0, behavior: 'auto' })
+      }
+      wasXl = isXl
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
   }, [])
 
   return (
@@ -54,7 +72,9 @@ function App() {
       <main>
         {/* Critical section - loaded immediately */}
         <Home />
-        <ScrollAnimation />
+        <div className="hidden xl:block">
+          <ScrollAnimation />
+        </div>
 
         {/* Non-critical sections - lazy loaded */}
         <Suspense fallback={null}>

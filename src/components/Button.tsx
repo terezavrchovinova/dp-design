@@ -1,3 +1,5 @@
+import { motion } from 'motion/react'
+
 export type ButtonVariant = 'primary' | 'outline'
 export type ButtonElement = 'a' | 'button'
 export type ButtonType = 'button' | 'submit' | 'reset'
@@ -17,7 +19,11 @@ export interface ButtonProps {
   className?: string
   /** Click handler (used when as="button") */
   onClick?: () => void
+  /** Accessible label for screen readers */
+  'aria-label'?: string
 }
+
+const hoverTransition = { duration: 0.15, ease: 'easeOut' as const }
 
 /**
  * Button component
@@ -33,11 +39,11 @@ export const Button = ({
   type = 'button',
   className = '',
   onClick,
+  'aria-label': ariaLabel,
 }: ButtonProps) => {
   // Base styles shared by all button variants
   const baseStyles = [
-    'relative inline-block py-[0.85rem] px-8 rounded-[100px] font-bold text-[0.9rem]',
-    'transition-all duration-200 ease-out',
+    'relative inline-block py-2 px-5 text-[0.8rem] md:py-[0.85rem] md:px-8 md:text-[0.9rem] rounded-[100px] font-bold',
     'focus:outline-none focus-visible:ring-1 focus-visible:ring-[var(--color-border)]',
     'cursor-pointer',
     className,
@@ -45,29 +51,41 @@ export const Button = ({
 
   // Variant-specific styles - plaminkova-inspired
   const variantStyles = {
-    primary:
-      'text-[var(--color-white)] bg-[var(--color-accent)] hover:opacity-[0.9] hover:scale-[1.02] active:scale-[0.98]',
-    outline:
-      'text-[var(--color-white)] border-[1.5px] border-[var(--color-border)] hover:border-[var(--color-accent)] hover:scale-[1.02] active:scale-[0.98]',
+    primary: 'text-[var(--color-white)] bg-[var(--color-accent)]',
+    outline: 'text-[var(--color-white)] border-[1.5px] border-[var(--color-border)]',
+  }
+
+  const motionProps = {
+    whileHover:
+      variant === 'primary'
+        ? {
+            scale: 1.04,
+            boxShadow: '0 0 24px rgba(255, 107, 43, 0.35), 0 0 48px rgba(255, 107, 43, 0.15)',
+            transition: hoverTransition,
+          }
+        : {
+            scale: 1.04,
+            borderColor: 'rgba(255, 107, 43, 0.6)',
+            boxShadow: '0 0 20px rgba(255, 107, 43, 0.2), inset 0 0 20px rgba(255, 107, 43, 0.05)',
+            transition: hoverTransition,
+          },
+    whileTap: { scale: 0.98 },
+    className: `${baseStyles} ${variantStyles[variant]}`,
   }
 
   // Render as button element
   if (as === 'button') {
     return (
-      <button
-        type={type}
-        onClick={onClick}
-        className={`${baseStyles} ${variantStyles[variant]}`}
-      >
+      <motion.button type={type} onClick={onClick} aria-label={ariaLabel} {...motionProps}>
         {children}
-      </button>
+      </motion.button>
     )
   }
 
   // Render as anchor element
   return (
-    <a href={href} className={`${baseStyles} ${variantStyles[variant]}`}>
+    <motion.a href={href} aria-label={ariaLabel} {...motionProps}>
       {children}
-    </a>
+    </motion.a>
   )
 }

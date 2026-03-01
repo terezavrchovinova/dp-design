@@ -26,13 +26,19 @@ export const ToolIcon = ({ name, src, staggerDelay = 0 }: ToolIconProps) => {
     <motion.div
       ref={ref}
       initial={{ opacity: 0, scale: 0.6 }}
-      animate={isInView ? { opacity: 0.7, scale: 1 } : { opacity: 0, scale: 0.6 }}
+      animate={isInView ? { opacity: 0.45, scale: 1 } : { opacity: 0, scale: 0.6 }}
+      whileHover={{
+        opacity: 1,
+        scale: 1.06,
+        filter: 'brightness(1.25)',
+        transition: { duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] },
+      }}
       transition={{
         duration: 0.4,
         delay: staggerDelay,
         ease: [0.25, 1, 0.5, 1],
       }}
-      className="w-10 h-10 flex items-center justify-center rounded opacity-70 hover:opacity-100 hover:scale-110 transition-all duration-300 ease-out cursor-default"
+      className="w-10 h-10 flex items-center justify-center rounded cursor-default"
       title={name}
     >
       <img

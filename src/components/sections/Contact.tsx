@@ -1,6 +1,7 @@
 import { motion } from 'motion/react'
 import { useTranslation } from 'react-i18next'
 import AnimatedHeading from '../AnimatedHeading'
+import { Button } from '../Button'
 
 // Constants
 /** Fallback email if translation is missing */
@@ -24,7 +25,7 @@ export const Contact = () => {
       style={{ scrollMarginTop: 'calc(-50vh + 4rem)' }}
       aria-label="Contact section"
     >
-      <div className="w-full max-w-[1600px] px-10 mx-auto flex flex-col items-center justify-center text-center">
+      <div className="w-full max-w-[1600px] px-6 sm:px-10 mx-auto flex flex-col items-center justify-center text-center">
         <motion.div
           className="mb-5"
           initial={{ opacity: 0, y: 20 }}
@@ -35,17 +36,16 @@ export const Contact = () => {
           <AnimatedHeading />
         </motion.div>
 
-        <motion.a
-          href={`mailto:${email}`}
+        <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-30px' }}
           transition={{ duration: 0.4, delay: 0.15, ease: [0.25, 1, 0.5, 1] }}
-          className="py-[0.65rem] px-[1.5rem] rounded-[100px] font-bold text-[0.9rem] text-[var(--color-white)] bg-[var(--color-accent)] hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 ease-out leading-none"
-          aria-label={`Send email to ${email}`}
         >
-          {email}
-        </motion.a>
+          <Button href={`mailto:${email}`} aria-label={`Send email to ${email}`}>
+            {email}
+          </Button>
+        </motion.div>
       </div>
     </section>
   )

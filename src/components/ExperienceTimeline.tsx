@@ -69,14 +69,14 @@ export const TimelineEntry = ({
         <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-5 transition-all duration-300 ease-out hover:border-[var(--color-accent)] hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(255,107,43,0.12)]">
           {/* Date */}
           <p
-            className="text-xs md:text-sm mb-2 font-medium tracking-wide"
+            className="text-xs md:text-sm mb-2 font-medium tracking-wide text-center sm:text-left"
             style={{ color: 'var(--color-gray)' }}
           >
             {date}
           </p>
 
           {/* Title - smaller on mobile for hierarchy */}
-          <p className="section-title !text-left !text-[20px] mb-2">
+          <p className="section-title !text-center sm:!text-left !text-[20px] mb-2">
             {part2 ? (
               <>
                 <span className="block sm:hidden">
@@ -94,7 +94,7 @@ export const TimelineEntry = ({
           </p>
 
           {/* Bullet points - smaller on mobile for hierarchy */}
-          <ul className="space-y-1.5 text-[9px] sm:text-xs md:text-sm leading-relaxed">
+          <ul className="space-y-1.5 text-[9px] sm:text-xs md:text-sm leading-relaxed text-left">
             {bulletPoints.map((point) => (
               <li
                 key={point}

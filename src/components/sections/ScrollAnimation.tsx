@@ -75,7 +75,7 @@ export const ScrollAnimation = () => {
   const [phaseLabel, setPhaseLabel] = useState(t('animation.phase1'))
   const [phaseColor, setPhaseColor] = useState('#ffffff')
   const [subLabel, setSubLabel] = useState(t('animation.sub1'))
-  const [subColor, setSubColor] = useState('#666')
+  const [subColor, setSubColor] = useState('#8c8c8c')
   const [subOpacity, setSubOpacity] = useState(1)
 
   useEffect(() => {
@@ -135,13 +135,13 @@ export const ScrollAnimation = () => {
           setPhaseLabel(t('animation.phase1'))
           setPhaseColor('#ffffff')
           setSubLabel(t('animation.sub1'))
-          setSubColor('#666')
+          setSubColor('#8c8c8c')
           setSubOpacity(1)
         } else {
           setPhaseLabel(t('animation.phase2'))
-          setPhaseColor('#888')
+          setPhaseColor('#a0a0a0')
           setSubLabel(t('animation.sub2'))
-          setSubColor('#555')
+          setSubColor('#7a7a7a')
           setSubOpacity(1)
         }
       } else {

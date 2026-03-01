@@ -47,15 +47,15 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
       initial={{ opacity: 0, y: -16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
-      className="fixed top-0 w-full z-40 border-b border-[var(--color-border)] py-[1.1rem] px-6 md:px-10"
+      className="fixed top-0 left-0 right-0 z-50 border-b border-[var(--color-border)] navbar-safe-area"
       style={{
         backgroundColor: 'rgba(13,13,13,0.85)',
         backdropFilter: 'blur(12px)',
       }}
       aria-label="Main navigation"
     >
-      {/* Desktop Navigation - logo left, links center, email right */}
-      <div className="hidden md:flex md:items-center md:justify-between w-full relative">
+      {/* Desktop Navigation - logo left, links center, email right (xl+ only to avoid overlap) */}
+      <div className="hidden xl:flex xl:items-center xl:justify-between w-full relative">
         {/* Logo - left */}
         <a href="#home" className="flex items-center shrink-0" aria-label="Home">
           <img
@@ -82,8 +82,8 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
-      <div className="flex md:hidden items-center justify-between w-full">
+      {/* Mobile / Tablet Navigation - hamburger up to xl breakpoint */}
+      <div className="flex xl:hidden items-center justify-between w-full">
           {/* Logo */}
           <a href="#home" className="flex items-center z-10" aria-label="Home">
             <img
@@ -96,18 +96,16 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
             />
           </a>
 
-          {/* Menu Toggle Button */}
+          {/* Menu Toggle Button - hamburger (☰) always renders as text */}
           <button
             type="button"
             aria-label="Toggle Menu"
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             onClick={() => setMenuOpen((prev) => !prev)}
-            className="flex flex-col justify-between w-7 h-5 z-50 cursor-pointer"
+            className="flex items-center justify-center w-10 h-10 min-w-10 min-h-10 cursor-pointer hover:opacity-80 transition-opacity text-[var(--color-white)] text-2xl font-light leading-none"
           >
-            {(['top', 'middle', 'bottom'] as const).map((id) => (
-              <span key={id} className="block h-0.5 w-full rounded-sm bg-[var(--color-white)]" />
-            ))}
+            &#9776;
           </button>
         </div>
     </motion.nav>
