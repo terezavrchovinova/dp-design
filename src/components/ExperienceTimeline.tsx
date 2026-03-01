@@ -14,12 +14,6 @@ export interface TimelineEntryProps {
   staggerDelay?: number
 }
 
-/**
- * TimelineEntry component
- *
- * Renders a single entry in the experience timeline with
- * date, title, and bullet-point description.
- */
 export const TimelineEntry = ({
   title,
   date,
@@ -46,7 +40,6 @@ export const TimelineEntry = ({
       transition={{ duration: 0.4, delay: staggerDelay, ease: [0.25, 1, 0.5, 1] }}
       className="relative flex gap-6 md:gap-10 group"
     >
-      {/* Timeline line */}
       {!isLast && (
         <div
           className="absolute left-[11px] md:left-[15px] top-8 bottom-0 w-px bg-[var(--color-border)] group-hover:bg-[var(--color-gray)] transition-colors duration-300 ease-out"
@@ -54,7 +47,6 @@ export const TimelineEntry = ({
         />
       )}
 
-      {/* Date marker & dot */}
       <div className="flex-shrink-0 flex flex-col items-center pt-0.5">
         <div
           className="w-6 h-6 md:w-[30px] md:h-[30px] rounded-full border-2 border-[var(--color-border)] bg-[var(--color-dark)] flex items-center justify-center flex-shrink-0 group-hover:border-[var(--color-accent)] group-hover:scale-110 transition-all duration-300 ease-out"
@@ -64,10 +56,8 @@ export const TimelineEntry = ({
         </div>
       </div>
 
-      {/* Content */}
       <div className="flex-1 min-w-0 pb-12 md:pb-14">
-        <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-5 transition-all duration-300 ease-out hover:border-[var(--color-accent)] hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(255,107,43,0.12)]">
-          {/* Date */}
+        <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-5           transition-all duration-300 ease-out hover:border-[var(--color-accent)] hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(255,107,43,0.12)]">
           <p
             className="text-xs md:text-sm mb-2 font-medium tracking-wide text-center sm:text-left"
             style={{ color: 'var(--color-gray)' }}
@@ -75,7 +65,6 @@ export const TimelineEntry = ({
             {date}
           </p>
 
-          {/* Title - smaller on mobile for hierarchy */}
           <p className="section-title !text-center sm:!text-left !text-[20px] mb-2">
             {part2 ? (
               <>
@@ -93,7 +82,6 @@ export const TimelineEntry = ({
             )}
           </p>
 
-          {/* Bullet points - smaller on mobile for hierarchy */}
           <ul className="space-y-1.5 text-[9px] sm:text-xs md:text-sm leading-relaxed text-left">
             {bulletPoints.map((point) => (
               <li

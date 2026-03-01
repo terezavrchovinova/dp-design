@@ -2,14 +2,6 @@ import { motion } from 'motion/react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '../Button'
 
-/**
- * Home component
- *
- * Renders the hero section with tag, title, subtitle, and action buttons.
- * Uses translations for internationalization.
- *
- * @returns Home section element
- */
 export const Home = () => {
   const { t } = useTranslation()
 
@@ -20,7 +12,6 @@ export const Home = () => {
       style={{ paddingTop: 'calc(7rem + env(safe-area-inset-top, 0px))', paddingBottom: '4rem' }}
       aria-label="Home section"
     >
-      {/* Subtle radial glow behind hero */}
       <div
         className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] pointer-events-none"
         style={{
@@ -35,7 +26,6 @@ export const Home = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
       >
-        {/* Hero Tag */}
         <motion.span
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -52,7 +42,6 @@ export const Home = () => {
           {t('home.heroTag')}
         </motion.span>
 
-        {/* Main Title */}
         <motion.h1
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -74,7 +63,6 @@ export const Home = () => {
           </span>
         </motion.h1>
 
-        {/* Subtitle */}
         <motion.p
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -85,7 +73,6 @@ export const Home = () => {
           {t('home.subtitle')}
         </motion.p>
 
-        {/* Call-to-Action Buttons */}
         <motion.div
           className="flex justify-center items-center flex-wrap gap-4"
           initial={{ opacity: 0, y: 8 }}

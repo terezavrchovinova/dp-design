@@ -8,14 +8,12 @@ import figmaIcon from '../../assets/icons/figma.svg'
 import illustratorIcon from '../../assets/icons/illustrator.svg'
 import indesignIcon from '../../assets/icons/indesign.svg'
 import midjourneyIcon from '../../assets/icons/midjourney.webp'
-// Tool icon assets
 import photoshopIcon from '../../assets/icons/photoshop.svg'
 import lightroomIcon from '../../assets/icons/photoshop-lightroom.svg'
 import premiereProIcon from '../../assets/icons/premiere-pro.svg'
 import { TimelineEntry } from '../ExperienceTimeline'
 import { ToolIcon } from '../ToolIcon'
 
-// Types
 interface Tool {
   name: string
   src: string
@@ -33,8 +31,6 @@ interface School {
   focus: string
 }
 
-// Constants
-/** Tools configuration */
 const TOOLS: Tool[] = [
   { name: 'Adobe Photoshop', src: photoshopIcon },
   { name: 'Adobe Illustrator', src: illustratorIcon },
@@ -48,21 +44,10 @@ const TOOLS: Tool[] = [
   { name: 'Midjourney', src: midjourneyIcon },
 ]
 
-/**
- * About component
- *
- * Renders experience, education, and tools sections.
- * Includes animated tool icons with staggered entrance animations.
- *
- * @returns About section element
- */
 export const About = () => {
   const { t } = useTranslation()
 
-  // Get jobs from translations
   const jobs = t('about.jobs', { returnObjects: true }) as Job[]
-
-  // Get school information from translations
   const school = t('about.school', { returnObjects: true }) as School
 
   const toolsRef = useRef(null)
@@ -70,7 +55,6 @@ export const About = () => {
   return (
     <section id="about" className="section bg-[var(--color-dark)]" aria-label="About section">
       <div className="w-full max-w-[1600px] px-6 sm:px-10 mx-auto space-y-16 text-center sm:text-left">
-        {/* Experience & Education - Timeline layout */}
         <div className="max-w-3xl mx-auto">
           <motion.h2
             className="mb-8"
@@ -114,7 +98,6 @@ export const About = () => {
           </div>
         </div>
 
-        {/* Tools Section */}
         <div ref={toolsRef}>
           <motion.h2
             className="mb-8"

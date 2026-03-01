@@ -1,13 +1,5 @@
 import { useTranslation } from 'react-i18next'
 
-/**
- * Footer component
- *
- * Renders the site footer with copyright, company information,
- * and legal details. Uses translations for internationalization.
- *
- * @returns Footer element
- */
 export const Footer = () => {
   const { t } = useTranslation()
   const currentYear = new Date().getFullYear()

@@ -10,14 +10,6 @@ export interface ToolIconProps {
   staggerDelay?: number
 }
 
-/**
- * ToolIcon component
- *
- * Renders a tool icon with entrance and hover animations.
- *
- * @param props - ToolIcon component props
- * @returns Tool icon element
- */
 export const ToolIcon = ({ name, src, staggerDelay = 0 }: ToolIconProps) => {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-20px' })

@@ -3,17 +3,8 @@ import { useTranslation } from 'react-i18next'
 import AnimatedHeading from '../AnimatedHeading'
 import { Button } from '../Button'
 
-// Constants
-/** Fallback email if translation is missing */
 const FALLBACK_EMAIL = 'email@example.com'
 
-/**
- * Contact component
- *
- * Renders the contact section with an animated heading and email contact link.
- *
- * @returns Contact section element
- */
 export const Contact = () => {
   const { t } = useTranslation()
   const email = t('contact.email') || FALLBACK_EMAIL

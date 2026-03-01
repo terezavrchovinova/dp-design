@@ -4,7 +4,6 @@ import brejchaImgDesktop from '../../assets/project_thumbnails/desktop/brejcha.w
 import deathvalleyImgDesktop from '../../assets/project_thumbnails/desktop/death_valley.webp'
 import ditaImgDesktop from '../../assets/project_thumbnails/desktop/dita.webp'
 import jurassicImgDesktop from '../../assets/project_thumbnails/desktop/jurassic_adventure.webp'
-// Project assets - Desktop
 import kynezImgDesktop from '../../assets/project_thumbnails/desktop/kynez.webp'
 import letItRollImgDesktop from '../../assets/project_thumbnails/desktop/let_it_roll.webp'
 import maastrichtImgDesktop from '../../assets/project_thumbnails/desktop/maastricht.webp'
@@ -17,7 +16,6 @@ import brejchaImgMobile from '../../assets/project_thumbnails/mobile/brejcha.web
 import deathvalleyImgMobile from '../../assets/project_thumbnails/mobile/death_valley.webp'
 import ditaImgMobile from '../../assets/project_thumbnails/mobile/dita.webp'
 import jurassicImgMobile from '../../assets/project_thumbnails/mobile/jurassic_adventure.webp'
-// Project assets - Mobile
 import kynezImgMobile from '../../assets/project_thumbnails/mobile/kynez.webp'
 import letItRollImgMobile from '../../assets/project_thumbnails/mobile/let_it_roll.webp'
 import maastrichtImgMobile from '../../assets/project_thumbnails/mobile/maastricht.webp'
@@ -27,7 +25,6 @@ import saleskitImgMobile from '../../assets/project_thumbnails/mobile/saleskit.w
 import tmobileImgMobile from '../../assets/project_thumbnails/mobile/t-mobile.webp'
 import variousBannersImgMobile from '../../assets/project_thumbnails/mobile/various_banners.webp'
 
-// Types
 interface Project {
   id: number
   key: string
@@ -36,8 +33,6 @@ interface Project {
   link: string
 }
 
-// Constants
-/** Project configuration */
 const PROJECTS: Project[] = [
   {
     id: 1,
@@ -125,21 +120,12 @@ const PROJECTS: Project[] = [
   },
 ]
 
-/**
- * Projects component
- *
- * Renders a grid of project thumbnails with hover effects.
- * Each project links to its Behance portfolio page.
- *
- * @returns Projects section element
- */
 export const Projects = () => {
   const { t } = useTranslation()
 
   return (
     <section id="projects" className="section bg-[var(--color-dark)]" aria-label="Projects section">
       <div className="w-full max-w-[1600px] px-6 sm:px-10 mx-auto text-center sm:text-left">
-        {/* Section Title */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -149,7 +135,6 @@ export const Projects = () => {
           {t('projects.title')}
         </motion.h2>
 
-        {/* Projects Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
           {PROJECTS.map((project, index) => {
             const title = t(`projects.items.${project.key}`, project.key)
@@ -167,7 +152,6 @@ export const Projects = () => {
                 aria-label={`View project: ${title}`}
                 className="group relative block aspect-[16/9] overflow-hidden rounded-lg border border-[var(--color-border)] transition-all duration-300 ease-out hover:border-[var(--color-accent)] hover:shadow-[0_8px_30px_rgba(255,107,43,0.15)] hover:-translate-y-0.5"
               >
-                {/* Project Image - Desktop and Mobile */}
                 <picture>
                   <source
                     media="(max-width: 639px)"
@@ -191,13 +175,11 @@ export const Projects = () => {
                   />
                 </picture>
 
-                {/* Overlay on Hover */}
                 <div
                   className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"
                   aria-hidden="true"
                 />
 
-                {/* Project Title on Hover */}
                 <div
                   className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"
                   aria-hidden="true"

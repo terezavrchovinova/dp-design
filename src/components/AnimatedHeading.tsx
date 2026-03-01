@@ -2,7 +2,6 @@ import { motion, type TargetAndTransition } from 'motion/react'
 import { type Dispatch, type SetStateAction, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-// Types
 interface ScatterState extends TargetAndTransition {
   x?: number
   y?: number
@@ -15,19 +14,9 @@ interface ScatteredState {
   [index: number]: ScatterState
 }
 
-// Constants
-/** Animation reset delay in milliseconds */
 const ANIMATION_RESET_DELAY = 300
-
-/** Intersection observer threshold */
 const INTERSECTION_THRESHOLD = 0.1
 
-/**
- * Generates random scatter animation values for a letter
- *
- * @returns Scatter animation state object
- */
-// Export for testing
 export const getCurlingSlide = (): ScatterState => {
   const xDirection = Math.random() > 0.5 ? 1 : -1
   const yDirection = Math.random() > 0.5 ? 1 : -1
@@ -41,14 +30,6 @@ export const getCurlingSlide = (): ScatterState => {
   }
 }
 
-/**
- * Handles letter hover
- * Scatters the letter on hover with random animation values
- *
- * @param index - Index of the letter in the heading
- * @param setScattered - State setter for scattered animation state
- */
-// Export for testing
 export const handleHover = (
   index: number,
   setScattered: Dispatch<SetStateAction<ScatteredState>>
@@ -59,25 +40,15 @@ export const handleHover = (
   }))
 }
 
-/**
- * AnimatedHeading component
- *
- * Displays a heading with animated letters that scatter on hover (desktop only).
- * Uses IntersectionObserver to reset animations when out of view.
- *
- * @returns Animated heading element
- */
 export default function AnimatedHeading() {
   const { t } = useTranslation()
   const headingRef = useRef<HTMLHeadingElement>(null)
   const [scattered, setScattered] = useState<ScatteredState>({})
 
-  // Reset animations when heading leaves viewport
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) {
-          // Reset scattered state after a short delay
           setTimeout(() => {
             setScattered({})
           }, ANIMATION_RESET_DELAY)
@@ -103,7 +74,6 @@ export default function AnimatedHeading() {
   return (
     <div className="w-full pt-4 pb-2 flex justify-center items-center px-4">
       <div className="w-full max-w-5xl text-center">
-        {/* Mobile View - Static Heading - matches h2 (Nástroje) styling */}
         <h2
           className="block md:hidden text-2xl md:text-3xl lg:text-4xl font-black !mb-0"
           style={{ letterSpacing: '-0.02em' }}
@@ -111,7 +81,6 @@ export default function AnimatedHeading() {
           {heading}
         </h2>
 
-        {/* Desktop View - Animated Letters - matches h2 (Nástroje) styling */}
         <h2
           ref={headingRef}
           className="hidden md:flex flex-wrap justify-center text-2xl md:text-3xl lg:text-4xl font-black text-center !mb-0"
@@ -134,7 +103,6 @@ export default function AnimatedHeading() {
                 onHoverStart={() => handleHover(index, setScattered)}
                 transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] }}
               >
-                {/* Preserve spaces using non-breaking space */}
                 {char === ' ' ? '\u00A0' : char}
               </motion.span>
             )

@@ -11,15 +11,10 @@ function ease(t: number) {
   return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t
 }
 
-/**
- * Builds a smooth, organic chaos path that straightens as t goes 0→1.
- * Designed to feel hand-drawn: flowing curves, varied rhythm, no rigid zigzag.
- */
 function buildChaosPath(t: number): string {
   const MID = 90
   const amp = 1 - t
 
-  // Fewer points, asymmetric offsets — feels like a hesitant pencil line
   const pts: [number, number][] = [
     [40, MID],
     [140, MID - 38 * amp],
@@ -32,7 +27,6 @@ function buildChaosPath(t: number): string {
     [820, MID],
   ]
 
-  // Smooth cubic Bezier: control points create gentle, continuous curves
   let d = `M ${pts[0][0]} ${pts[0][1]}`
   for (let i = 1; i < pts.length; i++) {
     const prev = pts[Math.max(0, i - 2)]
@@ -40,7 +34,6 @@ function buildChaosPath(t: number): string {
     const next = pts[i]
     const next2 = pts[Math.min(pts.length - 1, i + 1)]
 
-    // Catmull-Rom style: control points follow the flow for smooth, natural curves
     const dx1 = (next[0] - prev[0]) * 0.25
     const dy1 = (next[1] - prev[1]) * 0.25
     const dx2 = (next2[0] - curr[0]) * 0.25
@@ -56,12 +49,6 @@ function buildChaosPath(t: number): string {
   return d
 }
 
-/**
- * ScrollAnimation component
- *
- * Scroll-driven chaos-to-solution SVG animation.
- * Chaos path straightens on scroll, then orange line draws over.
- */
 export const ScrollAnimation = () => {
   const { t } = useTranslation()
   const sectionRef = useRef<HTMLElement>(null)

@@ -4,11 +4,9 @@ import { useTranslation } from 'react-i18next'
 import photoIcon from '../../assets/icons/photography.json'
 import digitalIcon from '../../assets/icons/social.json'
 import videoIcon from '../../assets/icons/video.json'
-// Lottie animation assets
 import visualBrandDesign from '../../assets/icons/visual-brand-design.json'
 import { LazyLottie } from '../LazyLottie'
 
-// Types
 interface Service {
   key: string
   asset: unknown
@@ -18,11 +16,8 @@ interface LottieAnimationProps {
   asset: unknown
 }
 
-// Constants
-/** Intersection observer threshold for lazy loading */
 const INTERSECTION_THRESHOLD = 0.1
 
-/** Services configuration */
 const SERVICES: Service[] = [
   { key: 'design', asset: visualBrandDesign },
   { key: 'video', asset: videoIcon },
@@ -30,15 +25,6 @@ const SERVICES: Service[] = [
   { key: 'photo', asset: photoIcon },
 ]
 
-/**
- * LottieAnimation component
- *
- * Lazy-loads Lottie animations when they enter the viewport.
- * Improves initial page load performance.
- *
- * @param props - LottieAnimation component props
- * @returns Lottie animation container
- */
 const LottieAnimation = ({ asset }: LottieAnimationProps) => {
   const [isVisible, setIsVisible] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -81,14 +67,6 @@ const LottieAnimation = ({ asset }: LottieAnimationProps) => {
   )
 }
 
-/**
- * WhatIDo component
- *
- * Renders a grid of services with animated Lottie icons.
- * Icons are lazy-loaded when they enter the viewport.
- *
- * @returns WhatIDo section element
- */
 export const WhatIDo = () => {
   const { t } = useTranslation()
 
