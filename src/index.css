@@ -27,7 +27,6 @@
 
   /* Transitions */
   --transition-fast: 0.15s ease;
-  --transition-smooth: 0.25s ease;
 }
 
 html {
@@ -99,11 +98,6 @@ h3 {
 .section-description {
   color: var(--color-gray);
   @apply text-base leading-relaxed;
-}
-
-@keyframes nudge {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(7px); }
 }
 
 /* Scroll animation section (chaos → solution) */
@@ -196,31 +190,10 @@ h3 {
 }
 
 @layer utilities {
-  .card-minimal {
-    background-color: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-xl);
-  }
-
-  .transition-smooth {
-    transition: all var(--transition-smooth);
-  }
-
   .section {
     @apply min-h-screen min-h-[100dvh] flex items-center justify-center w-full py-16;
     padding-left: calc(1.5rem + env(safe-area-inset-left, 0px));
     padding-right: calc(1.5rem + env(safe-area-inset-right, 0px));
   }
 
-  .container-content {
-    @apply w-full max-w-6xl space-y-16;
-  }
-
-  .text-muted {
-    @apply text-center text-[var(--color-gray)];
-  }
-
-  .btn-base {
-    @apply relative inline-block px-5 py-2.5 rounded-lg font-medium transition-all focus:outline-none focus-visible:ring-1 focus-visible:ring-[var(--color-border)] cursor-pointer;
-  }
 }
