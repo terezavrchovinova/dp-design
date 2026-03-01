@@ -1,6 +1,7 @@
 import { motion, type TargetAndTransition } from 'motion/react'
 import { type Dispatch, type SetStateAction, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { EASE_OUT_QUART } from '../constants/motion'
 
 interface ScatterState extends TargetAndTransition {
   x?: number
@@ -101,7 +102,7 @@ export default function AnimatedHeading() {
                 className="inline-block"
                 animate={animationState}
                 onHoverStart={() => handleHover(index, setScattered)}
-                transition={{ duration: 1, ease: [0.25, 1, 0.5, 1] }}
+                transition={{ duration: 1, ease: EASE_OUT_QUART }}
               >
                 {char === ' ' ? '\u00A0' : char}
               </motion.span>

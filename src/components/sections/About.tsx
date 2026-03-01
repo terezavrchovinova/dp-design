@@ -11,6 +11,7 @@ import midjourneyIcon from '../../assets/icons/midjourney.webp'
 import photoshopIcon from '../../assets/icons/photoshop.svg'
 import lightroomIcon from '../../assets/icons/photoshop-lightroom.svg'
 import premiereProIcon from '../../assets/icons/premiere-pro.svg'
+import { DEFAULT_TRANSITION } from '../../constants/motion'
 import { TimelineEntry } from '../ExperienceTimeline'
 import { ToolIcon } from '../ToolIcon'
 
@@ -61,7 +62,7 @@ export const About = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+            transition={DEFAULT_TRANSITION}
           >
             {t('about.experience')}
           </motion.h2>
@@ -83,7 +84,7 @@ export const About = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+            transition={DEFAULT_TRANSITION}
           >
             {t('about.education')}
           </motion.h2>
@@ -104,7 +105,7 @@ export const About = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+            transition={DEFAULT_TRANSITION}
           >
             {t('about.tools')}
           </motion.h2>

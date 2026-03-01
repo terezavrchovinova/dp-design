@@ -4,6 +4,9 @@ import { useTranslation } from 'react-i18next'
 import logo from '../assets/icons/dp_icon_white.svg'
 import globeDark from '../assets/icons/globe_dark.svg'
 import globeLight from '../assets/icons/globe_light.svg'
+import { LANGUAGES } from '../constants/i18n'
+import { DEFAULT_TRANSITION } from '../constants/motion'
+import { NAV_ITEMS } from '../constants/navigation'
 
 export interface NavbarProps {
   /** Whether the mobile menu is open */
@@ -11,19 +14,6 @@ export interface NavbarProps {
   /** Function to toggle mobile menu state */
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
-
-const NAV_LINKS = [
-  { href: '#home', key: 'nav.home' },
-  { href: '#projects', key: 'nav.projects' },
-  { href: '#what-i-do', key: 'nav.whatIDo' },
-  { href: '#about', key: 'nav.about' },
-  { href: '#contact', key: 'nav.contact' },
-] as const
-
-const LANGUAGES = [
-  { code: 'cs' as const, label: 'Čeština' },
-  { code: 'en' as const, label: 'English' },
-] as const
 
 export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
   const { t, i18n } = useTranslation()
@@ -33,7 +23,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
     <motion.nav
       initial={{ opacity: 0, y: -16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+      transition={DEFAULT_TRANSITION}
       className="fixed top-0 left-0 right-0 z-50 border-b border-[var(--color-border)] navbar-safe-area"
       style={{
         backgroundColor: 'rgba(13,13,13,0.85)',
@@ -54,8 +44,8 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
         </a>
 
         <div className="flex items-center justify-center gap-8 absolute left-1/2 -translate-x-1/2">
-          {NAV_LINKS.map(({ href, key }) => (
-            <NavLink key={href} href={href} label={t(key)} />
+          {NAV_ITEMS.map(({ href, key }) => (
+            <NavLink key={href} href={href} label={t(`nav.${key}`)} />
           ))}
         </div>
 

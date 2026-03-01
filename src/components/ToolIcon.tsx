@@ -1,5 +1,6 @@
 import { motion, useInView } from 'motion/react'
 import { useRef } from 'react'
+import { DEFAULT_TRANSITION } from '../constants/motion'
 
 export interface ToolIconProps {
   /** Tool name for accessibility and tooltip */
@@ -25,11 +26,7 @@ export const ToolIcon = ({ name, src, staggerDelay = 0 }: ToolIconProps) => {
         filter: 'brightness(1.25)',
         transition: { duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] },
       }}
-      transition={{
-        duration: 0.4,
-        delay: staggerDelay,
-        ease: [0.25, 1, 0.5, 1],
-      }}
+      transition={{ ...DEFAULT_TRANSITION, delay: staggerDelay }}
       className="w-10 h-10 flex items-center justify-center rounded cursor-default"
       title={name}
     >

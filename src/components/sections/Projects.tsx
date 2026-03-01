@@ -24,6 +24,7 @@ import newtoniaImgMobile from '../../assets/project_thumbnails/mobile/newtonia.w
 import saleskitImgMobile from '../../assets/project_thumbnails/mobile/saleskit.webp'
 import tmobileImgMobile from '../../assets/project_thumbnails/mobile/t-mobile.webp'
 import variousBannersImgMobile from '../../assets/project_thumbnails/mobile/various_banners.webp'
+import { DEFAULT_TRANSITION } from '../../constants/motion'
 
 interface Project {
   id: number
@@ -130,7 +131,7 @@ export const Projects = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+          transition={DEFAULT_TRANSITION}
         >
           {t('projects.title')}
         </motion.h2>
@@ -146,7 +147,7 @@ export const Projects = () => {
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-30px' }}
-                transition={{ duration: 0.4, delay: index * 0.06, ease: [0.25, 1, 0.5, 1] }}
+                transition={{ ...DEFAULT_TRANSITION, delay: index * 0.06 }}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`View project: ${title}`}

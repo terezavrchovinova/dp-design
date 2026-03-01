@@ -1,5 +1,6 @@
 import { motion } from 'motion/react'
 import { useTranslation } from 'react-i18next'
+import { DEFAULT_TRANSITION } from '../../constants/motion'
 import AnimatedHeading from '../AnimatedHeading'
 import { Button } from '../Button'
 
@@ -22,7 +23,7 @@ export const Contact = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+          transition={DEFAULT_TRANSITION}
         >
           <AnimatedHeading />
         </motion.div>
@@ -31,7 +32,7 @@ export const Contact = () => {
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-30px' }}
-          transition={{ duration: 0.4, delay: 0.15, ease: [0.25, 1, 0.5, 1] }}
+          transition={{ ...DEFAULT_TRANSITION, delay: 0.15 }}
         >
           <Button href={`mailto:${email}`} aria-label={`Send email to ${email}`}>
             {email}

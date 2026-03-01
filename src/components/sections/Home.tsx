@@ -1,5 +1,6 @@
 import { motion } from 'motion/react'
 import { useTranslation } from 'react-i18next'
+import { DEFAULT_TRANSITION } from '../../constants/motion'
 import { Button } from '../Button'
 
 export const Home = () => {
@@ -24,12 +25,12 @@ export const Home = () => {
         className="relative z-10 flex flex-col items-center justify-center w-full max-w-[750px]"
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
+        transition={{ ...DEFAULT_TRANSITION, duration: 0.5 }}
       >
         <motion.span
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.1, ease: [0.25, 1, 0.5, 1] }}
+          transition={{ ...DEFAULT_TRANSITION, delay: 0.1 }}
           className="inline-block text-[0.72rem] font-bold tracking-[0.15em] uppercase rounded-[100px] border leading-none"
           style={{
             padding: '0.3rem 1rem',
@@ -45,7 +46,7 @@ export const Home = () => {
         <motion.h1
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.2, ease: [0.25, 1, 0.5, 1] }}
+          transition={{ ...DEFAULT_TRANSITION, delay: 0.2 }}
           className="max-w-[750px] flex flex-col items-center text-center"
           style={{ fontSize: 'clamp(2.5rem, 8vw, 6rem)', marginBottom: '1.5rem', lineHeight: 1.1 }}
         >
@@ -66,7 +67,7 @@ export const Home = () => {
         <motion.p
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.3, ease: [0.25, 1, 0.5, 1] }}
+          transition={{ ...DEFAULT_TRANSITION, delay: 0.3 }}
           className="text-[var(--color-gray)] max-w-[420px] mx-auto text-center text-sm md:text-base"
           style={{ lineHeight: 1.65, marginBottom: '2.5rem' }}
         >
@@ -77,7 +78,7 @@ export const Home = () => {
           className="flex justify-center items-center flex-wrap gap-4"
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.4, ease: [0.25, 1, 0.5, 1] }}
+          transition={{ ...DEFAULT_TRANSITION, delay: 0.4 }}
         >
           <Button href="#projects">{t('home.viewProjects')}</Button>
           <Button href="#contact" variant="outline">

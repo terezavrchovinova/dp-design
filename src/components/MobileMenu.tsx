@@ -1,15 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-
-const SUPPORTED_LANGUAGES = ['cs', 'en'] as const
-
-const MENU_ITEMS = [
-  { key: 'home', href: '#home' },
-  { key: 'whatIDo', href: '#what-i-do' },
-  { key: 'about', href: '#about' },
-  { key: 'projects', href: '#projects' },
-  { key: 'contact', href: '#contact' },
-] as const
+import { SUPPORTED_LANGUAGES } from '../constants/i18n'
+import { NAV_ITEMS } from '../constants/navigation'
 
 export interface MobileMenuProps {
   /** Whether the menu is open */
@@ -72,7 +64,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
       </button>
 
       <nav className="flex flex-col items-center space-y-6 mt-8" aria-label="Mobile menu">
-        {MENU_ITEMS.map((item, index) => (
+        {NAV_ITEMS.map((item, index) => (
           <a
             key={item.key}
             href={item.href}

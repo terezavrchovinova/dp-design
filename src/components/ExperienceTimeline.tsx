@@ -1,5 +1,6 @@
 import { motion, useInView } from 'motion/react'
 import { useRef } from 'react'
+import { DEFAULT_TRANSITION } from '../constants/motion'
 
 export interface TimelineEntryProps {
   /** Job/education title */
@@ -37,7 +38,7 @@ export const TimelineEntry = ({
       ref={ref}
       initial={{ opacity: 0, x: -20 }}
       animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-      transition={{ duration: 0.4, delay: staggerDelay, ease: [0.25, 1, 0.5, 1] }}
+      transition={{ ...DEFAULT_TRANSITION, delay: staggerDelay }}
       className="relative flex gap-6 md:gap-10 group"
     >
       {!isLast && (
