@@ -165,7 +165,12 @@ export const ScrollAnimation = () => {
   }, [t])
 
   return (
-    <section ref={sectionRef} id="scroll-animation" className="scroll-anim-section" aria-hidden>
+    <section
+      ref={sectionRef}
+      id="scroll-animation"
+      className="scroll-anim-section"
+      aria-hidden="true"
+    >
       <div className="scroll-anim-sticky">
         <div
           ref={glowOverlayRef}
