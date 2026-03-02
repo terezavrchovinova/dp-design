@@ -10,7 +10,7 @@ interface LottieAnimationProps {
 
 const LottieAnimation = ({ asset }: LottieAnimationProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
-  const isVisible = useInView(containerRef, { threshold: 0.1, once: true })
+  const isVisible = useInView(containerRef, { amount: 0.1, once: true })
 
   return (
     <div ref={containerRef} className="w-16 h-16">
