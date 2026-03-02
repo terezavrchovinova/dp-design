@@ -1,7 +1,7 @@
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 import { Navbar } from '../../components/Navbar'
-import { getTextInAnyLanguage, render, screen } from '../utils'
+import { getTextInAnyLanguage, getTranslation, render, screen } from '../utils'
 
 describe('Navbar', () => {
   const defaultProps = {
@@ -100,47 +100,19 @@ describe('Navbar', () => {
 
   it('renders email button', () => {
     render(<Navbar {...defaultProps} />)
-    // Use translation key - email is the same in both languages, but use key for consistency
-    const emailPattern = getTextInAnyLanguage('contact.email')
-    const emailButton = screen.getByRole('button', { name: emailPattern })
-    expect(emailButton).toBeInTheDocument()
+    const email = getTranslation('contact.email')
+    const emailLink = screen.getByRole('link', { name: new RegExp(`send email to ${email.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`, 'i') })
+    expect(emailLink).toBeInTheDocument()
+    expect(emailLink).toHaveAttribute('href', expect.stringContaining('mailto:'))
   })
 
-  it('opens mailto link when email button is clicked', async () => {
-    // Mock window.location.href
-    const originalLocation = window.location
-    let mockHref = ''
-    delete (window as unknown as { location?: Location }).location
-
-    Object.defineProperty(window, 'location', {
-      value: {
-        get href() {
-          return mockHref
-        },
-        set href(value: string) {
-          mockHref = value
-        },
-      },
-      writable: true,
-      configurable: true,
-    })
-
-    const user = userEvent.setup()
+  it('opens mailto link when email button is clicked', () => {
     render(<Navbar {...defaultProps} />)
-    const emailPattern = getTextInAnyLanguage('contact.email')
-    const emailButton = screen.getByRole('button', { name: emailPattern })
+    const email = getTranslation('contact.email')
+    const emailLink = screen.getByRole('link', { name: new RegExp(`send email to ${email.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`, 'i') })
 
-    await user.click(emailButton)
-
-    // Check that mailto link was set
-    expect(mockHref).toContain('mailto:')
-
-    // Restore window.location
-    Object.defineProperty(window, 'location', {
-      value: originalLocation,
-      writable: true,
-      configurable: true,
-    })
+    // mailto links navigate via href - verify the link has correct mailto href
+    expect(emailLink).toHaveAttribute('href', expect.stringMatching(/^mailto:/))
   })
 
   it('applies hover styling via CSS classes', () => {

@@ -1,4 +1,4 @@
-import { motion } from 'motion/react'
+import * as m from 'motion/react-m'
 
 export type ButtonVariant = 'primary' | 'outline'
 export type ButtonElement = 'a' | 'button'
@@ -52,12 +52,14 @@ export const Button = ({
       variant === 'primary'
         ? {
             scale: 1.04,
+            backgroundColor: 'var(--color-accent)',
             boxShadow: '0 0 24px rgba(255, 107, 43, 0.35), 0 0 48px rgba(255, 107, 43, 0.15)',
             transition: hoverTransition,
           }
         : {
             scale: 1.04,
             borderColor: 'rgba(255, 107, 43, 0.6)',
+            backgroundColor: 'rgba(255, 107, 43, 0.08)',
             boxShadow: '0 0 20px rgba(255, 107, 43, 0.2), inset 0 0 20px rgba(255, 107, 43, 0.05)',
             transition: hoverTransition,
           },
@@ -67,15 +69,15 @@ export const Button = ({
 
   if (as === 'button') {
     return (
-      <motion.button type={type} onClick={onClick} aria-label={ariaLabel} {...motionProps}>
+      <m.button type={type} onClick={onClick} aria-label={ariaLabel} {...motionProps}>
         {children}
-      </motion.button>
+      </m.button>
     )
   }
 
   return (
-    <motion.a href={href} aria-label={ariaLabel} {...motionProps}>
+    <m.a href={href} aria-label={ariaLabel} {...motionProps}>
       {children}
-    </motion.a>
+    </m.a>
   )
 }

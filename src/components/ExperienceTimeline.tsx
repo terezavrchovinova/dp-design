@@ -1,4 +1,5 @@
-import { motion, useInView } from 'motion/react'
+import { useInView } from 'motion/react'
+import * as m from 'motion/react-m'
 import { useRef } from 'react'
 import { DEFAULT_TRANSITION } from '../constants/motion'
 
@@ -34,7 +35,7 @@ export const TimelineEntry = ({
   const [part1, part2] = titleParts
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, x: -20 }}
       animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
@@ -98,6 +99,6 @@ export const TimelineEntry = ({
           </ul>
         </div>
       </div>
-    </motion.div>
+    </m.div>
   )
 }

@@ -1,4 +1,4 @@
-import { motion } from 'motion/react'
+import * as m from 'motion/react-m'
 import { useTranslation } from 'react-i18next'
 import { DEFAULT_TRANSITION } from '../../constants/motion'
 import { PROJECTS } from '../../data/projects'
@@ -9,21 +9,21 @@ export const Projects = () => {
   return (
     <section id="projects" className="section bg-[var(--color-dark)]" aria-label="Projects section">
       <div className="w-full max-w-[1600px] px-6 sm:px-10 mx-auto text-center sm:text-left">
-        <motion.h2
+        <m.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={DEFAULT_TRANSITION}
         >
           {t('projects.title')}
-        </motion.h2>
+        </m.h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
           {PROJECTS.map((project, index) => {
             const title = t(`projects.items.${project.key}`, project.key)
 
             return (
-              <motion.a
+              <m.a
                 key={project.id}
                 href={project.link}
                 initial={{ opacity: 0, y: 24 }}
@@ -54,6 +54,7 @@ export const Projects = () => {
                     height={450}
                     decoding="async"
                     fetchPriority="low"
+                    sizes="(max-width: 639px) 100vw, (min-width: 640px) 50vw, 800px"
                     className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
                   />
                 </picture>
@@ -71,7 +72,7 @@ export const Projects = () => {
                     {title}
                   </span>
                 </div>
-              </motion.a>
+              </m.a>
             )
           })}
         </div>

@@ -1,4 +1,4 @@
-import { motion } from 'motion/react'
+import * as m from 'motion/react-m'
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DEFAULT_TRANSITION } from '../../constants/motion'
@@ -30,7 +30,7 @@ export const About = () => {
     <section id="about" className="section bg-[var(--color-dark)]" aria-label="About section">
       <div className="w-full max-w-[1600px] px-6 sm:px-10 mx-auto space-y-16 text-center sm:text-left">
         <div className="max-w-3xl mx-auto">
-          <motion.h2
+          <m.h2
             className="mb-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -38,7 +38,7 @@ export const About = () => {
             transition={DEFAULT_TRANSITION}
           >
             {t('about.experience')}
-          </motion.h2>
+          </m.h2>
           <div className="relative">
             {jobs.map((job, index) => (
               <TimelineEntry
@@ -52,7 +52,7 @@ export const About = () => {
             ))}
           </div>
 
-          <motion.h2
+          <m.h2
             className="mb-8 mt-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -60,7 +60,7 @@ export const About = () => {
             transition={DEFAULT_TRANSITION}
           >
             {t('about.education')}
-          </motion.h2>
+          </m.h2>
           <div className="relative">
             <TimelineEntry
               title={school.name}
@@ -73,7 +73,7 @@ export const About = () => {
         </div>
 
         <div ref={toolsRef}>
-          <motion.h2
+          <m.h2
             className="mb-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -81,7 +81,7 @@ export const About = () => {
             transition={DEFAULT_TRANSITION}
           >
             {t('about.tools')}
-          </motion.h2>
+          </m.h2>
 
           <div className="flex flex-wrap justify-center gap-6">
             {TOOLS.map((tool, index) => (

@@ -1,4 +1,5 @@
-import { motion, useInView } from 'motion/react'
+import { useInView } from 'motion/react'
+import * as m from 'motion/react-m'
 import { useRef } from 'react'
 import { DEFAULT_TRANSITION } from '../constants/motion'
 
@@ -16,7 +17,7 @@ export const ToolIcon = ({ name, src, staggerDelay = 0 }: ToolIconProps) => {
   const isInView = useInView(ref, { once: true, margin: '-20px' })
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, scale: 0.6 }}
       animate={isInView ? { opacity: 0.45, scale: 1 } : { opacity: 0, scale: 0.6 }}
@@ -27,18 +28,18 @@ export const ToolIcon = ({ name, src, staggerDelay = 0 }: ToolIconProps) => {
         transition: { duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] },
       }}
       transition={{ ...DEFAULT_TRANSITION, delay: staggerDelay }}
-      className="w-10 h-10 flex items-center justify-center rounded cursor-default"
+      className="w-12 h-12 flex items-center justify-center rounded cursor-default"
       title={name}
     >
       <img
         src={src}
         alt={name}
-        width={32}
-        height={32}
-        className="w-8 h-8 object-contain"
+        width={40}
+        height={40}
+        className="w-10 h-10 object-contain"
         draggable={false}
         loading="lazy"
       />
-    </motion.div>
+    </m.div>
   )
 }

@@ -11,8 +11,8 @@
 
   /* Accent - orange */
   --color-accent: #FF6B2B;
-  /* Slightly darker orange for buttons - meets WCAG AA 4.5:1 contrast with white text */
-  --color-accent-button: #E55A1F;
+  /* Darker orange for buttons - meets WCAG AA 4.5:1 contrast with white text (was #E55A1F at 3.61:1) */
+  --color-accent-button: #C9501B;
   --color-accent-dim: rgba(255, 107, 43, 0.15);
 }
 

@@ -1,4 +1,4 @@
-import { motion } from 'motion/react'
+import * as m from 'motion/react-m'
 import { useTranslation } from 'react-i18next'
 import { DEFAULT_TRANSITION } from '../../constants/motion'
 import { Button } from '../Button'
@@ -21,13 +21,13 @@ export const Home = () => {
         aria-hidden="true"
       />
 
-      <motion.div
+      <m.div
         className="relative z-10 flex flex-col items-center justify-center w-full max-w-[750px]"
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ ...DEFAULT_TRANSITION, duration: 0.5 }}
       >
-        <motion.span
+        <m.span
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...DEFAULT_TRANSITION, delay: 0.1 }}
@@ -41,9 +41,9 @@ export const Home = () => {
           }}
         >
           {t('home.heroTag')}
-        </motion.span>
+        </m.span>
 
-        <motion.h1
+        <m.h1
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...DEFAULT_TRANSITION, delay: 0.2 }}
@@ -62,9 +62,9 @@ export const Home = () => {
           <span className="whitespace-normal md:whitespace-nowrap">
             {t('home.titleLine1c')} {t('home.titleLine2')}
           </span>
-        </motion.h1>
+        </m.h1>
 
-        <motion.p
+        <m.p
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...DEFAULT_TRANSITION, delay: 0.3 }}
@@ -72,9 +72,9 @@ export const Home = () => {
           style={{ lineHeight: 1.65, marginBottom: '2.5rem' }}
         >
           {t('home.subtitle')}
-        </motion.p>
+        </m.p>
 
-        <motion.div
+        <m.div
           className="flex justify-center items-center flex-wrap gap-4"
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -84,8 +84,8 @@ export const Home = () => {
           <Button href="#contact" variant="outline">
             {t('home.contactMe')}
           </Button>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </section>
   )
 }

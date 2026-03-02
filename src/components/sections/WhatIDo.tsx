@@ -1,4 +1,5 @@
-import { motion, useInView } from 'motion/react'
+import { useInView } from 'motion/react'
+import * as m from 'motion/react-m'
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { SERVICES } from '../../data/services'
@@ -15,14 +16,14 @@ const LottieAnimation = ({ asset }: LottieAnimationProps) => {
   return (
     <div ref={containerRef} className="w-16 h-16">
       {isVisible && (
-        <motion.div
+        <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.35, ease: 'easeOut' }}
           className="w-16 h-16"
         >
           <LazyLottie animationData={asset} className="w-16 h-16" loop autoplay />
-        </motion.div>
+        </m.div>
       )}
     </div>
   )
@@ -42,7 +43,7 @@ export const WhatIDo = () => {
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {SERVICES.map(({ key, asset }, index) => (
-          <motion.div
+          <m.div
             key={key}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -62,7 +63,7 @@ export const WhatIDo = () => {
                 {t(`whatIDo.services.${key}.description`)}
               </p>
             </div>
-          </motion.div>
+          </m.div>
         ))}
       </div>
     </section>

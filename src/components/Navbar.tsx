@@ -1,8 +1,9 @@
-import { motion } from 'motion/react'
+import * as m from 'motion/react-m'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import logo from '../assets/icons/dp_icon_white.svg'
 import globeIcon from '../assets/icons/globe_dark.svg'
+import { Button } from './Button'
 import { LANGUAGES } from '../constants/i18n'
 import { DEFAULT_TRANSITION } from '../constants/motion'
 import { NAV_ITEMS } from '../constants/navigation'
@@ -21,7 +22,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
   const email = t('contact.email') || FALLBACK_EMAIL
 
   return (
-    <motion.nav
+    <m.nav
       initial={{ opacity: 0, y: -16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={DEFAULT_TRANSITION}
@@ -79,7 +80,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
           &#9776;
         </button>
       </div>
-    </motion.nav>
+    </m.nav>
   )
 }
 
@@ -102,16 +103,15 @@ interface EmailButtonProps {
 }
 
 const EmailButton = ({ email }: EmailButtonProps) => (
-  <button
-    type="button"
-    onClick={() => {
-      window.location.href = `mailto:${email}`
-    }}
-    className="py-[0.45rem] px-[1.3rem] rounded-[100px] bg-[var(--color-accent)] text-[var(--color-white)] text-[0.8rem] font-bold hover:opacity-90 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 ease-out cursor-pointer leading-none"
+  <Button
+    as="a"
+    href={`mailto:${email}`}
+    variant="primary"
+    className="!py-[0.5rem] !px-4 !text-[0.8rem]"
     aria-label={`Send email to ${email}`}
   >
     {email}
-  </button>
+  </Button>
 )
 
 interface LanguageSwitcherProps {
@@ -143,14 +143,14 @@ const LanguageSwitcher = ({ currentLang, onChange }: LanguageSwitcherProps) => {
         onClick={() => setIsOpen((prev) => !prev)}
         aria-label="Change language"
         aria-expanded={isOpen}
-        className="size-8 flex items-center justify-center cursor-pointer p-0"
+        className="size-7 flex items-center justify-center cursor-pointer p-0"
       >
         <img
           src={globeIcon}
           alt="Language selector"
-          width={24}
-          height={24}
-          className="w-5 sm:w-6 h-5 sm:h-6 object-contain transition-all duration-200 ease-out group-hover:brightness-[1.4]"
+          width={20}
+          height={20}
+          className="w-4 sm:w-5 h-4 sm:h-5 object-contain transition-all duration-200 ease-out group-hover:brightness-[1.4]"
           loading="lazy"
         />
       </button>

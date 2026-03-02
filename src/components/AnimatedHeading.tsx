@@ -1,4 +1,5 @@
-import { motion, type TargetAndTransition } from 'motion/react'
+import type { TargetAndTransition } from 'motion/react'
+import * as m from 'motion/react-m'
 import { type Dispatch, type SetStateAction, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { EASE_OUT_QUART } from '../constants/motion'
@@ -97,7 +98,7 @@ export const AnimatedHeading = () => {
             }
 
             return (
-              <motion.span
+              <m.span
                 key={`${index}-${char}`}
                 className="inline-block"
                 animate={animationState}
@@ -105,7 +106,7 @@ export const AnimatedHeading = () => {
                 transition={{ duration: 1, ease: EASE_OUT_QUART }}
               >
                 {char === ' ' ? '\u00A0' : char}
-              </motion.span>
+              </m.span>
             )
           })}
         </h2>
