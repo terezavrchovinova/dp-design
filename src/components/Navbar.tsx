@@ -3,10 +3,10 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import logo from '../assets/icons/dp_icon_white.svg'
 import globeIcon from '../assets/icons/globe_dark.svg'
-import { Button } from './Button'
 import { LANGUAGES } from '../constants/i18n'
 import { DEFAULT_TRANSITION } from '../constants/motion'
 import { NAV_ITEMS } from '../constants/navigation'
+import { Button } from './Button'
 
 const FALLBACK_EMAIL = 'dancaplaminkova@sezenam.cz'
 

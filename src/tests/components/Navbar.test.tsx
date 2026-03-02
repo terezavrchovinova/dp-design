@@ -101,7 +101,9 @@ describe('Navbar', () => {
   it('renders email button', () => {
     render(<Navbar {...defaultProps} />)
     const email = getTranslation('contact.email')
-    const emailLink = screen.getByRole('link', { name: new RegExp(`send email to ${email.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`, 'i') })
+    const emailLink = screen.getByRole('link', {
+      name: new RegExp(`send email to ${email.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`, 'i'),
+    })
     expect(emailLink).toBeInTheDocument()
     expect(emailLink).toHaveAttribute('href', expect.stringContaining('mailto:'))
   })
@@ -109,7 +111,9 @@ describe('Navbar', () => {
   it('opens mailto link when email button is clicked', () => {
     render(<Navbar {...defaultProps} />)
     const email = getTranslation('contact.email')
-    const emailLink = screen.getByRole('link', { name: new RegExp(`send email to ${email.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`, 'i') })
+    const emailLink = screen.getByRole('link', {
+      name: new RegExp(`send email to ${email.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`, 'i'),
+    })
 
     // mailto links navigate via href - verify the link has correct mailto href
     expect(emailLink).toHaveAttribute('href', expect.stringMatching(/^mailto:/))
