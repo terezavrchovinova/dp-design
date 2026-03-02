@@ -4,7 +4,7 @@ import { DEFAULT_TRANSITION } from '../../constants/motion'
 import { AnimatedHeading } from '../AnimatedHeading'
 import { Button } from '../Button'
 
-const FALLBACK_EMAIL = 'email@example.com'
+const FALLBACK_EMAIL = 'dancaplaminkova@sezenam.cz'
 
 export const Contact = () => {
   const { t } = useTranslation()

@@ -5,12 +5,7 @@ export const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer
-      className="w-full mt-12 backdrop-blur-lg"
-      style={{
-        backgroundColor: 'rgba(10,10,10,0.75)',
-      }}
-    >
+    <footer className="w-full mt-12 bg-[var(--color-dark)]">
       <div
         className="max-w-6xl mx-auto py-4 text-[var(--color-gray)]"
         style={{

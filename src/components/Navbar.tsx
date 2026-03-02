@@ -7,7 +7,7 @@ import { LANGUAGES } from '../constants/i18n'
 import { DEFAULT_TRANSITION } from '../constants/motion'
 import { NAV_ITEMS } from '../constants/navigation'
 
-const FALLBACK_EMAIL = 'email@example.com'
+const FALLBACK_EMAIL = 'dancaplaminkova@sezenam.cz'
 
 export interface NavbarProps {
   /** Whether the mobile menu is open */

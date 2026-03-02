@@ -61,8 +61,8 @@ describe('Contact', () => {
     const emailLink = screen.getByRole('link')
     expect(emailLink).toBeInTheDocument()
     // Should use fallback email
-    expect(emailLink).toHaveAttribute('href', 'mailto:email@example.com')
-    expect(emailLink).toHaveTextContent('email@example.com')
+    expect(emailLink).toHaveAttribute('href', 'mailto:dancaplaminkova@sezenam.cz')
+    expect(emailLink).toHaveTextContent('dancaplaminkova@sezenam.cz')
 
     // Restore
     vi.restoreAllMocks()
