@@ -58,7 +58,7 @@ export const TimelineEntry = ({
       </div>
 
       <div className="flex-1 min-w-0 pb-12 md:pb-14">
-        <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-5           transition-all duration-300 ease-out hover:border-[var(--color-accent)] hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(255,107,43,0.12)]">
+        <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-5 transition-all duration-300 ease-out hover:border-[var(--color-accent)] hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(255,107,43,0.12)]">
           <p
             className="text-xs md:text-sm mb-2 font-medium tracking-wide text-center sm:text-left"
             style={{ color: 'var(--color-gray)' }}
