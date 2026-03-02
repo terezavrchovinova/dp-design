@@ -7,26 +7,11 @@
   --color-card: #1c1c1c;
   --color-white: #ffffff;
   --color-gray: #8c8c8c;
-  --color-light-gray: #a0a0a0;
   --color-border: #2a2a2a;
 
   /* Accent - orange */
   --color-accent: #FF6B2B;
   --color-accent-dim: rgba(255, 107, 43, 0.15);
-
-  /* CTA */
-  --color-cta-primary-bg: var(--color-accent);
-  --color-cta-primary-text: var(--color-white);
-  --color-cta-secondary-bg: transparent;
-  --color-cta-secondary-text: var(--color-white);
-
-  /* Spacing & Effects */
-  --radius-lg: 0.5rem;
-  --radius-xl: 0.75rem;
-  --radius-full: 100px;
-
-  /* Transitions */
-  --transition-fast: 0.15s ease;
 }
 
 html {
