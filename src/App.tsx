@@ -1,18 +1,21 @@
-import { Analytics } from '@vercel/analytics/react'
-import { SpeedInsights } from '@vercel/speed-insights/react'
-import { lazy, Suspense, useState } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 
-// Global styles & i18n configuration
+const LazyAnalytics = lazy(() =>
+  import('@vercel/analytics/react').then((m) => ({ default: m.Analytics }))
+)
+const LazySpeedInsights = lazy(() =>
+  import('@vercel/speed-insights/react').then((m) => ({ default: m.SpeedInsights }))
+)
+
 import './i18n'
 import './index.css'
 
 import { Footer } from './components/Footer'
 import { MobileMenu } from './components/MobileMenu'
-// Core components (loaded immediately)
 import { Navbar } from './components/Navbar'
 import { Home } from './components/sections/Home'
+import { ScrollAnimation } from './components/sections/ScrollAnimation'
 
-// Lazy load non-critical sections for code splitting
 const Projects = lazy(() =>
   import('./components/sections/Projects').then((m) => ({
     default: m.Projects,
@@ -26,31 +29,55 @@ const Contact = lazy(() =>
   import('./components/sections/Contact').then((m) => ({ default: m.Contact }))
 )
 
-/**
- * App component
- *
- * Manages the overall application structure, including navigation,
- * mobile menu state, and lazy-loaded sections.
- */
+const XL_BREAKPOINT = 1280
+
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
+  useEffect(() => {
+    let wasXl = window.innerWidth >= XL_BREAKPOINT
+
+    const handleResize = () => {
+      const isXl = window.innerWidth >= XL_BREAKPOINT
+      if (wasXl && !isXl) {
+        window.scrollTo({ top: 0, behavior: 'auto' })
+      }
+      wasXl = isXl
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  const [showVercelScripts, setShowVercelScripts] = useState(false)
+  useEffect(() => {
+    if (import.meta.env.PROD && !window.location.hostname.includes('localhost')) {
+      setShowVercelScripts(true)
+    }
+  }, [])
+
   return (
     <>
-      {/* Performance and analytics monitoring */}
-      <SpeedInsights />
-      <Analytics />
+      {showVercelScripts && (
+        <Suspense fallback={null}>
+          <LazyAnalytics />
+          <LazySpeedInsights />
+        </Suspense>
+      )}
 
-      {/* Navigation */}
       <Navbar menuOpen={isMenuOpen} setMenuOpen={setIsMenuOpen} />
       <MobileMenu menuOpen={isMenuOpen} setMenuOpen={setIsMenuOpen} />
 
-      {/* Main content */}
       <main>
-        {/* Critical section - loaded immediately */}
         <Home />
+        <div className="hidden xl:block">
+          <ScrollAnimation />
+        </div>
 
-        {/* Non-critical sections - lazy loaded */}
         <Suspense fallback={null}>
           <Projects />
         </Suspense>

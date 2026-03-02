@@ -9,7 +9,7 @@ test.describe('Home Page', () => {
     await page.waitForLoadState('networkidle')
 
     // Use translation key - works with any language
-    const headingPattern = getTextPattern('home.titleLine1')
+    const headingPattern = getTextPattern('home.titleLine1a')
     const heading = page.getByText(headingPattern)
     await expect(heading).toBeVisible()
   })
@@ -79,5 +79,25 @@ test.describe('Home Page', () => {
     // Wait for contact section to be in viewport instead of static timeout
     const contactSection = page.locator('#contact')
     await expect(contactSection).toBeInViewport()
+  })
+
+  test('should display scroll animation section on desktop', async ({ page }, testInfo) => {
+    // Scroll animation is hidden on mobile (xl:block), skip for mobile projects
+    if (['Mobile Chrome', 'Mobile Safari'].includes(testInfo.project.name)) {
+      testInfo.skip()
+    }
+
+    await page.goto('/')
+    await page.waitForLoadState('networkidle')
+
+    // Ensure desktop viewport (xl breakpoint is 1280px)
+    await page.setViewportSize({ width: 1400, height: 900 })
+
+    const scrollAnimationSection = page.locator('#scroll-animation')
+    await expect(scrollAnimationSection).toBeVisible()
+
+    // Verify phase label from animation translations
+    const phaseLabelPattern = getTextPattern('animation.phase1')
+    await expect(scrollAnimationSection.getByText(phaseLabelPattern)).toBeVisible()
   })
 })

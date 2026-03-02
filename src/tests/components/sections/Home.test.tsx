@@ -12,13 +12,21 @@ describe('Home', () => {
 
   it('displays the main title', () => {
     render(<Home />)
-    // Use translation keys - works with any language
-    const titlePattern = getTextInAnyLanguage('home.titleLine1')
+    // Title is split across multiple spans (e.g. "Turning ", "messy", "challenges", "into", "clear solutions.")
+    // Check the h1 contains the full title text
     const titleLine2Pattern = getTextInAnyLanguage('home.titleLine2')
+    const h1 = screen.getByRole('heading', { level: 1 })
 
-    // Should display title regardless of current language
-    expect(screen.getByText(titlePattern)).toBeInTheDocument()
-    expect(screen.getByText(titleLine2Pattern)).toBeInTheDocument()
+    expect(h1).toBeInTheDocument()
+    expect(h1.textContent).toMatch(/Turning/i)
+    expect(h1.textContent).toMatch(/messy/i)
+    expect(h1.textContent).toMatch(titleLine2Pattern)
+  })
+
+  it('displays the hero tag', () => {
+    render(<Home />)
+    const heroTagPattern = getTextInAnyLanguage('home.heroTag')
+    expect(screen.getByText(heroTagPattern)).toBeInTheDocument()
   })
 
   it('displays the subtitle', () => {

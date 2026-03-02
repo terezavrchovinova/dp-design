@@ -1,20 +1,8 @@
 import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
+import { SUPPORTED_LANGUAGES } from '../constants/i18n'
+import { NAV_ITEMS } from '../constants/navigation'
 
-// Constants
-/** Supported languages for mobile menu */
-const SUPPORTED_LANGUAGES = ['cs', 'en'] as const
-
-/** Menu items configuration */
-const MENU_ITEMS = [
-  { key: 'home', href: '#home' },
-  { key: 'whatIDo', href: '#what-i-do' },
-  { key: 'about', href: '#about' },
-  { key: 'projects', href: '#projects' },
-  { key: 'contact', href: '#contact' },
-] as const
-
-// Types
 export interface MobileMenuProps {
   /** Whether the menu is open */
   menuOpen: boolean
@@ -22,24 +10,13 @@ export interface MobileMenuProps {
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-/**
- * MobileMenu component
- *
- * Full-screen mobile navigation menu with animated transitions.
- * Prevents body scrolling when open and includes language switcher.
- *
- * @param props - MobileMenu component props
- * @returns Mobile menu element
- */
 export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
   const { t, i18n } = useTranslation()
   const closeButtonRef = useRef<HTMLButtonElement>(null)
 
-  // Prevent body scrolling when menu is open and manage focus
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = 'hidden'
-      // Move focus to close button when menu opens
       setTimeout(() => {
         closeButtonRef.current?.focus()
       }, 100)
@@ -47,32 +24,19 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
       document.body.style.overflow = ''
     }
 
-    // Cleanup: restore scrolling when component unmounts
     return () => {
       document.body.style.overflow = ''
     }
   }, [menuOpen])
 
-  /**
-   * Changes the application language
-   *
-   * @param lng - Language code ('en' | 'cs')
-   */
   const changeLanguage = (lng: 'en' | 'cs') => {
     i18n.changeLanguage(lng)
   }
 
-  /**
-   * Closes the menu
-   */
   const handleClose = () => {
     setMenuOpen(false)
   }
 
-  /**
-   * Handles menu item click
-   * Closes the menu when a navigation link is clicked
-   */
   const handleMenuItemClick = () => {
     setMenuOpen(false)
   }
@@ -88,11 +52,10 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
       aria-label="Mobile navigation menu"
       aria-hidden={!menuOpen}
     >
-      {/* Close Button */}
       <button
         ref={closeButtonRef}
         onClick={handleClose}
-        className="absolute top-6 right-6 text-[var(--color-white)] text-3xl focus:outline-none hover:scale-110 transition-transform duration-200 cursor-pointer"
+        className="absolute top-6 right-6 text-[var(--color-white)] text-3xl focus:outline-none hover:scale-110 hover:opacity-80 transition-all duration-200 ease-out cursor-pointer"
         aria-label="Close menu"
         type="button"
         tabIndex={menuOpen ? 0 : -1}
@@ -100,14 +63,13 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
         &times;
       </button>
 
-      {/* Menu Items */}
       <nav className="flex flex-col items-center space-y-6 mt-8" aria-label="Mobile menu">
-        {MENU_ITEMS.map((item, index) => (
+        {NAV_ITEMS.map((item, index) => (
           <a
             key={item.key}
             href={item.href}
             onClick={handleMenuItemClick}
-            className={`text-3xl font-semibold text-[var(--color-white)] tracking-tight transition-all duration-500 ease-out cursor-pointer ${
+            className={`text-3xl font-semibold text-[var(--color-white)] tracking-tight transition-all duration-500 ease-out cursor-pointer hover:text-[var(--color-accent)] hover:scale-105 ${
               menuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
             style={{
@@ -120,10 +82,8 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
         ))}
       </nav>
 
-      {/* Divider */}
       <div className="w-16 h-px bg-[var(--color-border)] my-8" aria-hidden="true" />
 
-      {/* Language Switcher */}
       <fieldset className="flex space-x-6 border-0 p-0 m-0">
         <legend className="sr-only">Language selection</legend>
         {SUPPORTED_LANGUAGES.map((lang) => {
@@ -135,9 +95,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
               type="button"
               onClick={() => changeLanguage(lang)}
               className={`text-sm font-medium transition-opacity duration-200 cursor-pointer ${
-                isActive
-                  ? 'text-[var(--color-orange)] underline'
-                  : 'text-[var(--color-gray)] hover:opacity-80'
+                isActive ? 'text-[var(--color-white)]' : 'text-[var(--color-gray)] hover:opacity-80'
               }`}
               aria-label={`Switch to ${lang.toUpperCase()}`}
               aria-pressed={isActive}

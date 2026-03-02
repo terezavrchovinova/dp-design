@@ -1,3 +1,5 @@
+import * as m from 'motion/react-m'
+
 export type ButtonVariant = 'primary' | 'outline'
 export type ButtonElement = 'a' | 'button'
 export type ButtonType = 'button' | 'submit' | 'reset'
@@ -17,14 +19,12 @@ export interface ButtonProps {
   className?: string
   /** Click handler (used when as="button") */
   onClick?: () => void
+  /** Accessible label for screen readers */
+  'aria-label'?: string
 }
 
-/**
- * Button component
- *
- * @param props - Button component props
- * @returns Button or anchor element based on `as` prop
- */
+const hoverTransition = { duration: 0.15, ease: 'easeOut' as const }
+
 export const Button = ({
   children,
   href = '#',
@@ -33,52 +33,51 @@ export const Button = ({
   type = 'button',
   className = '',
   onClick,
+  'aria-label': ariaLabel,
 }: ButtonProps) => {
-  // Base styles shared by all button variants
   const baseStyles = [
-    'relative inline-block px-6 py-3 rounded-xl font-semibold',
-    'transition-all duration-300 ease-in-out',
-    'focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
-    'focus-visible:ring-[var(--color-orange-light)]',
+    'relative inline-block py-2 px-5 text-[0.8rem] md:py-[0.85rem] md:px-8 md:text-[0.9rem] rounded-[100px] font-bold',
+    'focus:outline-none focus-visible:ring-1 focus-visible:ring-[var(--color-border)]',
     'cursor-pointer',
     className,
   ].join(' ')
 
-  // Variant-specific styles
   const variantStyles = {
-    primary: 'text-white shadow-soft hover:shadow-lg hover:-translate-y-0.5',
-    outline:
-      'text-[var(--color-orange)] border border-[var(--color-orange)] hover:text-white hover:bg-[var(--color-orange)]/10 hover:shadow-md hover:-translate-y-0.5',
+    primary: 'text-[var(--color-white)] bg-[var(--color-accent-button)]',
+    outline: 'text-[var(--color-white)] border-[1.5px] border-[var(--color-border)]',
   }
 
-  // Primary variant uses gradient background
-  const primaryStyle =
-    variant === 'primary'
-      ? {
-          backgroundImage: 'var(--gradient-accent)',
-          backgroundSize: '200% auto',
-          backgroundPosition: 'left',
-        }
-      : undefined
+  const motionProps = {
+    whileHover:
+      variant === 'primary'
+        ? {
+            scale: 1.04,
+            backgroundColor: 'var(--color-accent)',
+            boxShadow: '0 0 24px rgba(255, 107, 43, 0.35), 0 0 48px rgba(255, 107, 43, 0.15)',
+            transition: hoverTransition,
+          }
+        : {
+            scale: 1.04,
+            borderColor: 'rgba(255, 107, 43, 0.6)',
+            backgroundColor: 'rgba(255, 107, 43, 0.08)',
+            boxShadow: '0 0 20px rgba(255, 107, 43, 0.2), inset 0 0 20px rgba(255, 107, 43, 0.05)',
+            transition: hoverTransition,
+          },
+    whileTap: { scale: 0.98 },
+    className: `${baseStyles} ${variantStyles[variant]}`,
+  }
 
-  // Render as button element
   if (as === 'button') {
     return (
-      <button
-        type={type}
-        onClick={onClick}
-        className={`group ${baseStyles} ${variantStyles[variant]}`}
-        style={primaryStyle}
-      >
-        <span className="relative z-10">{children}</span>
-      </button>
+      <m.button type={type} onClick={onClick} aria-label={ariaLabel} {...motionProps}>
+        {children}
+      </m.button>
     )
   }
 
-  // Render as anchor element
   return (
-    <a href={href} className={`group ${baseStyles} ${variantStyles[variant]}`} style={primaryStyle}>
-      <span className="relative z-10">{children}</span>
-    </a>
+    <m.a href={href} aria-label={ariaLabel} {...motionProps}>
+      {children}
+    </m.a>
   )
 }

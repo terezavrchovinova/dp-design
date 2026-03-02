@@ -1,7 +1,7 @@
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 import { Navbar } from '../../components/Navbar'
-import { getTextInAnyLanguage, render, screen } from '../utils'
+import { getTextInAnyLanguage, getTranslation, render, screen } from '../utils'
 
 describe('Navbar', () => {
   const defaultProps = {
@@ -100,63 +100,32 @@ describe('Navbar', () => {
 
   it('renders email button', () => {
     render(<Navbar {...defaultProps} />)
-    // Use translation key - email is the same in both languages, but use key for consistency
-    const emailPattern = getTextInAnyLanguage('contact.email')
-    const emailButton = screen.getByRole('button', { name: emailPattern })
-    expect(emailButton).toBeInTheDocument()
+    const email = getTranslation('contact.email')
+    const emailLink = screen.getByRole('link', {
+      name: new RegExp(`send email to ${email.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`, 'i'),
+    })
+    expect(emailLink).toBeInTheDocument()
+    expect(emailLink).toHaveAttribute('href', expect.stringContaining('mailto:'))
   })
 
-  it('opens mailto link when email button is clicked', async () => {
-    // Mock window.location.href
-    const originalLocation = window.location
-    let mockHref = ''
-    delete (window as unknown as { location?: Location }).location
-
-    Object.defineProperty(window, 'location', {
-      value: {
-        get href() {
-          return mockHref
-        },
-        set href(value: string) {
-          mockHref = value
-        },
-      },
-      writable: true,
-      configurable: true,
-    })
-
-    const user = userEvent.setup()
+  it('opens mailto link when email button is clicked', () => {
     render(<Navbar {...defaultProps} />)
-    const emailPattern = getTextInAnyLanguage('contact.email')
-    const emailButton = screen.getByRole('button', { name: emailPattern })
-
-    await user.click(emailButton)
-
-    // Check that mailto link was set
-    expect(mockHref).toContain('mailto:')
-
-    // Restore window.location
-    Object.defineProperty(window, 'location', {
-      value: originalLocation,
-      writable: true,
-      configurable: true,
+    const email = getTranslation('contact.email')
+    const emailLink = screen.getByRole('link', {
+      name: new RegExp(`send email to ${email.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`, 'i'),
     })
+
+    // mailto links navigate via href - verify the link has correct mailto href
+    expect(emailLink).toHaveAttribute('href', expect.stringMatching(/^mailto:/))
   })
 
-  it('changes nav link color on hover', async () => {
-    const user = userEvent.setup()
+  it('applies hover styling via CSS classes', () => {
     render(<Navbar {...defaultProps} />)
     const projectsPattern = getTextInAnyLanguage('nav.projects')
     const projectsLink = screen.getByRole('link', { name: projectsPattern })
 
-    // Hover over the link
-    await user.hover(projectsLink)
-    // Check that the link has hover styling
-    expect(projectsLink).toHaveStyle({ color: 'var(--color-white)' })
-
-    // Move mouse away
-    await user.unhover(projectsLink)
-    // Check that the link returns to normal styling
-    expect(projectsLink).toHaveStyle({ color: 'var(--color-gray)' })
+    // Nav links use CSS hover (hover:text-[var(--color-white)]) - verify classes are present
+    expect(projectsLink).toHaveClass('hover:text-[var(--color-white)]')
+    expect(projectsLink).toHaveClass('text-[var(--color-gray)]')
   })
 })

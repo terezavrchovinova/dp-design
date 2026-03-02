@@ -6,10 +6,22 @@
     "about": "Experience",
     "contact": "Contact"
   },
+  "animation": {
+    "phase1": "problem",
+    "phase2": "finding the way…",
+    "phase3": "solution",
+    "sub1": "client brief",
+    "sub2": "analysis & process",
+    "sub3": "clean result"
+  },
   "home": {
-    "titleLine1": "Creative graphic designer",
-    "titleLine2": "and video editor",
-    "subtitle": "Daniela Plamínková",
+    "heroTag": "Graphic designer & video editor",
+    "titleLine1a": "Turning ",
+    "titleLine1b": "messy",
+    "titleLine1b2": "challenges",
+    "titleLine1c": "into",
+    "titleLine2": "clear solutions.",
+    "subtitle": "I help brands turn ideas into clear visuals — from branding to motion graphics.",
     "viewProjects": "View Projects",
     "contactMe": "Contact Me"
   },
@@ -21,7 +33,7 @@
       {
         "title": "Graphic Designer – 4camping",
         "date": "January 2026 – Present",
-        "description": ""
+        "description": "Creating banners and visuals for advertising campaigns (performance and brand). Designing seasonal campaign concepts (Tent Exhibition). Creating presentations and moodboards. Designing mockups and internal visuals."
       },
       {
         "title": "Graphic Designer – Imper (Saleskit)",
@@ -31,7 +43,7 @@
       {
         "title": "Graphic Designer & Video Editor – JVS GROUP",
         "date": "Aug 2021 – January 2026",
-        "description": "Design of visual content for events and cultural events. Creation of advertising spots for TV and online platforms. Development of branding materials, from logo to visual identity. Complete prepress preparation for large-format and standard print materials. Visual content for social media and online advertising (HTML5 / PPC banners). Motion graphics. Photography, interview filming, and video editing for digital content. Website edits in Wix."
+        "description": "Design of visual content for events and cultural events. Creating advertising spots for TV and online platforms. Developing branding materials, from logo to visual identity. Complete prepress preparation for large-format and standard print materials. Visual content for social media and online advertising (HTML5 / PPC banners). Motion graphics. Photography, interview filming, and video editing for digital content. Website edits in Wix."
       },
       {
         "title": "DTP Operator – GZ Media",
@@ -84,8 +96,8 @@
         "description": "Production and editing of all kinds of videos along with motion graphics"
       },
       "digital": {
-        "title": "Digital Content Creation",
-        "description": "Design and creation of digital graphics and assets for web and social media platforms"
+        "title": "Digital Content",
+        "description": "Creating digital graphics and assets for web and social media platforms"
       },
       "photo": {
         "title": "Photography",
@@ -102,7 +114,6 @@
     "ico": "VAT number: 22223622",
     "address": "Headquarters: Voskovcova 1075/57, 152 00 Prague 5",
     "registered": "Registered in the Trade Register",
-    "supervisoryAuthority": "Supervisory authority: Trade Office Prague 5",
-    "copyright": "© {year} Daniela Plamínková"
+    "supervisoryAuthority": "Supervisory authority: Trade Office Prague 5"
   }
 }

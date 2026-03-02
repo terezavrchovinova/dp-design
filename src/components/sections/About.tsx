@@ -1,25 +1,10 @@
-import { AnimatePresence, motion, useInView } from 'motion/react'
+import * as m from 'motion/react-m'
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import afterEffectsIcon from '../../assets/icons/after-effects.svg'
-import cinema4dIcon from '../../assets/icons/cinema-4d.svg'
-import dimensionIcon from '../../assets/icons/dimension.svg'
-import figmaIcon from '../../assets/icons/figma.svg'
-import illustratorIcon from '../../assets/icons/illustrator.svg'
-import indesignIcon from '../../assets/icons/indesign.svg'
-import midjourneyIcon from '../../assets/icons/midjourney.webp'
-// Tool icon assets
-import photoshopIcon from '../../assets/icons/photoshop.svg'
-import lightroomIcon from '../../assets/icons/photoshop-lightroom.svg'
-import premiereProIcon from '../../assets/icons/premiere-pro.svg'
-import { JobCard } from '../JobCard'
+import { DEFAULT_TRANSITION } from '../../constants/motion'
+import { TOOLS } from '../../data/tools'
+import { TimelineEntry } from '../ExperienceTimeline'
 import { ToolIcon } from '../ToolIcon'
-
-// Types
-interface Tool {
-  name: string
-  src: string
-}
 
 interface Job {
   title: string
@@ -33,139 +18,76 @@ interface School {
   focus: string
 }
 
-// Constants
-/** Tools configuration */
-const TOOLS: Tool[] = [
-  { name: 'Adobe Photoshop', src: photoshopIcon },
-  { name: 'Adobe Illustrator', src: illustratorIcon },
-  { name: 'Adobe InDesign', src: indesignIcon },
-  { name: 'Adobe After Effects', src: afterEffectsIcon },
-  { name: 'Adobe Premiere Pro', src: premiereProIcon },
-  { name: 'Adobe Lightroom', src: lightroomIcon },
-  { name: 'Adobe Dimension', src: dimensionIcon },
-  { name: 'Figma', src: figmaIcon },
-  { name: 'Cinema 4D', src: cinema4dIcon },
-  { name: 'Midjourney', src: midjourneyIcon },
-]
-
-/** Adobe tools (filtered from all tools) */
-const ADOBE_TOOLS = TOOLS.filter((tool) => tool.name.startsWith('Adobe'))
-
-/** Other tools (non-Adobe) */
-const OTHER_TOOLS = TOOLS.filter((tool) => !ADOBE_TOOLS.includes(tool))
-
-/**
- * About component
- *
- * Renders experience, education, and tools sections.
- * Includes animated tool icons with staggered entrance animations.
- *
- * @returns About section element
- */
 export const About = () => {
   const { t } = useTranslation()
 
-  // Get jobs from translations
   const jobs = t('about.jobs', { returnObjects: true }) as Job[]
-
-  // Get school information from translations
   const school = t('about.school', { returnObjects: true }) as School
 
-  // Ref for tools section intersection observer
   const toolsRef = useRef(null)
-  const toolsInView = useInView(toolsRef, { once: true })
 
   return (
     <section id="about" className="section bg-[var(--color-dark)]" aria-label="About section">
-      <div className="container-content">
-        {/* Experience Section */}
-        <div>
-          <h3>{t('about.experience')}</h3>
-          <div className="space-y-6">
+      <div className="w-full max-w-[1600px] px-6 sm:px-10 mx-auto space-y-16 text-center sm:text-left">
+        <div className="max-w-3xl mx-auto">
+          <m.h2
+            className="mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={DEFAULT_TRANSITION}
+          >
+            {t('about.experience')}
+          </m.h2>
+          <div className="relative">
             {jobs.map((job, index) => (
-              <JobCard key={`${job.title}-${index}`} {...job} />
+              <TimelineEntry
+                key={`${job.title}-${index}`}
+                title={job.title}
+                date={job.date}
+                description={job.description}
+                isLast={index === jobs.length - 1}
+                staggerDelay={index * 0.08}
+              />
             ))}
           </div>
-        </div>
 
-        {/* Education Section */}
-        <div>
-          <h3>{t('about.education')}</h3>
-          <div className="space-y-6">
-            <JobCard title={school.name} date={school.years} description={school.focus} />
+          <m.h2
+            className="mb-8 mt-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={DEFAULT_TRANSITION}
+          >
+            {t('about.education')}
+          </m.h2>
+          <div className="relative">
+            <TimelineEntry
+              title={school.name}
+              date={school.years}
+              description={school.focus}
+              isLast
+              staggerDelay={0.1}
+            />
           </div>
         </div>
 
-        {/* Tools Section */}
         <div ref={toolsRef}>
-          <motion.h3
-            initial={{ opacity: 0, y: -20 }}
-            animate={toolsInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
+          <m.h2
+            className="mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-50px' }}
+            transition={DEFAULT_TRANSITION}
           >
             {t('about.tools')}
-          </motion.h3>
+          </m.h2>
 
-          {/* Adobe Tools */}
-          <motion.div
-            className="flex flex-wrap justify-center gap-6 mb-12"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={{
-              hidden: {},
-              visible: {
-                transition: { staggerChildren: 0.1 },
-              },
-            }}
-          >
-            {ADOBE_TOOLS.map((tool) => (
-              <motion.div
-                key={tool.name}
-                layout
-                variants={{
-                  hidden: { opacity: 0, scale: 0.95 },
-                  visible: { opacity: 1, scale: 1 },
-                }}
-                whileHover={{ scale: 1.1 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              >
-                <ToolIcon {...tool} />
-              </motion.div>
+          <div className="flex flex-wrap justify-center gap-6">
+            {TOOLS.map((tool, index) => (
+              <ToolIcon key={tool.name} {...tool} staggerDelay={index * 0.05} />
             ))}
-          </motion.div>
-
-          {/* Other Tools */}
-          <AnimatePresence>
-            {OTHER_TOOLS.length > 0 && (
-              <motion.div
-                key="other-tools"
-                className="flex flex-wrap justify-center gap-6"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -30 }}
-                transition={{ duration: 0.5 }}
-              >
-                {OTHER_TOOLS.map((tool) => (
-                  <motion.div
-                    key={tool.name}
-                    layout
-                    whileHover={{ scale: 1.1 }}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{
-                      type: 'spring',
-                      stiffness: 250,
-                      damping: 18,
-                    }}
-                  >
-                    <ToolIcon {...tool} />
-                  </motion.div>
-                ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>

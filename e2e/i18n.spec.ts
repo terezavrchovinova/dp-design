@@ -9,7 +9,7 @@ test.describe('Internationalization', () => {
   test('should display content in default language', async ({ page }) => {
     await page.waitForLoadState('networkidle')
     // Use translation key - works with any language (default is Czech)
-    const titlePattern = getTextPattern('home.titleLine1')
+    const titlePattern = getTextPattern('home.titleLine1a')
     await expect(page.getByText(titlePattern)).toBeVisible()
   })
 
@@ -58,7 +58,7 @@ test.describe('Internationalization', () => {
     }
 
     // Wait for language change by checking for English text
-    const englishTitle = getTranslation('home.titleLine1', 'en')
+    const englishTitle = getTranslation('home.titleLine2', 'en')
     await expect(page.getByText(new RegExp(englishTitle, 'i'))).toBeVisible({
       timeout: 5000,
     })

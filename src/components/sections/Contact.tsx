@@ -1,18 +1,11 @@
+import * as m from 'motion/react-m'
 import { useTranslation } from 'react-i18next'
-import AnimatedHeading from '../AnimatedHeading'
+import { DEFAULT_TRANSITION } from '../../constants/motion'
+import { AnimatedHeading } from '../AnimatedHeading'
+import { Button } from '../Button'
 
-// Constants
-/** Fallback email if translation is missing */
-const FALLBACK_EMAIL = 'email@example.com'
+const FALLBACK_EMAIL = 'dancaplaminkova@sezenam.cz'
 
-/**
- * Contact component
- *
- * Renders the contact section with an animated heading
- * and email contact link.
- *
- * @returns Contact section element
- */
 export const Contact = () => {
   const { t } = useTranslation()
   const email = t('contact.email') || FALLBACK_EMAIL
@@ -20,23 +13,31 @@ export const Contact = () => {
   return (
     <section
       id="contact"
-      className="min-h-screen flex items-center justify-center bg-[var(--color-dark)] px-6 py-24"
+      className="section bg-[var(--color-dark)] flex flex-col items-center justify-center"
+      style={{ scrollMarginTop: 'calc(-50vh + 4rem)' }}
       aria-label="Contact section"
     >
-      <div className="w-full flex flex-col items-center text-center">
-        {/* Animated Heading */}
-        <AnimatedHeading />
+      <div className="w-full max-w-[1600px] px-6 sm:px-10 mx-auto flex flex-col items-center justify-center text-center">
+        <m.div
+          className="mb-5"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={DEFAULT_TRANSITION}
+        >
+          <AnimatedHeading />
+        </m.div>
 
-        {/* Email Contact Link */}
-        <div className="mt-10 flex items-center gap-2">
-          <a
-            href={`mailto:${email}`}
-            className="px-6 py-3 rounded-xl font-medium text-[var(--color-dark)] bg-[var(--color-accent)] hover:bg-[var(--color-orange-light)] transition-colors duration-200"
-            aria-label={`Send email to ${email}`}
-          >
+        <m.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-30px' }}
+          transition={{ ...DEFAULT_TRANSITION, delay: 0.15 }}
+        >
+          <Button href={`mailto:${email}`} aria-label={`Send email to ${email}`}>
             {email}
-          </a>
-        </div>
+          </Button>
+        </m.div>
       </div>
     </section>
   )

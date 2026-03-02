@@ -1,13 +1,15 @@
+import * as m from 'motion/react-m'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-// Assets
 import logo from '../assets/icons/dp_icon_white.svg'
-import globeDark from '../assets/icons/globe_dark.svg'
-import globeLight from '../assets/icons/globe_light.svg'
-import greenDot from '../assets/icons/green_dot.json'
-import { LazyLottie } from './LazyLottie'
+import globeIcon from '../assets/icons/globe_dark.svg'
+import { LANGUAGES } from '../constants/i18n'
+import { DEFAULT_TRANSITION } from '../constants/motion'
+import { NAV_ITEMS } from '../constants/navigation'
+import { Button } from './Button'
 
-// Constants
+const FALLBACK_EMAIL = 'dancaplaminkova@sezenam.cz'
+
 export interface NavbarProps {
   /** Whether the mobile menu is open */
   menuOpen: boolean
@@ -15,186 +17,116 @@ export interface NavbarProps {
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-/** Navigation links configuration */
-const NAV_LINKS = [
-  { href: '#home', key: 'nav.home' },
-  { href: '#projects', key: 'nav.projects' },
-  { href: '#what-i-do', key: 'nav.whatIDo' },
-  { href: '#about', key: 'nav.about' },
-  { href: '#contact', key: 'nav.contact' },
-] as const
-
-/** Supported languages */
-const LANGUAGES = [
-  { code: 'cs' as const, label: 'Čeština' },
-  { code: 'en' as const, label: 'English' },
-] as const
-
-/**
- * Navbar component
- *
- * Main navigation bar with responsive design. Shows full navigation
- * on desktop and a menu toggle button on mobile.
- *
- * @param props - Navbar component props
- * @returns Navigation bar element
- */
 export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
   const { t, i18n } = useTranslation()
-  const email = t('contact.email')
+  const email = t('contact.email') || FALLBACK_EMAIL
 
   return (
-    <nav
-      className="fixed top-0 w-full z-40 backdrop-blur-lg border-b"
+    <m.nav
+      initial={{ opacity: 0, y: -16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={DEFAULT_TRANSITION}
+      className="fixed top-0 left-0 right-0 z-50 border-b border-[var(--color-border)] navbar-safe-area"
       style={{
-        backgroundColor: 'rgba(10,10,10,0.75)',
-        borderColor: 'var(--color-border)',
+        backgroundColor: 'rgba(13,13,13,0.85)',
+        backdropFilter: 'blur(12px)',
       }}
       aria-label="Main navigation"
     >
-      <div className="max-w-6xl mx-auto">
-        {/* Desktop Navigation */}
-        <div className="hidden md:grid md:grid-cols-3 items-center h-16 w-full px-6">
-          {/* Logo */}
-          <div className="flex items-center justify-start">
-            <a href="#home" className="flex items-center" aria-label="Home">
-              <img
-                src={logo}
-                alt="Daniela Plamínková Logo"
-                width={64}
-                height={64}
-                className="w-16 h-auto"
-                fetchPriority="high"
-              />
-            </a>
-          </div>
+      <div className="hidden xl:flex xl:items-center xl:justify-between w-full relative">
+        <a href="#home" className="flex items-center shrink-0" aria-label="Home">
+          <img
+            src={logo}
+            alt="Daniela Plamínková Logo"
+            width={40}
+            height={40}
+            className="w-10 h-auto"
+            fetchPriority="high"
+          />
+        </a>
 
-          {/* Navigation Links */}
-          <div className="flex items-center justify-center space-x-6">
-            {NAV_LINKS.map(({ href, key }) => (
-              <NavLink key={href} href={href} label={t(key)} />
-            ))}
-          </div>
-
-          {/* Language Switcher and Email */}
-          <div className="flex items-center justify-end space-x-4">
-            <LanguageSwitcher currentLang={i18n.language} onChange={i18n.changeLanguage} />
-            <EmailButton email={email} />
-          </div>
+        <div className="flex items-center justify-center gap-8 absolute left-1/2 -translate-x-1/2">
+          {NAV_ITEMS.map(({ href, key }) => (
+            <NavLink key={href} href={href} label={t(`nav.${key}`)} />
+          ))}
         </div>
 
-        {/* Mobile Navigation */}
-        <div className="flex md:hidden items-center justify-between h-16 w-full px-4">
-          {/* Logo */}
-          <a href="#home" className="flex items-center z-10" aria-label="Home">
-            <img
-              src={logo}
-              alt="Daniela Plamínková Logo"
-              width={48}
-              height={48}
-              className="w-12 h-auto"
-              fetchPriority="high"
-            />
-          </a>
-
-          {/* Menu Toggle Button */}
-          <button
-            type="button"
-            aria-label="Toggle Menu"
-            aria-expanded={menuOpen}
-            aria-controls="mobile-menu"
-            onClick={() => setMenuOpen((prev) => !prev)}
-            className="flex flex-col justify-between w-7 h-5 z-50 cursor-pointer"
-          >
-            {(['top', 'middle', 'bottom'] as const).map((id) => (
-              <span key={id} className="block h-0.5 w-full rounded-sm bg-[var(--color-white)]" />
-            ))}
-          </button>
+        <div className="flex items-center gap-4 shrink-0">
+          <LanguageSwitcher currentLang={i18n.language} onChange={i18n.changeLanguage} />
+          <EmailButton email={email} />
         </div>
       </div>
-    </nav>
+
+      <div className="flex xl:hidden items-center justify-between w-full">
+        <a href="#home" className="flex items-center z-10" aria-label="Home">
+          <img
+            src={logo}
+            alt="Daniela Plamínková Logo"
+            width={36}
+            height={36}
+            className="w-9 h-auto"
+            fetchPriority="high"
+          />
+        </a>
+
+        <button
+          type="button"
+          aria-label="Toggle Menu"
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
+          onClick={() => setMenuOpen((prev) => !prev)}
+          className="flex items-center justify-center w-10 h-10 min-w-10 min-h-10 cursor-pointer hover:opacity-80 transition-opacity text-[var(--color-white)] text-2xl font-light leading-none"
+        >
+          &#9776;
+        </button>
+      </div>
+    </m.nav>
   )
 }
 
-/**
- * NavLink component
- *
- * Individual navigation link with hover effects.
- *
- * @param props - NavLink component props
- * @returns Navigation link element
- */
 interface NavLinkProps {
   href: string
   label: string
 }
 
-const NavLink = ({ href, label }: NavLinkProps) => {
-  const [isHovered, setIsHovered] = useState(false)
+const NavLink = ({ href, label }: NavLinkProps) => (
+  <a
+    href={href}
+    className="text-sm text-[var(--color-gray)] hover:text-[var(--color-white)] transition-all duration-200 ease-out"
+  >
+    {label}
+  </a>
+)
 
-  return (
-    <a
-      href={href}
-      className="text-sm transition-colors duration-200"
-      style={{ color: isHovered ? 'var(--color-white)' : 'var(--color-gray)' }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {label}
-    </a>
-  )
-}
-
-/**
- * EmailButton component
- *
- * Button that opens the default email client with the contact email.
- *
- * @param props - EmailButton component props
- * @returns Email button element
- */
 interface EmailButtonProps {
   email: string
 }
 
 const EmailButton = ({ email }: EmailButtonProps) => (
-  <button
-    type="button"
-    onClick={() => {
-      window.location.href = `mailto:${email}`
-    }}
-    className="flex items-center space-x-2 px-3 py-1.5 rounded-2xl bg-[var(--color-accent)] text-[var(--color-dark)] text-sm hover:bg-[var(--color-orange-light)] shadow-md cursor-pointer"
+  <Button
+    as="a"
+    href={`mailto:${email}`}
+    variant="primary"
+    className="!py-[0.5rem] !px-4 !text-[0.8rem]"
     aria-label={`Send email to ${email}`}
   >
-    <span>{email}</span>
-    <LazyLottie animationData={greenDot} loop style={{ width: 20, height: 20 }} />
-  </button>
+    {email}
+  </Button>
 )
 
-/**
- * LanguageSwitcher component
- *
- * Dropdown menu for switching between supported languages.
- *
- * @param props - LanguageSwitcher component props
- * @returns Language switcher element
- */
 interface LanguageSwitcherProps {
   currentLang: string
   onChange: (lng: 'en' | 'cs') => void
 }
 
 const LanguageSwitcher = ({ currentLang, onChange }: LanguageSwitcherProps) => {
-  const [isHovered, setIsHovered] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsOpen(false)
-        setIsHovered(false)
       }
     }
 
@@ -205,33 +137,24 @@ const LanguageSwitcher = ({ currentLang, onChange }: LanguageSwitcherProps) => {
   }, [])
 
   return (
-    <div
-      role="group"
-      aria-label="Language switcher"
-      className="relative"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      ref={dropdownRef}
-    >
-      {/* Globe Icon */}
+    <div role="group" aria-label="Language switcher" className="relative group" ref={dropdownRef}>
       <button
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
         aria-label="Change language"
         aria-expanded={isOpen}
-        className="cursor-pointer"
+        className="size-7 flex items-center justify-center cursor-pointer p-0"
       >
         <img
-          src={isHovered ? globeLight : globeDark}
+          src={globeIcon}
           alt="Language selector"
-          width={24}
-          height={24}
-          className="w-5 sm:w-6 h-auto transition duration-200"
+          width={20}
+          height={20}
+          className="w-4 sm:w-5 h-4 sm:h-5 object-contain transition-all duration-200 ease-out group-hover:brightness-[1.4]"
           loading="lazy"
         />
       </button>
 
-      {/* Language Dropdown */}
       {isOpen && (
         <div
           className="absolute mt-2 left-0 bg-[var(--color-surface)] border border-[var(--color-border)] shadow-md rounded-md text-sm z-50 min-w-[100px] overflow-hidden"
@@ -246,9 +169,8 @@ const LanguageSwitcher = ({ currentLang, onChange }: LanguageSwitcherProps) => {
               onClick={() => {
                 onChange(code)
                 setIsOpen(false)
-                setIsHovered(false)
               }}
-              className={`w-full text-left px-4 py-2 hover:bg-[var(--color-border)] cursor-pointer text-[var(--color-white)] transition-colors duration-150 ${
+              className={`w-full text-left px-4 py-2 hover:bg-[var(--color-accent)]/20 cursor-pointer text-[var(--color-white)] transition-all duration-200 ease-out ${
                 currentLang === code ? 'font-semibold' : ''
               }`}
               aria-label={`Switch to ${label}`}

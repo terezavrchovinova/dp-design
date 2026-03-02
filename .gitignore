@@ -13,8 +13,7 @@ dist-ssr
 *.local
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
+.vscode
 .idea
 .DS_Store
 *.suo
@@ -23,9 +22,14 @@ dist-ssr
 *.sln
 *.sw?
 
+# Lighthouse reports
+lighthouse-report*.html
+
 # Test artifacts
 coverage
 .nyc_output
 playwright-report
 test-results
+test_results
+test results
 playwright/.cache
