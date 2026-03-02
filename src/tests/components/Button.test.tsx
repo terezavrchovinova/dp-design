@@ -38,7 +38,7 @@ describe('Button', () => {
   it('renders with primary variant by default', () => {
     render(<Button>Primary Button</Button>)
     const button = screen.getByRole('link')
-    expect(button).toHaveClass('bg-[var(--color-accent)]')
+    expect(button).toHaveClass('bg-[var(--color-accent-button)]')
   })
 
   it('renders with outline variant', () => {

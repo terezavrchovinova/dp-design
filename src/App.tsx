@@ -1,6 +1,11 @@
-import { Analytics } from '@vercel/analytics/react'
-import { SpeedInsights } from '@vercel/speed-insights/react'
 import { lazy, Suspense, useEffect, useState } from 'react'
+
+const LazyAnalytics = lazy(() =>
+  import('@vercel/analytics/react').then((m) => ({ default: m.Analytics }))
+)
+const LazySpeedInsights = lazy(() =>
+  import('@vercel/speed-insights/react').then((m) => ({ default: m.SpeedInsights }))
+)
 
 import './i18n'
 import './index.css'
@@ -48,10 +53,21 @@ function App() {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
+  const [showVercelScripts, setShowVercelScripts] = useState(false)
+  useEffect(() => {
+    if (import.meta.env.PROD && !window.location.hostname.includes('localhost')) {
+      setShowVercelScripts(true)
+    }
+  }, [])
+
   return (
     <>
-      <SpeedInsights />
-      <Analytics />
+      {showVercelScripts && (
+        <Suspense fallback={null}>
+          <LazyAnalytics />
+          <LazySpeedInsights />
+        </Suspense>
+      )}
 
       <Navbar menuOpen={isMenuOpen} setMenuOpen={setIsMenuOpen} />
       <MobileMenu menuOpen={isMenuOpen} setMenuOpen={setIsMenuOpen} />

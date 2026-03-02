@@ -43,7 +43,7 @@ export const Button = ({
   ].join(' ')
 
   const variantStyles = {
-    primary: 'text-[var(--color-white)] bg-[var(--color-accent)]',
+    primary: 'text-[var(--color-white)] bg-[var(--color-accent-button)]',
     outline: 'text-[var(--color-white)] border-[1.5px] border-[var(--color-border)]',
   }
 
