@@ -6,7 +6,7 @@ import { act, fireEvent, getTextInAnyLanguage, render, screen } from '../utils'
 describe('AnimatedHeading', () => {
   beforeEach(() => {
     // Mock IntersectionObserver
-    global.IntersectionObserver = class IntersectionObserver {
+    globalThis.IntersectionObserver = class IntersectionObserver {
       observe = vi.fn()
       unobserve = vi.fn()
       disconnect = vi.fn()
@@ -50,7 +50,7 @@ describe('AnimatedHeading', () => {
   it('sets up IntersectionObserver for animation reset', () => {
     const observeSpy = vi.fn()
     const unobserveSpy = vi.fn()
-    global.IntersectionObserver = class IntersectionObserver {
+    globalThis.IntersectionObserver = class IntersectionObserver {
       observe = observeSpy
       unobserve = unobserveSpy
       disconnect = vi.fn()
@@ -69,7 +69,7 @@ describe('AnimatedHeading', () => {
 
   it('handles intersection observer callback when element leaves viewport', async () => {
     let observerCallback: IntersectionObserverCallback | null = null
-    global.IntersectionObserver = class IntersectionObserver {
+    globalThis.IntersectionObserver = class IntersectionObserver {
       observe = vi.fn()
       unobserve = vi.fn()
       disconnect = vi.fn()

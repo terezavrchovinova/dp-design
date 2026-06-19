@@ -2,7 +2,11 @@ import { lazy, Suspense } from 'react'
 
 const LottieLazy = lazy(() =>
   import('lottie-react').then((module) => ({
-    default: module.default,
+    // lottie-react is CommonJS; bundler interop may nest the component under
+    // `default.default` (Vite 8+) or expose it directly as `default` (Vite 7).
+    default:
+      (module.default as typeof module.default & { default?: typeof module.default }).default ??
+      module.default,
   }))
 )
 

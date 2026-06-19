@@ -10,7 +10,6 @@ const testI18n = i18n.createInstance()
 testI18n.init({
   lng: 'cs', // Default language (Czech) - matches the app default
   fallbackLng: 'en',
-  showSupportNotice: false, // Suppress Locize promotional message in test output
   interpolation: {
     escapeValue: false,
   },

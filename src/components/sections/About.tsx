@@ -42,7 +42,7 @@ export const About = () => {
           <div className="relative">
             {jobs.map((job, index) => (
               <TimelineEntry
-                key={`${job.title}-${index}`}
+                key={`${job.title}-${job.date}`}
                 title={job.title}
                 date={job.date}
                 description={job.description}
