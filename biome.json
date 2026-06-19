@@ -75,7 +75,7 @@
       }
     },
     {
-      "includes": ["src/components/Navbar.tsx"],
+      "includes": ["src/components/LanguageSwitcher.tsx"],
       "linter": {
         "rules": {
           "a11y": {

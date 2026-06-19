@@ -124,8 +124,8 @@ describe('Navbar', () => {
     const projectsPattern = getTextInAnyLanguage('nav.projects')
     const projectsLink = screen.getByRole('link', { name: projectsPattern })
 
-    // Nav links use CSS hover (hover:text-[var(--color-white)]) - verify classes are present
-    expect(projectsLink).toHaveClass('hover:text-[var(--color-white)]')
-    expect(projectsLink).toHaveClass('text-[var(--color-gray)]')
+    // Nav links use CSS hover (hover:text-white) - verify classes are present
+    expect(projectsLink).toHaveClass('hover:text-white')
+    expect(projectsLink).toHaveClass('text-gray')
   })
 })

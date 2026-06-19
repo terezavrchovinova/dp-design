@@ -1,7 +1,6 @@
 import * as m from 'motion/react-m'
-import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { DEFAULT_TRANSITION } from '../../constants/motion'
+import { DEFAULT_TRANSITION, STAGGER } from '../../constants/motion'
 import { TOOLS } from '../../data/tools'
 import { TimelineEntry } from '../ExperienceTimeline'
 import { ToolIcon } from '../ToolIcon'
@@ -24,10 +23,8 @@ export const About = () => {
   const jobs = t('about.jobs', { returnObjects: true }) as Job[]
   const school = t('about.school', { returnObjects: true }) as School
 
-  const toolsRef = useRef(null)
-
   return (
-    <section id="about" className="section bg-[var(--color-dark)]" aria-label="About section">
+    <section id="about" className="section bg-dark" aria-label="About section">
       <div className="w-full max-w-[1600px] px-6 sm:px-10 mx-auto space-y-16 text-center sm:text-left">
         <div className="max-w-3xl mx-auto">
           <m.h2
@@ -47,7 +44,7 @@ export const About = () => {
                 date={job.date}
                 description={job.description}
                 isLast={index === jobs.length - 1}
-                staggerDelay={index * 0.08}
+                staggerDelay={index * STAGGER.timeline}
               />
             ))}
           </div>
@@ -72,7 +69,7 @@ export const About = () => {
           </div>
         </div>
 
-        <div ref={toolsRef}>
+        <div>
           <m.h2
             className="mb-8"
             initial={{ opacity: 0, y: 20 }}
@@ -85,7 +82,7 @@ export const About = () => {
 
           <div className="flex flex-wrap justify-center gap-6">
             {TOOLS.map((tool, index) => (
-              <ToolIcon key={tool.name} {...tool} staggerDelay={index * 0.05} />
+              <ToolIcon key={tool.name} {...tool} staggerDelay={index * STAGGER.tools} />
             ))}
           </div>
         </div>

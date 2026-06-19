@@ -74,7 +74,7 @@ h2 {
 }
 
 h3 {
-  @apply text-5xl md:text-2xl lg:text-3xl mb-6 font-bold;
+  @apply text-xl md:text-2xl lg:text-3xl mb-6 font-bold;
 }
 
 .section-title {
@@ -129,6 +129,7 @@ h3 {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.8s ease;
+  background: radial-gradient(ellipse, rgba(255, 107, 43, 0.12) 0%, transparent 70%);
 }
 
 .scroll-anim-svg-wrap {
@@ -162,6 +163,23 @@ h3 {
   transition: opacity 0.4s ease, color 0.4s ease;
 }
 
+/* Translucent, blurred navbar background. */
+.navbar-bar {
+  background-color: rgba(13, 13, 13, 0.85);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+/* Home hero layout + ambient accent glow behind the headline. */
+.home-section {
+  padding-top: calc(7rem + env(safe-area-inset-top, 0px));
+  padding-bottom: 4rem;
+}
+
+.home-glow {
+  background: radial-gradient(circle, rgba(255, 107, 43, 0.08) 0%, transparent 70%);
+}
+
 /* Navbar safe area for notched devices (iPhone etc.) */
 .navbar-safe-area {
   padding-top: calc(1.1rem + env(safe-area-inset-top, 0px));
@@ -183,4 +201,11 @@ h3 {
     padding-right: calc(1.5rem + env(safe-area-inset-right, 0px));
   }
 
+}
+
+@layer components {
+  /* Shared hover treatment for content cards (services, timeline entries). */
+  .hover-card {
+    @apply border border-border transition-all duration-300 ease-out hover:border-accent hover:shadow-[0_8px_30px_rgba(255,107,43,0.12)];
+  }
 }

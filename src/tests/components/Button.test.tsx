@@ -38,13 +38,13 @@ describe('Button', () => {
   it('renders with primary variant by default', () => {
     render(<Button>Primary Button</Button>)
     const button = screen.getByRole('link')
-    expect(button).toHaveClass('bg-[var(--color-accent-button)]')
+    expect(button).toHaveClass('bg-accent-button')
   })
 
   it('renders with outline variant', () => {
     render(<Button variant="outline">Outline Button</Button>)
     const button = screen.getByRole('link')
-    expect(button).toHaveClass('border-[var(--color-border)]')
+    expect(button).toHaveClass('border-border')
   })
 
   it('accepts custom className', () => {

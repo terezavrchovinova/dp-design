@@ -1,7 +1,7 @@
-import { useInView } from 'motion/react'
 import * as m from 'motion/react-m'
 import { useRef } from 'react'
 import { DEFAULT_TRANSITION } from '../constants/motion'
+import { useInViewOnce } from '../hooks/useInViewOnce'
 
 export interface ToolIconProps {
   /** Tool name for accessibility and tooltip */
@@ -14,7 +14,7 @@ export interface ToolIconProps {
 
 export const ToolIcon = ({ name, src, staggerDelay = 0 }: ToolIconProps) => {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-20px' })
+  const isInView = useInViewOnce(ref, { margin: '-20px' })
 
   return (
     <m.div

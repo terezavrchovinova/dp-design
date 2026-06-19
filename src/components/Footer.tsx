@@ -5,9 +5,9 @@ export const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="w-full mt-12 bg-[var(--color-dark)]">
+    <footer className="w-full mt-12 bg-dark">
       <div
-        className="max-w-6xl mx-auto py-4 text-[var(--color-gray)]"
+        className="max-w-6xl mx-auto py-4 text-gray"
         style={{
           paddingLeft: 'calc(1.5rem + env(safe-area-inset-left, 0px))',
           paddingRight: 'calc(1.5rem + env(safe-area-inset-right, 0px))',

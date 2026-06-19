@@ -1,14 +1,11 @@
 import * as m from 'motion/react-m'
-import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import logo from '../assets/icons/dp_icon_white.svg'
-import globeIcon from '../assets/icons/globe_dark.svg'
-import { LANGUAGES } from '../constants/i18n'
+import { FALLBACK_EMAIL } from '../constants/contact'
 import { DEFAULT_TRANSITION } from '../constants/motion'
 import { NAV_ITEMS } from '../constants/navigation'
 import { Button } from './Button'
-
-const FALLBACK_EMAIL = 'dancaplaminkova@sezenam.cz'
+import { LanguageSwitcher } from './LanguageSwitcher'
 
 export interface NavbarProps {
   /** Whether the mobile menu is open */
@@ -26,11 +23,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
       initial={{ opacity: 0, y: -16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={DEFAULT_TRANSITION}
-      className="fixed top-0 left-0 right-0 z-50 border-b border-[var(--color-border)] navbar-safe-area"
-      style={{
-        backgroundColor: 'rgba(13,13,13,0.85)',
-        backdropFilter: 'blur(12px)',
-      }}
+      className="fixed top-0 left-0 right-0 z-50 border-b border-border navbar-safe-area navbar-bar"
       aria-label="Main navigation"
     >
       <div className="hidden xl:flex xl:items-center xl:justify-between w-full relative">
@@ -75,7 +68,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
           onClick={() => setMenuOpen((prev) => !prev)}
-          className="flex items-center justify-center w-10 h-10 min-w-10 min-h-10 cursor-pointer hover:opacity-80 transition-opacity text-[var(--color-white)] text-2xl font-light leading-none"
+          className="flex items-center justify-center w-10 h-10 min-w-10 min-h-10 cursor-pointer hover:opacity-80 transition-opacity text-white text-2xl font-light leading-none"
         >
           &#9776;
         </button>
@@ -92,7 +85,7 @@ interface NavLinkProps {
 const NavLink = ({ href, label }: NavLinkProps) => (
   <a
     href={href}
-    className="text-sm text-[var(--color-gray)] hover:text-[var(--color-white)] transition-all duration-200 ease-out"
+    className="text-sm text-gray hover:text-white transition-all duration-200 ease-out"
   >
     {label}
   </a>
@@ -113,73 +106,3 @@ const EmailButton = ({ email }: EmailButtonProps) => (
     {email}
   </Button>
 )
-
-interface LanguageSwitcherProps {
-  currentLang: string
-  onChange: (lng: 'en' | 'cs') => void
-}
-
-const LanguageSwitcher = ({ currentLang, onChange }: LanguageSwitcherProps) => {
-  const [isOpen, setIsOpen] = useState(false)
-  const dropdownRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false)
-      }
-    }
-
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [])
-
-  return (
-    <div role="group" aria-label="Language switcher" className="relative group" ref={dropdownRef}>
-      <button
-        type="button"
-        onClick={() => setIsOpen((prev) => !prev)}
-        aria-label="Change language"
-        aria-expanded={isOpen}
-        className="size-7 flex items-center justify-center cursor-pointer p-0"
-      >
-        <img
-          src={globeIcon}
-          alt="Language selector"
-          width={20}
-          height={20}
-          className="w-4 sm:w-5 h-4 sm:h-5 object-contain transition-all duration-200 ease-out group-hover:brightness-[1.4]"
-          loading="lazy"
-        />
-      </button>
-
-      {isOpen && (
-        <div
-          className="absolute mt-2 left-0 bg-[var(--color-surface)] border border-[var(--color-border)] shadow-md rounded-md text-sm z-50 min-w-[100px] overflow-hidden"
-          role="menu"
-          aria-label="Language options"
-        >
-          {LANGUAGES.map(({ code, label }) => (
-            <button
-              key={code}
-              type="button"
-              role="menuitem"
-              onClick={() => {
-                onChange(code)
-                setIsOpen(false)
-              }}
-              className={`w-full text-left px-4 py-2 hover:bg-[var(--color-accent)]/20 cursor-pointer text-[var(--color-white)] transition-all duration-200 ease-out ${
-                currentLang === code ? 'font-semibold' : ''
-              }`}
-              aria-label={`Switch to ${label}`}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-      )}
-    </div>
-  )
-}

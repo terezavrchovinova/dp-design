@@ -1,10 +1,9 @@
 import * as m from 'motion/react-m'
 import { useTranslation } from 'react-i18next'
+import { FALLBACK_EMAIL } from '../../constants/contact'
 import { DEFAULT_TRANSITION } from '../../constants/motion'
 import { AnimatedHeading } from '../AnimatedHeading'
 import { Button } from '../Button'
-
-const FALLBACK_EMAIL = 'dancaplaminkova@sezenam.cz'
 
 export const Contact = () => {
   const { t } = useTranslation()
@@ -13,8 +12,7 @@ export const Contact = () => {
   return (
     <section
       id="contact"
-      className="section bg-[var(--color-dark)] flex flex-col items-center justify-center"
-      style={{ scrollMarginTop: 'calc(-50vh + 4rem)' }}
+      className="section bg-dark flex flex-col items-center justify-center scroll-mt-[calc(-50vh+4rem)]"
       aria-label="Contact section"
     >
       <div className="w-full max-w-[1600px] px-6 sm:px-10 mx-auto flex flex-col items-center justify-center text-center">
