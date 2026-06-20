@@ -55,6 +55,7 @@ export const AnimatedHeading = () => {
 
             return (
               <m.span
+                // biome-ignore lint/suspicious/noArrayIndexKey: heading is a static string; character position is the stable identity and chars repeat
                 key={`${index}-${char}`}
                 className="inline-block"
                 animate={animationState}
