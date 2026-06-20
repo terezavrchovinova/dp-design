@@ -1,10 +1,10 @@
 import * as m from 'motion/react-m'
 import { useRef } from 'react'
-import { useTranslation } from 'react-i18next'
 import { LazyLottie, type LottieAnimationData } from '@/components/ui/LazyLottie'
 import { STAGGER, TRANSITIONS } from '@/constants/motion'
 import { SERVICES } from '@/data/services'
 import { useInViewOnce } from '@/hooks/useInViewOnce'
+import { useTranslation } from '@/translations'
 
 interface LottieAnimationProps {
   asset: LottieAnimationData

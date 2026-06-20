@@ -1,7 +1,7 @@
 import * as m from 'motion/react-m'
-import { useTranslation } from 'react-i18next'
 import { DEFAULT_TRANSITION, STAGGER } from '@/constants/motion'
 import { PROJECTS } from '@/data/projects'
+import { useTranslation } from '@/translations'
 
 export const Projects = () => {
   const { t } = useTranslation()

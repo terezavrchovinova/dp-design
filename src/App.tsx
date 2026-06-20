@@ -7,7 +7,6 @@ const LazySpeedInsights = lazy(() =>
   import('@vercel/speed-insights/react').then((m) => ({ default: m.SpeedInsights }))
 )
 
-import './i18n'
 import './index.css'
 
 import { Footer } from '@/components/layout/Footer'

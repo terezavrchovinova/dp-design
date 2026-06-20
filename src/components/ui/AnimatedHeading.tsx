@@ -1,7 +1,7 @@
 import * as m from 'motion/react-m'
 import { useEffect, useRef, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { TRANSITIONS } from '@/constants/motion'
+import { useTranslation } from '@/translations'
 import { handleHover, type ScatteredState } from '@/utils/scatter'
 
 const ANIMATION_RESET_DELAY = 300

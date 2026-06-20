@@ -1,9 +1,9 @@
 import * as m from 'motion/react-m'
-import { useTranslation } from 'react-i18next'
 import { TimelineEntry } from '@/components/ui/ExperienceTimeline'
 import { ToolIcon } from '@/components/ui/ToolIcon'
 import { DEFAULT_TRANSITION, STAGGER } from '@/constants/motion'
 import { TOOLS } from '@/data/tools'
+import { useTranslation } from '@/translations'
 
 interface Job {
   title: string

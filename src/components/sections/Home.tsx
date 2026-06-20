@@ -1,7 +1,7 @@
 import * as m from 'motion/react-m'
-import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/Button'
 import { DEFAULT_TRANSITION, TRANSITIONS } from '@/constants/motion'
+import { useTranslation } from '@/translations'
 
 export const Home = () => {
   const { t } = useTranslation()

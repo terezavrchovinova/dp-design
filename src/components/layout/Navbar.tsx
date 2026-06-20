@@ -1,11 +1,11 @@
 import * as m from 'motion/react-m'
-import { useTranslation } from 'react-i18next'
 import logo from '@/assets/icons/dp_icon_white.svg'
 import { Button } from '@/components/ui/Button'
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher'
 import { FALLBACK_EMAIL } from '@/constants/contact'
 import { DEFAULT_TRANSITION } from '@/constants/motion'
 import { NAV_ITEMS } from '@/constants/navigation'
+import { useTranslation } from '@/translations'
 
 export interface NavbarProps {
   /** Whether the mobile menu is open */
@@ -15,7 +15,7 @@ export interface NavbarProps {
 }
 
 export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
-  const { t, i18n } = useTranslation()
+  const { t, locale } = useTranslation()
   const email = t('contact.email') || FALLBACK_EMAIL
 
   return (
@@ -45,7 +45,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
         </div>
 
         <div className="flex items-center gap-4 shrink-0">
-          <LanguageSwitcher currentLang={i18n.language} onChange={i18n.changeLanguage} />
+          <LanguageSwitcher currentLang={locale.language} onChange={locale.changeLanguage} />
           <EmailButton email={email} />
         </div>
       </div>

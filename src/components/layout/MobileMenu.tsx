@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
-import { useTranslation } from 'react-i18next'
-import { SUPPORTED_LANGUAGES } from '@/constants/i18n'
+import { SUPPORTED_LANGUAGES } from '@/constants/languages'
 import { NAV_ITEMS } from '@/constants/navigation'
+import { useTranslation } from '@/translations'
 
 export interface MobileMenuProps {
   /** Whether the menu is open */
@@ -11,7 +11,7 @@ export interface MobileMenuProps {
 }
 
 export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
-  const { t, i18n } = useTranslation()
+  const { t, locale } = useTranslation()
   const closeButtonRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
   }, [menuOpen])
 
   const changeLanguage = (lng: 'en' | 'cs') => {
-    i18n.changeLanguage(lng)
+    locale.changeLanguage(lng)
   }
 
   const handleClose = () => {
@@ -87,7 +87,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
       <fieldset className="flex space-x-6 border-0 p-0 m-0">
         <legend className="sr-only">Language selection</legend>
         {SUPPORTED_LANGUAGES.map((lang) => {
-          const isActive = i18n.language === lang
+          const isActive = locale.language === lang
 
           return (
             <button

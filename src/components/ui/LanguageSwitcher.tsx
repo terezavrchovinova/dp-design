@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import globeIcon from '@/assets/icons/globe_dark.svg'
-import { LANGUAGES } from '@/constants/i18n'
+import { LANGUAGES } from '@/constants/languages'
 
 interface LanguageSwitcherProps {
   currentLang: string

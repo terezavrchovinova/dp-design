@@ -26,9 +26,9 @@ export default defineConfig({
       output: {
         // Manual code splitting for better caching
         manualChunks: (id) => {
-          // Separate lottie-react into its own chunk for lazy loading
+          // Separate the lottie player into its own chunk for lazy loading
           // This prevents it from being included in the main bundle
-          if (id.includes('lottie-react') || id.includes('lottie-web')) {
+          if (id.includes('lottie-web')) {
             return 'lottie-vendor'
           }
           // Keep motion separate from lottie
@@ -38,10 +38,6 @@ export default defineConfig({
           // React core
           if (id.includes('react') || id.includes('react-dom')) {
             return 'react-vendor'
-          }
-          // i18n
-          if (id.includes('i18next') || id.includes('react-i18next')) {
-            return 'i18n-vendor'
           }
           // Analytics
           if (id.includes('@vercel/analytics') || id.includes('@vercel/speed-insights')) {
@@ -62,6 +58,6 @@ export default defineConfig({
   },
   optimizeDeps: {
     // Pre-bundle these dependencies for faster dev server startup
-    include: ['react', 'react-dom', 'i18next', 'react-i18next'],
+    include: ['react', 'react-dom'],
   },
 })

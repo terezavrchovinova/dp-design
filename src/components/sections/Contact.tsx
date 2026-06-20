@@ -1,9 +1,9 @@
 import * as m from 'motion/react-m'
-import { useTranslation } from 'react-i18next'
 import { AnimatedHeading } from '@/components/ui/AnimatedHeading'
 import { Button } from '@/components/ui/Button'
 import { FALLBACK_EMAIL } from '@/constants/contact'
 import { DEFAULT_TRANSITION } from '@/constants/motion'
+import { useTranslation } from '@/translations'
 
 export const Contact = () => {
   const { t } = useTranslation()
