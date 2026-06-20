@@ -1,7 +1,7 @@
 import * as m from 'motion/react-m'
 import { useRef } from 'react'
-import { DEFAULT_TRANSITION } from '../constants/motion'
-import { useInViewOnce } from '../hooks/useInViewOnce'
+import { DEFAULT_TRANSITION, TRANSITIONS } from '@/constants/motion'
+import { useInViewOnce } from '@/hooks/useInViewOnce'
 
 export interface ToolIconProps {
   /** Tool name for accessibility and tooltip */
@@ -25,7 +25,7 @@ export const ToolIcon = ({ name, src, staggerDelay = 0 }: ToolIconProps) => {
         opacity: 1,
         scale: 1.06,
         filter: 'brightness(1.25)',
-        transition: { duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] },
+        transition: TRANSITIONS.fast,
       }}
       transition={{ ...DEFAULT_TRANSITION, delay: staggerDelay }}
       className="w-12 h-12 flex items-center justify-center rounded cursor-default"

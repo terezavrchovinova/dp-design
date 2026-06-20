@@ -33,7 +33,7 @@ export const getTranslation = (key: string, lang: 'en' | 'cs' = 'cs'): string =>
 /**
  * Get translation text in both languages
  */
-export const getTranslations = (key: string): { en: string; cs: string } => {
+const getTranslations = (key: string): { en: string; cs: string } => {
   return {
     en: getTranslation(key, 'en'),
     cs: getTranslation(key, 'cs'),
@@ -50,13 +50,4 @@ export const getTextPattern = (key: string): RegExp => {
   const escapeRegex = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
   const pattern = `${escapeRegex(translations.en)}|${escapeRegex(translations.cs)}`
   return new RegExp(pattern, 'i')
-}
-
-/**
- * Get array of translation texts in both languages
- * Useful for matching multiple possible strings
- */
-export const getTextArray = (key: string): string[] => {
-  const translations = getTranslations(key)
-  return [translations.en, translations.cs]
 }

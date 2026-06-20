@@ -6,8 +6,15 @@ const LottieLazy = lazy(() =>
   }))
 )
 
+/**
+ * A parsed Lottie animation JSON document. lottie-react itself types this as
+ * `unknown`; we narrow it to an object map, which every imported `.json` asset
+ * satisfies and which is more honest than `unknown`.
+ */
+export type LottieAnimationData = Record<string, unknown>
+
 interface LottieProps {
-  animationData: unknown
+  animationData: LottieAnimationData
   loop?: boolean
   autoplay?: boolean
   className?: string

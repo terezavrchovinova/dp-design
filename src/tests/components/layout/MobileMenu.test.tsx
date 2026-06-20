@@ -1,7 +1,7 @@
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { MobileMenu } from '../../components/MobileMenu'
-import { getTextInAnyLanguage, render, screen } from '../utils'
+import { MobileMenu } from '@/components/layout/MobileMenu'
+import { getTextInAnyLanguage, render, screen } from '@/tests/utils'
 
 describe('MobileMenu', () => {
   const defaultProps = {

@@ -1,14 +1,14 @@
 import * as m from 'motion/react-m'
 import { useTranslation } from 'react-i18next'
-import { DEFAULT_TRANSITION, STAGGER } from '../../constants/motion'
-import { PROJECTS } from '../../data/projects'
+import { DEFAULT_TRANSITION, STAGGER } from '@/constants/motion'
+import { PROJECTS } from '@/data/projects'
 
 export const Projects = () => {
   const { t } = useTranslation()
 
   return (
     <section id="projects" className="section bg-dark" aria-label="Projects section">
-      <div className="w-full max-w-[1600px] px-6 sm:px-10 mx-auto text-center sm:text-left">
+      <div className="section-container text-center sm:text-left">
         <m.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -33,7 +33,7 @@ export const Projects = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`View project: ${title}`}
-                className="group relative block aspect-video overflow-hidden rounded-lg border border-border transition-all duration-300 ease-out hover:border-accent hover:shadow-[0_8px_30px_rgba(255,107,43,0.15)] hover:-translate-y-0.5"
+                className="hover-card group relative block aspect-video overflow-hidden rounded-lg hover:-translate-y-0.5"
               >
                 <picture>
                   <source
@@ -55,20 +55,20 @@ export const Projects = () => {
                     decoding="async"
                     fetchPriority="low"
                     sizes="(max-width: 639px) 100vw, (min-width: 640px) 50vw, 800px"
-                    className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                 </picture>
 
                 <div
-                  className="absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"
+                  className="absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   aria-hidden="true"
                 />
 
                 <div
-                  className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"
+                  className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   aria-hidden="true"
                 >
-                  <span className="px-5 py-2 text-lg font-semibold text-white bg-black/60 rounded-lg text-center translate-y-3 group-hover:translate-y-0 transition-transform duration-300 ease-out group-hover:scale-105">
+                  <span className="px-5 py-2 text-lg font-semibold text-white bg-black/60 rounded-lg text-center translate-y-3 group-hover:translate-y-0 transition-transform duration-300 group-hover:scale-105">
                     {title}
                   </span>
                 </div>

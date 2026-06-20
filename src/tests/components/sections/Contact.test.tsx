@@ -1,7 +1,7 @@
 import * as reactI18next from 'react-i18next'
 import { describe, expect, it, vi } from 'vitest'
-import { Contact } from '../../../components/sections/Contact'
-import { render, screen } from '../../utils'
+import { Contact } from '@/components/sections/Contact'
+import { render, screen } from '@/tests/utils'
 
 // Mock react-i18next
 vi.mock('react-i18next', async () => {

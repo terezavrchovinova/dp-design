@@ -1,7 +1,7 @@
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
-import { Button } from '../../components/Button'
-import { render, screen } from '../utils'
+import { Button } from '@/components/ui/Button'
+import { render, screen } from '@/tests/utils'
 
 describe('Button', () => {
   it('renders as a link by default', () => {

@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { WhatIDo } from '../../../components/sections/WhatIDo'
-import { act, getTextInAnyLanguage, render, screen } from '../../utils'
+import { WhatIDo } from '@/components/sections/WhatIDo'
+import { act, getTextInAnyLanguage, render, screen } from '@/tests/utils'
 
 // Helper function to create a complete IntersectionObserverEntry mock
 function createIntersectionEntry(
@@ -33,7 +33,7 @@ function createIntersectionEntry(
 describe('WhatIDo', () => {
   beforeEach(() => {
     // Mock IntersectionObserver
-    global.IntersectionObserver = class IntersectionObserver {
+    globalThis.IntersectionObserver = class IntersectionObserver {
       observe = vi.fn()
       unobserve = vi.fn()
       disconnect = vi.fn()
@@ -86,7 +86,7 @@ describe('WhatIDo', () => {
 
   it('sets up IntersectionObserver for Lottie animations', () => {
     const observeSpy = vi.fn()
-    global.IntersectionObserver = class IntersectionObserver {
+    globalThis.IntersectionObserver = class IntersectionObserver {
       observe = observeSpy
       unobserve = vi.fn()
       disconnect = vi.fn()
@@ -105,7 +105,7 @@ describe('WhatIDo', () => {
     let observerCallback: IntersectionObserverCallback | null = null
     const target = document.createElement('div')
 
-    global.IntersectionObserver = class IntersectionObserver {
+    globalThis.IntersectionObserver = class IntersectionObserver {
       observe = vi.fn()
       unobserve = vi.fn()
       disconnect = vi.fn()
@@ -147,7 +147,7 @@ describe('WhatIDo', () => {
       takeRecords: vi.fn(() => []) as () => IntersectionObserverEntry[],
     } as unknown as IntersectionObserver
 
-    global.IntersectionObserver = class IntersectionObserver {
+    globalThis.IntersectionObserver = class IntersectionObserver {
       observe = vi.fn((element: Element) => {
         observedElements.push(element)
         // Call callback with isIntersecting: false immediately

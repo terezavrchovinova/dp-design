@@ -1,7 +1,7 @@
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
-import { Navbar } from '../../components/Navbar'
-import { getTextInAnyLanguage, getTranslation, render, screen } from '../utils'
+import { Navbar } from '@/components/layout/Navbar'
+import { getTextInAnyLanguage, getTranslation, render, screen } from '@/tests/utils'
 
 describe('Navbar', () => {
   const defaultProps = {

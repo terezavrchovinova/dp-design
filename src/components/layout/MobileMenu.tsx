@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { SUPPORTED_LANGUAGES } from '../constants/i18n'
-import { NAV_ITEMS } from '../constants/navigation'
+import { SUPPORTED_LANGUAGES } from '@/constants/i18n'
+import { NAV_ITEMS } from '@/constants/navigation'
 
 export interface MobileMenuProps {
   /** Whether the menu is open */
@@ -55,7 +55,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
       <button
         ref={closeButtonRef}
         onClick={handleClose}
-        className="absolute top-6 right-6 text-white text-3xl focus:outline-none hover:scale-110 hover:opacity-80 transition-all duration-200 ease-out cursor-pointer"
+        className="absolute top-6 right-6 text-white text-3xl focus:outline-none hover:scale-110 hover:opacity-80 transition-all duration-200 cursor-pointer"
         aria-label="Close menu"
         type="button"
         tabIndex={menuOpen ? 0 : -1}
@@ -69,7 +69,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
             key={item.key}
             href={item.href}
             onClick={handleMenuItemClick}
-            className={`text-3xl font-semibold text-white tracking-tight transition-all duration-500 ease-out cursor-pointer hover:text-accent hover:scale-105 ${
+            className={`text-3xl font-semibold text-white tracking-tight transition-all duration-500 cursor-pointer hover:text-accent hover:scale-105 ${
               menuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
             style={{

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { ToolIcon } from '../../components/ToolIcon'
-import { render, screen } from '../utils'
+import { ToolIcon } from '@/components/ui/ToolIcon'
+import { render, screen } from '@/tests/utils'
 
 describe('ToolIcon', () => {
   const defaultProps = {

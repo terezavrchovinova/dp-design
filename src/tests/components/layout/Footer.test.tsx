@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { Footer } from '../../components/Footer'
-import { getTextInAnyLanguage, render, screen } from '../utils'
+import { Footer } from '@/components/layout/Footer'
+import { getTextInAnyLanguage, render, screen } from '@/tests/utils'
 
 describe('Footer', () => {
   it('renders the footer', () => {

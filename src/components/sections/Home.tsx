@@ -1,7 +1,7 @@
 import * as m from 'motion/react-m'
 import { useTranslation } from 'react-i18next'
-import { DEFAULT_TRANSITION, TRANSITIONS } from '../../constants/motion'
-import { Button } from '../Button'
+import { Button } from '@/components/ui/Button'
+import { DEFAULT_TRANSITION, TRANSITIONS } from '@/constants/motion'
 
 export const Home = () => {
   const { t } = useTranslation()
@@ -13,12 +13,12 @@ export const Home = () => {
       aria-label="Home section"
     >
       <div
-        className="home-glow absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] pointer-events-none"
+        className="home-glow absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 pointer-events-none"
         aria-hidden="true"
       />
 
       <m.div
-        className="relative z-10 flex flex-col items-center justify-center w-full max-w-[750px]"
+        className="relative z-10 flex flex-col items-center justify-center w-full max-w-187.5"
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={TRANSITIONS.slow}
@@ -27,7 +27,7 @@ export const Home = () => {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...DEFAULT_TRANSITION, delay: 0.1 }}
-          className="inline-block text-[0.72rem] font-bold tracking-[0.15em] uppercase rounded-[100px] border leading-none py-[0.3rem] px-4 mb-[1.8rem] bg-accent-dim text-accent border-[rgba(255,107,43,0.3)]"
+          className="inline-block text-[0.72rem] font-bold tracking-[0.15em] uppercase rounded-full border leading-none py-[0.3rem] px-4 mb-[1.8rem] bg-accent-dim text-accent border-accent/30"
         >
           {t('home.heroTag')}
         </m.span>
@@ -36,8 +36,7 @@ export const Home = () => {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...DEFAULT_TRANSITION, delay: 0.2 }}
-          className="max-w-[750px] flex flex-col items-center text-center"
-          style={{ fontSize: 'clamp(2.5rem, 8vw, 6rem)', marginBottom: '1.5rem', lineHeight: 1.1 }}
+          className="home-title max-w-187.5 flex flex-col items-center text-center"
         >
           <span className="whitespace-normal md:whitespace-nowrap">
             {t('home.titleLine1a')}
@@ -54,7 +53,7 @@ export const Home = () => {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...DEFAULT_TRANSITION, delay: 0.3 }}
-          className="text-gray max-w-[420px] mx-auto text-center text-sm md:text-base leading-[1.65] mb-10"
+          className="text-gray max-w-105 mx-auto text-center text-sm md:text-base leading-[1.65] mb-10"
         >
           {t('home.subtitle')}
         </m.p>

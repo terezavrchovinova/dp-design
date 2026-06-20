@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { ScrollAnimation } from '../../../components/sections/ScrollAnimation'
-import { getTextInAnyLanguage, render, screen } from '../../utils'
+import { ScrollAnimation } from '@/components/sections/ScrollAnimation'
+import { getTextInAnyLanguage, render, screen } from '@/tests/utils'
 
 describe('ScrollAnimation', () => {
   it('renders the scroll animation section', () => {
@@ -77,9 +77,10 @@ describe('ScrollAnimation', () => {
         return 0
       })
       // SVGPathElement.getTotalLength is not implemented in jsdom.
-      vi.spyOn(SVGElement.prototype as unknown as SVGGeometryElement, 'getTotalLength').mockReturnValue(
-        100
-      )
+      vi.spyOn(
+        SVGElement.prototype as unknown as SVGGeometryElement,
+        'getTotalLength'
+      ).mockReturnValue(100)
       vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
         top: sectionTop,
       } as DOMRect)

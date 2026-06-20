@@ -1,19 +1,40 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Base Colors - plaminkova-inspired palette */
-  --color-dark: #0d0d0d;
+  /* Base Colors - plaminkova-inspired palette.
+     `dark` is kept as RGB channels because it's also used translucent (navbar). */
+  --dark-rgb: 13 13 13;
+  --color-dark: rgb(var(--dark-rgb));
   --color-surface: #161616;
   --color-card: #1c1c1c;
   --color-white: #ffffff;
   --color-gray: #8c8c8c;
+  --color-gray-light: #a0a0a0; /* scroll animation: phase2 label */
+  --color-gray-mid: #7a7a7a; /* scroll animation: sub2 label */
+  --color-chaos-stroke: #3a3a3a; /* scroll animation: unresolved "chaos" line */
   --color-border: #2a2a2a;
 
-  /* Accent - orange */
-  --color-accent: #FF6B2B;
+  /* Accent - orange. Single source of truth: the RGB channels. Every accent
+     value (solid, dim, glows, button hover states) derives from these, so
+     changing the brand colour means editing one line. */
+  --accent-rgb: 255 107 43;
+  --color-accent: rgb(var(--accent-rgb));
+  --color-accent-dim: rgb(var(--accent-rgb) / 0.15);
   /* Darker orange for buttons - meets WCAG AA 4.5:1 contrast with white text (was #E55A1F at 3.61:1) */
   --color-accent-button: #C9501B;
-  --color-accent-dim: rgba(255, 107, 43, 0.15);
+
+  /* Button hover treatment (Motion animates to these whole-value vars). */
+  --btn-glow-primary: 0 0 24px rgb(var(--accent-rgb) / 0.35), 0 0 48px rgb(var(--accent-rgb) / 0.15);
+  --btn-glow-outline: 0 0 20px rgb(var(--accent-rgb) / 0.2), inset 0 0 20px rgb(var(--accent-rgb) / 0.05);
+  --btn-border-outline-hover: rgb(var(--accent-rgb) / 0.6);
+  --btn-bg-outline-hover: rgb(var(--accent-rgb) / 0.08);
+
+  /* Accent glow shared by hoverable content cards. */
+  --card-glow: 0 8px 30px rgb(var(--accent-rgb) / 0.12);
+
+  /* App-wide default easing for transition utilities (the design uses ease-out everywhere),
+     so components only specify `duration-*` and the curve comes for free. */
+  --default-transition-timing-function: var(--ease-out);
 }
 
 html {
@@ -55,36 +76,42 @@ body {
   overflow-x: clip;
 }
 
-h1,
-h2,
-h3 {
-  font-family: 'Figtree', sans-serif;
-  text-align: center;
+/* Base element styles live in @layer base so component-level Tailwind
+   utilities (in the higher utilities layer) win without needing !important. */
+@layer base {
+  h1,
+  h2,
+  h3 {
+    font-family: 'Figtree', sans-serif;
+    text-align: center;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+
+  h2 {
+    @apply text-2xl md:text-3xl lg:text-4xl mb-8 font-black;
+    letter-spacing: -0.02em;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl lg:text-3xl mb-6 font-bold;
+  }
 }
 
-h1 {
-  @apply text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
-}
+@layer components {
+  .section-title {
+    @apply text-lg md:text-xl mb-2 font-medium;
+    @apply text-center sm:text-left;
+  }
 
-h2 {
-  @apply text-2xl md:text-3xl lg:text-4xl mb-8 font-black;
-  letter-spacing: -0.02em;
-}
-
-h3 {
-  @apply text-xl md:text-2xl lg:text-3xl mb-6 font-bold;
-}
-
-.section-title {
-  @apply text-lg md:text-xl mb-2 font-medium;
-  @apply text-center sm:text-left;
-}
-
-.section-description {
-  color: var(--color-gray);
-  @apply text-base leading-relaxed;
+  .section-description {
+    color: var(--color-gray);
+    @apply text-base leading-relaxed;
+  }
 }
 
 /* Scroll animation section (chaos → solution) */
@@ -129,7 +156,7 @@ h3 {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.8s ease;
-  background: radial-gradient(ellipse, rgba(255, 107, 43, 0.12) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgb(var(--accent-rgb) / 0.12) 0%, transparent 70%);
 }
 
 .scroll-anim-svg-wrap {
@@ -165,7 +192,7 @@ h3 {
 
 /* Translucent, blurred navbar background. */
 .navbar-bar {
-  background-color: rgba(13, 13, 13, 0.85);
+  background-color: rgb(var(--dark-rgb) / 0.85);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
 }
@@ -177,7 +204,14 @@ h3 {
 }
 
 .home-glow {
-  background: radial-gradient(circle, rgba(255, 107, 43, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgb(var(--accent-rgb) / 0.08) 0%, transparent 70%);
+}
+
+/* Fluid hero headline sizing (overrides the base h1 scale). */
+.home-title {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
 }
 
 /* Navbar safe area for notched devices (iPhone etc.) */
@@ -196,7 +230,7 @@ h3 {
 
 @layer utilities {
   .section {
-    @apply min-h-screen min-h-[100dvh] flex items-center justify-center w-full py-16;
+    @apply min-h-screen min-h-dvh flex items-center justify-center w-full py-16;
     padding-left: calc(1.5rem + env(safe-area-inset-left, 0px));
     padding-right: calc(1.5rem + env(safe-area-inset-right, 0px));
   }
@@ -204,8 +238,13 @@ h3 {
 }
 
 @layer components {
+  /* Centered content container shared by full-width sections (Projects, About, Contact). */
+  .section-container {
+    @apply w-full max-w-[1600px] px-6 sm:px-10 mx-auto;
+  }
+
   /* Shared hover treatment for content cards (services, timeline entries). */
   .hover-card {
-    @apply border border-border transition-all duration-300 ease-out hover:border-accent hover:shadow-[0_8px_30px_rgba(255,107,43,0.12)];
+    @apply border border-border transition-all duration-300 hover:border-accent hover:shadow-(--card-glow);
   }
 }

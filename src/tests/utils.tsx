@@ -10,7 +10,6 @@ const testI18n = i18n.createInstance()
 testI18n.init({
   lng: 'cs', // Default language (Czech) - matches the app default
   fallbackLng: 'en',
-  showSupportNotice: false, // Suppress Locize promotional message in test output
   interpolation: {
     escapeValue: false,
   },
@@ -35,25 +34,11 @@ export const getTranslation = (key: string, lang: 'en' | 'cs' = 'cs'): string =>
  * Get translation text in both languages
  * Useful for tests that need to check content regardless of language
  */
-export const getTranslations = (key: string): { en: string; cs: string } => {
+const getTranslations = (key: string): { en: string; cs: string } => {
   return {
     en: testI18n.getFixedT('en')(key),
     cs: testI18n.getFixedT('cs')(key),
   }
-}
-
-/**
- * Change test language
- */
-export const setTestLanguage = (lang: 'en' | 'cs') => {
-  testI18n.changeLanguage(lang)
-}
-
-/**
- * Reset test language to default
- */
-export const resetTestLanguage = () => {
-  testI18n.changeLanguage('cs')
 }
 
 /**
@@ -66,13 +51,6 @@ export const getTextInAnyLanguage = (key: string): RegExp => {
   const escapeRegex = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
   const pattern = `${escapeRegex(translations.en)}|${escapeRegex(translations.cs)}`
   return new RegExp(pattern, 'i')
-}
-
-/**
- * Get current language
- */
-export const getCurrentLanguage = (): string => {
-  return testI18n.language
 }
 
 // Custom render function that includes i18n provider

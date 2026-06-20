@@ -81,14 +81,18 @@ src/
 │   ├── icons/
 │   └── project_thumbnails/
 ├── components/          # React components
-│   ├── sections/       # Page sections (Home, Projects, About, etc.)
-│   └── ...             # Shared components (Navbar, Footer, etc.)
+│   ├── layout/         # Navbar, MobileMenu, Footer
+│   ├── ui/             # Reusable UI (Button, AnimatedHeading, ToolIcon, etc.)
+│   └── sections/       # Page sections (Home, Projects, About, etc.)
+├── constants/          # Static config (motion, navigation, contact, i18n)
+├── data/               # Content arrays (projects, services, tools)
+├── hooks/              # Custom hooks
 ├── locales/            # Translation files (en, cs)
-├── tests/              # Vitest unit/integration tests
-│   ├── components/     # Component tests
+├── tests/              # Vitest unit/integration tests (mirrors components/)
+│   ├── components/     # Component tests (ui/, layout/, sections/)
 │   ├── setup.ts        # Test setup file
 │   └── utils.tsx       # Test utilities
-├── utils/              # Utility functions
+├── utils/              # Pure, unit-tested helpers
 ├── App.tsx             # Main app component
 ├── i18n.ts             # i18n configuration
 └── main.tsx            # Entry point

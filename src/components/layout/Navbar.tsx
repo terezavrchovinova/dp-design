@@ -1,11 +1,11 @@
 import * as m from 'motion/react-m'
 import { useTranslation } from 'react-i18next'
-import logo from '../assets/icons/dp_icon_white.svg'
-import { FALLBACK_EMAIL } from '../constants/contact'
-import { DEFAULT_TRANSITION } from '../constants/motion'
-import { NAV_ITEMS } from '../constants/navigation'
-import { Button } from './Button'
-import { LanguageSwitcher } from './LanguageSwitcher'
+import logo from '@/assets/icons/dp_icon_white.svg'
+import { Button } from '@/components/ui/Button'
+import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher'
+import { FALLBACK_EMAIL } from '@/constants/contact'
+import { DEFAULT_TRANSITION } from '@/constants/motion'
+import { NAV_ITEMS } from '@/constants/navigation'
 
 export interface NavbarProps {
   /** Whether the mobile menu is open */
@@ -83,10 +83,7 @@ interface NavLinkProps {
 }
 
 const NavLink = ({ href, label }: NavLinkProps) => (
-  <a
-    href={href}
-    className="text-sm text-gray hover:text-white transition-all duration-200 ease-out"
-  >
+  <a href={href} className="text-sm text-gray hover:text-white transition-all duration-200">
     {label}
   </a>
 )
@@ -100,7 +97,7 @@ const EmailButton = ({ email }: EmailButtonProps) => (
     as="a"
     href={`mailto:${email}`}
     variant="primary"
-    className="!py-[0.5rem] !px-4 !text-[0.8rem]"
+    size="compact"
     aria-label={`Send email to ${email}`}
   >
     {email}

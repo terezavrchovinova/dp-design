@@ -1,9 +1,9 @@
 import * as m from 'motion/react-m'
 import { useTranslation } from 'react-i18next'
-import { FALLBACK_EMAIL } from '../../constants/contact'
-import { DEFAULT_TRANSITION } from '../../constants/motion'
-import { AnimatedHeading } from '../AnimatedHeading'
-import { Button } from '../Button'
+import { AnimatedHeading } from '@/components/ui/AnimatedHeading'
+import { Button } from '@/components/ui/Button'
+import { FALLBACK_EMAIL } from '@/constants/contact'
+import { DEFAULT_TRANSITION } from '@/constants/motion'
 
 export const Contact = () => {
   const { t } = useTranslation()
@@ -15,7 +15,7 @@ export const Contact = () => {
       className="section bg-dark flex flex-col items-center justify-center scroll-mt-[calc(-50vh+4rem)]"
       aria-label="Contact section"
     >
-      <div className="w-full max-w-[1600px] px-6 sm:px-10 mx-auto flex flex-col items-center justify-center text-center">
+      <div className="section-container flex flex-col items-center justify-center text-center">
         <m.div
           className="mb-5"
           initial={{ opacity: 0, y: 20 }}

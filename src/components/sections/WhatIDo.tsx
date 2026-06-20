@@ -1,13 +1,13 @@
 import * as m from 'motion/react-m'
 import { useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { STAGGER, TRANSITIONS } from '../../constants/motion'
-import { SERVICES } from '../../data/services'
-import { useInViewOnce } from '../../hooks/useInViewOnce'
-import { LazyLottie } from '../LazyLottie'
+import { LazyLottie, type LottieAnimationData } from '@/components/ui/LazyLottie'
+import { STAGGER, TRANSITIONS } from '@/constants/motion'
+import { SERVICES } from '@/data/services'
+import { useInViewOnce } from '@/hooks/useInViewOnce'
 
 interface LottieAnimationProps {
-  asset: unknown
+  asset: LottieAnimationData
 }
 
 const LottieAnimation = ({ asset }: LottieAnimationProps) => {
@@ -36,7 +36,7 @@ export const WhatIDo = () => {
   return (
     <section
       id="what-i-do"
-      className="py-24 px-8 max-w-[960px] mx-auto text-center bg-dark"
+      className="py-24 px-8 max-w-240 mx-auto text-center bg-dark"
       aria-label="Services section"
     >
       <h2 className="text-[clamp(1.8rem,4vw,2.8rem)] font-black tracking-[-0.02em] mb-12">
@@ -56,8 +56,8 @@ export const WhatIDo = () => {
               <LottieAnimation asset={asset} />
             </div>
             <div className="min-w-0 flex flex-col items-center sm:items-start text-center sm:text-left">
-              <h3 className="font-bold !text-[20px] !mb-2">{t(`whatIDo.services.${key}.title`)}</h3>
-              <p className="text-gray !text-[16px] leading-[1.6]">
+              <h3 className="font-bold text-[20px] mb-2">{t(`whatIDo.services.${key}.title`)}</h3>
+              <p className="text-gray text-[16px] leading-[1.6]">
                 {t(`whatIDo.services.${key}.description`)}
               </p>
             </div>

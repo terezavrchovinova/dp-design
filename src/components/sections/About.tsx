@@ -1,9 +1,9 @@
 import * as m from 'motion/react-m'
 import { useTranslation } from 'react-i18next'
-import { DEFAULT_TRANSITION, STAGGER } from '../../constants/motion'
-import { TOOLS } from '../../data/tools'
-import { TimelineEntry } from '../ExperienceTimeline'
-import { ToolIcon } from '../ToolIcon'
+import { TimelineEntry } from '@/components/ui/ExperienceTimeline'
+import { ToolIcon } from '@/components/ui/ToolIcon'
+import { DEFAULT_TRANSITION, STAGGER } from '@/constants/motion'
+import { TOOLS } from '@/data/tools'
 
 interface Job {
   title: string
@@ -25,7 +25,7 @@ export const About = () => {
 
   return (
     <section id="about" className="section bg-dark" aria-label="About section">
-      <div className="w-full max-w-[1600px] px-6 sm:px-10 mx-auto space-y-16 text-center sm:text-left">
+      <div className="section-container space-y-16 text-center sm:text-left">
         <div className="max-w-3xl mx-auto">
           <m.h2
             className="mb-8"
@@ -39,7 +39,7 @@ export const About = () => {
           <div className="relative">
             {jobs.map((job, index) => (
               <TimelineEntry
-                key={`${job.title}-${index}`}
+                key={`${job.title}-${job.date}`}
                 title={job.title}
                 date={job.date}
                 description={job.description}
