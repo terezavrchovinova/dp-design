@@ -230,7 +230,10 @@ body {
 
 @layer utilities {
   .section {
-    @apply min-h-screen min-h-dvh flex items-center justify-center w-full py-16;
+    @apply flex items-center justify-center w-full py-16;
+    /* min-height fallback: vh for older browsers, dvh where supported */
+    min-height: 100vh;
+    min-height: 100dvh;
     padding-left: calc(1.5rem + env(safe-area-inset-left, 0px));
     padding-right: calc(1.5rem + env(safe-area-inset-right, 0px));
   }

@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { ScrollAnimation } from '@/components/sections/ScrollAnimation'
-import { getTextInAnyLanguage, render, screen } from '@/tests/utils'
+import { act, getTextInAnyLanguage, render, screen } from '@/tests/utils'
 
 describe('ScrollAnimation', () => {
   it('renders the scroll animation section', () => {
@@ -87,7 +87,9 @@ describe('ScrollAnimation', () => {
       vi.spyOn(HTMLElement.prototype, 'offsetHeight', 'get').mockReturnValue(sectionHeight)
 
       render(<ScrollAnimation />)
-      window.dispatchEvent(new Event('scroll'))
+      act(() => {
+        window.dispatchEvent(new Event('scroll'))
+      })
     }
 
     it('shows the mid phase label when partially scrolled', () => {
