@@ -50,7 +50,7 @@ export const WhatIDo = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: '-20px' }}
             transition={{ ...TRANSITIONS.slow, delay: index * STAGGER.services }}
-            className="hover-card bg-card rounded-2xl p-6 text-center sm:text-left hover:-translate-y-1 flex flex-col sm:flex-row sm:items-center gap-5"
+            className="hover-card ease-out bg-card rounded-2xl p-6 text-center sm:text-left hover:-translate-y-0.5 flex flex-col sm:flex-row sm:items-center gap-5"
           >
             <div className="w-16 shrink-0 self-center sm:self-stretch flex items-center justify-center">
               <LottieAnimation asset={asset} />

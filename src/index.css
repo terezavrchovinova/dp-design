@@ -246,8 +246,11 @@ body {
     @apply w-full max-w-[1600px] px-6 sm:px-10 mx-auto;
   }
 
-  /* Shared hover treatment for content cards (services, timeline entries). */
+  /* Shared hover treatment for content cards (services, timeline entries).
+     Transition only the hover-driven properties — NOT opacity. `transition-all`
+     would also transition opacity, fighting Motion's JS entrance animation and
+     re-fading the card in after it settles (a visible flash on first load). */
   .hover-card {
-    @apply border border-border transition-all duration-300 hover:border-accent hover:shadow-(--card-glow);
+    @apply border border-border transition-[border-color,box-shadow,transform] duration-300 hover:border-accent hover:shadow-(--card-glow);
   }
 }
