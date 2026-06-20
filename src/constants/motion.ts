@@ -1,5 +1,8 @@
 const EASE_OUT_QUART = [0.25, 1, 0.5, 1] as const
 
+// JS animation timing lives here; CSS hover/transition durations live as
+// `--duration-*` tokens in src/index.css. Keep the two scales conceptually aligned.
+
 /** Shared motion transitions — the single source of truth for entrance/interaction timing. */
 export const TRANSITIONS = {
   /** Standard entrance (0.4s). */
@@ -22,3 +25,14 @@ export const STAGGER = {
 
 /** Convenience alias for the standard transition (widely used across components). */
 export const DEFAULT_TRANSITION = TRANSITIONS.default
+
+/** Shared `viewport` configs for `whileInView` entrances (trigger once). */
+export const VIEWPORT = { once: true, margin: '-50px' } as const
+export const VIEWPORT_CLOSE = { once: true, margin: '-30px' } as const
+
+/** "Fade up into view" entrance props — spread onto a motion element. y defaults to 20. */
+export const fadeUp = (y = 20) =>
+  ({
+    initial: { opacity: 0, y },
+    whileInView: { opacity: 1, y: 0 },
+  }) as const

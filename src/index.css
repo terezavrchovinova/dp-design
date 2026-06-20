@@ -35,6 +35,15 @@
   /* App-wide default easing for transition utilities (the design uses ease-out everywhere),
      so components only specify `duration-*` and the curve comes for free. */
   --default-transition-timing-function: var(--ease-out);
+
+  /* CSS transition durations — the single source of truth for hover/animation
+     timing in CSS. JS animation timing lives in constants/motion.ts (TRANSITIONS);
+     keep the two scales conceptually aligned. Components reference these via
+     the CSS-variable shorthand, e.g. `duration-(--duration-base)`. */
+  --duration-fast: 200ms; /* micro UI hovers: nav links, icons, lang switch, close button */
+  --duration-base: 300ms; /* card / structural hover, scroll-label crossfades */
+  --duration-slow: 500ms; /* large moves: project image zoom, mobile-menu open */
+  --duration-ambient: 800ms; /* slow ambient fades: scroll-anim glow */
 }
 
 html {
@@ -58,7 +67,7 @@ html:not(.fonts-loaded) body {
 html.fonts-loaded body {
   opacity: 1;
   visibility: visible;
-  transition: opacity 0.25s ease-out;
+  transition: opacity var(--duration-fast) ease-out;
 }
 
 body {
@@ -112,6 +121,19 @@ body {
     color: var(--color-gray);
     @apply text-base leading-relaxed;
   }
+
+  /* Centered content container shared by full-width sections (Projects, About, Contact). */
+  .section-container {
+    @apply w-full max-w-[1600px] px-6 sm:px-10 mx-auto;
+  }
+
+  /* Shared hover treatment for content cards (services, timeline entries).
+     Transition only the hover-driven properties — NOT opacity. `transition-all`
+     would also transition opacity, fighting Motion's JS entrance animation and
+     re-fading the card in after it settles (a visible flash on first load). */
+  .hover-card {
+    @apply border border-border transition-[border-color,box-shadow,transform] duration-(--duration-base) hover:-translate-y-0.5 hover:border-accent hover:shadow-(--card-glow);
+  }
 }
 
 /* Scroll animation section (chaos → solution) */
@@ -155,7 +177,7 @@ body {
   height: 200px;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.8s ease;
+  transition: opacity var(--duration-ambient) ease;
   background: radial-gradient(ellipse, rgb(var(--accent-rgb) / 0.12) 0%, transparent 70%);
 }
 
@@ -177,7 +199,7 @@ body {
   text-align: center;
   white-space: normal;
   max-width: 90vw;
-  transition: color 0.4s ease, opacity 0.4s ease;
+  transition: color var(--duration-base) ease, opacity var(--duration-base) ease;
 }
 
 .scroll-anim-sub-label {
@@ -187,7 +209,7 @@ body {
   white-space: normal;
   text-align: center;
   max-width: 90vw;
-  transition: opacity 0.4s ease, color 0.4s ease;
+  transition: opacity var(--duration-base) ease, color var(--duration-base) ease;
 }
 
 /* Translucent, blurred navbar background. */
@@ -228,6 +250,15 @@ body {
   }
 }
 
+/* Footer safe area: matches the old py-4 top padding while extending the side
+   and bottom padding into notch/home-indicator insets. */
+.footer-safe-area {
+  padding-top: 1rem;
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  padding-left: calc(1.5rem + env(safe-area-inset-left, 0px));
+  padding-right: calc(1.5rem + env(safe-area-inset-right, 0px));
+}
+
 @layer utilities {
   .section {
     @apply flex items-center justify-center w-full py-16;
@@ -236,21 +267,5 @@ body {
     min-height: 100dvh;
     padding-left: calc(1.5rem + env(safe-area-inset-left, 0px));
     padding-right: calc(1.5rem + env(safe-area-inset-right, 0px));
-  }
-
-}
-
-@layer components {
-  /* Centered content container shared by full-width sections (Projects, About, Contact). */
-  .section-container {
-    @apply w-full max-w-[1600px] px-6 sm:px-10 mx-auto;
-  }
-
-  /* Shared hover treatment for content cards (services, timeline entries).
-     Transition only the hover-driven properties — NOT opacity. `transition-all`
-     would also transition opacity, fighting Motion's JS entrance animation and
-     re-fading the card in after it settles (a visible flash on first load). */
-  .hover-card {
-    @apply border border-border transition-[border-color,box-shadow,transform] duration-300 hover:border-accent hover:shadow-(--card-glow);
   }
 }

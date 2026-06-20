@@ -53,7 +53,7 @@ export const Home = () => {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...DEFAULT_TRANSITION, delay: 0.3 }}
-          className="text-gray max-w-105 mx-auto text-center text-sm md:text-base leading-[1.65] mb-10"
+          className="text-gray max-w-105 mx-auto text-center text-sm md:text-base leading-relaxed mb-10"
         >
           {t('home.subtitle')}
         </m.p>

@@ -44,27 +44,27 @@ export const TimelineEntry = ({
     >
       {!isLast && (
         <div
-          className="absolute left-2.75 md:left-3.75 top-8 bottom-0 w-px bg-border group-hover:bg-gray transition-colors duration-300"
+          className="absolute left-2.75 md:left-3.75 top-8 bottom-0 w-px bg-border group-hover:bg-gray transition-colors duration-(--duration-base)"
           aria-hidden="true"
         />
       )}
 
       <div className="shrink-0 flex flex-col items-center pt-0.5">
         <div
-          className="w-6 h-6 md:w-7.5 md:h-7.5 rounded-full border-2 border-border bg-dark flex items-center justify-center shrink-0 group-hover:border-accent group-hover:scale-110 transition-all duration-300"
+          className="w-6 h-6 md:w-7.5 md:h-7.5 rounded-full border-2 border-border bg-dark flex items-center justify-center shrink-0 group-hover:border-accent group-hover:scale-110 transition-all duration-(--duration-base)"
           aria-hidden="true"
         >
-          <div className="w-1.5 h-1.5 rounded-full bg-gray group-hover:bg-accent transition-colors duration-300" />
+          <div className="w-1.5 h-1.5 rounded-full bg-gray group-hover:bg-accent transition-colors duration-(--duration-base)" />
         </div>
       </div>
 
       <div className="flex-1 min-w-0 pb-12 md:pb-14">
-        <div className="hover-card rounded-lg bg-surface p-5 hover:-translate-y-0.5">
+        <div className="hover-card rounded-lg bg-surface p-5">
           <p className="text-xs md:text-sm mb-2 font-medium tracking-wide text-center sm:text-left text-gray">
             {date}
           </p>
 
-          <p className="section-title text-center sm:text-left text-[20px] mb-2">
+          <p className="section-title">
             {part2 ? (
               <>
                 <span className="block sm:hidden">
@@ -81,9 +81,9 @@ export const TimelineEntry = ({
             )}
           </p>
 
-          <ul className="space-y-1.5 text-[9px] sm:text-xs md:text-sm leading-relaxed text-left">
+          <ul className="space-y-1.5 leading-relaxed text-left">
             {bulletPoints.map((point) => (
-              <li key={point} className="section-description flex items-start gap-2 text-gray">
+              <li key={point} className="section-description flex items-start gap-2">
                 <span className="hidden sm:flex shrink-0 w-[1em] h-[1.625em] items-center justify-center text-lg">
                   ·
                 </span>

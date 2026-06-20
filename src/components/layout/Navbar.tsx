@@ -83,7 +83,10 @@ interface NavLinkProps {
 }
 
 const NavLink = ({ href, label }: NavLinkProps) => (
-  <a href={href} className="text-sm text-gray hover:text-white transition-all duration-200">
+  <a
+    href={href}
+    className="text-sm text-gray hover:text-white transition-all duration-(--duration-fast)"
+  >
     {label}
   </a>
 )

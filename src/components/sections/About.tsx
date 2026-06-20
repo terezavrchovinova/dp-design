@@ -1,7 +1,7 @@
 import * as m from 'motion/react-m'
 import { TimelineEntry } from '@/components/ui/ExperienceTimeline'
 import { ToolIcon } from '@/components/ui/ToolIcon'
-import { DEFAULT_TRANSITION, STAGGER } from '@/constants/motion'
+import { DEFAULT_TRANSITION, fadeUp, STAGGER, VIEWPORT } from '@/constants/motion'
 import { TOOLS } from '@/data/tools'
 import { useTranslation } from '@/translations'
 
@@ -27,13 +27,7 @@ export const About = () => {
     <section id="about" className="section bg-dark" aria-label="About section">
       <div className="section-container space-y-16 text-center sm:text-left">
         <div className="max-w-3xl mx-auto">
-          <m.h2
-            className="mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={DEFAULT_TRANSITION}
-          >
+          <m.h2 className="mb-8" {...fadeUp()} viewport={VIEWPORT} transition={DEFAULT_TRANSITION}>
             {t('about.experience')}
           </m.h2>
           <div className="relative">
@@ -51,9 +45,8 @@ export const About = () => {
 
           <m.h2
             className="mb-8 mt-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
+            {...fadeUp()}
+            viewport={VIEWPORT}
             transition={DEFAULT_TRANSITION}
           >
             {t('about.education')}
@@ -70,13 +63,7 @@ export const About = () => {
         </div>
 
         <div>
-          <m.h2
-            className="mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={DEFAULT_TRANSITION}
-          >
+          <m.h2 className="mb-8" {...fadeUp()} viewport={VIEWPORT} transition={DEFAULT_TRANSITION}>
             {t('about.tools')}
           </m.h2>
 

@@ -38,7 +38,7 @@ export const LanguageSwitcher = ({ currentLang, onChange }: LanguageSwitcherProp
           alt="Language selector"
           width={20}
           height={20}
-          className="w-4 sm:w-5 h-4 sm:h-5 object-contain transition-all duration-200 group-hover:brightness-[1.4]"
+          className="w-4 sm:w-5 h-4 sm:h-5 object-contain transition-all duration-(--duration-fast) group-hover:brightness-[1.4]"
           loading="lazy"
         />
       </button>
@@ -58,7 +58,7 @@ export const LanguageSwitcher = ({ currentLang, onChange }: LanguageSwitcherProp
                 onChange(code)
                 setIsOpen(false)
               }}
-              className={`w-full text-left px-4 py-2 hover:bg-accent/20 cursor-pointer text-white transition-all duration-200 ${
+              className={`w-full text-left px-4 py-2 hover:bg-accent/20 cursor-pointer text-white transition-all duration-(--duration-fast) ${
                 currentLang === code ? 'font-semibold' : ''
               }`}
               aria-label={`Switch to ${label}`}
