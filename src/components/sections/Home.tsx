@@ -19,8 +19,8 @@ export const Home = () => {
 
       <m.div
         className="relative z-10 flex flex-col items-center justify-center w-full max-w-187.5"
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ y: 12 }}
+        animate={{ y: 0 }}
         transition={TRANSITIONS.slow}
       >
         <m.span
@@ -33,8 +33,8 @@ export const Home = () => {
         </m.span>
 
         <m.h1
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ y: 8 }}
+          animate={{ y: 0 }}
           transition={{ ...DEFAULT_TRANSITION, delay: 0.2 }}
           className="home-title max-w-187.5 flex flex-col items-center text-center"
         >
