@@ -85,6 +85,11 @@ function changeLanguage(language: Language): void {
     return
   }
   currentLanguage = language
+  // Keep the document language in sync so screen readers and search engines see
+  // the correct locale (index.html ships with the default `lang`).
+  if (typeof document !== 'undefined') {
+    document.documentElement.lang = language
+  }
   for (const listener of listeners) {
     listener()
   }
