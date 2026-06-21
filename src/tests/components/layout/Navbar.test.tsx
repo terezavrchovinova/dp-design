@@ -1,7 +1,7 @@
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
-import { Navbar } from '../../components/Navbar'
-import { getTextInAnyLanguage, getTranslation, render, screen } from '../utils'
+import { Navbar } from '@/components/layout/Navbar'
+import { getTextInAnyLanguage, getTranslation, render, screen } from '@/tests/utils'
 
 describe('Navbar', () => {
   const defaultProps = {
@@ -124,8 +124,8 @@ describe('Navbar', () => {
     const projectsPattern = getTextInAnyLanguage('nav.projects')
     const projectsLink = screen.getByRole('link', { name: projectsPattern })
 
-    // Nav links use CSS hover (hover:text-[var(--color-white)]) - verify classes are present
-    expect(projectsLink).toHaveClass('hover:text-[var(--color-white)]')
-    expect(projectsLink).toHaveClass('text-[var(--color-gray)]')
+    // Nav links use CSS hover (hover:text-white) - verify classes are present
+    expect(projectsLink).toHaveClass('hover:text-white')
+    expect(projectsLink).toHaveClass('text-gray')
   })
 })

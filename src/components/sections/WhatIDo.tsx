@@ -1,17 +1,18 @@
-import { useInView } from 'motion/react'
 import * as m from 'motion/react-m'
 import { useRef } from 'react'
-import { useTranslation } from 'react-i18next'
-import { SERVICES } from '../../data/services'
-import { LazyLottie } from '../LazyLottie'
+import { LazyLottie, type LottieAnimationData } from '@/components/ui/LazyLottie'
+import { STAGGER, TRANSITIONS } from '@/constants/motion'
+import { SERVICES } from '@/data/services'
+import { useInViewOnce } from '@/hooks/useInViewOnce'
+import { useTranslation } from '@/translations'
 
 interface LottieAnimationProps {
-  asset: unknown
+  asset: LottieAnimationData
 }
 
 const LottieAnimation = ({ asset }: LottieAnimationProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
-  const isVisible = useInView(containerRef, { amount: 0.1, once: true })
+  const isVisible = useInViewOnce(containerRef, { amount: 0.1 })
 
   return (
     <div ref={containerRef} className="w-16 h-16">
@@ -19,7 +20,7 @@ const LottieAnimation = ({ asset }: LottieAnimationProps) => {
         <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.35, ease: 'easeOut' }}
+          transition={TRANSITIONS.default}
           className="w-16 h-16"
         >
           <LazyLottie animationData={asset} className="w-16 h-16" loop autoplay />
@@ -35,12 +36,10 @@ export const WhatIDo = () => {
   return (
     <section
       id="what-i-do"
-      className="py-24 px-8 max-w-[960px] mx-auto text-center bg-[var(--color-dark)]"
+      className="py-24 px-8 max-w-240 mx-auto text-center bg-dark"
       aria-label="Services section"
     >
-      <h2 className="text-[clamp(1.8rem,4vw,2.8rem)] font-black tracking-[-0.02em] mb-12">
-        {t('whatIDo.title')}
-      </h2>
+      <h2 className="mb-12">{t('whatIDo.title')}</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {SERVICES.map(({ key, asset }, index) => (
           <m.div
@@ -48,18 +47,15 @@ export const WhatIDo = () => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, margin: '-20px' }}
-            transition={{ duration: 0.5, delay: index * 0.08, ease: 'easeOut' }}
-            className="bg-[var(--color-card)] border border-[var(--color-border)] rounded-2xl p-6 text-center sm:text-left transition-all duration-300 ease-out hover:border-[var(--color-accent)] hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(255,107,43,0.12)] flex flex-col sm:flex-row sm:items-center gap-5"
+            transition={{ ...TRANSITIONS.slow, delay: index * STAGGER.services }}
+            className="hover-card bg-card rounded-2xl p-6 text-center sm:text-left flex flex-col sm:flex-row sm:items-center gap-5"
           >
-            <div className="w-16 flex-shrink-0 self-center sm:self-stretch flex items-center justify-center">
+            <div className="w-16 shrink-0 self-center sm:self-stretch flex items-center justify-center">
               <LottieAnimation asset={asset} />
             </div>
             <div className="min-w-0 flex flex-col items-center sm:items-start text-center sm:text-left">
-              <h3 className="font-bold !text-[20px] !mb-2">{t(`whatIDo.services.${key}.title`)}</h3>
-              <p
-                className="text-[var(--color-gray)] !text-[16px] leading-relaxed"
-                style={{ lineHeight: 1.6 }}
-              >
+              <h3 className="section-title">{t(`whatIDo.services.${key}.title`)}</h3>
+              <p className="text-gray text-base leading-relaxed">
                 {t(`whatIDo.services.${key}.description`)}
               </p>
             </div>

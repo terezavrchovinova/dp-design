@@ -1,59 +1,47 @@
-# CLAUDE.md
+# Project conventions
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
-## Overview
-
-Single-page portfolio website for graphic designer/video editor Daniela Plamínková. React 19 + TypeScript + Vite, deployed on Vercel. Bilingual (Czech default, English fallback) and heavily performance-optimized.
+A bilingual (cs/en) single-page portfolio. React 19 + TypeScript + Vite + Tailwind v4, animated with Motion, content driven by i18next. No backend — all content is static.
 
 ## Commands
 
-```bash
-npm run dev              # Dev server at http://localhost:5173
-npm run build            # Type-check (tsc -b) then production build
-npm run lint             # Biome check (lint + format, no writes) — run before committing
-npm run lint:fix         # Biome check with --write (autofix + organize imports)
+| Task | Command |
+| --- | --- |
+| Dev server | `npm run dev` |
+| Production build (runs `tsc -b` first) | `npm run build` |
+| Lint + format check | `npm run lint` |
+| Auto-fix lint + format | `npm run lint:fix` |
+| Unit tests | `npm test` · watch: `npm run test:watch` · coverage: `npm run test:coverage` |
+| E2E tests | `npm run test:e2e` |
+| Dead-code scan | `npm run deadcode` |
 
-npm run test             # Vitest unit/integration (run once)
-npm run test:watch       # Vitest watch mode
-npm run test:coverage    # With coverage (enforced thresholds, see below)
-npm run test:e2e         # Playwright e2e (all browsers; auto-starts dev server)
-npm run test:all         # Unit + e2e
+**Before considering work done:** `npm run lint`, `npm test`, and `npm run build` must all pass. Biome owns formatting — never hand-format; run `npm run lint:fix`.
+
+## Structure
+
 ```
-
-Run a single unit test: `npx vitest run src/tests/components/Navbar.test.tsx`
-Run a single e2e test: `npx playwright test e2e/home.spec.ts --project=chromium`
-
-## Architecture
-
-**Single-page app, no router.** `src/App.tsx` renders all sections in order (Home → ScrollAnimation → Projects → WhatIDo → About → Contact). Navigation is in-page scroll/anchors, not route changes.
-
-**Aggressive lazy loading drives the structure.** Above-the-fold (`Home`, `Navbar`, `MobileMenu`, `Footer`) is eager; everything below the fold is `React.lazy` + `Suspense` in `App.tsx`. Lottie animations go through `src/components/LazyLottie.tsx`, which dynamically imports `lottie-react` and handles a CJS interop quirk (component may be nested at `default.default` on Vite 8+). When adding a heavy section or animation, follow this lazy pattern rather than importing it statically.
-
-**Manual vendor chunking** is configured in `vite.config.ts` (`manualChunks`): lottie, motion, react, i18n, and analytics are each isolated into their own chunk for caching/lazy-loading. Adding a large dependency may warrant a new chunk rule here.
-
-**Content is data-driven, copy is translation-driven.** Structural data lives in `src/data/` (`projects.ts`, `services.ts`, `tools.ts`) — these hold IDs, image imports, and `key` fields but NOT display text. The `key` maps into translation JSON. All user-facing strings live in `src/locales/{cs,en}/translation.json` and are read via `react-i18next`'s `useTranslation`. To add/change a project: add an entry in `src/data/projects.ts` (with WebP thumbnails under `src/assets/project_thumbnails/{desktop,mobile}/`) AND add its text under the matching key in both locale files.
-
-**i18n** (`src/i18n.ts`): default `cs`, fallback `en`, Suspense disabled. Imported once for side effects at the top of `App.tsx`.
-
-## Custom build plugins
-
-Two local Vite plugins run at build time (`vite.config.ts`):
-
-- `vite-plugin-critical-css.ts` — inlines critical CSS, loads the rest async (improves LCP).
-- `vite-plugin-optimize-head.ts` — injects preconnect/preload into `dist/index.html`.
-
-`vite-plugin-remove-console` strips all console calls from production builds. Production minify is esbuild, sourcemaps are off.
+src/
+  components/
+    layout/     Navbar, MobileMenu, Footer
+    ui/         reusable pieces: Button, AnimatedHeading, LanguageSwitcher, LazyLottie, ToolIcon, ExperienceTimeline
+    sections/   page sections: Home, Projects, WhatIDo, About, Contact, ScrollAnimation
+  constants/    static config: motion timings, navigation, contact, i18n languages
+  data/         content arrays: projects, services, tools
+  hooks/        custom hooks (useInViewOnce)
+  utils/        pure, unit-tested helpers (scrollAnimationPath, scatter)
+  locales/      en/ + cs/ translation.json
+  tests/        Vitest unit tests, mirroring the components/ tree
+e2e/            Playwright specs
+```
 
 ## Conventions
 
-- **Styling**: Tailwind CSS v4 (via `@tailwindcss/vite`), utility classes in JSX. The `xl` breakpoint is 1280px; the desktop-only `ScrollAnimation` is gated behind `hidden xl:block`.
-- **Animations**: `motion` (Framer Motion) for transitions; Lottie for vector animations (icon `.json` files in `src/assets/icons/`).
-- **Biome** formats with single quotes, no semicolons, 2-space indent, 100-char lines, ES5 trailing commas, and organizes imports. Match this — don't add semicolons.
-- **Tests** mirror source under `src/tests/components/`. Use `src/tests/utils.tsx` for the custom render (wraps providers). e2e specs live in `e2e/`.
-
-## Coverage & CI
-
-Coverage thresholds are enforced (`vitest.config.ts`): 95% lines/statements, 85% functions/branches. `App.tsx`, `main.tsx`, and `i18n.ts` are excluded (covered via e2e). New components generally need tests to keep coverage green.
-
-CI (`.github/workflows/test.yml`, on push/PR to `main`): lint → unit tests → e2e (chromium only, 4 workers) → build. Vercel's build command (`vercel.json`) runs `test:ci` (unit tests) before `build`, so a failing unit test blocks deployment.
+- **Imports:** use the `@/` alias (→ `src/`) for cross-directory imports, e.g. `@/constants/motion`, `@/components/ui/Button`. Relative imports are fine only for same-directory or adjacent files (e.g. `data/` → `../assets/`).
+- **Styling:** Tailwind utilities + CSS variables (defined in `src/index.css`). No static inline `style={{}}` (only genuinely dynamic values, e.g. a computed color). **No `!important`** — base element styles live in `@layer base` and shared classes in `@layer components` so utilities win naturally.
+- **Colors:** never hardcode a hex/`rgba()` outside `src/index.css`. Colors are single-sourced as theme tokens; the brand accent and base dark are defined as RGB **channels** (`--accent-rgb`, `--dark-rgb`) so every variant derives from one place — e.g. `rgb(var(--accent-rgb) / 0.3)`, the Tailwind opacity modifier `border-accent/30`, or `fill-accent`. Motion animates to whole-value vars (`var(--btn-glow-primary)`), since it can't resolve a var nested inside a larger string.
+- **Animation:** all timing/easing comes from `src/constants/motion.ts` (`TRANSITIONS`, `STAGGER`). Don't hardcode durations or cubic-bezier arrays in components.
+- **Content & copy:** never hardcode user-facing strings — add them to `locales/{en,cs}/translation.json` and read via `useTranslation`. Structured content lives in `data/`.
+- **Complex logic:** keep it pure and in `utils/` with unit tests (see `scrollAnimationPath.ts` / `computeScrollPhase`). Components should mostly wire data to markup.
+- **Types:** no `any`/`unknown` in component or data code — prefer real types (e.g. `LottieAnimationData`). Strict TS is on, including `noUnusedLocals`/`noUnusedParameters`.
+- **Tests:** co-located under `src/tests/` mirroring the source tree; use the `@/tests/utils` render helper and `getTextInAnyLanguage` for language-agnostic assertions. Coverage thresholds: 95% lines/statements, 85% functions/branches.
+- **Dead code:** `npm run deadcode` (knip) must stay clean. Don't add unused exports — keep helpers internal unless something imports them.
+- **Accessibility:** semantic elements + ARIA are expected. The two intentional a11y exceptions are scoped in `biome.json` overrides.

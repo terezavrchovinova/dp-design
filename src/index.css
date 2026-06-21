@@ -1,19 +1,49 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Base Colors - plaminkova-inspired palette */
-  --color-dark: #0d0d0d;
+  /* Base Colors - plaminkova-inspired palette.
+     `dark` is kept as RGB channels because it's also used translucent (navbar). */
+  --dark-rgb: 13 13 13;
+  --color-dark: rgb(var(--dark-rgb));
   --color-surface: #161616;
   --color-card: #1c1c1c;
   --color-white: #ffffff;
   --color-gray: #8c8c8c;
+  --color-gray-light: #a0a0a0; /* scroll animation: phase2 label */
+  --color-gray-mid: #7a7a7a; /* scroll animation: sub2 label */
+  --color-chaos-stroke: #3a3a3a; /* scroll animation: unresolved "chaos" line */
   --color-border: #2a2a2a;
 
-  /* Accent - orange */
-  --color-accent: #FF6B2B;
+  /* Accent - orange. Single source of truth: the RGB channels. Every accent
+     value (solid, dim, glows, button hover states) derives from these, so
+     changing the brand colour means editing one line. */
+  --accent-rgb: 255 107 43;
+  --color-accent: rgb(var(--accent-rgb));
+  --color-accent-dim: rgb(var(--accent-rgb) / 0.15);
   /* Darker orange for buttons - meets WCAG AA 4.5:1 contrast with white text (was #E55A1F at 3.61:1) */
   --color-accent-button: #C9501B;
-  --color-accent-dim: rgba(255, 107, 43, 0.15);
+
+  /* Button hover treatment (Motion animates to these whole-value vars). */
+  --btn-glow-primary: 0 0 24px rgb(var(--accent-rgb) / 0.35), 0 0 48px rgb(var(--accent-rgb) / 0.15);
+  --btn-glow-outline: 0 0 20px rgb(var(--accent-rgb) / 0.2), inset 0 0 20px rgb(var(--accent-rgb) / 0.05);
+  --btn-border-outline-hover: rgb(var(--accent-rgb) / 0.6);
+  --btn-bg-outline-hover: rgb(var(--accent-rgb) / 0.08);
+
+  /* Accent glow shared by hoverable content cards. */
+  --card-glow: 0 8px 30px rgb(var(--accent-rgb) / 0.12);
+
+  /* App-wide default easing for transition utilities (the design uses ease-out everywhere),
+     so components only specify `duration-*` and the curve comes for free. */
+  --default-transition-timing-function: var(--ease-out);
+
+  /* CSS transition durations — the single source of truth for hover/animation
+     timing in CSS. JS animation timing lives in constants/motion.ts (TRANSITIONS);
+     keep the two scales conceptually aligned. Components reference these via
+     the CSS-variable shorthand, e.g. `duration-(--duration-base)`. */
+  --duration-fast: 200ms; /* micro UI hovers: nav links, icons, lang switch, close button */
+  --duration-base: 300ms; /* card / structural hover, scroll-label crossfades */
+  --duration-slow: 500ms; /* large moves: project image zoom, mobile-menu open */
+  --duration-ambient: 800ms; /* slow ambient fades: scroll-anim glow */
 }
 
 html {
@@ -37,7 +67,7 @@ html:not(.fonts-loaded) body {
 html.fonts-loaded body {
   opacity: 1;
   visibility: visible;
-  transition: opacity 0.25s ease-out;
+  transition: opacity var(--duration-fast) ease-out;
 }
 
 body {
@@ -55,36 +85,55 @@ body {
   overflow-x: clip;
 }
 
-h1,
-h2,
-h3 {
-  font-family: 'Figtree', sans-serif;
-  text-align: center;
+/* Base element styles live in @layer base so component-level Tailwind
+   utilities (in the higher utilities layer) win without needing !important. */
+@layer base {
+  h1,
+  h2,
+  h3 {
+    font-family: 'Figtree', sans-serif;
+    text-align: center;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+
+  h2 {
+    @apply text-2xl md:text-3xl lg:text-4xl mb-8 font-black;
+    letter-spacing: -0.02em;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl lg:text-3xl mb-6 font-bold;
+  }
 }
 
-h1 {
-  @apply text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
-}
+@layer components {
+  .section-title {
+    @apply text-lg md:text-xl mb-2 font-medium;
+    @apply text-center sm:text-left;
+  }
 
-h2 {
-  @apply text-2xl md:text-3xl lg:text-4xl mb-8 font-black;
-  letter-spacing: -0.02em;
-}
+  .section-description {
+    color: var(--color-gray);
+    @apply text-base leading-relaxed;
+  }
 
-h3 {
-  @apply text-5xl md:text-2xl lg:text-3xl mb-6 font-bold;
-}
+  /* Centered content container shared by full-width sections (Projects, About, Contact). */
+  .section-container {
+    @apply w-full max-w-[1600px] px-6 sm:px-10 mx-auto;
+  }
 
-.section-title {
-  @apply text-lg md:text-xl mb-2 font-medium;
-  @apply text-center sm:text-left;
-}
-
-.section-description {
-  color: var(--color-gray);
-  @apply text-base leading-relaxed;
+  /* Shared hover treatment for content cards (services, timeline entries).
+     Transition only the hover-driven properties — NOT opacity. `transition-all`
+     would also transition opacity, fighting Motion's JS entrance animation and
+     re-fading the card in after it settles (a visible flash on first load). */
+  .hover-card {
+    @apply border border-border transition-[border-color,box-shadow,transform] duration-(--duration-base) hover:-translate-y-0.5 hover:border-accent hover:shadow-(--card-glow);
+  }
 }
 
 /* Scroll animation section (chaos → solution) */
@@ -128,7 +177,8 @@ h3 {
   height: 200px;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.8s ease;
+  transition: opacity var(--duration-ambient) ease;
+  background: radial-gradient(ellipse, rgb(var(--accent-rgb) / 0.12) 0%, transparent 70%);
 }
 
 .scroll-anim-svg-wrap {
@@ -149,7 +199,7 @@ h3 {
   text-align: center;
   white-space: normal;
   max-width: 90vw;
-  transition: color 0.4s ease, opacity 0.4s ease;
+  transition: color var(--duration-base) ease, opacity var(--duration-base) ease;
 }
 
 .scroll-anim-sub-label {
@@ -159,7 +209,31 @@ h3 {
   white-space: normal;
   text-align: center;
   max-width: 90vw;
-  transition: opacity 0.4s ease, color 0.4s ease;
+  transition: opacity var(--duration-base) ease, color var(--duration-base) ease;
+}
+
+/* Translucent, blurred navbar background. */
+.navbar-bar {
+  background-color: rgb(var(--dark-rgb) / 0.85);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+/* Home hero layout + ambient accent glow behind the headline. */
+.home-section {
+  padding-top: calc(7rem + env(safe-area-inset-top, 0px));
+  padding-bottom: 4rem;
+}
+
+.home-glow {
+  background: radial-gradient(circle, rgb(var(--accent-rgb) / 0.08) 0%, transparent 70%);
+}
+
+/* Fluid hero headline sizing (overrides the base h1 scale). */
+.home-title {
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
 }
 
 /* Navbar safe area for notched devices (iPhone etc.) */
@@ -176,11 +250,22 @@ h3 {
   }
 }
 
+/* Footer safe area: matches the old py-4 top padding while extending the side
+   and bottom padding into notch/home-indicator insets. */
+.footer-safe-area {
+  padding-top: 1rem;
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  padding-left: calc(1.5rem + env(safe-area-inset-left, 0px));
+  padding-right: calc(1.5rem + env(safe-area-inset-right, 0px));
+}
+
 @layer utilities {
   .section {
-    @apply min-h-screen min-h-[100dvh] flex items-center justify-center w-full py-16;
+    @apply flex items-center justify-center w-full py-16;
+    /* min-height fallback: vh for older browsers, dvh where supported */
+    min-height: 100vh;
+    min-height: 100dvh;
     padding-left: calc(1.5rem + env(safe-area-inset-left, 0px));
     padding-right: calc(1.5rem + env(safe-area-inset-right, 0px));
   }
-
 }

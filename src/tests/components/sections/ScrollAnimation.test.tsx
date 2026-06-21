@@ -1,6 +1,6 @@
-import { describe, expect, it, vi } from 'vitest'
-import { ScrollAnimation } from '../../../components/sections/ScrollAnimation'
-import { getTextInAnyLanguage, render, screen } from '../../utils'
+import { afterEach, describe, expect, it, vi } from 'vitest'
+import { ScrollAnimation } from '@/components/sections/ScrollAnimation'
+import { act, getTextInAnyLanguage, render, screen } from '@/tests/utils'
 
 describe('ScrollAnimation', () => {
   it('renders the scroll animation section', () => {
@@ -62,5 +62,47 @@ describe('ScrollAnimation', () => {
     expect(removeEventListenerSpy).toHaveBeenCalledWith('scroll', expect.any(Function))
 
     removeEventListenerSpy.mockRestore()
+  })
+
+  describe('scroll-driven phases', () => {
+    // jsdom has no layout engine, so we fake the geometry the scroll handler
+    // reads and run requestAnimationFrame synchronously to drive the animation.
+    afterEach(() => {
+      vi.restoreAllMocks()
+    })
+
+    const driveScrollTo = (sectionTop: number, sectionHeight: number) => {
+      vi.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => {
+        cb(0)
+        return 0
+      })
+      // SVGPathElement.getTotalLength is not implemented in jsdom.
+      vi.spyOn(
+        SVGElement.prototype as unknown as SVGGeometryElement,
+        'getTotalLength'
+      ).mockReturnValue(100)
+      vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+        top: sectionTop,
+      } as DOMRect)
+      vi.spyOn(HTMLElement.prototype, 'offsetHeight', 'get').mockReturnValue(sectionHeight)
+
+      render(<ScrollAnimation />)
+      act(() => {
+        window.dispatchEvent(new Event('scroll'))
+      })
+    }
+
+    it('shows the mid phase label when partially scrolled', () => {
+      // innerHeight defaults to 768; scrollable = 2000 - 768 = 1232.
+      // top = -308 → progress ≈ 0.25 (between 0.15 and 0.35 → phase 2).
+      driveScrollTo(-308, 2000)
+      expect(screen.getByText(getTextInAnyLanguage('animation.phase2'))).toBeInTheDocument()
+    })
+
+    it('shows the final phase label when fully scrolled', () => {
+      // top far past the top → progress clamps to 1 → phase 3.
+      driveScrollTo(-10000, 2000)
+      expect(screen.getByText(getTextInAnyLanguage('animation.phase3'))).toBeInTheDocument()
+    })
   })
 })

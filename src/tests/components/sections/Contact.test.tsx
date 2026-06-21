@@ -1,11 +1,12 @@
-import * as reactI18next from 'react-i18next'
 import { describe, expect, it, vi } from 'vitest'
-import { Contact } from '../../../components/sections/Contact'
-import { render, screen } from '../../utils'
+import { Contact } from '@/components/sections/Contact'
+import { render, screen } from '@/tests/utils'
+import * as translationsModule from '@/translations'
 
-// Mock react-i18next
-vi.mock('react-i18next', async () => {
-  const actual = await vi.importActual<typeof reactI18next>('react-i18next')
+// Mock the translations module, keeping the real implementation by default so
+// tests can selectively override useTranslation.
+vi.mock('@/translations', async () => {
+  const actual = await vi.importActual<typeof translationsModule>('@/translations')
   return {
     ...actual,
   }
@@ -49,20 +50,19 @@ describe('Contact', () => {
         // For other keys, return the key itself or actual translation
         return key === 'footer.cta_collaborate' ? 'Send me a message' : key
       },
-      i18n: {},
-      ready: true,
+      locale: { language: 'cs' as const, changeLanguage: vi.fn() },
     }))
 
-    vi.spyOn(reactI18next, 'useTranslation').mockImplementation(
-      mockUseTranslation as unknown as typeof reactI18next.useTranslation
+    vi.spyOn(translationsModule, 'useTranslation').mockImplementation(
+      mockUseTranslation as unknown as typeof translationsModule.useTranslation
     )
 
     render(<Contact />)
     const emailLink = screen.getByRole('link')
     expect(emailLink).toBeInTheDocument()
     // Should use fallback email
-    expect(emailLink).toHaveAttribute('href', 'mailto:dancaplaminkova@sezenam.cz')
-    expect(emailLink).toHaveTextContent('dancaplaminkova@sezenam.cz')
+    expect(emailLink).toHaveAttribute('href', 'mailto:daniela@plaminkova.com')
+    expect(emailLink).toHaveTextContent('daniela@plaminkova.com')
 
     // Restore
     vi.restoreAllMocks()

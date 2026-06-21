@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { WhatIDo } from '../../../components/sections/WhatIDo'
-import { act, getTextInAnyLanguage, render, screen } from '../../utils'
+import { WhatIDo } from '@/components/sections/WhatIDo'
+import { act, getTextInAnyLanguage, render, screen } from '@/tests/utils'
 
 // Helper function to create a complete IntersectionObserverEntry mock
 function createIntersectionEntry(

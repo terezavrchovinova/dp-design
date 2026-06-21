@@ -1,10 +1,9 @@
 import * as m from 'motion/react-m'
-import { useRef } from 'react'
-import { useTranslation } from 'react-i18next'
-import { DEFAULT_TRANSITION } from '../../constants/motion'
-import { TOOLS } from '../../data/tools'
-import { TimelineEntry } from '../ExperienceTimeline'
-import { ToolIcon } from '../ToolIcon'
+import { TimelineEntry } from '@/components/ui/ExperienceTimeline'
+import { ToolIcon } from '@/components/ui/ToolIcon'
+import { DEFAULT_TRANSITION, fadeUp, STAGGER, VIEWPORT } from '@/constants/motion'
+import { TOOLS } from '@/data/tools'
+import { useTranslation } from '@/translations'
 
 interface Job {
   title: string
@@ -24,19 +23,11 @@ export const About = () => {
   const jobs = t('about.jobs', { returnObjects: true }) as Job[]
   const school = t('about.school', { returnObjects: true }) as School
 
-  const toolsRef = useRef(null)
-
   return (
-    <section id="about" className="section bg-[var(--color-dark)]" aria-label="About section">
-      <div className="w-full max-w-[1600px] px-6 sm:px-10 mx-auto space-y-16 text-center sm:text-left">
+    <section id="about" className="section bg-dark" aria-label="About section">
+      <div className="section-container space-y-16 text-center sm:text-left">
         <div className="max-w-3xl mx-auto">
-          <m.h2
-            className="mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={DEFAULT_TRANSITION}
-          >
+          <m.h2 className="mb-8" {...fadeUp()} viewport={VIEWPORT} transition={DEFAULT_TRANSITION}>
             {t('about.experience')}
           </m.h2>
           <div className="relative">
@@ -47,16 +38,15 @@ export const About = () => {
                 date={job.date}
                 description={job.description}
                 isLast={index === jobs.length - 1}
-                staggerDelay={index * 0.08}
+                staggerDelay={index * STAGGER.timeline}
               />
             ))}
           </div>
 
           <m.h2
             className="mb-8 mt-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
+            {...fadeUp()}
+            viewport={VIEWPORT}
             transition={DEFAULT_TRANSITION}
           >
             {t('about.education')}
@@ -72,20 +62,14 @@ export const About = () => {
           </div>
         </div>
 
-        <div ref={toolsRef}>
-          <m.h2
-            className="mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={DEFAULT_TRANSITION}
-          >
+        <div>
+          <m.h2 className="mb-8" {...fadeUp()} viewport={VIEWPORT} transition={DEFAULT_TRANSITION}>
             {t('about.tools')}
           </m.h2>
 
           <div className="flex flex-wrap justify-center gap-6">
             {TOOLS.map((tool, index) => (
-              <ToolIcon key={tool.name} {...tool} staggerDelay={index * 0.05} />
+              <ToolIcon key={tool.name} {...tool} staggerDelay={index * STAGGER.tools} />
             ))}
           </div>
         </div>

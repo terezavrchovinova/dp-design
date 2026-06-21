@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
-import { useTranslation } from 'react-i18next'
-import { SUPPORTED_LANGUAGES } from '../constants/i18n'
-import { NAV_ITEMS } from '../constants/navigation'
+import { SUPPORTED_LANGUAGES } from '@/constants/languages'
+import { NAV_ITEMS } from '@/constants/navigation'
+import { useTranslation } from '@/translations'
 
 export interface MobileMenuProps {
   /** Whether the menu is open */
@@ -11,7 +11,7 @@ export interface MobileMenuProps {
 }
 
 export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
-  const { t, i18n } = useTranslation()
+  const { t, locale } = useTranslation()
   const closeButtonRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
   }, [menuOpen])
 
   const changeLanguage = (lng: 'en' | 'cs') => {
-    i18n.changeLanguage(lng)
+    locale.changeLanguage(lng)
   }
 
   const handleClose = () => {
@@ -44,7 +44,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
   return (
     <div
       id="mobile-menu"
-      className={`fixed inset-0 z-40 flex flex-col items-center justify-center bg-[var(--color-dark)] backdrop-blur-xl transition-all duration-500 ease-in-out ${
+      className={`fixed inset-0 z-40 flex flex-col items-center justify-center bg-dark backdrop-blur-xl transition-all duration-(--duration-slow) ease-in-out ${
         menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
       }`}
       role="dialog"
@@ -55,7 +55,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
       <button
         ref={closeButtonRef}
         onClick={handleClose}
-        className="absolute top-6 right-6 text-[var(--color-white)] text-3xl focus:outline-none hover:scale-110 hover:opacity-80 transition-all duration-200 ease-out cursor-pointer"
+        className="absolute top-6 right-6 text-white text-3xl focus:outline-none hover:scale-110 hover:opacity-80 transition-all duration-(--duration-fast) cursor-pointer"
         aria-label="Close menu"
         type="button"
         tabIndex={menuOpen ? 0 : -1}
@@ -69,7 +69,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
             key={item.key}
             href={item.href}
             onClick={handleMenuItemClick}
-            className={`text-3xl font-semibold text-[var(--color-white)] tracking-tight transition-all duration-500 ease-out cursor-pointer hover:text-[var(--color-accent)] hover:scale-105 ${
+            className={`text-3xl font-semibold text-white tracking-tight transition-all duration-(--duration-slow) cursor-pointer hover:text-accent hover:scale-105 ${
               menuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
             style={{
@@ -82,20 +82,20 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
         ))}
       </nav>
 
-      <div className="w-16 h-px bg-[var(--color-border)] my-8" aria-hidden="true" />
+      <div className="w-16 h-px bg-border my-8" aria-hidden="true" />
 
       <fieldset className="flex space-x-6 border-0 p-0 m-0">
         <legend className="sr-only">Language selection</legend>
         {SUPPORTED_LANGUAGES.map((lang) => {
-          const isActive = i18n.language === lang
+          const isActive = locale.language === lang
 
           return (
             <button
               key={lang}
               type="button"
               onClick={() => changeLanguage(lang)}
-              className={`text-sm font-medium transition-opacity duration-200 cursor-pointer ${
-                isActive ? 'text-[var(--color-white)]' : 'text-[var(--color-gray)] hover:opacity-80'
+              className={`text-sm font-medium transition-opacity duration-(--duration-fast) cursor-pointer ${
+                isActive ? 'text-white' : 'text-gray hover:opacity-80'
               }`}
               aria-label={`Switch to ${lang.toUpperCase()}`}
               aria-pressed={isActive}

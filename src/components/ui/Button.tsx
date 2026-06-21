@@ -1,8 +1,10 @@
 import * as m from 'motion/react-m'
+import { TRANSITIONS } from '@/constants/motion'
 
-export type ButtonVariant = 'primary' | 'outline'
-export type ButtonElement = 'a' | 'button'
-export type ButtonType = 'button' | 'submit' | 'reset'
+type ButtonVariant = 'primary' | 'outline'
+type ButtonElement = 'a' | 'button'
+type ButtonType = 'button' | 'submit' | 'reset'
+type ButtonSize = 'default' | 'compact'
 
 export interface ButtonProps {
   /** Button content */
@@ -11,6 +13,8 @@ export interface ButtonProps {
   href?: string
   /** Visual style variant */
   variant?: ButtonVariant
+  /** Size preset — `compact` is the smaller pill used in the navbar */
+  size?: ButtonSize
   /** Element type to render */
   as?: ButtonElement
   /** Button type (used when as="button") */
@@ -23,28 +27,33 @@ export interface ButtonProps {
   'aria-label'?: string
 }
 
-const hoverTransition = { duration: 0.15, ease: 'easeOut' as const }
-
 export const Button = ({
   children,
   href = '#',
   variant = 'primary',
+  size = 'default',
   as = 'a',
   type = 'button',
   className = '',
   onClick,
   'aria-label': ariaLabel,
 }: ButtonProps) => {
+  const sizeStyles = {
+    default: 'py-2 px-5 text-[0.8rem] md:py-[0.85rem] md:px-8 md:text-[0.9rem]',
+    compact: 'py-[0.5rem] px-4 text-[0.8rem]',
+  }
+
   const baseStyles = [
-    'relative inline-block py-2 px-5 text-[0.8rem] md:py-[0.85rem] md:px-8 md:text-[0.9rem] rounded-[100px] font-bold',
-    'focus:outline-none focus-visible:ring-1 focus-visible:ring-[var(--color-border)]',
+    'relative inline-block rounded-full font-bold',
+    sizeStyles[size],
+    'focus:outline-none focus-visible:ring-1 focus-visible:ring-border',
     'cursor-pointer',
     className,
   ].join(' ')
 
   const variantStyles = {
-    primary: 'text-[var(--color-white)] bg-[var(--color-accent-button)]',
-    outline: 'text-[var(--color-white)] border-[1.5px] border-[var(--color-border)]',
+    primary: 'text-white bg-accent-button',
+    outline: 'text-white border-[1.5px] border-border',
   }
 
   const motionProps = {
@@ -53,15 +62,15 @@ export const Button = ({
         ? {
             scale: 1.04,
             backgroundColor: 'var(--color-accent)',
-            boxShadow: '0 0 24px rgba(255, 107, 43, 0.35), 0 0 48px rgba(255, 107, 43, 0.15)',
-            transition: hoverTransition,
+            boxShadow: 'var(--btn-glow-primary)',
+            transition: TRANSITIONS.fast,
           }
         : {
             scale: 1.04,
-            borderColor: 'rgba(255, 107, 43, 0.6)',
-            backgroundColor: 'rgba(255, 107, 43, 0.08)',
-            boxShadow: '0 0 20px rgba(255, 107, 43, 0.2), inset 0 0 20px rgba(255, 107, 43, 0.05)',
-            transition: hoverTransition,
+            borderColor: 'var(--btn-border-outline-hover)',
+            backgroundColor: 'var(--btn-bg-outline-hover)',
+            boxShadow: 'var(--btn-glow-outline)',
+            transition: TRANSITIONS.fast,
           },
     whileTap: { scale: 0.98 },
     className: `${baseStyles} ${variantStyles[variant]}`,

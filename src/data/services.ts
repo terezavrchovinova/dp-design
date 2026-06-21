@@ -1,3 +1,4 @@
+import type { LottieAnimationData } from '@/components/ui/LazyLottie'
 import photoIcon from '../assets/icons/photography.json'
 import digitalIcon from '../assets/icons/social.json'
 import videoIcon from '../assets/icons/video.json'
@@ -5,7 +6,7 @@ import visualBrandDesign from '../assets/icons/visual-brand-design.json'
 
 export interface Service {
   key: string
-  asset: unknown
+  asset: LottieAnimationData
 }
 
 export const SERVICES: Service[] = [

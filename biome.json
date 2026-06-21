@@ -65,7 +65,7 @@
   },
   "overrides": [
     {
-      "includes": ["src/components/LazyLottie.tsx"],
+      "includes": ["src/components/ui/LazyLottie.tsx"],
       "linter": {
         "rules": {
           "a11y": {
@@ -75,7 +75,7 @@
       }
     },
     {
-      "includes": ["src/components/Navbar.tsx"],
+      "includes": ["src/components/ui/LanguageSwitcher.tsx"],
       "linter": {
         "rules": {
           "a11y": {

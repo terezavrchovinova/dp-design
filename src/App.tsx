@@ -7,26 +7,25 @@ const LazySpeedInsights = lazy(() =>
   import('@vercel/speed-insights/react').then((m) => ({ default: m.SpeedInsights }))
 )
 
-import './i18n'
 import './index.css'
 
-import { Footer } from './components/Footer'
-import { MobileMenu } from './components/MobileMenu'
-import { Navbar } from './components/Navbar'
-import { Home } from './components/sections/Home'
-import { ScrollAnimation } from './components/sections/ScrollAnimation'
+import { Footer } from '@/components/layout/Footer'
+import { MobileMenu } from '@/components/layout/MobileMenu'
+import { Navbar } from '@/components/layout/Navbar'
+import { Home } from '@/components/sections/Home'
+import { ScrollAnimation } from '@/components/sections/ScrollAnimation'
 
 const Projects = lazy(() =>
-  import('./components/sections/Projects').then((m) => ({
+  import('@/components/sections/Projects').then((m) => ({
     default: m.Projects,
   }))
 )
 const WhatIDo = lazy(() =>
-  import('./components/sections/WhatIDo').then((m) => ({ default: m.WhatIDo }))
+  import('@/components/sections/WhatIDo').then((m) => ({ default: m.WhatIDo }))
 )
-const About = lazy(() => import('./components/sections/About').then((m) => ({ default: m.About })))
+const About = lazy(() => import('@/components/sections/About').then((m) => ({ default: m.About })))
 const Contact = lazy(() =>
-  import('./components/sections/Contact').then((m) => ({ default: m.Contact }))
+  import('@/components/sections/Contact').then((m) => ({ default: m.Contact }))
 )
 
 const XL_BREAKPOINT = 1280

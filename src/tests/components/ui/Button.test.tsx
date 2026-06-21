@@ -1,7 +1,7 @@
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
-import { Button } from '../../components/Button'
-import { render, screen } from '../utils'
+import { Button } from '@/components/ui/Button'
+import { render, screen } from '@/tests/utils'
 
 describe('Button', () => {
   it('renders as a link by default', () => {
@@ -38,13 +38,13 @@ describe('Button', () => {
   it('renders with primary variant by default', () => {
     render(<Button>Primary Button</Button>)
     const button = screen.getByRole('link')
-    expect(button).toHaveClass('bg-[var(--color-accent-button)]')
+    expect(button).toHaveClass('bg-accent-button')
   })
 
   it('renders with outline variant', () => {
     render(<Button variant="outline">Outline Button</Button>)
     const button = screen.getByRole('link')
-    expect(button).toHaveClass('border-[var(--color-border)]')
+    expect(button).toHaveClass('border-border')
   })
 
   it('accepts custom className', () => {
