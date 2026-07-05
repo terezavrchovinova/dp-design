@@ -27,12 +27,34 @@ export const STAGGER = {
 export const DEFAULT_TRANSITION = TRANSITIONS.default
 
 /** Shared `viewport` configs for `whileInView` entrances (trigger once). */
-export const VIEWPORT = { once: true, margin: '-50px' } as const
-export const VIEWPORT_CLOSE = { once: true, margin: '-30px' } as const
+const VIEWPORT = { once: true, margin: '-50px' } as const
+const VIEWPORT_CLOSE = { once: true, margin: '-30px' } as const
 
 /** "Fade up into view" entrance props — spread onto a motion element. y defaults to 20. */
-export const fadeUp = (y = 20) =>
+const fadeUp = (y = 20) =>
   ({
     initial: { opacity: 0, y },
     whileInView: { opacity: 1, y: 0 },
+  }) as const
+
+/**
+ * The standard section-heading entrance: fade up once when scrolled into view.
+ * Spread onto a motion element instead of repeating fadeUp/VIEWPORT/DEFAULT_TRANSITION.
+ */
+export const FADE_UP_IN_VIEW = {
+  ...fadeUp(),
+  viewport: VIEWPORT,
+  transition: DEFAULT_TRANSITION,
+} as const
+
+/**
+ * Delayed fade-up entrance for content below a section heading (project cards,
+ * the contact button): triggers closer to the viewport edge and rises from a
+ * custom offset after `delay` seconds.
+ */
+export const fadeUpDelayed = (y: number, delay: number) =>
+  ({
+    ...fadeUp(y),
+    viewport: VIEWPORT_CLOSE,
+    transition: { ...DEFAULT_TRANSITION, delay },
   }) as const

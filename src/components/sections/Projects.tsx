@@ -1,5 +1,5 @@
 import * as m from 'motion/react-m'
-import { DEFAULT_TRANSITION, fadeUp, STAGGER, VIEWPORT, VIEWPORT_CLOSE } from '@/constants/motion'
+import { FADE_UP_IN_VIEW, fadeUpDelayed, STAGGER } from '@/constants/motion'
 import { PROJECTS } from '@/data/projects'
 import { useTranslation } from '@/translations'
 
@@ -9,9 +9,7 @@ export const Projects = () => {
   return (
     <section id="projects" className="section bg-dark" aria-label="Projects section">
       <div className="section-container text-center sm:text-left">
-        <m.h2 {...fadeUp()} viewport={VIEWPORT} transition={DEFAULT_TRANSITION}>
-          {t('projects.title')}
-        </m.h2>
+        <m.h2 {...FADE_UP_IN_VIEW}>{t('projects.title')}</m.h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
           {PROJECTS.map((project, index) => {
@@ -19,11 +17,9 @@ export const Projects = () => {
 
             return (
               <m.a
-                key={project.id}
+                key={project.key}
                 href={project.link}
-                {...fadeUp(24)}
-                viewport={VIEWPORT_CLOSE}
-                transition={{ ...DEFAULT_TRANSITION, delay: index * STAGGER.projects }}
+                {...fadeUpDelayed(24, index * STAGGER.projects)}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`View project: ${title}`}

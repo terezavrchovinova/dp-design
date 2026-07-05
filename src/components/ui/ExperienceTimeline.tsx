@@ -1,5 +1,4 @@
 import * as m from 'motion/react-m'
-import { useRef } from 'react'
 import { DEFAULT_TRANSITION } from '@/constants/motion'
 import { useInViewOnce } from '@/hooks/useInViewOnce'
 
@@ -23,8 +22,7 @@ export const TimelineEntry = ({
   isLast = false,
   staggerDelay = 0,
 }: TimelineEntryProps) => {
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInViewOnce(ref, { margin: '-40px' })
+  const [ref, isInView] = useInViewOnce<HTMLDivElement>({ margin: '-40px' })
 
   const bulletPoints = description
     .split('. ')

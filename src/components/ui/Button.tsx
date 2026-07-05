@@ -1,3 +1,4 @@
+import type { TargetAndTransition } from 'motion/react'
 import * as m from 'motion/react-m'
 import { TRANSITIONS } from '@/constants/motion'
 
@@ -27,6 +28,32 @@ export interface ButtonProps {
   'aria-label'?: string
 }
 
+const SIZE_STYLES: Record<ButtonSize, string> = {
+  default: 'py-2 px-5 text-[0.8rem] md:py-[0.85rem] md:px-8 md:text-[0.9rem]',
+  compact: 'py-[0.5rem] px-4 text-[0.8rem]',
+}
+
+const VARIANT_STYLES: Record<ButtonVariant, string> = {
+  primary: 'text-white bg-accent-button',
+  outline: 'text-white border-[1.5px] border-border',
+}
+
+const HOVER_EFFECTS: Record<ButtonVariant, TargetAndTransition> = {
+  primary: {
+    scale: 1.04,
+    backgroundColor: 'var(--color-accent)',
+    boxShadow: 'var(--btn-glow-primary)',
+    transition: TRANSITIONS.fast,
+  },
+  outline: {
+    scale: 1.04,
+    borderColor: 'var(--btn-border-outline-hover)',
+    backgroundColor: 'var(--btn-bg-outline-hover)',
+    boxShadow: 'var(--btn-glow-outline)',
+    transition: TRANSITIONS.fast,
+  },
+}
+
 export const Button = ({
   children,
   href = '#',
@@ -38,42 +65,18 @@ export const Button = ({
   onClick,
   'aria-label': ariaLabel,
 }: ButtonProps) => {
-  const sizeStyles = {
-    default: 'py-2 px-5 text-[0.8rem] md:py-[0.85rem] md:px-8 md:text-[0.9rem]',
-    compact: 'py-[0.5rem] px-4 text-[0.8rem]',
-  }
-
   const baseStyles = [
     'relative inline-block rounded-full font-bold',
-    sizeStyles[size],
+    SIZE_STYLES[size],
     'focus:outline-none focus-visible:ring-1 focus-visible:ring-border',
     'cursor-pointer',
     className,
   ].join(' ')
 
-  const variantStyles = {
-    primary: 'text-white bg-accent-button',
-    outline: 'text-white border-[1.5px] border-border',
-  }
-
   const motionProps = {
-    whileHover:
-      variant === 'primary'
-        ? {
-            scale: 1.04,
-            backgroundColor: 'var(--color-accent)',
-            boxShadow: 'var(--btn-glow-primary)',
-            transition: TRANSITIONS.fast,
-          }
-        : {
-            scale: 1.04,
-            borderColor: 'var(--btn-border-outline-hover)',
-            backgroundColor: 'var(--btn-bg-outline-hover)',
-            boxShadow: 'var(--btn-glow-outline)',
-            transition: TRANSITIONS.fast,
-          },
+    whileHover: HOVER_EFFECTS[variant],
     whileTap: { scale: 0.98 },
-    className: `${baseStyles} ${variantStyles[variant]}`,
+    className: `${baseStyles} ${VARIANT_STYLES[variant]}`,
   }
 
   if (as === 'button') {

@@ -1,4 +1,8 @@
+import { Fragment } from 'react'
 import { useTranslation } from '@/translations'
+
+/** Legal details shown after the copyright notice, in display order. */
+const LEGAL_KEYS = ['ico', 'address', 'registered', 'supervisoryAuthority'] as const
 
 export const Footer = () => {
   const { t } = useTranslation()
@@ -11,14 +15,12 @@ export const Footer = () => {
           <span>
             © {currentYear} {t('footer.name')}
           </span>
-          <span className="opacity-50">·</span>
-          <span>{t('footer.ico')}</span>
-          <span className="opacity-50">·</span>
-          <span>{t('footer.address')}</span>
-          <span className="opacity-50">·</span>
-          <span>{t('footer.registered')}</span>
-          <span className="opacity-50">·</span>
-          <span>{t('footer.supervisoryAuthority')}</span>
+          {LEGAL_KEYS.map((key) => (
+            <Fragment key={key}>
+              <span className="opacity-50">·</span>
+              <span>{t(`footer.${key}`)}</span>
+            </Fragment>
+          ))}
         </div>
       </div>
     </footer>

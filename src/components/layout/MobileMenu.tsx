@@ -29,15 +29,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
     }
   }, [menuOpen])
 
-  const changeLanguage = (lng: 'en' | 'cs') => {
-    locale.changeLanguage(lng)
-  }
-
-  const handleClose = () => {
-    setMenuOpen(false)
-  }
-
-  const handleMenuItemClick = () => {
+  const closeMenu = () => {
     setMenuOpen(false)
   }
 
@@ -54,7 +46,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
     >
       <button
         ref={closeButtonRef}
-        onClick={handleClose}
+        onClick={closeMenu}
         className="absolute top-6 right-6 text-white text-3xl focus:outline-none hover:scale-110 hover:opacity-80 transition-all duration-(--duration-fast) cursor-pointer"
         aria-label="Close menu"
         type="button"
@@ -68,7 +60,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
           <a
             key={item.key}
             href={item.href}
-            onClick={handleMenuItemClick}
+            onClick={closeMenu}
             className={`text-3xl font-semibold text-white tracking-tight transition-all duration-(--duration-slow) cursor-pointer hover:text-accent hover:scale-105 ${
               menuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
@@ -93,7 +85,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
             <button
               key={lang}
               type="button"
-              onClick={() => changeLanguage(lang)}
+              onClick={() => locale.changeLanguage(lang)}
               className={`text-sm font-medium transition-opacity duration-(--duration-fast) cursor-pointer ${
                 isActive ? 'text-white' : 'text-gray hover:opacity-80'
               }`}

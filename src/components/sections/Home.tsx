@@ -3,6 +3,14 @@ import { Button } from '@/components/ui/Button'
 import { DEFAULT_TRANSITION, TRANSITIONS } from '@/constants/motion'
 import { useTranslation } from '@/translations'
 
+/** Staggered load-time entrance shared by the hero tag, subtitle and CTA row. */
+const heroFadeUp = (delay: number) =>
+  ({
+    initial: { opacity: 0, y: 8 },
+    animate: { opacity: 1, y: 0 },
+    transition: { ...DEFAULT_TRANSITION, delay },
+  }) as const
+
 export const Home = () => {
   const { t } = useTranslation()
 
@@ -24,9 +32,7 @@ export const Home = () => {
         transition={TRANSITIONS.slow}
       >
         <m.span
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ ...DEFAULT_TRANSITION, delay: 0.1 }}
+          {...heroFadeUp(0.1)}
           className="inline-block text-[0.72rem] font-bold tracking-[0.15em] uppercase rounded-full border leading-none py-[0.3rem] px-4 mb-[1.8rem] bg-accent-dim text-accent border-accent/30"
         >
           {t('home.heroTag')}
@@ -40,7 +46,7 @@ export const Home = () => {
         >
           <span className="whitespace-normal md:whitespace-nowrap">
             {t('home.titleLine1a')}
-            <span className="font-['DM_Serif_Display'] italic text-accent">
+            <span className="font-serif italic text-accent">
               {t('home.titleLine1b')} {t('home.titleLine1b2')}
             </span>
           </span>
@@ -50,20 +56,13 @@ export const Home = () => {
         </m.h1>
 
         <m.p
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ ...DEFAULT_TRANSITION, delay: 0.3 }}
+          {...heroFadeUp(0.3)}
           className="text-gray max-w-105 mx-auto text-center text-sm md:text-base leading-relaxed mb-10"
         >
           {t('home.subtitle')}
         </m.p>
 
-        <m.div
-          className="flex justify-center items-center flex-wrap gap-4"
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ ...DEFAULT_TRANSITION, delay: 0.4 }}
-        >
+        <m.div className="flex justify-center items-center flex-wrap gap-4" {...heroFadeUp(0.4)}>
           <Button href="#projects">{t('home.viewProjects')}</Button>
           <Button href="#contact" variant="outline">
             {t('home.contactMe')}

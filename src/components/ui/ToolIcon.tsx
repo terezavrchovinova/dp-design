@@ -1,5 +1,4 @@
 import * as m from 'motion/react-m'
-import { useRef } from 'react'
 import { DEFAULT_TRANSITION, TRANSITIONS } from '@/constants/motion'
 import { useInViewOnce } from '@/hooks/useInViewOnce'
 
@@ -13,8 +12,7 @@ export interface ToolIconProps {
 }
 
 export const ToolIcon = ({ name, src, staggerDelay = 0 }: ToolIconProps) => {
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInViewOnce(ref, { margin: '-20px' })
+  const [ref, isInView] = useInViewOnce<HTMLDivElement>({ margin: '-20px' })
 
   return (
     <m.div

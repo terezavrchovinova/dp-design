@@ -1,8 +1,7 @@
 import * as m from 'motion/react-m'
 import logo from '@/assets/icons/dp_icon_white.svg'
-import { Button } from '@/components/ui/Button'
+import { EmailButton } from '@/components/ui/EmailButton'
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher'
-import { FALLBACK_EMAIL } from '@/constants/contact'
 import { DEFAULT_TRANSITION } from '@/constants/motion'
 import { NAV_ITEMS } from '@/constants/navigation'
 import { useTranslation } from '@/translations'
@@ -16,7 +15,6 @@ export interface NavbarProps {
 
 export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
   const { t, locale } = useTranslation()
-  const email = t('contact.email') || FALLBACK_EMAIL
 
   return (
     <m.nav
@@ -27,16 +25,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
       aria-label="Main navigation"
     >
       <div className="hidden xl:flex xl:items-center xl:justify-between w-full relative">
-        <a href="#home" className="flex items-center shrink-0" aria-label="Home">
-          <img
-            src={logo}
-            alt="Daniela Plamínková Logo"
-            width={40}
-            height={40}
-            className="w-10 h-auto"
-            fetchPriority="high"
-          />
-        </a>
+        <LogoLink variant="desktop" />
 
         <div className="flex items-center justify-center gap-8 absolute left-1/2 -translate-x-1/2">
           {NAV_ITEMS.map(({ href, key }) => (
@@ -46,21 +35,12 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
 
         <div className="flex items-center gap-4 shrink-0">
           <LanguageSwitcher currentLang={locale.language} onChange={locale.changeLanguage} />
-          <EmailButton email={email} />
+          <EmailButton size="compact" />
         </div>
       </div>
 
       <div className="flex xl:hidden items-center justify-between w-full">
-        <a href="#home" className="flex items-center z-10" aria-label="Home">
-          <img
-            src={logo}
-            alt="Daniela Plamínková Logo"
-            width={36}
-            height={36}
-            className="w-9 h-auto"
-            fetchPriority="high"
-          />
-        </a>
+        <LogoLink variant="mobile" />
 
         <button
           type="button"
@@ -77,6 +57,29 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
   )
 }
 
+/** The logo is slightly larger on desktop and needs different layout classes per bar. */
+const LOGO_VARIANTS = {
+  desktop: { anchor: 'shrink-0', img: 'w-10 h-auto', size: 40 },
+  mobile: { anchor: 'z-10', img: 'w-9 h-auto', size: 36 },
+} as const
+
+const LogoLink = ({ variant }: { variant: keyof typeof LOGO_VARIANTS }) => {
+  const { anchor, img, size } = LOGO_VARIANTS[variant]
+
+  return (
+    <a href="#home" className={`flex items-center ${anchor}`} aria-label="Home">
+      <img
+        src={logo}
+        alt="Daniela Plamínková Logo"
+        width={size}
+        height={size}
+        className={img}
+        fetchPriority="high"
+      />
+    </a>
+  )
+}
+
 interface NavLinkProps {
   href: string
   label: string
@@ -89,20 +92,4 @@ const NavLink = ({ href, label }: NavLinkProps) => (
   >
     {label}
   </a>
-)
-
-interface EmailButtonProps {
-  email: string
-}
-
-const EmailButton = ({ email }: EmailButtonProps) => (
-  <Button
-    as="a"
-    href={`mailto:${email}`}
-    variant="primary"
-    size="compact"
-    aria-label={`Send email to ${email}`}
-  >
-    {email}
-  </Button>
 )

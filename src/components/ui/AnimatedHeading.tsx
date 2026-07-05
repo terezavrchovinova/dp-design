@@ -1,3 +1,4 @@
+import { useReducedMotion } from 'motion/react'
 import * as m from 'motion/react-m'
 import { useEffect, useRef, useState } from 'react'
 import { TRANSITIONS } from '@/constants/motion'
@@ -11,6 +12,9 @@ export const AnimatedHeading = () => {
   const { t } = useTranslation()
   const headingRef = useRef<HTMLHeadingElement>(null)
   const [scattered, setScattered] = useState<ScatteredState>({})
+  // Letters fling ~100px on hover — skip the whole effect for reduced-motion
+  // users (MotionConfig would only make the jump instant, which looks broken).
+  const reduceMotion = useReducedMotion()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -59,7 +63,7 @@ export const AnimatedHeading = () => {
                 key={`${index}-${char}`}
                 className="inline-block"
                 animate={animationState}
-                onHoverStart={() => handleHover(index, setScattered)}
+                onHoverStart={reduceMotion ? undefined : () => handleHover(index, setScattered)}
                 transition={TRANSITIONS.scatter}
               >
                 {char === ' ' ? '\u00A0' : char}

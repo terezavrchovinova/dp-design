@@ -1,32 +1,22 @@
-import { lazy, Suspense, useEffect, useState } from 'react'
-
-const LazyAnalytics = lazy(() =>
-  import('@vercel/analytics/react').then((m) => ({ default: m.Analytics }))
-)
-const LazySpeedInsights = lazy(() =>
-  import('@vercel/speed-insights/react').then((m) => ({ default: m.SpeedInsights }))
-)
-
-import './index.css'
-
+import { type ComponentType, lazy, Suspense, useEffect, useState } from 'react'
 import { Footer } from '@/components/layout/Footer'
 import { MobileMenu } from '@/components/layout/MobileMenu'
 import { Navbar } from '@/components/layout/Navbar'
 import { Home } from '@/components/sections/Home'
 import { ScrollAnimation } from '@/components/sections/ScrollAnimation'
 
-const Projects = lazy(() =>
-  import('@/components/sections/Projects').then((m) => ({
-    default: m.Projects,
-  }))
-)
-const WhatIDo = lazy(() =>
-  import('@/components/sections/WhatIDo').then((m) => ({ default: m.WhatIDo }))
-)
-const About = lazy(() => import('@/components/sections/About').then((m) => ({ default: m.About })))
-const Contact = lazy(() =>
-  import('@/components/sections/Contact').then((m) => ({ default: m.Contact }))
-)
+/** `React.lazy` for modules with named (non-default) component exports. */
+function lazyNamed<K extends string>(load: () => Promise<Record<K, ComponentType>>, exportName: K) {
+  return lazy(() => load().then((module) => ({ default: module[exportName] })))
+}
+
+const LazyAnalytics = lazyNamed(() => import('@vercel/analytics/react'), 'Analytics')
+const LazySpeedInsights = lazyNamed(() => import('@vercel/speed-insights/react'), 'SpeedInsights')
+
+const Projects = lazyNamed(() => import('@/components/sections/Projects'), 'Projects')
+const WhatIDo = lazyNamed(() => import('@/components/sections/WhatIDo'), 'WhatIDo')
+const About = lazyNamed(() => import('@/components/sections/About'), 'About')
+const Contact = lazyNamed(() => import('@/components/sections/Contact'), 'Contact')
 
 const XL_BREAKPOINT = 1280
 

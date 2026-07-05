@@ -24,19 +24,29 @@ export default defineConfig({
     minify: 'esbuild', // 10x faster than terser; console removal handled by plugin above
     rollupOptions: {
       output: {
-        // Manual code splitting for better caching
+        // Manual code splitting for better caching. App code is left unassigned so
+        // Vite keeps its lazy section chunks; only third-party deps are grouped.
         manualChunks: (id) => {
+          if (!id.includes('node_modules')) {
+            return undefined
+          }
           // Separate the lottie player into its own chunk for lazy loading
           // This prevents it from being included in the main bundle
           if (id.includes('lottie-web')) {
             return 'lottie-vendor'
           }
-          // Keep motion separate from lottie
-          if (id.includes('motion')) {
-            return 'motion-vendor'
+          // Motion / framer-motion is intentionally left unassigned. Its DOM
+          // animation feature graph is reached only through the lazy `import()` in
+          // main.tsx, so Rollup emits it as an async chunk kept out of the eager
+          // load. Forcing all of motion into one vendor chunk would drag those
+          // features back into the eager graph (the lightweight `m` proxy and
+          // `useInView` are imported statically), defeating the lazy load. Checked
+          // before the React rule because motion's entry files are named react.mjs.
+          if (id.includes('/motion/') || id.includes('/framer-motion/')) {
+            return undefined
           }
           // React core
-          if (id.includes('react') || id.includes('react-dom')) {
+          if (id.includes('/react') || id.includes('/scheduler/')) {
             return 'react-vendor'
           }
           // Analytics
@@ -44,6 +54,7 @@ export default defineConfig({
             return 'analytics-vendor'
           }
           // Default: let Vite handle other chunks
+          return undefined
         },
         // Consistent asset naming with content hashing
         assetFileNames: 'assets/[name]-[hash][extname]',

@@ -1,5 +1,4 @@
 import * as m from 'motion/react-m'
-import { useRef } from 'react'
 import { LazyLottie, type LottieAnimationData } from '@/components/ui/LazyLottie'
 import { STAGGER, TRANSITIONS } from '@/constants/motion'
 import { SERVICES } from '@/data/services'
@@ -11,8 +10,7 @@ interface LottieAnimationProps {
 }
 
 const LottieAnimation = ({ asset }: LottieAnimationProps) => {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const isVisible = useInViewOnce(containerRef, { amount: 0.1 })
+  const [containerRef, isVisible] = useInViewOnce<HTMLDivElement>({ amount: 0.1 })
 
   return (
     <div ref={containerRef} className="w-16 h-16">

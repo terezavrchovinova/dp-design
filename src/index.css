@@ -1,6 +1,10 @@
 @import 'tailwindcss';
 
 @theme {
+  /* Display serif (self-hosted via @font-face in index.html), used for accent
+     words in headings. Exposed as the `font-serif` utility. */
+  --font-serif: 'DM Serif Display', serif;
+
   /* Base Colors - plaminkova-inspired palette.
      `dark` is kept as RGB channels because it's also used translucent (navbar). */
   --dark-rgb: 13 13 13;
@@ -44,6 +48,20 @@
   --duration-base: 300ms; /* card / structural hover, scroll-label crossfades */
   --duration-slow: 500ms; /* large moves: project image zoom, mobile-menu open */
   --duration-ambient: 800ms; /* slow ambient fades: scroll-anim glow */
+}
+
+/* Respect the OS "reduce motion" preference. JS entrance animations are handled
+   by MotionConfig in main.tsx; every CSS transition reads one of these duration
+   tokens, so zeroing them here turns hover/menu motion into instant state
+   changes in a single place. Users without the preference are unaffected. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --default-transition-duration: 0ms;
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+    --duration-slow: 0ms;
+    --duration-ambient: 0ms;
+  }
 }
 
 html {

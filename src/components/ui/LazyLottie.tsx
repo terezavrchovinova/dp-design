@@ -34,6 +34,10 @@ export const LazyLottie = ({
     let cancelled = false
     let animation: { destroy: () => void } | undefined
 
+    // Looping icon animations are ambient motion — render the first frame only
+    // for users whose OS asks for reduced motion.
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
     import('lottie-web/build/player/lottie_light').then((mod) => {
       if (cancelled || !containerRef.current) {
         return
@@ -42,7 +46,7 @@ export const LazyLottie = ({
         container: containerRef.current,
         renderer: 'svg',
         loop,
-        autoplay,
+        autoplay: autoplay && !reduceMotion,
         animationData,
       })
     })
