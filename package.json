@@ -54,6 +54,6 @@
     "typescript": "^6.0.3",
     "vite": "^8.0.16",
     "vite-plugin-remove-console": "^2.2.0",
-    "vitest": "^4.1.9"
+    "vitest": "^4.1.11"
   }
 }
