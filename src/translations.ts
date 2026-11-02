@@ -64,7 +64,7 @@ export function getFixedT(language: Language): TFunction {
   return createT(language)
 }
 
-// --- Reactive language store (replaces the i18next/react-i18next runtime) ---
+// --- Reactive language store (a minimal custom store, no i18next) ---
 
 let currentLanguage: Language = DEFAULT_LANGUAGE
 const listeners = new Set<() => void>()

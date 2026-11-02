@@ -94,7 +94,7 @@ describe('Navbar', () => {
       name: /switch to english/i,
     })
     await user.click(englishOption)
-    // Language should change (tested via i18n integration)
+    // Language should change
     expect(englishOption).not.toBeVisible()
   })
 
