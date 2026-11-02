@@ -1,188 +1,96 @@
-# Daniela Plamínková - Portfolio Website
+# Portfolio
 
-A modern, performant portfolio website showcasing the creative work of Daniela Plamínková, a graphic designer and video editor. Built with React, TypeScript, and optimized for speed and user experience.
+Bilingual (Czech / English) single-page portfolio for a graphic designer and video editor. It is a static site with no backend: all content lives in the repository.
 
-## ✨ Features
+## Stack
 
-- **Bilingual Support** - English and Czech (i18n)
-- **Performance Optimized** - Code splitting, lazy loading, and critical CSS extraction
-- **Smooth Animations** - Lottie animations and Motion library for engaging interactions
-- **Responsive Design** - Mobile-first approach with Tailwind CSS
-- **Analytics** - Vercel Analytics and Speed Insights integration
-- **Modern Stack** - React 19, TypeScript, Vite 7
+- [React 19](https://react.dev) + TypeScript
+- [Vite](https://vite.dev) for dev server and build
+- [Tailwind CSS v4](https://tailwindcss.com) with design tokens in `src/index.css`
+- [Motion](https://motion.dev) for UI animation, `lottie-web` (light build, lazy-loaded) for the service icons
+- A small built-in i18n layer (`src/translations.ts`) over `locales/{cs,en}/translation.json`
+- [Biome](https://biomejs.dev) for lint and format, [Knip](https://knip.dev) for dead code
+- [Vitest](https://vitest.dev) + Testing Library for unit tests, [Playwright](https://playwright.dev) for e2e
+- Hosted on [Vercel](https://vercel.com) (Analytics and Speed Insights are loaded lazily in production only)
 
-## 🚀 Tech Stack
+## Getting started
 
-- **Framework**: React 19 with TypeScript
-- **Build Tool**: Vite 7
-- **Styling**: Tailwind CSS 4
-- **Animations**:
-  - Lottie React
-  - Motion (Framer Motion)
-- **Internationalization**: i18next & react-i18next
-- **Analytics**: Vercel Analytics & Speed Insights
-- **Code Quality**: Biome (lint + format), TypeScript
-
-## 📦 Getting Started
-
-### Prerequisites
-
-- Node.js v18+
-
-### Installation
-
-1. Clone the repository:
+Requires Node.js 24 or newer (see `.nvmrc`).
 
 ```bash
-git clone <repository-url>
-cd danca-portfolio
-```
-
-2. Install dependencies:
-
-```bash
-npm install
-```
-
-3. Start the development server:
-
-```bash
+npm ci
 npm run dev
 ```
 
-4. Open [http://localhost:5173](http://localhost:5173) in your browser
+The dev server runs at <http://localhost:5173>.
 
-## 🛠️ Available Scripts
+## Scripts
 
-Run with `npm run <script>`:
+| Script | What it does |
+| --- | --- |
+| `npm run dev` | Start the dev server |
+| `npm run build` | Type-check (`tsc -b`) and build to `dist/` |
+| `npm run preview` | Serve the production build locally |
+| `npm run lint` | Biome lint and format check |
+| `npm run lint:fix` | Apply Biome fixes and formatting |
+| `npm test` | Run unit tests once (`test:watch`, `test:ui`, `test:coverage` also available) |
+| `npm run test:ci` | Unit tests for CI; the Vercel build runs this before `build` |
+| `npm run test:e2e` | Run Playwright specs on all configured browsers (starts the dev server itself) |
+| `npm run deadcode` | Find unused files, exports and dependencies |
 
-- `dev` - Start development server
-- `build` - Build for production
-- `preview` - Preview production build locally
-- `lint` - Run Biome (lint + format check)
-- `lint:fix` - Fix lint issues and format with Biome
-- `format` - Format code with Biome
-- `test` - Run unit and integration tests
-- `test:watch` - Run tests in watch mode
-- `test:ui` - Run tests with Vitest UI
-- `test:coverage` - Run tests with coverage report
-- `test:e2e` - Run end-to-end tests
-- `test:e2e:ui` - Run e2e tests with Playwright UI
-- `test:ci` - Run tests for CI (unit tests only; used by the Vercel build)
+Before opening a PR, `lint`, `test`, `build` and `deadcode` should all pass. Run `test:e2e` if you touched a section, navigation or animation code. Biome owns formatting, so run `lint:fix` instead of formatting by hand.
 
-## 📁 Project Structure
+## Project structure
 
 ```
 src/
-├── assets/              # Images, fonts, icons, and Lottie animations
-│   ├── fonts/
-│   ├── icons/
-│   └── project_thumbnails/
-├── components/          # React components
-│   ├── layout/         # Navbar, MobileMenu, Footer
-│   ├── ui/             # Reusable UI (Button, AnimatedHeading, ToolIcon, etc.)
-│   └── sections/       # Page sections (Home, Projects, About, etc.)
-├── constants/          # Static config (motion, navigation, contact, i18n)
-├── data/               # Content arrays (projects, services, tools)
-├── hooks/              # Custom hooks
-├── locales/            # Translation files (en, cs)
-├── tests/              # Vitest unit/integration tests (mirrors components/)
-│   ├── components/     # Component tests (ui/, layout/, sections/)
-│   ├── setup.ts        # Test setup file
-│   └── utils.tsx       # Test utilities
-├── utils/              # Pure, unit-tested helpers
-├── App.tsx             # Main app component
-├── i18n.ts             # i18n configuration
-└── main.tsx            # Entry point
-
-e2e/                    # Playwright e2e tests
-├── home.spec.ts
-├── navigation.spec.ts
-├── projects.spec.ts
-└── i18n.spec.ts
+  components/
+    layout/      Navbar, MobileMenu, Footer
+    ui/          Button, AnimatedHeading, LanguageSwitcher, LazyLottie, ToolIcon, ExperienceTimeline
+    sections/    Home, ScrollAnimation, Projects, WhatIDo, About, Contact
+  constants/     motion timings, navigation, supported languages
+  data/          content arrays: projects, services, tools
+  locales/       cs/ and en/ translation.json
+  utils/         pure, unit-tested helpers (scroll animation maths, letter scatter)
+  tests/         Vitest tests, mirroring the source tree
+  translations.ts  translation lookup and language store
+e2e/             Playwright specs
 ```
 
-## ⚡ Performance Optimizations
+Two Vite plugins in the repo root (`vite-plugin-critical-css.ts`, `vite-plugin-optimize-head.ts`) post-process `dist/index.html`.
 
-- **Code Splitting**: Manual chunk configuration for optimal caching
-- **Lazy Loading**: Non-critical sections loaded on demand
-- **Critical CSS**: Inline critical CSS for faster initial render
-- **Asset Optimization**: WebP images, optimized builds with esbuild
-- **Vendor Chunks**: Separate chunks for React, Lottie, Motion, and i18n
-- **Console Removal**: Production builds strip console statements
+## Editing content
 
-## 🌐 Internationalization
+- **Copy:** edit `src/locales/cs/translation.json` and `src/locales/en/translation.json`. Keep both files in step; a missing key falls back to English and then to the key itself.
+- **Projects:** add an entry to `src/data/projects.ts` (thumbnails in `src/assets/project_thumbnails/{desktop,mobile}/`) and a matching title under `projects.items.<key>` in both locale files.
+- **Services and tools:** `src/data/services.ts` (Lottie icon plus `whatIDo.services.<key>` copy) and `src/data/tools.ts`.
+- **Adding a language:** add a `translation.json`, register it in `src/translations.ts`, and add it to `LANGUAGES` in `src/constants/languages.ts`.
 
-The portfolio supports multiple languages:
+## Conventions
 
-- English (`en`)
-- Czech (`cs`)
+- Use the `@/` alias for imports across directories.
+- Style with Tailwind utilities and the tokens in `src/index.css`; no hardcoded colors outside that file, no `!important`.
+- Take animation timing and easing from `src/constants/motion.ts`.
+- Do not hardcode user-facing strings; add them to both locale files.
+- Keep non-trivial logic in `utils/` as pure functions with tests.
+- Coverage thresholds: 95% lines and statements, 85% functions and branches.
 
-Translation files are located in `src/locales/`. To add a new language, create a new directory with a `translation.json` file and update the i18n configuration.
+More detail is in [`CLAUDE.md`](CLAUDE.md).
 
-## 📝 Sections
+## Performance
 
-- **Home** - Hero section with introduction
-- **Projects** - Portfolio showcase
-- **Services** - What I Do section
-- **Experience** - Work experience and education
-- **Contact** - Contact information
+- Below-the-fold sections (`Projects`, `WhatIDo`, `About`, `Contact`) are lazy-loaded.
+- Vendor code is split into separate chunks for React, Motion, Lottie and analytics.
+- Critical CSS is inlined and the rest loaded asynchronously.
+- Project images are WebP, with separate mobile and desktop sources.
+- `console.*` calls are stripped from production builds.
 
-## 🧪 Testing
+## Deployment and CI
 
-The project includes comprehensive testing setup:
+- **Vercel** builds with `npm run test:ci && npm run build`, so failing unit tests block a deploy.
+- **GitHub Actions** (`.github/workflows/test.yml`) runs lint, unit tests, Chromium e2e and the build on pushes and PRs to `main`.
+- Dependabot opens dependency update PRs.
 
-### Unit and Integration Tests
+## License
 
-- **Framework**: Vitest with React Testing Library
-- **Location**: `src/tests/**/*.test.tsx`
-- **Run tests**: `npm run test`
-- **Watch mode**: `npm run test:watch`
-- **Coverage**: `npm run test:coverage`
-
-### End-to-End Tests
-
-- **Framework**: Playwright
-- **Location**: `e2e/*.spec.ts`
-- **Run tests**: `npm run test:e2e`
-- **UI mode**: `npm run test:e2e:ui`
-- **Tests include**: Navigation, home page, projects, language switching
-
-### Test Configuration
-
-- Tests run automatically before deployment to Vercel
-- GitHub Actions workflow runs all tests on push/PR
-- Unit tests run in Vercel build command
-- E2E tests run in GitHub Actions for faster builds
-
-## 🚢 Deployment
-
-The project is optimized for deployment on Vercel (or similar platforms). The build process generates optimized static assets ready for production.
-
-**Tests run automatically before deployment:**
-
-- Unit and integration tests run in Vercel build command
-- E2E tests run in GitHub Actions workflow
-- Deployment fails if any tests fail
-
-Build command:
-
-```bash
-npm run build
-```
-
-The `dist/` folder contains the production-ready files.
-
-## 📄 License
-
-This project is private and proprietary.
-
-## 👤 Contact
-
-**Daniela Plamínková**  
-Email: daniela@plaminkova.com
-
----
-
-Built with ❤️ using React, TypeScript, and Vite
-Tereza Vrchovinová
+Private and proprietary. All rights reserved.
