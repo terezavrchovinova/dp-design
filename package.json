@@ -21,7 +21,8 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:e2e:headed": "playwright test --headed",
-    "test:e2e:workers": "playwright test --workers=4"
+    "test:e2e:workers": "playwright test --workers=4",
+    "test:ci": "npm run test"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",

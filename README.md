@@ -68,6 +68,7 @@ Run with `npm run <script>`:
 - `test:coverage` - Run tests with coverage report
 - `test:e2e` - Run end-to-end tests
 - `test:e2e:ui` - Run e2e tests with Playwright UI
+- `test:ci` - Run tests for CI (unit tests only; used by the Vercel build)
 
 ## 📁 Project Structure
 
