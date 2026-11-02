@@ -26,8 +26,11 @@ jobs:
       - name: Run linter
         run: npm run lint
 
-      - name: Run unit and integration tests
-        run: npm run test
+      - name: Find dead code
+        run: npm run deadcode
+
+      - name: Run unit and integration tests with coverage
+        run: npm run test:coverage
 
       - name: Install Playwright browsers
         # Only install chromium for faster CI runs (install all browsers for full testing)
