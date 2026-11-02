@@ -39,7 +39,7 @@ export const LanguageSwitcher = ({ currentLang, onChange }: LanguageSwitcherProp
           alt="Language selector"
           width={20}
           height={20}
-          className="w-4 sm:w-5 h-4 sm:h-5 object-contain transition-all duration-(--duration-fast) group-hover:brightness-[1.4]"
+          className="size-4 sm:size-5 object-contain transition-all duration-(--duration-fast) group-hover:brightness-[1.4]"
           loading="lazy"
         />
       </button>

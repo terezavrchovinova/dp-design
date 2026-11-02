@@ -28,7 +28,7 @@ export const ToolIcon = ({ name, src, staggerDelay = 0 }: ToolIconProps) => {
         transition: TRANSITIONS.fast,
       }}
       transition={{ ...DEFAULT_TRANSITION, delay: staggerDelay }}
-      className="w-12 h-12 flex items-center justify-center rounded cursor-default"
+      className="size-12 flex items-center justify-center rounded cursor-default"
       title={name}
     >
       <img
@@ -36,7 +36,7 @@ export const ToolIcon = ({ name, src, staggerDelay = 0 }: ToolIconProps) => {
         alt={name}
         width={40}
         height={40}
-        className="w-10 h-10 object-contain"
+        className="size-10 object-contain"
         draggable={false}
         loading="lazy"
       />

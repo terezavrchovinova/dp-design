@@ -13,7 +13,7 @@ export const Home = () => {
       aria-label="Home section"
     >
       <div
-        className="home-glow absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 pointer-events-none"
+        className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 size-150 pointer-events-none bg-[radial-gradient(circle,rgb(var(--accent-rgb)/0.08)_0%,transparent_70%)]"
         aria-hidden="true"
       />
 

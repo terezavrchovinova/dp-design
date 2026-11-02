@@ -182,9 +182,9 @@ describe('WhatIDo', () => {
     expect(observerCallback).not.toBeNull()
 
     // Check that Lottie containers exist
-    // The LottieAnimation component renders a div with ref (w-16 h-16), but no LazyLottie inside
+    // The LottieAnimation component renders a div with ref (size-16), but no LazyLottie inside
     // when isVisible is false
-    const lottieContainers = container.querySelectorAll('div.w-16.h-16')
+    const lottieContainers = container.querySelectorAll('div.size-16')
     expect(lottieContainers.length).toBeGreaterThan(0)
 
     // Verify that IntersectionObserver callback was called with isIntersecting: false

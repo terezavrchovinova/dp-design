@@ -15,15 +15,15 @@ const LottieAnimation = ({ asset }: LottieAnimationProps) => {
   const isVisible = useInView(containerRef, { once: true, amount: 0.1 })
 
   return (
-    <div ref={containerRef} className="w-16 h-16">
+    <div ref={containerRef} className="size-16">
       {isVisible && (
         <m.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={TRANSITIONS.default}
-          className="w-16 h-16"
+          className="size-16"
         >
-          <LazyLottie animationData={asset} className="w-16 h-16" />
+          <LazyLottie animationData={asset} className="size-16" />
         </m.div>
       )}
     </div>

@@ -110,19 +110,25 @@ export const ScrollAnimation = () => {
     <section
       ref={sectionRef}
       id="scroll-animation"
-      className="scroll-anim-section"
+      className="relative h-[240vh] w-full overflow-x-clip"
       aria-hidden="true"
     >
-      <div className="scroll-anim-sticky">
-        <div ref={glowOverlayRef} className="scroll-anim-glow" />
+      <div className="sticky top-0 left-0 w-full h-screen overflow-hidden bg-dark grid place-items-center">
+        <div
+          ref={glowOverlayRef}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-175 h-50 opacity-0 pointer-events-none transition-opacity duration-(--duration-ambient) ease-[ease] bg-[radial-gradient(ellipse,rgb(var(--accent-rgb)/0.12)_0%,transparent_70%)]"
+        />
 
-        <div className="scroll-anim-content">
-          <div className="scroll-anim-phase-label" style={{ color: labels.phaseColor }}>
+        <div className="flex flex-col items-center justify-center gap-6 w-[90vw] max-w-215 mx-auto">
+          <div
+            className="font-black text-[clamp(1.4rem,3.5vw,2.2rem)] tracking-[-0.02em] text-center whitespace-normal max-w-[90vw] transition-[color,opacity] duration-(--duration-base) ease-[ease]"
+            style={{ color: labels.phaseColor }}
+          >
             {t(`animation.${labels.labelKey}`)}
           </div>
 
-          <div className="scroll-anim-svg-wrap">
-            <svg className="scroll-anim-svg" viewBox={SVG_VIEWBOX} aria-hidden="true">
+          <div className="relative w-[90vw] max-w-215">
+            <svg className="w-full overflow-visible" viewBox={SVG_VIEWBOX} aria-hidden="true">
               <path
                 ref={chaosPathRef}
                 fill="none"
@@ -159,7 +165,7 @@ export const ScrollAnimation = () => {
           </div>
 
           <div
-            className="scroll-anim-sub-label"
+            className="text-[0.7rem] tracking-[0.2em] uppercase whitespace-normal text-center max-w-[90vw] transition-[opacity,color] duration-(--duration-base) ease-[ease]"
             style={{ color: labels.subColor, opacity: labels.subOpacity }}
           >
             {t(`animation.${labels.subKey}`)}
