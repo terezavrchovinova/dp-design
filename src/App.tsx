@@ -58,6 +58,8 @@ function App() {
         </Suspense>
       )}
 
+      <div className="grain-overlay" aria-hidden="true" />
+
       <Navbar menuOpen={isMenuOpen} setMenuOpen={setIsMenuOpen} />
       <MobileMenu menuOpen={isMenuOpen} setMenuOpen={setIsMenuOpen} />
 

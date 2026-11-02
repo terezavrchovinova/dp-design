@@ -1,5 +1,5 @@
 import * as m from 'motion/react-m'
-import { DEFAULT_TRANSITION } from '@/constants/motion'
+import { DEFAULT_TRANSITION, TRANSITIONS } from '@/constants/motion'
 import { useInViewOnce } from '@/hooks/useInViewOnce'
 
 export interface TimelineEntryProps {
@@ -41,26 +41,41 @@ export const TimelineEntry = ({
       className="relative flex gap-6 md:gap-10 group"
     >
       {!isLast && (
-        <div
-          className="absolute left-2.75 md:left-3.75 top-8 bottom-0 w-px bg-border group-hover:bg-gray transition-colors duration-(--duration-base)"
-          aria-hidden="true"
-        />
+        <>
+          <div
+            className="absolute left-2.75 md:left-3.75 top-8 bottom-0 w-px bg-border"
+            aria-hidden="true"
+          />
+          {/* The "continuous line": an accent segment that draws itself over the
+              grey spine once the entry has entered the viewport. */}
+          <m.div
+            className="absolute left-2.75 md:left-3.75 top-8 bottom-0 w-px bg-accent origin-top"
+            initial={{ scaleY: 0 }}
+            animate={isInView ? { scaleY: 1 } : { scaleY: 0 }}
+            transition={{ ...TRANSITIONS.draw, delay: staggerDelay + 0.2 }}
+            aria-hidden="true"
+          />
+        </>
       )}
 
       <div className="shrink-0 flex flex-col items-center pt-0.5">
         <div
-          className="w-6 h-6 md:w-7.5 md:h-7.5 rounded-full border-2 border-border bg-dark flex items-center justify-center shrink-0 group-hover:border-accent group-hover:scale-110 transition-all duration-(--duration-base)"
+          className={`w-6 h-6 md:w-7.5 md:h-7.5 rounded-full border-2 bg-dark flex items-center justify-center shrink-0 transition-colors duration-(--duration-base) ${
+            isInView ? 'border-accent' : 'border-border'
+          }`}
           aria-hidden="true"
         >
-          <div className="w-1.5 h-1.5 rounded-full bg-gray group-hover:bg-accent transition-colors duration-(--duration-base)" />
+          <div
+            className={`w-1.5 h-1.5 rounded-full transition-colors duration-(--duration-base) ${
+              isInView ? 'bg-accent' : 'bg-gray'
+            }`}
+          />
         </div>
       </div>
 
       <div className="flex-1 min-w-0 pb-12 md:pb-14">
         <div className="hover-card rounded-lg bg-surface p-5">
-          <p className="text-xs md:text-sm mb-2 font-medium tracking-wide text-center sm:text-left text-gray">
-            {date}
-          </p>
+          <p className="eyebrow mb-2 text-center sm:text-left text-gray">{date}</p>
 
           <p className="section-title">
             {part2 ? (

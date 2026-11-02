@@ -43,4 +43,14 @@ describe('Projects', () => {
     // Should have at least some project images
     expect(images.length).toBeGreaterThan(0)
   })
+
+  it('shows a visible caption with category eyebrow and project name', () => {
+    const { container } = render(<Projects />)
+
+    // Titles follow "Category – Name"; the caption splits them into an
+    // always-visible mono eyebrow + name (not hidden behind hover).
+    const eyebrows = container.querySelectorAll('.eyebrow')
+    expect(eyebrows.length).toBeGreaterThan(0)
+    expect(screen.getByText('Kynez')).toBeInTheDocument()
+  })
 })

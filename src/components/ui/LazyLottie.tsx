@@ -7,10 +7,22 @@ import { useEffect, useRef } from 'react'
  */
 export type LottieAnimationData = Record<string, unknown>
 
+/** The subset of lottie-web's AnimationItem this component drives. */
+interface LottieInstance {
+  destroy: () => void
+  play: () => void
+  pause: () => void
+}
+
 interface LottieProps {
   animationData: LottieAnimationData
   loop?: boolean
   autoplay?: boolean
+  /**
+   * Controlled playback: when set, the animation ignores `autoplay` and plays
+   * only while `playing` is true (e.g. on row hover), pausing otherwise.
+   */
+  playing?: boolean
   className?: string
   style?: React.CSSProperties
 }
@@ -25,14 +37,20 @@ export const LazyLottie = ({
   animationData,
   loop = true,
   autoplay = true,
+  playing,
   className,
   style,
 }: LottieProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
+  const animationRef = useRef<LottieInstance | null>(null)
+  // Mirrors `playing` so the async load callback applies the latest hover state.
+  const playingRef = useRef(playing)
+  playingRef.current = playing
+  const isControlled = playing !== undefined
 
   useEffect(() => {
     let cancelled = false
-    let animation: { destroy: () => void } | undefined
+    let animation: LottieInstance | undefined
 
     // Looping icon animations are ambient motion — render the first frame only
     // for users whose OS asks for reduced motion.
@@ -46,16 +64,36 @@ export const LazyLottie = ({
         container: containerRef.current,
         renderer: 'svg',
         loop,
-        autoplay: autoplay && !reduceMotion,
+        autoplay: !isControlled && autoplay && !reduceMotion,
         animationData,
       })
+      animationRef.current = animation
+      if (playingRef.current && !reduceMotion) {
+        animation.play()
+      }
     })
 
     return () => {
       cancelled = true
+      animationRef.current = null
       animation?.destroy()
     }
-  }, [animationData, loop, autoplay])
+  }, [animationData, loop, autoplay, isControlled])
+
+  useEffect(() => {
+    const animation = animationRef.current
+    if (playing === undefined || !animation) {
+      return
+    }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return
+    }
+    if (playing) {
+      animation.play()
+    } else {
+      animation.pause()
+    }
+  }, [playing])
 
   return <div ref={containerRef} className={className} style={style} />
 }

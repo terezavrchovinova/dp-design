@@ -13,6 +13,8 @@ export const TRANSITIONS = {
   slow: { duration: 0.5, ease: EASE_OUT_QUART },
   /** Long, playful "scatter" settle for the interactive heading (1s). */
   scatter: { duration: 1, ease: EASE_OUT_QUART },
+  /** SVG line-draw reveals (hero underline, timeline spine) (0.8s). */
+  draw: { duration: 0.8, ease: EASE_OUT_QUART },
 } as const
 
 /** Per-item delay (seconds) for staggered list/grid entrance animations. */

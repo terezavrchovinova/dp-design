@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { WhatIDo } from '@/components/sections/WhatIDo'
-import { act, getTextInAnyLanguage, render, screen } from '@/tests/utils'
+import { act, fireEvent, getTextInAnyLanguage, render, screen } from '@/tests/utils'
 
 // Helper function to create a complete IntersectionObserverEntry mock
 function createIntersectionEntry(
@@ -130,6 +130,20 @@ describe('WhatIDo', () => {
         ;(observerCallback as IntersectionObserverCallback)([entry], mockObserver)
       })
     }
+  })
+
+  it('toggles the hover state on services rows (drives Lottie playback)', () => {
+    const { container } = render(<WhatIDo />)
+
+    const rows = container.querySelectorAll('.group')
+    expect(rows.length).toBeGreaterThan(0)
+
+    const row = rows[0]
+    fireEvent.mouseEnter(row)
+    fireEvent.mouseLeave(row)
+    // No crash and the row still renders its content after hover round-trip.
+    const designPattern = getTextInAnyLanguage('whatIDo.services.design.title')
+    expect(screen.getAllByText(designPattern).length).toBeGreaterThan(0)
   })
 
   it('handles intersection observer when element is not visible - tests false branch', () => {
