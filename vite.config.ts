@@ -32,18 +32,15 @@ export default defineConfig({
             return 'lottie-vendor'
           }
           // Keep motion separate from lottie
-          if (id.includes('motion')) {
+          if (id.includes('/node_modules/motion/') || id.includes('/node_modules/motion-')) {
             return 'motion-vendor'
           }
           // React core
-          if (id.includes('react') || id.includes('react-dom')) {
+          if (id.includes('/node_modules/react/') || id.includes('/node_modules/react-dom/')) {
             return 'react-vendor'
           }
-          // Analytics
-          if (id.includes('@vercel/analytics') || id.includes('@vercel/speed-insights')) {
-            return 'analytics-vendor'
-          }
-          // Default: let Vite handle other chunks
+          // Default: let Vite handle other chunks. Analytics/Speed Insights get no rule on
+          // purpose: a grouped chunk pulled React core into it and made it a static dependency.
         },
         // Consistent asset naming with content hashing
         assetFileNames: 'assets/[name]-[hash][extname]',
