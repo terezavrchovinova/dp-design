@@ -80,7 +80,7 @@ More detail is in [`CLAUDE.md`](CLAUDE.md).
 ## Performance
 
 - Below-the-fold sections (`Projects`, `WhatIDo`, `About`, `Contact`) are lazy-loaded.
-- Vendor code is split into separate chunks for React, Motion, Lottie and analytics.
+- Vendor code is split into separate chunks for React, Motion and Lottie; Analytics and Speed Insights stay in their own lazy chunks.
 - Critical CSS is inlined and the rest loaded asynchronously.
 - Project images are WebP, with separate mobile and desktop sources.
 - `console.*` calls are stripped from production builds.
