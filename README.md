@@ -68,9 +68,6 @@ Run with `npm run <script>`:
 - `test:coverage` - Run tests with coverage report
 - `test:e2e` - Run end-to-end tests
 - `test:e2e:ui` - Run e2e tests with Playwright UI
-- `test:all` - Run all tests (unit + e2e)
-- `test:ci` - Run tests for CI (unit tests only)
-- `test:ci:full` - Run all tests for CI (unit + e2e)
 
 ## 📁 Project Structure
 

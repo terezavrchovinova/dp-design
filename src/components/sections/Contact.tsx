@@ -1,13 +1,18 @@
 import * as m from 'motion/react-m'
 import { AnimatedHeading } from '@/components/ui/AnimatedHeading'
 import { Button } from '@/components/ui/Button'
-import { FALLBACK_EMAIL } from '@/constants/contact'
-import { DEFAULT_TRANSITION, fadeUp, VIEWPORT, VIEWPORT_CLOSE } from '@/constants/motion'
+import {
+  DEFAULT_TRANSITION,
+  ENTRANCE_DELAY,
+  fadeUp,
+  HEADING_REVEAL,
+  VIEWPORT_CLOSE,
+} from '@/constants/motion'
 import { useTranslation } from '@/translations'
 
 export const Contact = () => {
   const { t } = useTranslation()
-  const email = t('contact.email') || FALLBACK_EMAIL
+  const email = t('contact.email')
 
   return (
     <section
@@ -16,14 +21,14 @@ export const Contact = () => {
       aria-label="Contact section"
     >
       <div className="section-container flex flex-col items-center justify-center text-center">
-        <m.div className="mb-5" {...fadeUp()} viewport={VIEWPORT} transition={DEFAULT_TRANSITION}>
+        <m.div className="mb-5" {...HEADING_REVEAL}>
           <AnimatedHeading />
         </m.div>
 
         <m.div
           {...fadeUp(16)}
           viewport={VIEWPORT_CLOSE}
-          transition={{ ...DEFAULT_TRANSITION, delay: 0.15 }}
+          transition={{ ...DEFAULT_TRANSITION, delay: ENTRANCE_DELAY.cta }}
         >
           <Button href={`mailto:${email}`} aria-label={`Send email to ${email}`}>
             {email}

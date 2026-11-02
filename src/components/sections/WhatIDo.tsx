@@ -1,9 +1,9 @@
+import { useInView } from 'motion/react'
 import * as m from 'motion/react-m'
 import { useRef } from 'react'
 import { LazyLottie, type LottieAnimationData } from '@/components/ui/LazyLottie'
-import { STAGGER, TRANSITIONS } from '@/constants/motion'
+import { STAGGER, TRANSITIONS, VIEWPORT_NEAR } from '@/constants/motion'
 import { SERVICES } from '@/data/services'
-import { useInViewOnce } from '@/hooks/useInViewOnce'
 import { useTranslation } from '@/translations'
 
 interface LottieAnimationProps {
@@ -12,7 +12,7 @@ interface LottieAnimationProps {
 
 const LottieAnimation = ({ asset }: LottieAnimationProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
-  const isVisible = useInViewOnce(containerRef, { amount: 0.1 })
+  const isVisible = useInView(containerRef, { once: true, amount: 0.1 })
 
   return (
     <div ref={containerRef} className="w-16 h-16">
@@ -23,7 +23,7 @@ const LottieAnimation = ({ asset }: LottieAnimationProps) => {
           transition={TRANSITIONS.default}
           className="w-16 h-16"
         >
-          <LazyLottie animationData={asset} className="w-16 h-16" loop autoplay />
+          <LazyLottie animationData={asset} className="w-16 h-16" />
         </m.div>
       )}
     </div>
@@ -46,7 +46,7 @@ export const WhatIDo = () => {
             key={key}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: '-20px' }}
+            viewport={VIEWPORT_NEAR}
             transition={{ ...TRANSITIONS.slow, delay: index * STAGGER.services }}
             className="hover-card bg-card rounded-2xl p-6 text-center sm:text-left flex flex-col sm:flex-row sm:items-center gap-5"
           >

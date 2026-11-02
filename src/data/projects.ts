@@ -24,7 +24,6 @@ import tmobileImgMobile from '../assets/project_thumbnails/mobile/t-mobile.webp'
 import variousBannersImgMobile from '../assets/project_thumbnails/mobile/various_banners.webp'
 
 export interface Project {
-  id: number
   key: string
   imageMobile: string
   imageDesktop: string
@@ -33,84 +32,72 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
-    id: 1,
     key: 'kynez',
     imageMobile: kynezImgMobile,
     imageDesktop: kynezImgDesktop,
     link: 'https://www.behance.net/gallery/222330047/Kynez-Sportswear-brand-identity',
   },
   {
-    id: 2,
     key: 'tmobile',
     imageMobile: tmobileImgMobile,
     imageDesktop: tmobileImgDesktop,
     link: 'https://www.behance.net/gallery/238307417/T-Mobile-Concept-Campaign',
   },
   {
-    id: 3,
     key: 'maastricht',
     imageMobile: maastrichtImgMobile,
     imageDesktop: maastrichtImgDesktop,
     link: 'https://www.behance.net/gallery/199767453/Maastricht-Festival-Visual',
   },
   {
-    id: 4,
     key: 'saleskit',
     imageMobile: saleskitImgMobile,
     imageDesktop: saleskitImgDesktop,
     link: 'https://www.behance.net/gallery/219839403/Design-for-Saleskit',
   },
   {
-    id: 5,
     key: 'various_banners',
     imageMobile: variousBannersImgMobile,
     imageDesktop: variousBannersImgDesktop,
     link: 'https://www.behance.net/gallery/223131257/Banner-Designs-Event-Exhibition-Series',
   },
   {
-    id: 6,
     key: 'dita',
     imageMobile: ditaImgMobile,
     imageDesktop: ditaImgDesktop,
     link: 'https://www.behance.net/gallery/205350295/Dita-Von-Teese-visual',
   },
   {
-    id: 7,
     key: 'letitroll',
     imageMobile: letItRollImgMobile,
     imageDesktop: letItRollImgDesktop,
     link: 'https://www.behance.net/gallery/196798719/Let-It-Roll-Festival-poster',
   },
   {
-    id: 8,
     key: 'newtonia',
     imageMobile: newtoniaImgMobile,
     imageDesktop: newtoniaImgDesktop,
     link: 'https://www.behance.net/gallery/201179759/Game-designNewtonia',
   },
   {
-    id: 9,
     key: 'brejcha',
     imageMobile: brejchaImgMobile,
     imageDesktop: brejchaImgDesktop,
     link: 'https://www.behance.net/gallery/189009581/Boris-Brejcha-video-spot',
   },
   {
-    id: 10,
     key: 'renaissance',
     imageMobile: renaissanceImgMobile,
     imageDesktop: renaissanceImgDesktop,
     link: 'https://www.behance.net/gallery/207746525/The-Great-Masters-of-the-Renaissance-video-spot',
   },
   {
-    id: 11,
     key: 'deathvalley',
     imageMobile: deathvalleyImgMobile,
     imageDesktop: deathvalleyImgDesktop,
     link: 'https://www.behance.net/gallery/200322649/Death-Valley-design',
   },
   {
-    id: 12,
     key: 'jurassic',
     imageMobile: jurassicImgMobile,
     imageDesktop: jurassicImgDesktop,

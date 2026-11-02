@@ -1,5 +1,11 @@
 import * as m from 'motion/react-m'
-import { DEFAULT_TRANSITION, fadeUp, STAGGER, VIEWPORT, VIEWPORT_CLOSE } from '@/constants/motion'
+import {
+  DEFAULT_TRANSITION,
+  fadeUp,
+  HEADING_REVEAL,
+  STAGGER,
+  VIEWPORT_CLOSE,
+} from '@/constants/motion'
 import { PROJECTS } from '@/data/projects'
 import { useTranslation } from '@/translations'
 
@@ -9,17 +15,15 @@ export const Projects = () => {
   return (
     <section id="projects" className="section bg-dark" aria-label="Projects section">
       <div className="section-container text-center sm:text-left">
-        <m.h2 {...fadeUp()} viewport={VIEWPORT} transition={DEFAULT_TRANSITION}>
-          {t('projects.title')}
-        </m.h2>
+        <m.h2 {...HEADING_REVEAL}>{t('projects.title')}</m.h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {PROJECTS.map((project, index) => {
             const title = t(`projects.items.${project.key}`, project.key)
 
             return (
               <m.a
-                key={project.id}
+                key={project.key}
                 href={project.link}
                 {...fadeUp(24)}
                 viewport={VIEWPORT_CLOSE}

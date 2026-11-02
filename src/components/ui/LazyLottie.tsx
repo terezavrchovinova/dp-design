@@ -9,10 +9,7 @@ export type LottieAnimationData = Record<string, unknown>
 
 interface LottieProps {
   animationData: LottieAnimationData
-  loop?: boolean
-  autoplay?: boolean
   className?: string
-  style?: React.CSSProperties
 }
 
 /**
@@ -21,13 +18,7 @@ interface LottieProps {
  * so the player code stays out of the main bundle and is only fetched once this
  * component mounts.
  */
-export const LazyLottie = ({
-  animationData,
-  loop = true,
-  autoplay = true,
-  className,
-  style,
-}: LottieProps) => {
+export const LazyLottie = ({ animationData, className }: LottieProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -41,8 +32,8 @@ export const LazyLottie = ({
       animation = mod.default.loadAnimation({
         container: containerRef.current,
         renderer: 'svg',
-        loop,
-        autoplay,
+        loop: true,
+        autoplay: true,
         animationData,
       })
     })
@@ -51,7 +42,7 @@ export const LazyLottie = ({
       cancelled = true
       animation?.destroy()
     }
-  }, [animationData, loop, autoplay])
+  }, [animationData])
 
-  return <div ref={containerRef} className={className} style={style} />
+  return <div ref={containerRef} className={className} />
 }

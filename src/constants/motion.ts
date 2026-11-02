@@ -27,8 +27,19 @@ export const STAGGER = {
 export const DEFAULT_TRANSITION = TRANSITIONS.default
 
 /** Shared `viewport` configs for `whileInView` entrances (trigger once). */
-export const VIEWPORT = { once: true, margin: '-50px' } as const
+const VIEWPORT = { once: true, margin: '-50px' } as const
 export const VIEWPORT_CLOSE = { once: true, margin: '-30px' } as const
+export const VIEWPORT_NEAR = { once: true, margin: '-20px' } as const
+
+/** Entrance delays (seconds) for the hero sequence and one-off staggered items. */
+export const ENTRANCE_DELAY = {
+  heroTag: 0.1,
+  heroTitle: 0.2,
+  heroSubtitle: 0.3,
+  heroActions: 0.4,
+  cta: 0.15,
+  school: 0.1,
+} as const
 
 /** "Fade up into view" entrance props — spread onto a motion element. y defaults to 20. */
 export const fadeUp = (y = 20) =>
@@ -36,3 +47,10 @@ export const fadeUp = (y = 20) =>
     initial: { opacity: 0, y },
     whileInView: { opacity: 1, y: 0 },
   }) as const
+
+/** Props for a section heading that fades up into view once. */
+export const HEADING_REVEAL = {
+  ...fadeUp(),
+  viewport: VIEWPORT,
+  transition: DEFAULT_TRANSITION,
+} as const

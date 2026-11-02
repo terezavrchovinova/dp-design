@@ -2,7 +2,6 @@ import * as m from 'motion/react-m'
 import logo from '@/assets/icons/dp_icon_white.svg'
 import { Button } from '@/components/ui/Button'
 import { LanguageSwitcher } from '@/components/ui/LanguageSwitcher'
-import { FALLBACK_EMAIL } from '@/constants/contact'
 import { DEFAULT_TRANSITION } from '@/constants/motion'
 import { NAV_ITEMS } from '@/constants/navigation'
 import { useTranslation } from '@/translations'
@@ -16,7 +15,7 @@ export interface NavbarProps {
 
 export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
   const { t, locale } = useTranslation()
-  const email = t('contact.email') || FALLBACK_EMAIL
+  const email = t('contact.email')
 
   return (
     <m.nav
@@ -40,13 +39,26 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
 
         <div className="flex items-center justify-center gap-8 absolute left-1/2 -translate-x-1/2">
           {NAV_ITEMS.map(({ href, key }) => (
-            <NavLink key={href} href={href} label={t(`nav.${key}`)} />
+            <a
+              key={href}
+              href={href}
+              className="text-sm text-gray hover:text-white transition-all duration-(--duration-fast)"
+            >
+              {t(`nav.${key}`)}
+            </a>
           ))}
         </div>
 
         <div className="flex items-center gap-4 shrink-0">
           <LanguageSwitcher currentLang={locale.language} onChange={locale.changeLanguage} />
-          <EmailButton email={email} />
+          <Button
+            href={`mailto:${email}`}
+            variant="primary"
+            size="compact"
+            aria-label={`Send email to ${email}`}
+          >
+            {email}
+          </Button>
         </div>
       </div>
 
@@ -76,33 +88,3 @@ export const Navbar = ({ menuOpen, setMenuOpen }: NavbarProps) => {
     </m.nav>
   )
 }
-
-interface NavLinkProps {
-  href: string
-  label: string
-}
-
-const NavLink = ({ href, label }: NavLinkProps) => (
-  <a
-    href={href}
-    className="text-sm text-gray hover:text-white transition-all duration-(--duration-fast)"
-  >
-    {label}
-  </a>
-)
-
-interface EmailButtonProps {
-  email: string
-}
-
-const EmailButton = ({ email }: EmailButtonProps) => (
-  <Button
-    as="a"
-    href={`mailto:${email}`}
-    variant="primary"
-    size="compact"
-    aria-label={`Send email to ${email}`}
-  >
-    {email}
-  </Button>
-)

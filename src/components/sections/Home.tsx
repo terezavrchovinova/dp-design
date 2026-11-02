@@ -1,6 +1,6 @@
 import * as m from 'motion/react-m'
 import { Button } from '@/components/ui/Button'
-import { DEFAULT_TRANSITION, TRANSITIONS } from '@/constants/motion'
+import { DEFAULT_TRANSITION, ENTRANCE_DELAY, TRANSITIONS } from '@/constants/motion'
 import { useTranslation } from '@/translations'
 
 export const Home = () => {
@@ -26,7 +26,7 @@ export const Home = () => {
         <m.span
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ ...DEFAULT_TRANSITION, delay: 0.1 }}
+          transition={{ ...DEFAULT_TRANSITION, delay: ENTRANCE_DELAY.heroTag }}
           className="inline-block text-[0.72rem] font-bold tracking-[0.15em] uppercase rounded-full border leading-none py-[0.3rem] px-4 mb-[1.8rem] bg-accent-dim text-accent border-accent/30"
         >
           {t('home.heroTag')}
@@ -35,7 +35,7 @@ export const Home = () => {
         <m.h1
           initial={{ y: 8 }}
           animate={{ y: 0 }}
-          transition={{ ...DEFAULT_TRANSITION, delay: 0.2 }}
+          transition={{ ...DEFAULT_TRANSITION, delay: ENTRANCE_DELAY.heroTitle }}
           className="home-title max-w-187.5 flex flex-col items-center text-center"
         >
           <span className="whitespace-normal md:whitespace-nowrap">
@@ -52,7 +52,7 @@ export const Home = () => {
         <m.p
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ ...DEFAULT_TRANSITION, delay: 0.3 }}
+          transition={{ ...DEFAULT_TRANSITION, delay: ENTRANCE_DELAY.heroSubtitle }}
           className="text-gray max-w-105 mx-auto text-center text-sm md:text-base leading-relaxed mb-10"
         >
           {t('home.subtitle')}
@@ -62,7 +62,7 @@ export const Home = () => {
           className="flex justify-center items-center flex-wrap gap-4"
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ ...DEFAULT_TRANSITION, delay: 0.4 }}
+          transition={{ ...DEFAULT_TRANSITION, delay: ENTRANCE_DELAY.heroActions }}
         >
           <Button href="#projects">{t('home.viewProjects')}</Button>
           <Button href="#contact" variant="outline">

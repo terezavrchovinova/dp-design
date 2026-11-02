@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import globeIcon from '@/assets/icons/globe_dark.svg'
 import { LANGUAGES } from '@/constants/languages'
+import type { Language } from '@/translations'
 
 interface LanguageSwitcherProps {
-  currentLang: string
-  onChange: (lng: 'en' | 'cs') => void
+  currentLang: Language
+  onChange: (lng: Language) => void
 }
 
 export const LanguageSwitcher = ({ currentLang, onChange }: LanguageSwitcherProps) => {

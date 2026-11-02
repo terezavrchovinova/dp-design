@@ -1,7 +1,7 @@
+import { useInView } from 'motion/react'
 import * as m from 'motion/react-m'
 import { useRef } from 'react'
 import { DEFAULT_TRANSITION } from '@/constants/motion'
-import { useInViewOnce } from '@/hooks/useInViewOnce'
 
 export interface TimelineEntryProps {
   /** Job/education title */
@@ -24,7 +24,7 @@ export const TimelineEntry = ({
   staggerDelay = 0,
 }: TimelineEntryProps) => {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInViewOnce(ref, { margin: '-40px' })
+  const isInView = useInView(ref, { once: true, margin: '-40px' })
 
   const bulletPoints = description
     .split('. ')

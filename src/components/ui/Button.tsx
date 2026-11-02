@@ -2,27 +2,19 @@ import * as m from 'motion/react-m'
 import { TRANSITIONS } from '@/constants/motion'
 
 type ButtonVariant = 'primary' | 'outline'
-type ButtonElement = 'a' | 'button'
-type ButtonType = 'button' | 'submit' | 'reset'
 type ButtonSize = 'default' | 'compact'
 
 export interface ButtonProps {
   /** Button content */
   children: React.ReactNode
-  /** Link URL (used when as="a") */
+  /** Link URL */
   href?: string
   /** Visual style variant */
   variant?: ButtonVariant
   /** Size preset — `compact` is the smaller pill used in the navbar */
   size?: ButtonSize
-  /** Element type to render */
-  as?: ButtonElement
-  /** Button type (used when as="button") */
-  type?: ButtonType
   /** Additional CSS classes */
   className?: string
-  /** Click handler (used when as="button") */
-  onClick?: () => void
   /** Accessible label for screen readers */
   'aria-label'?: string
 }
@@ -32,10 +24,7 @@ export const Button = ({
   href = '#',
   variant = 'primary',
   size = 'default',
-  as = 'a',
-  type = 'button',
   className = '',
-  onClick,
   'aria-label': ariaLabel,
 }: ButtonProps) => {
   const sizeStyles = {
@@ -74,14 +63,6 @@ export const Button = ({
           },
     whileTap: { scale: 0.98 },
     className: `${baseStyles} ${variantStyles[variant]}`,
-  }
-
-  if (as === 'button') {
-    return (
-      <m.button type={type} onClick={onClick} aria-label={ariaLabel} {...motionProps}>
-        {children}
-      </m.button>
-    )
   }
 
   return (
