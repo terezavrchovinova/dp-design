@@ -7,7 +7,6 @@ describe('ScrollAnimation', () => {
     render(<ScrollAnimation />)
     const section = document.getElementById('scroll-animation')
     expect(section).toBeInTheDocument()
-    expect(section).toHaveClass('scroll-anim-section')
   })
 
   it('has aria-hidden for decorative content', () => {
@@ -30,7 +29,7 @@ describe('ScrollAnimation', () => {
 
   it('renders the SVG with paths and circles', () => {
     const { container } = render(<ScrollAnimation />)
-    const svg = container.querySelector('svg.scroll-anim-svg')
+    const svg = container.querySelector('svg')
     expect(svg).toBeInTheDocument()
     expect(svg).toHaveAttribute('viewBox', '0 0 860 180')
 

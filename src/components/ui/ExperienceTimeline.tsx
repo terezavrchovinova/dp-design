@@ -1,7 +1,7 @@
+import { useInView } from 'motion/react'
 import * as m from 'motion/react-m'
 import { useRef } from 'react'
 import { DEFAULT_TRANSITION } from '@/constants/motion'
-import { useInViewOnce } from '@/hooks/useInViewOnce'
 
 export interface TimelineEntryProps {
   /** Job/education title */
@@ -24,7 +24,7 @@ export const TimelineEntry = ({
   staggerDelay = 0,
 }: TimelineEntryProps) => {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInViewOnce(ref, { margin: '-40px' })
+  const isInView = useInView(ref, { once: true, margin: '-40px' })
 
   const bulletPoints = description
     .split('. ')
@@ -51,10 +51,10 @@ export const TimelineEntry = ({
 
       <div className="shrink-0 flex flex-col items-center pt-0.5">
         <div
-          className="w-6 h-6 md:w-7.5 md:h-7.5 rounded-full border-2 border-border bg-dark flex items-center justify-center shrink-0 group-hover:border-accent group-hover:scale-110 transition-all duration-(--duration-base)"
+          className="size-6 md:size-7.5 rounded-full border-2 border-border bg-dark flex items-center justify-center shrink-0 group-hover:border-accent group-hover:scale-110 transition-all duration-(--duration-base)"
           aria-hidden="true"
         >
-          <div className="w-1.5 h-1.5 rounded-full bg-gray group-hover:bg-accent transition-colors duration-(--duration-base)" />
+          <div className="size-1.5 rounded-full bg-gray group-hover:bg-accent transition-colors duration-(--duration-base)" />
         </div>
       </div>
 
@@ -83,7 +83,10 @@ export const TimelineEntry = ({
 
           <ul className="space-y-1.5 leading-relaxed text-left">
             {bulletPoints.map((point) => (
-              <li key={point} className="section-description flex items-start gap-2">
+              <li
+                key={point}
+                className="text-gray text-base leading-relaxed flex items-start gap-2"
+              >
                 <span className="hidden sm:flex shrink-0 w-[1em] h-[1.625em] items-center justify-center text-lg">
                   ·
                 </span>

@@ -1,7 +1,7 @@
+import { useInView } from 'motion/react'
 import * as m from 'motion/react-m'
 import { useRef } from 'react'
 import { DEFAULT_TRANSITION, TRANSITIONS } from '@/constants/motion'
-import { useInViewOnce } from '@/hooks/useInViewOnce'
 
 export interface ToolIconProps {
   /** Tool name for accessibility and tooltip */
@@ -14,7 +14,7 @@ export interface ToolIconProps {
 
 export const ToolIcon = ({ name, src, staggerDelay = 0 }: ToolIconProps) => {
   const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInViewOnce(ref, { margin: '-20px' })
+  const isInView = useInView(ref, { once: true, margin: '-20px' })
 
   return (
     <m.div
@@ -28,7 +28,7 @@ export const ToolIcon = ({ name, src, staggerDelay = 0 }: ToolIconProps) => {
         transition: TRANSITIONS.fast,
       }}
       transition={{ ...DEFAULT_TRANSITION, delay: staggerDelay }}
-      className="w-12 h-12 flex items-center justify-center rounded cursor-default"
+      className="size-12 flex items-center justify-center rounded cursor-default"
       title={name}
     >
       <img
@@ -36,7 +36,7 @@ export const ToolIcon = ({ name, src, staggerDelay = 0 }: ToolIconProps) => {
         alt={name}
         width={40}
         height={40}
-        className="w-10 h-10 object-contain"
+        className="size-10 object-contain"
         draggable={false}
         loading="lazy"
       />

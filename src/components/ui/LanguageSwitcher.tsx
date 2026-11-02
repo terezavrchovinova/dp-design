@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import globeIcon from '@/assets/icons/globe_dark.svg'
 import { LANGUAGES } from '@/constants/languages'
+import type { Language } from '@/translations'
 
 interface LanguageSwitcherProps {
-  currentLang: string
-  onChange: (lng: 'en' | 'cs') => void
+  currentLang: Language
+  onChange: (lng: Language) => void
 }
 
 export const LanguageSwitcher = ({ currentLang, onChange }: LanguageSwitcherProps) => {
@@ -38,7 +39,7 @@ export const LanguageSwitcher = ({ currentLang, onChange }: LanguageSwitcherProp
           alt="Language selector"
           width={20}
           height={20}
-          className="w-4 sm:w-5 h-4 sm:h-5 object-contain transition-all duration-(--duration-fast) group-hover:brightness-[1.4]"
+          className="size-4 sm:size-5 object-contain transition-all duration-(--duration-fast) group-hover:brightness-[1.4]"
           loading="lazy"
         />
       </button>

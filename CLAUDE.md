@@ -24,9 +24,8 @@ src/
     layout/     Navbar, MobileMenu, Footer
     ui/         reusable pieces: Button, AnimatedHeading, LanguageSwitcher, LazyLottie, ToolIcon, ExperienceTimeline
     sections/   page sections: Home, Projects, WhatIDo, About, Contact, ScrollAnimation
-  constants/    static config: motion timings, navigation, contact, i18n languages
+  constants/    static config: motion timings, navigation, i18n languages
   data/         content arrays: projects, services, tools
-  hooks/        custom hooks (useInViewOnce)
   utils/        pure, unit-tested helpers (scrollAnimationPath, scatter)
   locales/      en/ + cs/ translation.json
   tests/        Vitest unit tests, mirroring the components/ tree

@@ -104,8 +104,7 @@ describe('MobileMenu', () => {
       name: /switch to EN/i,
     })
     await user.click(enButton)
-    // Language change should be called (tested via i18n integration)
-    expect(enButton).toBeInTheDocument()
+    expect(document.documentElement.lang).toBe('en')
   })
 
   it('prevents body scroll when menu is open', () => {

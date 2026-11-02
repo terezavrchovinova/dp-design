@@ -24,7 +24,6 @@ export default defineConfig({
         'vite-plugin-*.ts',
         'src/main.tsx',
         'src/App.tsx',
-        'src/i18n.ts', // i18n configuration is tested via e2e tests
       ],
       // Allow lower coverage for specific files where some branches are tested via e2e
       thresholds: {

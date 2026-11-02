@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { SUPPORTED_LANGUAGES } from '@/constants/languages'
+import { LANGUAGES } from '@/constants/languages'
 import { NAV_ITEMS } from '@/constants/navigation'
 import { useTranslation } from '@/translations'
 
@@ -29,18 +29,6 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
     }
   }, [menuOpen])
 
-  const changeLanguage = (lng: 'en' | 'cs') => {
-    locale.changeLanguage(lng)
-  }
-
-  const handleClose = () => {
-    setMenuOpen(false)
-  }
-
-  const handleMenuItemClick = () => {
-    setMenuOpen(false)
-  }
-
   return (
     <div
       id="mobile-menu"
@@ -54,7 +42,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
     >
       <button
         ref={closeButtonRef}
-        onClick={handleClose}
+        onClick={() => setMenuOpen(false)}
         className="absolute top-6 right-6 text-white text-3xl focus:outline-none hover:scale-110 hover:opacity-80 transition-all duration-(--duration-fast) cursor-pointer"
         aria-label="Close menu"
         type="button"
@@ -68,7 +56,7 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
           <a
             key={item.key}
             href={item.href}
-            onClick={handleMenuItemClick}
+            onClick={() => setMenuOpen(false)}
             className={`text-3xl font-semibold text-white tracking-tight transition-all duration-(--duration-slow) cursor-pointer hover:text-accent hover:scale-105 ${
               menuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
@@ -86,14 +74,14 @@ export const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
 
       <fieldset className="flex space-x-6 border-0 p-0 m-0">
         <legend className="sr-only">Language selection</legend>
-        {SUPPORTED_LANGUAGES.map((lang) => {
+        {LANGUAGES.map(({ code: lang }) => {
           const isActive = locale.language === lang
 
           return (
             <button
               key={lang}
               type="button"
-              onClick={() => changeLanguage(lang)}
+              onClick={() => locale.changeLanguage(lang)}
               className={`text-sm font-medium transition-opacity duration-(--duration-fast) cursor-pointer ${
                 isActive ? 'text-white' : 'text-gray hover:opacity-80'
               }`}
